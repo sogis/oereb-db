@@ -5,7 +5,7 @@ Configuration for running a Docker PostGIS database with ÖREB tables
 
 ```
 docker run --rm --name oereb_db -p 54321:5432 \
--e PG_DATABASE=oereb -e PG_PRIMARY_PORT=5432 -e PG_MODE=primary \
+-e PG_DATABASE=oereb -e PG_LOCALE=en_US.utf8 -e PG_PRIMARY_PORT=5432 -e PG_MODE=primary \
 -e PG_USER=admin -e PG_PASSWORD=admin \
 -e PG_PRIMARY_USER=repl -e PG_PRIMARY_PASSWORD=repl \
 -e PG_ROOT_PASSWORD=secret \
