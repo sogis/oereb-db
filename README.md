@@ -29,19 +29,6 @@ psql -h localhost -p 54321 -d oereb -U admin
 
 ## Creating or updating the SQL scripts that populate the database
 
-```
-ILI2PG_PATH=/opt/ili2pg-4.1.0/
+Run `ILI2PG_PATH=/opt/ili2pg-4.1.0/ ./create_schema_sql_scripts.sh` for generating the SQL scripts that create the DB schemas and tables. (Set `ILI2PG_PATH` according to your installation.) In case only a specific model needs an update, adapt the script to your needs before running it.
 
-declare -A models
-models[DM01AVSO24LV95]=agi_avdpool
-models[PLZOCH1LV95D]=agi_plzortschaft
-
-for model in ${!models[@]}; do
-#  echo ${model} ${models[${model}]}
-  java -jar $ILI2PG_PATH/ili2pg-4.1.0.jar \
-  --dbschema ${models[${model}]} --models ${model} \
-  --defaultSrsCode 2056 --strokeArcs --createGeomIdx --createFk --createFkIdx --createEnumTabs --beautifyEnumDispName --createMetaInfo --createUnique --createNumChecks --nameByTopic \
-  --createBasketCol --createDatasetCol \
-  --createImportTabs --createscript ${models[${model}]}.sql
-done
-```
+After updating the SQL scripts, remember to commit the changes to the repository.
