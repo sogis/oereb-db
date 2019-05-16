@@ -39,10 +39,10 @@ psql -d $PG_DATABASE --single-transaction \
 -f /pgconf/agi_avdpool.sql \
 -f /pgconf/agi_plzortschaft.sql
 
-# Grant permissions on schemas and tables of the oereb database
+# Grant privileges on schemas and tables of the oereb database
 psql -d $PG_DATABASE --single-transaction \
 -v PG_WRITE_USER=$PG_WRITE_USER \
 -v PG_READ_USER=$PG_READ_USER \
--f /pgconf/postscript.sql
+-f /pgconf/grants.sql
 
 echo_info "Executing post-start-hook finished. Database is ready for use."
