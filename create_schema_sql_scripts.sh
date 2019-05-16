@@ -1,13 +1,13 @@
 #!/bin/bash
 
-declare -A models
-models[DM01AVSO24LV95]=agi_avdpool
-models[PLZOCH1LV95D]=agi_plzortschaft
+declare -A schemas
+schemas[agi_avdpool]=DM01AVSO24LV95
+schemas[agi_plzortschaft]=PLZOCH1LV95D
 
-for model in ${!models[@]}; do
+for schema in ${!schemas[@]}; do
   java -jar $ILI2PG_PATH/ili2pg-4.1.0.jar \
-  --dbschema ${models[${model}]} --models ${model} \
+  --dbschema ${schema} --models ${schemas[${schema}]} \
   --defaultSrsCode 2056 --strokeArcs --createGeomIdx --createFk --createFkIdx --createEnumTabs --beautifyEnumDispName --createMetaInfo --createUnique --createNumChecks --nameByTopic \
   --createBasketCol --createDatasetCol \
-  --createImportTabs --createscript ${models[${model}]}.sql
+  --createImportTabs --createscript ${schema}.sql
 done
