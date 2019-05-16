@@ -32,15 +32,16 @@ psql -h localhost -p 54321 -d oereb -U admin
 ```
 ILI2PG_PATH=/opt/ili2pg-4.1.0/
 
-java -jar $ILI2PG_PATH/ili2pg-4.1.0.jar \
---dbschema agi_avdpool --models DM01AVSO24LV95 \
---defaultSrsCode 2056 --strokeArcs --createGeomIdx --createFk --createFkIdx --createEnumTabs --beautifyEnumDispName --createMetaInfo --createUnique --createNumChecks --nameByTopic \
---createBasketCol --createDatasetCol \
---createImportTabs --createscript agi_avdpool.sql
+declare -A models
+models[DM01AVSO24LV95]=agi_avdpool
+models[PLZOCH1LV95D]=agi_plzortschaft
 
-java -jar $ILI2PG_PATH/ili2pg-4.1.0.jar \
---dbschema agi_plzortschaft --models PLZOCH1LV95D \
---defaultSrsCode 2056 --strokeArcs --createGeomIdx --createFk --createFkIdx --createEnumTabs --beautifyEnumDispName --createMetaInfo --createUnique --createNumChecks --nameByTopic \
---createBasketCol --createDatasetCol \
---createImportTabs --createscript agi_plzortschaft.sql
+for model in ${!models[@]}; do
+#  echo ${model} ${models[${model}]}
+  java -jar $ILI2PG_PATH/ili2pg-4.1.0.jar \
+  --dbschema ${models[${model}]} --models ${model} \
+  --defaultSrsCode 2056 --strokeArcs --createGeomIdx --createFk --createFkIdx --createEnumTabs --beautifyEnumDispName --createMetaInfo --createUnique --createNumChecks --nameByTopic \
+  --createBasketCol --createDatasetCol \
+  --createImportTabs --createscript ${models[${model}]}.sql
+done
 ```
