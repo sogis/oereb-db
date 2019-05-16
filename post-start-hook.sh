@@ -33,13 +33,14 @@ psql -d postgres \
 
 # Create tables in the oereb database
 psql -d $PG_DATABASE --single-transaction \
--v PG_DATABASE=$PG_DATABASE \
--v PG_USER=$PG_USER \
--v PG_WRITE_USER=$PG_WRITE_USER \
--v PG_WRITE_PASSWORD=$PG_WRITE_PASSWORD \
--v PG_READ_USER=$PG_READ_USER \
--v PG_READ_PASSWORD=$PG_READ_PASSWORD \
--v PG_PRIMARY_USER=$PG_PRIMARY_USER \
--f /pgconf/setup_oereb_tables.sql
+-c "SET ROLE $PG_USER" \
+-f /pgconf/agi_avdpool.sql \
+-f /pgconf/agi_plzortschaft.sql
 
-echo_info "Executing post-start-hook finished."
+# Grant permissions on schemas and tables of the oereb database
+psql -d $PG_DATABASE --single-transaction \
+-v PG_WRITE_USER=$PG_WRITE_USER \
+-v PG_READ_USER=$PG_READ_USER \
+-f /pgconf/postscript.sql
+
+echo_info "Executing post-start-hook finished. Database is ready for use."
