@@ -34,6 +34,8 @@ psql -d postgres \
 # Create tables in the oereb database
 psql -d $PG_DATABASE --single-transaction \
 -c "SET ROLE $PG_USER" \
+-f /pgconf/agi_oereb.sql \
+-f /pgconf/agi_oereb_staging.sql \
 -f /pgconf/agi_avdpool.sql \
 -f /pgconf/agi_plzortschaft.sql
 

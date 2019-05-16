@@ -1,6 +1,8 @@
 #!/bin/bash
 
 declare -A schemas
+schemas[agi_oereb]="OeREBKRMtrsfr_V1_1;OeREBKRMvs_V1_1"
+schemas[agi_oereb_staging]="OeREBKRMtrsfr_V1_1;OeREBKRMvs_V1_1"
 schemas[agi_avdpool]=DM01AVSO24LV95
 schemas[agi_plzortschaft]=PLZOCH1LV95D
 
