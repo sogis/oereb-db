@@ -11,5 +11,5 @@ for schema in ${!schemas[@]}; do
   --dbschema ${schema} --models ${schemas[${schema}]} \
   --defaultSrsCode 2056 --strokeArcs --createGeomIdx --createFk --createFkIdx --createEnumTabs --beautifyEnumDispName --createMetaInfo --createUnique --createNumChecks --nameByTopic \
   --createBasketCol --createDatasetCol \
-  --createImportTabs --createscript ${schema}.sql
+  --createImportTabs --createscript pgconf/${schema}.sql
 done

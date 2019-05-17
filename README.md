@@ -11,7 +11,7 @@ docker run --rm --name oereb_db -p 54321:5432 \
 -e PG_ROOT_PASSWORD=secret \
 -e PG_WRITE_USER=gretl -e PG_WRITE_PASSWORD=gretl \
 -e PG_READ_USER=ogc_server -e PG_READ_PASSWORD=ogc_server \
--v $(pwd):/pgconf \
+-v $(pwd)/pgconf:/pgconf \
 crunchydata/crunchy-postgres-gis:centos7-11.2-2.3.1
 ```
 
