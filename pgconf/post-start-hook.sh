@@ -21,14 +21,6 @@ while true; do
     sleep 2
 done
 
-# Create tables in the oereb database
-psql -d $PG_DATABASE --single-transaction \
--c "SET ROLE $PG_USER" \
--f /pgconf/agi_oereb.sql \
--f /pgconf/agi_oereb_staging.sql \
--f /pgconf/agi_avdpool.sql \
--f /pgconf/agi_plzortschaft.sql
-
 # Create additional DB users and grant privileges
 psql -d $PG_DATABASE --single-transaction \
 -v PG_DATABASE=$PG_DATABASE \

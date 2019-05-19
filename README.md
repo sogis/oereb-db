@@ -31,7 +31,14 @@ psql -h localhost -p 54321 -d oereb -U admin
 
 Run `ILI2PG_PATH=/opt/ili2pg-4.1.0/ ./create_schema_sql_scripts.sh` for generating the SQL scripts that create the DB schemas and tables. (Set `ILI2PG_PATH` according to your installation.) In case only a specific model needs an update, adapt the script to your needs before running it.
 
-After updating the SQL scripts, remember to commit the changes to the repository.
+After updating the SQL scripts, remember to commit the changes to the repository. And to re-generate the `pgconf/setup.sql` file with the following command:
+
+```
+cat pgconf/setup_original.sql pgconf/set_role.sql pgconf/begin_transaction.sql \
+pgconf/agi_oereb.sql pgconf/agi_oereb_staging.sql \
+pgconf/agi_avdpool.sql pgconf/agi_plzortschaft.sql \
+pgconf/commit_transaction.sql > pgconf/setup.sql
+```
 
 ## Commands for importing data manually (example)
 
