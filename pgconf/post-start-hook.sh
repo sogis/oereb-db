@@ -21,12 +21,6 @@ while true; do
     sleep 2
 done
 
-# Create the oereb database
-psql -d postgres \
--v PG_DATABASE=$PG_DATABASE \
--v PG_USER=$PG_USER \
--f /pgconf/setup_oereb_db.sql
-
 # Create tables in the oereb database
 psql -d $PG_DATABASE --single-transaction \
 -c "SET ROLE $PG_USER" \
