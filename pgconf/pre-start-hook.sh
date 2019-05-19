@@ -7,9 +7,4 @@
 
 echo_info "Executing pre-start-hook..." # add below this line
 
-#whoami
-# Here it is planned to run a sed command that modifies the custom pg_hba.conf file;
-# it should replace in the following line
-#host    replication     PG_PRIMARY_USER  0.0.0.0/0              md5
-# "PG_PRIMARY_USER" with the actual name of the PG_PRIMARY_USER
-
+sed -i "s/PG_PRIMARY_USER/$PG_PRIMARY_USER/g" $PGDATA/pg_hba.conf
