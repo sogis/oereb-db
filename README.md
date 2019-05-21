@@ -4,7 +4,7 @@ Configuration for running a Docker PostGIS database with ÖREB tables
 ## Running the image
 
 ```
-docker run --rm --name oereb_db -p 54321:5432 \
+docker run --rm --name oereb_db -p 54321:5432 --hostname primary \
 -e PG_DATABASE=oereb -e PG_LOCALE=en_US.utf8 -e PG_PRIMARY_PORT=5432 -e PG_MODE=primary \
 -e PG_USER=admin -e PG_PASSWORD=admin \
 -e PG_PRIMARY_USER=repl -e PG_PRIMARY_PASSWORD=repl \
@@ -12,6 +12,7 @@ docker run --rm --name oereb_db -p 54321:5432 \
 -e PG_WRITE_USER=gretl -e PG_WRITE_PASSWORD=gretl \
 -e PG_READ_USER=ogc_server -e PG_READ_PASSWORD=ogc_server \
 -v $(pwd)/pgconf:/pgconf \
+-v /tmp:/pgdata \
 crunchydata/crunchy-postgres-gis:centos7-11.2-2.3.1
 ```
 
