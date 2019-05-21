@@ -16,6 +16,21 @@ docker run --rm --name oereb_db -p 54321:5432 --hostname primary \
 crunchydata/crunchy-postgres-gis:centos7-11.2-2.3.1
 ```
 
+This places the PostgreSQL data under /tmp/primary. If you want to keep the data longer than just until you log out, run instead e.g.:
+```
+mkdir --mode=0777 ~/crunchy-pgdata
+docker run --rm --name oereb_db -p 54321:5432 --hostname primary \
+-e PG_DATABASE=oereb -e PG_LOCALE=en_US.utf8 -e PG_PRIMARY_PORT=5432 -e PG_MODE=primary \
+-e PG_USER=admin -e PG_PASSWORD=admin \
+-e PG_PRIMARY_USER=repl -e PG_PRIMARY_PASSWORD=repl \
+-e PG_ROOT_PASSWORD=secret \
+-e PG_WRITE_USER=gretl -e PG_WRITE_PASSWORD=gretl \
+-e PG_READ_USER=ogc_server -e PG_READ_PASSWORD=ogc_server \
+-v $(pwd)/pgconf:/pgconf \
+-v ~/crunchy-pgdata:/pgdata \
+crunchydata/crunchy-postgres-gis:centos7-11.2-2.3.1
+```
+
 ## Logging into the container
 
 ```
