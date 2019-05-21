@@ -1,5 +1,5 @@
--- This is the original setup.sql file, copied from https://github.com/CrunchyData/crunchy-containers/blob/master/bin/postgres-gis/setup.sql,
--- with commands currently not needed commented out.
+-- This is the original setup.sql file, copied from https://github.com/CrunchyData/crunchy-containers/blob/4dcbbf676523e613a571c3f79bb844d03643866f/bin/postgres-gis/setup.sql,
+-- with commands currently not needed for OEREB commented out.
 
 SET application_name="container_setup";
 
