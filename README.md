@@ -50,10 +50,10 @@ Run `ILI2PG_PATH=/opt/ili2pg-4.1.0/ ./create_schema_sql_scripts.sh` for generati
 After updating the SQL scripts, remember to commit the changes to the repository. And to re-generate the `pgconf/setup.sql` file with the following command:
 
 ```
-cat pgconf/setup_original.sql pgconf/set_role.sql pgconf/begin_transaction.sql \
-pgconf/agi_oereb.sql pgconf/agi_oereb_staging.sql \
-pgconf/agi_avdpool.sql pgconf/agi_plzortschaft.sql \
-pgconf/commit_transaction.sql > pgconf/setup.sql
+cat sql/setup_original.sql sql/set_role.sql sql/begin_transaction.sql \
+sql/agi_oereb.sql sql/agi_oereb_staging.sql \
+sql/agi_avdpool.sql sql/agi_plzortschaft.sql \
+sql/commit_transaction.sql > pgconf/setup.sql
 ```
 
 ## Commands for importing data manually (example)
