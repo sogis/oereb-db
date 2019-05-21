@@ -5,7 +5,6 @@ Configuration for running a Docker PostGIS database with ÖREB tables
 
 ```
 docker build -t oereb-db:latest .
-
 ```
 
 ## Running the image
