@@ -9,6 +9,18 @@ docker build -t oereb-db:latest .
 
 ## Running the image
 
+Run the command below for running the image. The meaning of the environment variables used is as follows:
+
+- `PG_DATABASE`: The name of the database to create
+- `PG_LOCALE`: Locale for the database to create
+- `PG_PRIMARY_PORT`: The port PostgreSQL is running on
+- `PG_MODE`: If set to primary, PostgreSQL runs as primary instance (as opposed to a standby or replica instance)
+- `PG_USER`: This is the database user that owns all database objects in the PG_DATABASE database (except system objects); this user is granted all privileges on the PG_DATABASE database
+- `PG_PRIMARY_USER`: The database user that replicates data to a possible standby DB instance (not used currently, but this environment variable is mandatory)
+- `PG_ROOT_PASSWORD`: The password of the postgres database user (the built-in database superuser)
+- `PG_WRITE_USER`: The database user that has write (and read) privileges for all tables in the database (except system tables); use this user for importing data into the database
+- `PG_READ_USER`: The database user that has read privileges for all database tables; use this user for querying data
+
 ```
 docker run --rm --name oereb-db -p 54321:5432 --hostname primary \
 -e PG_DATABASE=oereb -e PG_LOCALE=de_CH.UTF-8 -e PG_PRIMARY_PORT=5432 -e PG_MODE=primary \
@@ -41,10 +53,10 @@ oereb-db:latest
 docker exec -it oereb-db /bin/bash
 ```
 
-## Connecting to the database
+## Connecting to the database (example for querying data)
 
 ```
-psql -h localhost -p 54321 -d oereb -U admin
+psql -h localhost -p 54321 -d oereb -U ogc_server
 ```
 
 ## Creating or updating the SQL scripts that populate the database
