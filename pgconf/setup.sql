@@ -1,5 +1,6 @@
--- This is the original setup.sql file, copied from https://github.com/CrunchyData/crunchy-containers/blob/master/bin/postgres-gis/setup.sql,
--- with commands currently not needed commented out.
+-- This is the original setup.sql file, copied from https://github.com/CrunchyData/crunchy-containers/blob/4dcbbf676523e613a571c3f79bb844d03643866f/bin/postgres-gis/setup.sql,
+-- with commands currently not needed for OEREB commented out.
+-- And with an additional command (see comment).
 
 SET application_name="container_setup";
 
@@ -32,6 +33,8 @@ create extension fuzzystrmatch;
 create extension pg_stat_statements;
 create extension pgaudit;
 --create extension plr;
+-- Additional extension needed for OEREB:
+create extension "uuid-ossp";
 
 \c PG_DATABASE PG_USER;
 
