@@ -1,4 +1,7 @@
 # oereb-db
+
+[![Build Status](https://travis-ci.com/schmandr/oereb-db.svg?branch=master)](https://travis-ci.com/schmandr/oereb-db)
+
 Configuration for running a Docker PostGIS database with ÖREB tables
 
 ## Building the image

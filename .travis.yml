@@ -1,0 +1,19 @@
+services:
+- docker
+
+env:
+  global:
+  - DOCKER_ACCOUNT=schmandr
+  - DOCKER_REPO=oereb-db
+
+branches:
+  only:
+    - master
+
+script:
+  - docker build -t $DOCKER_ACCOUNT/$DOCKER_REPO:latest -t $DOCKER_ACCOUNT/$DOCKER_REPO:$TRAVIS_BUILD_NUMBER .
+
+after_success:
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+  - docker push $DOCKER_ACCOUNT/$DOCKER_REPO:latest
+  - docker push $DOCKER_ACCOUNT/$DOCKER_REPO:$TRAVIS_BUILD_NUMBER
