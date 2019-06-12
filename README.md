@@ -1,7 +1,7 @@
 # OEREB Database
 
 [![Build Status](https://travis-ci.com/schmandr/oereb-db.svg?branch=master)](https://travis-ci.com/schmandr/oereb-db)
-![Docker Pulls](https://img.shields.io/docker/pulls/schmandr/oereb-db.svg)
+[![Docker Pulls](https://img.shields.io/docker/pulls/schmandr/oereb-db.svg)](https://hub.docker.com/r/schmandr/oereb-db)
 
 Docker image providing a PostGIS database with OEREB tables
 
