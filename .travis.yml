@@ -12,8 +12,6 @@ branches:
 
 script:
   - docker build -t $DOCKER_ACCOUNT/$DOCKER_REPO:latest -t $DOCKER_ACCOUNT/$DOCKER_REPO:$TRAVIS_BUILD_NUMBER .
-
-after_success:
-  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKERHUB_USER" --password-stdin
   - docker push $DOCKER_ACCOUNT/$DOCKER_REPO:latest
   - docker push $DOCKER_ACCOUNT/$DOCKER_REPO:$TRAVIS_BUILD_NUMBER
