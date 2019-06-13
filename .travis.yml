@@ -1,10 +1,10 @@
 services:
-- docker
+  - docker
 
 env:
   global:
-  - DOCKER_ACCOUNT=schmandr
-  - DOCKER_REPO=oereb-db
+    - DOCKER_ACCOUNT=schmandr
+    - DOCKER_REPO=oereb-db
 
 branches:
   only:
