@@ -13,12 +13,6 @@ services:
     depends_on:
       - db
   db:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      labels:
-        oereb-db.note: "docker-compose.test.yml"
-    hostname: primary
     image: schmandr/oereb-db:latest
     environment:
       PG_DATABASE: oereb
@@ -34,3 +28,4 @@ services:
       PG_WRITE_PASSWORD: gretl
       PG_READ_USER: ogc_server
       PG_READ_PASSWORD: ogc_server
+    hostname: primary
