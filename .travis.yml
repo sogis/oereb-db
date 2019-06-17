@@ -11,10 +11,13 @@ branches:
     - master
 
 script:
-  - docker build -t $DOCKER_ACCOUNT/$DOCKER_REPO:latest -t $DOCKER_ACCOUNT/$DOCKER_REPO:$TRAVIS_BUILD_NUMBER .
+  - docker-compose -f docker-compose.test.yml -p ci build
+  - docker-compose -f docker-compose.test.yml -p ci up -d
+  - docker logs -f ci_sut_1
+  - docker wait ci_sut_1
 
 deploy:
   provider: script
-  script: echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin && docker push $DOCKER_ACCOUNT/$DOCKER_REPO
+  script: docker tag $DOCKER_ACCOUNT/$DOCKER_REPO:latest $DOCKER_ACCOUNT/$DOCKER_REPO:$TRAVIS_BUILD_NUMBER && echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin && docker push $DOCKER_ACCOUNT/$DOCKER_REPO
   on:
     branch: master

@@ -1,0 +1,36 @@
+version: '3.3'
+services:
+  sut:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    environment:
+      ORG_GRADLE_PROJECT_dbUri: "jdbc:postgresql://db/oereb"
+      ORG_GRADLE_PROJECT_dbUserWrite: gretl
+      ORG_GRADLE_PROJECT_dbPwdWrite: gretl
+      ORG_GRADLE_PROJECT_dbUserRead: ogc_server
+      ORG_GRADLE_PROJECT_dbPwdRead: ogc_server
+    depends_on:
+      - db
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      labels:
+        oereb-db.note: "docker-compose.test.yml"
+    hostname: primary
+    image: schmandr/oereb-db:latest
+    environment:
+      PG_DATABASE: oereb
+      PG_LOCALE: de_CH.UTF-8
+      PG_PRIMARY_PORT: 5432
+      PG_MODE: primary
+      PG_USER: admin
+      PG_PASSWORD: admin
+      PG_PRIMARY_USER: repl
+      PG_PRIMARY_PASSWORD: repl
+      PG_ROOT_PASSWORD: secret
+      PG_WRITE_USER: gretl
+      PG_WRITE_PASSWORD: gretl
+      PG_READ_USER: ogc_server
+      PG_READ_PASSWORD: ogc_server

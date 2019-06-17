@@ -1,0 +1,13 @@
+FROM alpine:latest
+
+RUN apk add --no-cache gradle postgresql-client
+
+WORKDIR /tmp
+
+COPY tests/testscript.sh /tmp/
+COPY tests/build.gradle /tmp/
+COPY tests/*.sql /tmp/
+
+USER 1001
+
+CMD ["/bin/sh", "-c", "/tmp/testscript.sh"]
