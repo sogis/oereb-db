@@ -26,13 +26,13 @@ task systemTest(type: SqlExecutor) {
 task readTest(type: SqlExecutor) {
     database = [dbUri, dbUserRead, dbPwdRead]
     sqlFiles = [
-        'readTest_agi_avdpool.sql'
+        'readTest.sql'
     ]
 }
 
 task writeTest(type: SqlExecutor) {
     database = [dbUri, dbUserWrite, dbPwdWrite]
     sqlFiles = [
-        'writeTest_agi_avdpool.sql'
+        'writeTest.sql'
     ]
 }

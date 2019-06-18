@@ -83,8 +83,8 @@ After updating the SQL scripts, remember to commit the changes to the repository
 
 ```
 cat sql/setup_original.sql sql/set_role.sql sql/begin_transaction.sql \
-sql/agi_oereb.sql sql/agi_oereb_staging.sql \
-sql/agi_avdpool.sql sql/agi_plzortschaft.sql \
+sql/oereb.sql sql/oereb_staging.sql \
+sql/dm01avso24.sql sql/plzoch1d.sql \
 sql/commit_transaction.sql > pgconf/setup.sql
 ```
 
@@ -95,6 +95,6 @@ curl -O https://data.geo.admin.ch/ch.swisstopo-vd.ortschaftenverzeichnis_plz/PLZ
 unzip PLZO_INTERLIS_LV95.zip PLZO_INTERLIS_LV95/PLZO_ITF_LV95.itf
 ILI2PG_PATH=/opt/ili2pg-4.1.0/ && java -jar $ILI2PG_PATH/ili2pg-4.1.0.jar \
 --dbhost localhost --dbport 54321 --dbdatabase oereb --dbusr gretl --dbpwd gretl \
---dbschema agi_plzortschaft --models PLZOCH1LV95D \
+--dbschema plzoch1d --models PLZOCH1LV95D \
 --dataset ch --deleteData --import PLZO_INTERLIS_LV95/PLZO_ITF_LV95.itf
 ```
