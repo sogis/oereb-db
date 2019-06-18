@@ -12,7 +12,7 @@ branches:
 
 script:
   - docker build -t $DOCKER_ACCOUNT/$DOCKER_REPO:latest -t $DOCKER_ACCOUNT/$DOCKER_REPO:$TRAVIS_BUILD_NUMBER .
-  - docker-compose -f docker-compose.test.yml -p ci up -d --build
+  - docker-compose -f docker-compose.test.yml --project-name ci up -d --build
   - docker logs -f ci_sut_1
   - docker wait ci_sut_1
 

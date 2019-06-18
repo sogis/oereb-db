@@ -5,14 +5,22 @@
 
 Docker image providing a PostGIS database with OEREB tables
 
-## Building the image
+## Building and testing the image
 
-The image is built automatically by Travis CI and is available from https://hub.docker.com/r/schmandr/oereb-db.
+The image is built and tested automatically by Travis CI and is available from https://hub.docker.com/r/schmandr/oereb-db.
 
 If you want to build the image manually:
 
 ```
-docker build -t oereb-db:latest .
+docker build -t schmandr/oereb-db:latest .
+```
+
+If you want to test the image manually:
+
+```
+docker-compose -f docker-compose.test.yml --project-name ci up -d --build
+docker logs -f ci_sut_1
+docker wait ci_sut_1
 ```
 
 ## Running the image
