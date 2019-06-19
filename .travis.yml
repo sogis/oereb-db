@@ -3,7 +3,7 @@ services:
 
 env:
   global:
-    - DOCKER_ACCOUNT=schmandr
+    - DOCKER_ACCOUNT=sogis
     - DOCKER_REPO=oereb-db
 
 branches:

@@ -13,7 +13,7 @@ services:
     depends_on:
       - db
   db:
-    image: schmandr/oereb-db:latest
+    image: sogis/oereb-db:latest
     environment:
       PG_DATABASE: oereb
       PG_LOCALE: de_CH.UTF-8

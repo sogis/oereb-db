@@ -1,18 +1,18 @@
 # OEREB Database
 
-[![Build Status](https://travis-ci.com/schmandr/oereb-db.svg?branch=master)](https://travis-ci.com/schmandr/oereb-db)
-[![Docker Pulls](https://img.shields.io/docker/pulls/schmandr/oereb-db.svg)](https://hub.docker.com/r/schmandr/oereb-db)
+[![Build Status](https://travis-ci.com/sogis/oereb-db.svg?branch=master)](https://travis-ci.com/sogis/oereb-db)
+[![Docker Pulls](https://img.shields.io/docker/pulls/sogis/oereb-db.svg)](https://hub.docker.com/r/sogis/oereb-db)
 
 Docker image providing a PostGIS database with OEREB tables
 
 ## Building and testing the image
 
-The image is built and tested automatically by Travis CI and is available from https://hub.docker.com/r/schmandr/oereb-db.
+The image is built and tested automatically by Travis CI and is available from https://hub.docker.com/r/sogis/oereb-db.
 
 If you want to build the image manually:
 
 ```
-docker build -t schmandr/oereb-db:latest .
+docker build -t sogis/oereb-db:latest .
 ```
 
 If you want to test the image manually:
@@ -46,7 +46,7 @@ docker run --rm --name oereb-db -p 54321:5432 --hostname primary \
 -e PG_WRITE_USER=gretl -e PG_WRITE_PASSWORD=gretl \
 -e PG_READ_USER=ogc_server -e PG_READ_PASSWORD=ogc_server \
 -v /tmp:/pgdata \
-schmandr/oereb-db:latest
+sogis/oereb-db:latest
 ```
 
 This places the PostgreSQL data under /tmp/primary. If you want to keep the data longer than just until you log out, run instead e.g.:
@@ -60,7 +60,7 @@ docker run --rm --name oereb-db -p 54321:5432 --hostname primary \
 -e PG_WRITE_USER=gretl -e PG_WRITE_PASSWORD=gretl \
 -e PG_READ_USER=ogc_server -e PG_READ_PASSWORD=ogc_server \
 -v ~/crunchy-pgdata:/pgdata \
-schmandr/oereb-db:latest
+sogis/oereb-db:latest
 ```
 
 ## Logging into the container
