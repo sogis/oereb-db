@@ -1,6 +1,6 @@
 # OEREB Database
 
-[![Build Status](https://travis-ci.com/sogis/oereb-db.svg?branch=master)](https://travis-ci.com/sogis/oereb-db)
+[![Build Status](https://travis-ci.org/sogis/oereb-db.svg?branch=master)](https://travis-ci.org/sogis/oereb-db)
 [![Docker Pulls](https://img.shields.io/docker/pulls/sogis/oereb-db.svg)](https://hub.docker.com/r/sogis/oereb-db)
 
 Docker image providing a PostGIS database with OEREB tables
