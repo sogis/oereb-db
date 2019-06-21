@@ -10,21 +10,21 @@ REVOKE CREATE ON SCHEMA public FROM PUBLIC;
 
 -- Grant privileges on schemas
 GRANT USAGE
-ON SCHEMA oereb, oereb_staging, dm01avso24, plzoch1d
+ON SCHEMA live_oereb, live_dm01avso24, live_plzoch1d, stage_oereb, stage_dm01avso24, stage_plzoch1d
 TO public, :PG_WRITE_USER, :PG_READ_USER;
 
 
 -- Grant read privileges
 GRANT SELECT
-ON ALL TABLES IN SCHEMA oereb, oereb_staging, dm01avso24, plzoch1d
+ON ALL TABLES IN SCHEMA live_oereb, live_dm01avso24, live_plzoch1d, stage_oereb, stage_dm01avso24, stage_plzoch1d
 TO public, :PG_READ_USER;
 
 
 -- Grant write privileges
 GRANT SELECT, INSERT, UPDATE, DELETE
-ON ALL TABLES IN SCHEMA oereb, oereb_staging, dm01avso24, plzoch1d
+ON ALL TABLES IN SCHEMA live_oereb, live_dm01avso24, live_plzoch1d, stage_oereb, stage_dm01avso24, stage_plzoch1d
 TO :PG_WRITE_USER;
 
 GRANT USAGE
-ON ALL SEQUENCES IN SCHEMA oereb, oereb_staging, dm01avso24, plzoch1d
+ON ALL SEQUENCES IN SCHEMA live_oereb, live_dm01avso24, live_plzoch1d, stage_oereb, stage_dm01avso24, stage_plzoch1d
 TO :PG_WRITE_USER;

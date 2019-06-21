@@ -83,8 +83,7 @@ After updating the SQL scripts, remember to commit the changes to the repository
 
 ```
 cat sql/setup_original.sql sql/set_role.sql sql/begin_transaction.sql \
-sql/oereb.sql sql/oereb_staging.sql \
-sql/dm01avso24.sql sql/plzoch1d.sql \
+sql/stage_*.sql sql/live_*.sql \
 sql/commit_transaction.sql > pgconf/setup.sql
 ```
 
