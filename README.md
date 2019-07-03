@@ -77,7 +77,9 @@ psql -h localhost -p 54321 -d oereb -U ogc_server
 
 ## Creating or updating the SQL scripts that populate the database
 
-Run `ILI2PG_PATH=/opt/ili2pg-4.1.0/ ./create_schema_sql_scripts.sh` for generating the SQL scripts that create the DB schemas and tables. (Set `ILI2PG_PATH` according to your installation.) In case only a specific model needs an update, adapt the script to your needs before running it.
+Run `ILI2PG_PATH=/opt/ili2pg-4.1.0/ili2pg-4.1.0.jar ./create_schema_sql_scripts.sh` for generating the SQL scripts that create the DB schemas and tables. (Set `ILI2PG_PATH` according to your installation.) In case only a specific model needs an update, adapt the script to your needs before running it.
+
+ATTENTION: You must manually edit the `*_ili2.sql` scripts and remove the duplicate DDL statements (duplicate to the ili1 script).
 
 After updating the SQL scripts, remember to commit the changes to the repository. And to re-generate the `pgconf/setup.sql` file with the following command:
 
@@ -92,7 +94,7 @@ sql/commit_transaction.sql > pgconf/setup.sql
 ```
 curl -O https://data.geo.admin.ch/ch.swisstopo-vd.ortschaftenverzeichnis_plz/PLZO_INTERLIS_LV95.zip
 unzip PLZO_INTERLIS_LV95.zip PLZO_INTERLIS_LV95/PLZO_ITF_LV95.itf
-ILI2PG_PATH=/opt/ili2pg-4.1.0/ && java -jar $ILI2PG_PATH/ili2pg-4.1.0.jar \
+ILI2PG_PATH=/opt/ili2pg-4.1.0/ili2pg-4.1.0.jar && java -jar $ILI2PG_PATH \
 --dbhost localhost --dbport 54321 --dbdatabase oereb --dbusr gretl --dbpwd gretl \
 --dbschema plzoch1d --models PLZOCH1LV95D \
 --dataset ch --deleteData --import PLZO_INTERLIS_LV95/PLZO_ITF_LV95.itf
