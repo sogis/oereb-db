@@ -91,11 +91,13 @@ sql/commit_transaction.sql > pgconf/setup.sql
 
 ## Commands for importing data manually (example)
 
+Import into stage area:
+
 ```
 curl -O https://data.geo.admin.ch/ch.swisstopo-vd.ortschaftenverzeichnis_plz/PLZO_INTERLIS_LV95.zip
 unzip PLZO_INTERLIS_LV95.zip PLZO_INTERLIS_LV95/PLZO_ITF_LV95.itf
 ILI2PG_PATH=/opt/ili2pg-4.1.0/ili2pg-4.1.0.jar && java -jar $ILI2PG_PATH \
 --dbhost localhost --dbport 54321 --dbdatabase oereb --dbusr gretl --dbpwd gretl \
---dbschema plzoch1d --models PLZOCH1LV95D \
+--dbschema stage --models PLZOCH1LV95D \
 --dataset ch --deleteData --import PLZO_INTERLIS_LV95/PLZO_ITF_LV95.itf
 ```
