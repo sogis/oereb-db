@@ -5541,7 +5541,7 @@ TRANSFER INTERLIS1;
 !! Das vorliegende Datenmodell gilt fuer den Bezugsrahmen "Landesvermessung 1903+
 !! (LV95)".
 !!
-!! Dieses Datenmodell basiert auf dem Datenmodell DM.01-AV-CH-24d enth‰lt jedoch
+!! Dieses Datenmodell basiert auf dem Datenmodell DM.01-AV-CH-24d enth√§lt jedoch
 !! nur das TOPIC PLZOrtschaft. In der Tabelle PLZ6 wurde der Identifikator
 !! "IDENT PLZ, Zusatzziffern" entfernt, da es PLZ-Flaechen gibt, welche mehrere
 !! Geometrien besitzen, so dass der Identifikator nicht eingehalten werden kann.

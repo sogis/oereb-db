@@ -5598,7 +5598,7 @@ TRANSFER INTERLIS1;
 !! Das vorliegende Datenmodell gilt fuer den Bezugsrahmen "Landesvermessung 1903+
 !! (LV95)".
 !!
-!! Dieses Datenmodell basiert auf dem Datenmodell DM.01-AV-CH-24d enthält jedoch
+!! Dieses Datenmodell basiert auf dem Datenmodell DM.01-AV-CH-24d enthÃ¤lt jedoch
 !! nur das TOPIC PLZOrtschaft. In der Tabelle PLZ6 wurde der Identifikator
 !! "IDENT PLZ, Zusatzziffern" entfernt, da es PLZ-Flaechen gibt, welche mehrere
 !! Geometrien besitzen, so dass der Identifikator nicht eingehalten werden kann.
@@ -7942,7 +7942,7 @@ CREATE TABLE stage.oerebkrm_v1_1codelistentext_rechtsstatustxt (
 )
 ;
 CREATE INDEX oerbkrm_v1_1c_rchtssttstxt_t_basket_idx ON stage.oerebkrm_v1_1codelistentext_rechtsstatustxt ( t_basket );
-COMMENT ON TABLE stage.oerebkrm_v1_1codelistentext_rechtsstatustxt IS 'Anzeigetexte für die Aufzählung RechtsStatus';
+COMMENT ON TABLE stage.oerebkrm_v1_1codelistentext_rechtsstatustxt IS 'Anzeigetexte fÃ¼r die AufzÃ¤hlung RechtsStatus';
 -- OeREBKRM_V1_1.CodelistenText.ThemaTxt
 CREATE TABLE stage.oerebkrm_v1_1codelistentext_thematxt (
   T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
@@ -7960,7 +7960,7 @@ CREATE TABLE stage.oerebkrm_v1_1codelistentext_thematxt (
 )
 ;
 CREATE INDEX oerbkrm_v1_1cstntxt_thmtxt_t_basket_idx ON stage.oerebkrm_v1_1codelistentext_thematxt ( t_basket );
-COMMENT ON TABLE stage.oerebkrm_v1_1codelistentext_thematxt IS 'Anzeigetexte für die Aufzählung Thema';
+COMMENT ON TABLE stage.oerebkrm_v1_1codelistentext_thematxt IS 'Anzeigetexte fÃ¼r die AufzÃ¤hlung Thema';
 -- GeometryCHLV95_V1.SurfaceStructure
 CREATE TABLE stage.geometrychlv95_v1_surfacestructure (
   T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
@@ -8132,7 +8132,7 @@ CREATE TABLE stage.oerbkrmvs_v1_1vorschriften_amt (
 )
 ;
 CREATE INDEX oerbkrmvs_v1_vrschrftn_amt_t_basket_idx ON stage.oerbkrmvs_v1_1vorschriften_amt ( t_basket );
-COMMENT ON TABLE stage.oerbkrmvs_v1_1vorschriften_amt IS 'Eine organisatorische Einheit innerhalb der öffentlichen Verwaltung, z.B. eine für Geobasisdaten zuständige Stelle.';
+COMMENT ON TABLE stage.oerbkrmvs_v1_1vorschriften_amt IS 'Eine organisatorische Einheit innerhalb der Ã¶ffentlichen Verwaltung, z.B. eine fÃ¼r Geobasisdaten zustÃ¤ndige Stelle.';
 COMMENT ON COLUMN stage.oerbkrmvs_v1_1vorschriften_amt.amtimweb IS 'Verweis auf die Website des Amtes z.B. "http://www.jgk.be.ch/jgk/de/index/direktion/organisation/agr.html".';
 COMMENT ON COLUMN stage.oerbkrmvs_v1_1vorschriften_amt.auid IS 'UID der organisatorischen Einheit';
 -- OeREBKRMvs_V1_1.Vorschriften.Artikel
@@ -8158,7 +8158,7 @@ CREATE INDEX oerbkrmvs_v1_schrftn_rtkel_dokument_idx ON stage.oerbkrmvs_v1_1vors
 COMMENT ON TABLE stage.oerbkrmvs_v1_1vorschriften_artikel IS 'Einzelner Artikel einer Rechtsvorschrift oder einer gesetzlichen Grundlage.';
 COMMENT ON COLUMN stage.oerbkrmvs_v1_1vorschriften_artikel.nr IS 'Nummer des Artikels innerhalb der gesetzlichen Grundlage oder der Rechtsvorschrift. z.B. "23"';
 COMMENT ON COLUMN stage.oerbkrmvs_v1_1vorschriften_artikel.rechtsstatus IS 'Status, ob dieses Element in Kraft ist';
-COMMENT ON COLUMN stage.oerbkrmvs_v1_1vorschriften_artikel.publiziertab IS 'Datum, ab dem dieses Element in Auszügen erscheint';
+COMMENT ON COLUMN stage.oerbkrmvs_v1_1vorschriften_artikel.publiziertab IS 'Datum, ab dem dieses Element in AuszÃ¼gen erscheint';
 -- OeREBKRMvs_V1_1.Vorschriften.Dokument
 CREATE TABLE stage.oerbkrmvs_v1_1vorschriften_dokument (
   T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
@@ -8196,11 +8196,11 @@ CREATE INDEX oerbkrmvs_v1_chrftn_dkment_t_basket_idx ON stage.oerbkrmvs_v1_1vors
 CREATE INDEX oerbkrmvs_v1_chrftn_dkment_zustaendigestelle_idx ON stage.oerbkrmvs_v1_1vorschriften_dokument ( zustaendigestelle );
 COMMENT ON TABLE stage.oerbkrmvs_v1_1vorschriften_dokument IS 'Dokumente im allgemeinen (Gesetze, Verordnungen, Rechtsvorschriften)';
 COMMENT ON COLUMN stage.oerbkrmvs_v1_1vorschriften_dokument.offiziellenr IS 'Offizielle Nummer des Gesetzes; z.B. "SR 700"';
-COMMENT ON COLUMN stage.oerbkrmvs_v1_1vorschriften_dokument.kanton IS 'Kantonskürzel falls Vorschrift des Kantons oder der Gemeinde. Falls die Angabe fehlt, ist es eine Vorschrift des Bundes. z.B. "BE"';
+COMMENT ON COLUMN stage.oerbkrmvs_v1_1vorschriften_dokument.kanton IS 'KantonskÃ¼rzel falls Vorschrift des Kantons oder der Gemeinde. Falls die Angabe fehlt, ist es eine Vorschrift des Bundes. z.B. "BE"';
 COMMENT ON COLUMN stage.oerbkrmvs_v1_1vorschriften_dokument.gemeinde IS 'Falls die Angabe fehlt, ist es ein Erlass des Kantons oder des Bundes. z.B. "942"';
 COMMENT ON COLUMN stage.oerbkrmvs_v1_1vorschriften_dokument.dokument IS 'Das Dokument als PDF-Datei';
 COMMENT ON COLUMN stage.oerbkrmvs_v1_1vorschriften_dokument.rechtsstatus IS 'Status, ob dieses Element in Kraft ist';
-COMMENT ON COLUMN stage.oerbkrmvs_v1_1vorschriften_dokument.publiziertab IS 'Datum, ab dem dieses Element in Auszügen erscheint';
+COMMENT ON COLUMN stage.oerbkrmvs_v1_1vorschriften_dokument.publiziertab IS 'Datum, ab dem dieses Element in AuszÃ¼gen erscheint';
 -- OeREBKRMvs_V1_1.Vorschriften.HinweisWeitereDokumente
 CREATE TABLE stage.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente (
   T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
@@ -8285,13 +8285,13 @@ CREATE TABLE stage.so_g_v_0180822nachfuehrngskrise_gemeinde (
 ;
 CREATE INDEX so_g_v_018082rngskrs_gmnde_t_basket_idx ON stage.so_g_v_0180822nachfuehrngskrise_gemeinde ( t_basket );
 CREATE INDEX so_g_v_018082rngskrs_gmnde_perimeter_idx ON stage.so_g_v_0180822nachfuehrngskrise_gemeinde USING GIST ( perimeter );
-COMMENT ON TABLE stage.so_g_v_0180822nachfuehrngskrise_gemeinde IS 'Gemeinde mit zuständigem Nachführungsgeometer und Anschrift der Firma etc.';
+COMMENT ON TABLE stage.so_g_v_0180822nachfuehrngskrise_gemeinde IS 'Gemeinde mit zustÃ¤ndigem NachfÃ¼hrungsgeometer und Anschrift der Firma etc.';
 COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.gemeindename IS 'Name der politischen Gemeinde';
 COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.bfsnr IS 'BFS-Nr. der politischen Gemeinde';
 COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.perimeter IS 'Geometrie der politischen Gemeinde';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.nfg_name IS 'Nachname des Nachführungsgeometers';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.nfg_vorname IS 'Vorname des Nachführungsgeometers';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.nfg_titel IS 'Titel des Nachführungsgeometers (z.B. Dr.)';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.nfg_name IS 'Nachname des NachfÃ¼hrungsgeometers';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.nfg_vorname IS 'Vorname des NachfÃ¼hrungsgeometers';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.nfg_titel IS 'Titel des NachfÃ¼hrungsgeometers (z.B. Dr.)';
 COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.firma IS 'Name der Firma';
 COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.firma_zusatz IS 'Zusatzname der Firma';
 COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.strasse IS 'Strassenname';
@@ -8328,19 +8328,19 @@ CREATE TABLE stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung (
 CREATE INDEX oerbkrmfr_v1_tmsbschrnkung_t_basket_idx ON stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung ( t_basket );
 CREATE INDEX oerbkrmfr_v1_tmsbschrnkung_darstellungsdienst_idx ON stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung ( darstellungsdienst );
 CREATE INDEX oerbkrmfr_v1_tmsbschrnkung_zustaendigestelle_idx ON stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung ( zustaendigestelle );
-COMMENT ON TABLE stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung IS 'Wurzelelement für Informationen über eine Beschränkung des Grundeigentums, die rechtskräftig, z.B. auf Grund einer Genehmigung oder eines richterlichen Entscheids, zustande gekommen ist.';
-COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.thema IS 'Einordnung der Eigentumsbeschränkung in ein ÖREBK-Thema';
+COMMENT ON TABLE stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung IS 'Wurzelelement fÃ¼r Informationen Ã¼ber eine BeschrÃ¤nkung des Grundeigentums, die rechtskrÃ¤ftig, z.B. auf Grund einer Genehmigung oder eines richterlichen Entscheids, zustande gekommen ist.';
+COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.thema IS 'Einordnung der EigentumsbeschrÃ¤nkung in ein Ã–REBK-Thema';
 COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.subthema IS 'z.B. Planungszonen innerhalb Nutzungsplanung';
 COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.weiteresthema IS 'z.B. kantonale Themen. Der Code wird nach folgendem Muster gebildet: ch.{canton}.{topic}
 fl.{topic}
 ch.{bfsnr}.{topic}
-Wobei {canton} das offizielle zwei-stellige Kürzel des Kantons ist, {to-pic} der Themenname und {bfsnr} die Gemeindenummer gem. BFS.';
-COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.artcode IS 'Themenspezifische, maschinen-lesbare Art gem. Originalmodell der Eigentumsbeschränkung';
-COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.artcodeliste IS 'Identifikation der Codeliste bzw. des Wertebereichs für ArtCode';
-COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.rechtsstatus IS 'Status, ob diese Eigentumsbeschränkung in Kraft ist';
-COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.publiziertab IS 'Datum, ab dem diese Eigentumsbeschränkung in Auszügen erscheint';
-COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.darstellungsdienst IS 'Darstellungsdienst, auf dem diese Eigentumsbeschränkung sichtbar, aber nicht hervorgehoben, ist.';
-COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.zustaendigestelle IS 'Zuständige Stelle für die Geobasisdaten (Originaldaten) gem. GeoIG Art. 8 Abs. 1';
+Wobei {canton} das offizielle zwei-stellige KÃ¼rzel des Kantons ist, {to-pic} der Themenname und {bfsnr} die Gemeindenummer gem. BFS.';
+COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.artcode IS 'Themenspezifische, maschinen-lesbare Art gem. Originalmodell der EigentumsbeschrÃ¤nkung';
+COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.artcodeliste IS 'Identifikation der Codeliste bzw. des Wertebereichs fÃ¼r ArtCode';
+COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.rechtsstatus IS 'Status, ob diese EigentumsbeschrÃ¤nkung in Kraft ist';
+COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.publiziertab IS 'Datum, ab dem diese EigentumsbeschrÃ¤nkung in AuszÃ¼gen erscheint';
+COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.darstellungsdienst IS 'Darstellungsdienst, auf dem diese EigentumsbeschrÃ¤nkung sichtbar, aber nicht hervorgehoben, ist.';
+COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.zustaendigestelle IS 'ZustÃ¤ndige Stelle fÃ¼r die Geobasisdaten (Originaldaten) gem. GeoIG Art. 8 Abs. 1';
 -- OeREBKRMtrsfr_V1_1.Transferstruktur.Geometrie
 CREATE TABLE stage.oerbkrmfr_v1_1transferstruktur_geometrie (
   T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
@@ -8369,12 +8369,12 @@ CREATE INDEX oerbkrmfr_v1_strktr_gmtrie_flaeche_lv03_idx ON stage.oerbkrmfr_v1_1
 CREATE INDEX oerbkrmfr_v1_strktr_gmtrie_flaeche_lv95_idx ON stage.oerbkrmfr_v1_1transferstruktur_geometrie USING GIST ( flaeche_lv95 );
 CREATE INDEX oerbkrmfr_v1_strktr_gmtrie_eigentumsbeschraenkung_idx ON stage.oerbkrmfr_v1_1transferstruktur_geometrie ( eigentumsbeschraenkung );
 CREATE INDEX oerbkrmfr_v1_strktr_gmtrie_zustaendigestelle_idx ON stage.oerbkrmfr_v1_1transferstruktur_geometrie ( zustaendigestelle );
-COMMENT ON TABLE stage.oerbkrmfr_v1_1transferstruktur_geometrie IS 'Punkt-, linien-, oder flächenförmige Geometrie. Neu zu definierende Eigentumsbeschränkungen sollten i.d.R. flächenförmig sein.';
+COMMENT ON TABLE stage.oerbkrmfr_v1_1transferstruktur_geometrie IS 'Punkt-, linien-, oder flÃ¤chenfÃ¶rmige Geometrie. Neu zu definierende EigentumsbeschrÃ¤nkungen sollten i.d.R. flÃ¤chenfÃ¶rmig sein.';
 COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_geometrie.punkt_lv03 IS 'Punktgeometrie';
-COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_geometrie.linie_lv03 IS 'Linienförmige Geometrie';
-COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_geometrie.flaeche_lv03 IS 'Flächenförmige Geometrie';
+COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_geometrie.linie_lv03 IS 'LinienfÃ¶rmige Geometrie';
+COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_geometrie.flaeche_lv03 IS 'FlÃ¤chenfÃ¶rmige Geometrie';
 COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_geometrie.rechtsstatus IS 'Status, ob diese Geometrie in Kraft ist';
-COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_geometrie.publiziertab IS 'Datum, ab dem diese Geometrie in Auszügen erscheint';
+COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_geometrie.publiziertab IS 'Datum, ab dem diese Geometrie in AuszÃ¼gen erscheint';
 COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_geometrie.metadatengeobasisdaten IS 'Verweis auf maschinenlesbare Metadaten (XML) der zugrundeliegenden Geobasisdaten. z.B. http://www.geocat.ch/geonetwork/srv/deu/gm03.xml?id=705';
 -- OeREBKRMtrsfr_V1_1.Transferstruktur.HinweisDefinition
 CREATE TABLE stage.oerbkrmfr_v1_1transferstruktur_hinweisdefinition (
@@ -8390,10 +8390,10 @@ CREATE TABLE stage.oerbkrmfr_v1_1transferstruktur_hinweisdefinition (
 ;
 CREATE INDEX oerbkrmfr_v1_r_hnwsdfntion_t_basket_idx ON stage.oerbkrmfr_v1_1transferstruktur_hinweisdefinition ( t_basket );
 CREATE INDEX oerbkrmfr_v1_r_hnwsdfntion_zustaendigestelle_idx ON stage.oerbkrmfr_v1_1transferstruktur_hinweisdefinition ( zustaendigestelle );
-COMMENT ON TABLE stage.oerbkrmfr_v1_1transferstruktur_hinweisdefinition IS 'Definition für Hinweise, die unabhängig von einer konkreten Eigentumsbeschränkung gelten (z.B. der Hinweis auf eine Systematische Rechtssammlung). Der Hinweis kann aber beschränkt werden auf eine bestimmtes ÖREB-Thema und/oder Kanton und/oder Gemeinde.';
-COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_hinweisdefinition.thema IS 'Thema falls der Hinweis für ein bestimmtes ÖREB-Thema gilt. Falls die Angabe fehlt, ist es ein Hinweis der für alle ÖREB-Themen gilt.';
-COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_hinweisdefinition.kanton IS 'Kantonskürzel falls der Hinweis für ein Kantons-oder Gemeindegebiet gilt. Falls die Angabe fehlt, ist es ein Hinweis der für alle Kantone gilt. z.B. "BE".';
-COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_hinweisdefinition.gemeinde IS 'BFSNr falls der Hinweis für ein Gemeindegebiet gilt. Falls die Angabe fehlt, ist es ein Hinweis der für den Kanton oder die Schweiz gilt. z.B. "942".';
+COMMENT ON TABLE stage.oerbkrmfr_v1_1transferstruktur_hinweisdefinition IS 'Definition fÃ¼r Hinweise, die unabhÃ¤ngig von einer konkreten EigentumsbeschrÃ¤nkung gelten (z.B. der Hinweis auf eine Systematische Rechtssammlung). Der Hinweis kann aber beschrÃ¤nkt werden auf eine bestimmtes Ã–REB-Thema und/oder Kanton und/oder Gemeinde.';
+COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_hinweisdefinition.thema IS 'Thema falls der Hinweis fÃ¼r ein bestimmtes Ã–REB-Thema gilt. Falls die Angabe fehlt, ist es ein Hinweis der fÃ¼r alle Ã–REB-Themen gilt.';
+COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_hinweisdefinition.kanton IS 'KantonskÃ¼rzel falls der Hinweis fÃ¼r ein Kantons-oder Gemeindegebiet gilt. Falls die Angabe fehlt, ist es ein Hinweis der fÃ¼r alle Kantone gilt. z.B. "BE".';
+COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_hinweisdefinition.gemeinde IS 'BFSNr falls der Hinweis fÃ¼r ein Gemeindegebiet gilt. Falls die Angabe fehlt, ist es ein Hinweis der fÃ¼r den Kanton oder die Schweiz gilt. z.B. "942".';
 -- OeREBKRMtrsfr_V1_1.Transferstruktur.LegendeEintrag
 CREATE TABLE stage.oerbkrmfr_v1_1transferstruktur_legendeeintrag (
   T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
@@ -8418,10 +8418,10 @@ CREATE TABLE stage.oerbkrmfr_v1_1transferstruktur_legendeeintrag (
 CREATE INDEX oerbkrmfr_v1_ktr_lgndntrag_t_basket_idx ON stage.oerbkrmfr_v1_1transferstruktur_legendeeintrag ( t_basket );
 CREATE INDEX oerbkrmfr_v1_ktr_lgndntrag_oerbkrmfr_vstngsdnst_lgnde_idx ON stage.oerbkrmfr_v1_1transferstruktur_legendeeintrag ( oerbkrmfr_vstllngsdnst_legende );
 COMMENT ON TABLE stage.oerbkrmfr_v1_1transferstruktur_legendeeintrag IS 'Ein Eintrag in der Planlegende.';
-COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_legendeeintrag.symbol IS 'Grafischer Teil des Legendeneintrages für die Darstellung. Im PNG-Format mit 300dpi oder im SVG-Format';
-COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_legendeeintrag.artcode IS 'Art der Eigentumsbeschränkung, die durch diesen Legendeneintrag dargestellt wird';
-COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_legendeeintrag.artcodeliste IS 'Codeliste der Eigentumsbeschränkung, die durch diesen Legendeneintrag dargestellt wird';
-COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_legendeeintrag.thema IS 'Zu welchem ÖREB-Thema der Legendeneintrag gehört';
+COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_legendeeintrag.symbol IS 'Grafischer Teil des Legendeneintrages fÃ¼r die Darstellung. Im PNG-Format mit 300dpi oder im SVG-Format';
+COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_legendeeintrag.artcode IS 'Art der EigentumsbeschrÃ¤nkung, die durch diesen Legendeneintrag dargestellt wird';
+COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_legendeeintrag.artcodeliste IS 'Codeliste der EigentumsbeschrÃ¤nkung, die durch diesen Legendeneintrag dargestellt wird';
+COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_legendeeintrag.thema IS 'Zu welchem Ã–REB-Thema der Legendeneintrag gehÃ¶rt';
 COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_legendeeintrag.subthema IS 'z.B. Planungszonen innerhalb Nutzungsplanung';
 -- OeREBKRMtrsfr_V1_1.Transferstruktur.DarstellungsDienst
 CREATE TABLE stage.oerbkrmfr_v1_1transferstruktur_darstellungsdienst (
@@ -8435,7 +8435,7 @@ CREATE TABLE stage.oerbkrmfr_v1_1transferstruktur_darstellungsdienst (
 ;
 CREATE INDEX oerbkrmfr_v1_drstllngsdnst_t_basket_idx ON stage.oerbkrmfr_v1_1transferstruktur_darstellungsdienst ( t_basket );
 COMMENT ON TABLE stage.oerbkrmfr_v1_1transferstruktur_darstellungsdienst IS 'Angaben zum Darstellungsdienst.';
-COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_darstellungsdienst.verweiswms IS 'WMS GetMap-Request (für Maschine-Maschine-Kommunikation) inkl. alle benötigten Parameter, z.B. "https://wms.geo.admin.ch/?SERVICE=WMS&REQUEST=GetMap&VERSION=1.1.1&STYLES=default&SRS=EPSG:21781&BBOX=475000,60000,845000,310000&WIDTH=740&HEIGHT=500&FORMAT=image/png&LAYERS=ch.bazl.kataster-belasteter-standorte-zivilflugplaetze.oereb"';
+COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_darstellungsdienst.verweiswms IS 'WMS GetMap-Request (fÃ¼r Maschine-Maschine-Kommunikation) inkl. alle benÃ¶tigten Parameter, z.B. "https://wms.geo.admin.ch/?SERVICE=WMS&REQUEST=GetMap&VERSION=1.1.1&STYLES=default&SRS=EPSG:21781&BBOX=475000,60000,845000,310000&WIDTH=740&HEIGHT=500&FORMAT=image/png&LAYERS=ch.bazl.kataster-belasteter-standorte-zivilflugplaetze.oereb"';
 COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_darstellungsdienst.legendeimweb IS 'Verweis auf ein Dokument das die Karte beschreibt; z.B. "https://wms.geo.admin.ch/?SERVICE=WMS&REQUEST=GetLegendGraphic&VERSION=1.1.1&FORMAT=image/png&LAYER=ch.bazl.kataster-belasteter-standorte-zivilflugplaetze.oereb"';
 -- OeREBKRMtrsfr_V1_1.Transferstruktur.GrundlageVerfeinerung
 CREATE TABLE stage.oerbkrmfr_v1_1transferstruktur_grundlageverfeinerung (
@@ -8478,8 +8478,8 @@ CREATE INDEX oerbkrmfr_v1_hnwsvrschrift_t_basket_idx ON stage.oerbkrmfr_v1_1tran
 CREATE INDEX oerbkrmfr_v1_hnwsvrschrift_eigentumsbeschraenkung_idx ON stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift ( eigentumsbeschraenkung );
 CREATE INDEX oerbkrmfr_v1_hnwsvrschrift_vorschrft_rbkschrftn_rtkel_idx ON stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift ( vorschrift_oerbkrmvs_v1_1vorschriften_artikel );
 CREATE INDEX oerbkrmfr_v1_hnwsvrschrift_vorschrft_rbkchrftn_dkment_idx ON stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift ( vorschrift_oerbkrmvs_v1_1vorschriften_dokument );
-COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_artikel IS 'Rechtsvorschrift der Eigentumsbeschränkung';
-COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument IS 'Rechtsvorschrift der Eigentumsbeschränkung';
+COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_artikel IS 'Rechtsvorschrift der EigentumsbeschrÃ¤nkung';
+COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument IS 'Rechtsvorschrift der EigentumsbeschrÃ¤nkung';
 ALTER TABLE stage.localisation_v1_localisedtext ADD CONSTRAINT localisation_v1_loclsdtext_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.localisation_v1_localisedtext ADD CONSTRAINT localisation_v1_loclsdtext_loclstn_v1_mltxt_lclsdtext_fkey FOREIGN KEY ( loclstn_v1_mltlngltext_localisedtext ) REFERENCES stage.localisation_v1_multilingualtext DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.localisation_v1_localisedmtext ADD CONSTRAINT localisation_v1_lclsdmtext_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
@@ -9013,7 +9013,7 @@ INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('oerebkrm_
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('oerebkrm_v1_1_artikelnummer_','ch.ehi.ili2db.tableKind','STRUCTURE');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMtrsfr_V1_1.ili','2.3','OeREBKRMtrsfr_V1_1{ GeometryCHLV95_V1 CHAdminCodes_V1 LocalisationCH_V1 GeometryCHLV03_V1 OeREBKRM_V1_1 OeREBKRMvs_V1_1}','INTERLIS 2.3;
 
-/** Schnittstelle zwischen zuständiger Stelle für die Geobasisdaten und Katasterorganisation des Kantons.
+/** Schnittstelle zwischen zustÃ¤ndiger Stelle fÃ¼r die Geobasisdaten und Katasterorganisation des Kantons.
  */
 !!@ furtherInformation=http://www.cadastre.ch/oereb-public
 !!@ technicalContact=mailto:infovd@swisstopo.ch
@@ -9022,19 +9022,19 @@ AT "http://models.geo.admin.ch/V_D/OeREB/"
 VERSION "2016-08-15"  =
   IMPORTS OeREBKRM_V1_1,OeREBKRMvs_V1_1,CHAdminCodes_V1,LocalisationCH_V1,GeometryCHLV03_V1,GeometryCHLV95_V1;
 
-  /** Dieses Teilmodell definiert die Struktur der Daten, wie sie von der zuständigen Stelle für die Geobasisdaten an die Abgabestelle des ÖREB-Kataster-Auszugs geliefert werden müssen. Dieses Datenmodell definiert somit, welche Daten ein minimales Datenmodell enthalten muss, um als ÖREB-Kataster fähiges Datenmodell zu gelten.
+  /** Dieses Teilmodell definiert die Struktur der Daten, wie sie von der zustÃ¤ndigen Stelle fÃ¼r die Geobasisdaten an die Abgabestelle des Ã–REB-Kataster-Auszugs geliefert werden mÃ¼ssen. Dieses Datenmodell definiert somit, welche Daten ein minimales Datenmodell enthalten muss, um als Ã–REB-Kataster fÃ¤higes Datenmodell zu gelten.
    */
   TOPIC Transferstruktur
   EXTENDS OeREBKRMvs_V1_1.Vorschriften =
     DEPENDS ON OeREBKRMvs_V1_1.HinweiseGesetzlicheGrundlagen;
 
-    /** Wurzelelement für Informationen über eine Beschränkung des Grundeigentums, die rechtskräftig, z.B. auf Grund einer Genehmigung oder eines richterlichen Entscheids, zustande gekommen ist.
+    /** Wurzelelement fÃ¼r Informationen Ã¼ber eine BeschrÃ¤nkung des Grundeigentums, die rechtskrÃ¤ftig, z.B. auf Grund einer Genehmigung oder eines richterlichen Entscheids, zustande gekommen ist.
      */
     CLASS Eigentumsbeschraenkung =
-      /** Textliche Beschreibung der Beschränkung; z.B. "Wohnen W3"
+      /** Textliche Beschreibung der BeschrÃ¤nkung; z.B. "Wohnen W3"
        */
       Aussage : MANDATORY LocalisationCH_V1.MultilingualMText;
-      /** Einordnung der Eigentumsbeschränkung in ein ÖREBK-Thema
+      /** Einordnung der EigentumsbeschrÃ¤nkung in ein Ã–REBK-Thema
        */
       Thema : MANDATORY OeREBKRM_V1_1.Thema;
       /** z.B. Planungszonen innerhalb Nutzungsplanung
@@ -9043,43 +9043,43 @@ VERSION "2016-08-15"  =
       /** z.B. kantonale Themen. Der Code wird nach folgendem Muster gebildet: ch.{canton}.{topic}
        * fl.{topic}
        * ch.{bfsnr}.{topic}
-       * Wobei {canton} das offizielle zwei-stellige Kürzel des Kantons ist, {to-pic} der Themenname und {bfsnr} die Gemeindenummer gem. BFS.
+       * Wobei {canton} das offizielle zwei-stellige KÃ¼rzel des Kantons ist, {to-pic} der Themenname und {bfsnr} die Gemeindenummer gem. BFS.
        */
       WeiteresThema : OeREBKRM_V1_1.WeiteresThema;
-      /** Themenspezifische, maschinen-lesbare Art gem. Originalmodell der Eigentumsbeschränkung
+      /** Themenspezifische, maschinen-lesbare Art gem. Originalmodell der EigentumsbeschrÃ¤nkung
        */
       ArtCode : OeREBKRM_V1_1.ArtEigentumsbeschraenkung;
-      /** Identifikation der Codeliste bzw. des Wertebereichs für ArtCode
+      /** Identifikation der Codeliste bzw. des Wertebereichs fÃ¼r ArtCode
        */
       ArtCodeliste : URI;
-      /** Status, ob diese Eigentumsbeschränkung in Kraft ist
+      /** Status, ob diese EigentumsbeschrÃ¤nkung in Kraft ist
        */
       Rechtsstatus : MANDATORY OeREBKRM_V1_1.RechtsStatus;
-      /** Datum, ab dem diese Eigentumsbeschränkung in Auszügen erscheint
+      /** Datum, ab dem diese EigentumsbeschrÃ¤nkung in AuszÃ¼gen erscheint
        */
       publiziertAb : MANDATORY OeREBKRM_V1_1.Datum;
       MANDATORY CONSTRAINT Thema!=#WeiteresThema OR DEFINED(WeiteresThema);
     END Eigentumsbeschraenkung;
 
-    /** Punkt-, linien-, oder flächenförmige Geometrie. Neu zu definierende Eigentumsbeschränkungen sollten i.d.R. flächenförmig sein.
+    /** Punkt-, linien-, oder flÃ¤chenfÃ¶rmige Geometrie. Neu zu definierende EigentumsbeschrÃ¤nkungen sollten i.d.R. flÃ¤chenfÃ¶rmig sein.
      */
     CLASS Geometrie =
       /** Punktgeometrie
        */
       Punkt_LV03 : GeometryCHLV03_V1.Coord2;
       Punkt_LV95 : GeometryCHLV95_V1.Coord2;
-      /** Linienförmige Geometrie
+      /** LinienfÃ¶rmige Geometrie
        */
       Linie_LV03 : GeometryCHLV03_V1.Line;
       Linie_LV95 : GeometryCHLV95_V1.Line;
-      /** Flächenförmige Geometrie
+      /** FlÃ¤chenfÃ¶rmige Geometrie
        */
       Flaeche_LV03 : GeometryCHLV03_V1.Surface;
       Flaeche_LV95 : GeometryCHLV95_V1.Surface;
       /** Status, ob diese Geometrie in Kraft ist
        */
       Rechtsstatus : MANDATORY OeREBKRM_V1_1.RechtsStatus;
-      /** Datum, ab dem diese Geometrie in Auszügen erscheint
+      /** Datum, ab dem diese Geometrie in AuszÃ¼gen erscheint
        */
       publiziertAb : MANDATORY OeREBKRM_V1_1.Datum;
       /** Verweis auf maschinenlesbare Metadaten (XML) der zugrundeliegenden Geobasisdaten. z.B. http://www.geocat.ch/geonetwork/srv/deu/gm03.xml?id=705
@@ -9088,16 +9088,16 @@ VERSION "2016-08-15"  =
       MANDATORY CONSTRAINT DEFINED(Punkt_LV03) OR DEFINED(Linie_LV03) OR DEFINED(Flaeche_LV03) OR DEFINED(Punkt_LV95) OR DEFINED(Linie_LV95) OR DEFINED(Flaeche_LV95);
     END Geometrie;
 
-    /** Definition für Hinweise, die unabhängig von einer konkreten Eigentumsbeschränkung gelten (z.B. der Hinweis auf eine Systematische Rechtssammlung). Der Hinweis kann aber beschränkt werden auf eine bestimmtes ÖREB-Thema und/oder Kanton und/oder Gemeinde.
+    /** Definition fÃ¼r Hinweise, die unabhÃ¤ngig von einer konkreten EigentumsbeschrÃ¤nkung gelten (z.B. der Hinweis auf eine Systematische Rechtssammlung). Der Hinweis kann aber beschrÃ¤nkt werden auf eine bestimmtes Ã–REB-Thema und/oder Kanton und/oder Gemeinde.
      */
     CLASS HinweisDefinition =
-      /** Thema falls der Hinweis für ein bestimmtes ÖREB-Thema gilt. Falls die Angabe fehlt, ist es ein Hinweis der für alle ÖREB-Themen gilt.
+      /** Thema falls der Hinweis fÃ¼r ein bestimmtes Ã–REB-Thema gilt. Falls die Angabe fehlt, ist es ein Hinweis der fÃ¼r alle Ã–REB-Themen gilt.
        */
       Thema : OeREBKRM_V1_1.Thema;
-      /** Kantonskürzel falls der Hinweis für ein Kantons-oder Gemeindegebiet gilt. Falls die Angabe fehlt, ist es ein Hinweis der für alle Kantone gilt. z.B. "BE".
+      /** KantonskÃ¼rzel falls der Hinweis fÃ¼r ein Kantons-oder Gemeindegebiet gilt. Falls die Angabe fehlt, ist es ein Hinweis der fÃ¼r alle Kantone gilt. z.B. "BE".
        */
       Kanton : CHAdminCodes_V1.CHCantonCode;
-      /** BFSNr falls der Hinweis für ein Gemeindegebiet gilt. Falls die Angabe fehlt, ist es ein Hinweis der für den Kanton oder die Schweiz gilt. z.B. "942".
+      /** BFSNr falls der Hinweis fÃ¼r ein Gemeindegebiet gilt. Falls die Angabe fehlt, ist es ein Hinweis der fÃ¼r den Kanton oder die Schweiz gilt. z.B. "942".
        */
       Gemeinde : CHAdminCodes_V1.CHMunicipalityCode;
     END HinweisDefinition;
@@ -9105,19 +9105,19 @@ VERSION "2016-08-15"  =
     /** Ein Eintrag in der Planlegende.
      */
     STRUCTURE LegendeEintrag =
-      /** Grafischer Teil des Legendeneintrages für die Darstellung. Im PNG-Format mit 300dpi oder im SVG-Format
+      /** Grafischer Teil des Legendeneintrages fÃ¼r die Darstellung. Im PNG-Format mit 300dpi oder im SVG-Format
        */
       Symbol : MANDATORY BLACKBOX BINARY;
       /** Text des Legendeneintrages
        */
       LegendeText : MANDATORY LocalisationCH_V1.MultilingualText;
-      /** Art der Eigentumsbeschränkung, die durch diesen Legendeneintrag dargestellt wird
+      /** Art der EigentumsbeschrÃ¤nkung, die durch diesen Legendeneintrag dargestellt wird
        */
       ArtCode : MANDATORY OeREBKRM_V1_1.ArtEigentumsbeschraenkung;
-      /** Codeliste der Eigentumsbeschränkung, die durch diesen Legendeneintrag dargestellt wird
+      /** Codeliste der EigentumsbeschrÃ¤nkung, die durch diesen Legendeneintrag dargestellt wird
        */
       ArtCodeliste : MANDATORY URI;
-      /** Zu welchem ÖREB-Thema der Legendeneintrag gehört
+      /** Zu welchem Ã–REB-Thema der Legendeneintrag gehÃ¶rt
        */
       Thema : MANDATORY OeREBKRM_V1_1.Thema;
       /** z.B. Planungszonen innerhalb Nutzungsplanung
@@ -9130,7 +9130,7 @@ VERSION "2016-08-15"  =
     /** Angaben zum Darstellungsdienst.
      */
     CLASS DarstellungsDienst =
-      /** WMS GetMap-Request (für Maschine-Maschine-Kommunikation) inkl. alle benötigten Parameter, z.B. "https://wms.geo.admin.ch/?SERVICE=WMS&REQUEST=GetMap&VERSION=1.1.1&STYLES=default&SRS=EPSG:21781&BBOX=475000,60000,845000,310000&WIDTH=740&HEIGHT=500&FORMAT=image/png&LAYERS=ch.bazl.kataster-belasteter-standorte-zivilflugplaetze.oereb"
+      /** WMS GetMap-Request (fÃ¼r Maschine-Maschine-Kommunikation) inkl. alle benÃ¶tigten Parameter, z.B. "https://wms.geo.admin.ch/?SERVICE=WMS&REQUEST=GetMap&VERSION=1.1.1&STYLES=default&SRS=EPSG:21781&BBOX=475000,60000,845000,310000&WIDTH=740&HEIGHT=500&FORMAT=image/png&LAYERS=ch.bazl.kataster-belasteter-standorte-zivilflugplaetze.oereb"
        */
       VerweisWMS : MANDATORY URI;
       /** Verweis auf ein Dokument das die Karte beschreibt; z.B. "https://wms.geo.admin.ch/?SERVICE=WMS&REQUEST=GetLegendGraphic&VERSION=1.1.1&FORMAT=image/png&LAYER=ch.bazl.kataster-belasteter-standorte-zivilflugplaetze.oereb"
@@ -9141,7 +9141,7 @@ VERSION "2016-08-15"  =
     END DarstellungsDienst;
 
     ASSOCIATION GeometrieEigentumsbeschraenkung =
-      /** Geometrie der Eigentumsbeschränkung, die Rechtswirkung hat (als Basis für den Verschnitt mit den Liegenschaften)
+      /** Geometrie der EigentumsbeschrÃ¤nkung, die Rechtswirkung hat (als Basis fÃ¼r den Verschnitt mit den Liegenschaften)
        */
       Geometrie -- {0..*} Geometrie;
       Eigentumsbeschraenkung -<#> {1} Eigentumsbeschraenkung;
@@ -9164,7 +9164,7 @@ VERSION "2016-08-15"  =
 
     ASSOCIATION HinweisVorschrift =
       Eigentumsbeschraenkung -- {0..*} Eigentumsbeschraenkung;
-      /** Rechtsvorschrift der Eigentumsbeschränkung
+      /** Rechtsvorschrift der EigentumsbeschrÃ¤nkung
        */
       Vorschrift -- {1..*} OeREBKRMvs_V1_1.Vorschriften.DokumentBasis;
       /** Hinweis auf spezifische Artikel.
@@ -9173,7 +9173,7 @@ VERSION "2016-08-15"  =
     END HinweisVorschrift;
 
     ASSOCIATION ZustaendigeStelleEigentumsbeschraenkung =
-      /** Zuständige Stelle für die Geobasisdaten (Originaldaten) gem. GeoIG Art. 8 Abs. 1
+      /** ZustÃ¤ndige Stelle fÃ¼r die Geobasisdaten (Originaldaten) gem. GeoIG Art. 8 Abs. 1
        */
       ZustaendigeStelle -- {1} OeREBKRMvs_V1_1.Vorschriften.Amt;
       Eigentumsbeschraenkung -<> {0..*} Eigentumsbeschraenkung;
@@ -9185,7 +9185,7 @@ VERSION "2016-08-15"  =
     END ZustaendigeStelleGeometrie;
 
     ASSOCIATION DarstellungsDienstEigentumsbeschraenkung =
-      /** Darstellungsdienst, auf dem diese Eigentumsbeschränkung sichtbar, aber nicht hervorgehoben, ist.
+      /** Darstellungsdienst, auf dem diese EigentumsbeschrÃ¤nkung sichtbar, aber nicht hervorgehoben, ist.
        */
       DarstellungsDienst -- {0..1} DarstellungsDienst;
       Eigentumsbeschraenkung -<> {1..*} Eigentumsbeschraenkung;
@@ -9197,7 +9197,7 @@ END OeREBKRMtrsfr_V1_1.
 ','2019-07-03 15:31:44.869');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMvs_V1_1.ili','2.3','OeREBKRMvs_V1_1{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1}','INTERLIS 2.3;
 
-/** Basisdefinition für Erlasse (Rechtsvorschriften, Hinweise auf Gesetzliche Grundlagen)
+/** Basisdefinition fÃ¼r Erlasse (Rechtsvorschriften, Hinweise auf Gesetzliche Grundlagen)
  */
 !!@ furtherInformation=http://www.cadastre.ch/oereb-public
 !!@ technicalContact=mailto:infovd@swisstopo.ch
@@ -9206,16 +9206,16 @@ AT "http://models.geo.admin.ch/V_D/OeREB/"
 VERSION "2016-08-15"  =
   IMPORTS OeREBKRM_V1_1,CHAdminCodes_V1,LocalisationCH_V1;
 
-  /** Dieses Teilmodell definiert die Struktur für die Erlasse im Allgemeinen.
-   * OID als URIs damit der Verweis auf Grundlagenerlasse (z.B. Kantonale Gesetze auf Bundesgesetze) in einem anderen Behälter (da durch eine andere Stelle erfasst/nachgeführt) verweisen können.
+  /** Dieses Teilmodell definiert die Struktur fÃ¼r die Erlasse im Allgemeinen.
+   * OID als URIs damit der Verweis auf Grundlagenerlasse (z.B. Kantonale Gesetze auf Bundesgesetze) in einem anderen BehÃ¤lter (da durch eine andere Stelle erfasst/nachgefÃ¼hrt) verweisen kÃ¶nnen.
    */
   TOPIC Vorschriften =
     OID AS OeREBKRM_V1_1.OEREBOID;
 
-    /** Eine organisatorische Einheit innerhalb der öffentlichen Verwaltung, z.B. eine für Geobasisdaten zuständige Stelle.
+    /** Eine organisatorische Einheit innerhalb der Ã¶ffentlichen Verwaltung, z.B. eine fÃ¼r Geobasisdaten zustÃ¤ndige Stelle.
      */
     CLASS Amt =
-      /** Name des Amtes z.B. "Amt für Gemeinden und Raumordnung des Kantons Bern".
+      /** Name des Amtes z.B. "Amt fÃ¼r Gemeinden und Raumordnung des Kantons Bern".
        */
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       /** Verweis auf die Website des Amtes z.B. "http://www.jgk.be.ch/jgk/de/index/direktion/organisation/agr.html".
@@ -9235,7 +9235,7 @@ VERSION "2016-08-15"  =
       /** Status, ob dieses Element in Kraft ist
        */
       Rechtsstatus : MANDATORY OeREBKRM_V1_1.RechtsStatus;
-      /** Datum, ab dem dieses Element in Auszügen erscheint
+      /** Datum, ab dem dieses Element in AuszÃ¼gen erscheint
        */
       publiziertAb : MANDATORY OeREBKRM_V1_1.Datum;
     END DokumentBasis;
@@ -9259,16 +9259,16 @@ VERSION "2016-08-15"  =
       /** Titel (oder falls vorhanden Kurztitel) des Dokuments; z.B. "Raumplanungsgesetz"
        */
       Titel : MANDATORY LocalisationCH_V1.MultilingualText;
-      /** Offizieller Titel des Dokuments; z.B.  "Bundesgesetz über die Raumplanung"
+      /** Offizieller Titel des Dokuments; z.B.  "Bundesgesetz Ã¼ber die Raumplanung"
        */
       OffiziellerTitel : LocalisationCH_V1.MultilingualText;
-      /** Abkürzung des Gesetzes; z.B. "RPG"
+      /** AbkÃ¼rzung des Gesetzes; z.B. "RPG"
        */
       Abkuerzung : LocalisationCH_V1.MultilingualText;
       /** Offizielle Nummer des Gesetzes; z.B. "SR 700"
        */
       OffizielleNr : TEXT*20;
-      /** Kantonskürzel falls Vorschrift des Kantons oder der Gemeinde. Falls die Angabe fehlt, ist es eine Vorschrift des Bundes. z.B. "BE"
+      /** KantonskÃ¼rzel falls Vorschrift des Kantons oder der Gemeinde. Falls die Angabe fehlt, ist es eine Vorschrift des Bundes. z.B. "BE"
        */
       Kanton : CHAdminCodes_V1.CHCantonCode;
       /** Falls die Angabe fehlt, ist es ein Erlass des Kantons oder des Bundes. z.B. "942"
@@ -9279,7 +9279,7 @@ VERSION "2016-08-15"  =
       Dokument : BLACKBOX BINARY;
     END Dokument;
 
-    /** Reglemente, Vorschriften etc. die generell konkret sind (generell für die Person, die nicht bekannt ist, konkret für dass der Raumbezug mit Karte definiert ist), die zusammen mit der exakten geometrischen Definition als Einheit die Eigentumsbeschränkung unmittelbar beschreiben und innerhalb desselben Verfahrens verabschiedet worden sind.
+    /** Reglemente, Vorschriften etc. die generell konkret sind (generell fÃ¼r die Person, die nicht bekannt ist, konkret fÃ¼r dass der Raumbezug mit Karte definiert ist), die zusammen mit der exakten geometrischen Definition als Einheit die EigentumsbeschrÃ¤nkung unmittelbar beschreiben und innerhalb desselben Verfahrens verabschiedet worden sind.
      */
     CLASS Rechtsvorschrift
     EXTENDS Dokument =
@@ -9307,8 +9307,8 @@ VERSION "2016-08-15"  =
 
   END Vorschriften;
 
-  /** Dieses Teilmodell definiert die Struktur für die Hinweise auf die gesetzlichen Grundlagen, die als solche nicht Teil des ÖREB-Katasters sind, von diesem aber referenziert werden können.
-   * OID als URIs damit der Verweis auf Grundlagengesetze (z.B. Kantonale Gesetze auf Bundesgesetze) in einem anderen Behälter (da durch eine andere Stelle erfasst/nachgeführt) verweisen können.
+  /** Dieses Teilmodell definiert die Struktur fÃ¼r die Hinweise auf die gesetzlichen Grundlagen, die als solche nicht Teil des Ã–REB-Katasters sind, von diesem aber referenziert werden kÃ¶nnen.
+   * OID als URIs damit der Verweis auf Grundlagengesetze (z.B. Kantonale Gesetze auf Bundesgesetze) in einem anderen BehÃ¤lter (da durch eine andere Stelle erfasst/nachgefÃ¼hrt) verweisen kÃ¶nnen.
    */
   TOPIC HinweiseGesetzlicheGrundlagen
   EXTENDS OeREBKRMvs_V1_1.Vorschriften =
@@ -9321,7 +9321,7 @@ INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDa
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
    BASISMODULE DES BUNDES           MODULES DE BASE DE LA CONFEDERATION
-   FÜR MINIMALE GEODATENMODELLE     POUR LES MODELES DE GEODONNEES MINIMAUX
+   FÃœR MINIMALE GEODATENMODELLE     POUR LES MODELES DE GEODONNEES MINIMAUX
    
    PROVIDER: GKG/KOGIS - GCS/COSIG             CONTACT: models@geo.admin.ch
    PUBLISHED: 2011-08-30
@@ -9539,7 +9539,7 @@ END AdministrativeUnitsCH_V1.
 ','2019-07-03 15:31:44.869');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRM_V1_1.ili','2.3','OeREBKRM_V1_1{ InternationalCodes_V1 LocalisationCH_V1 CatalogueObjects_V1}','INTERLIS 2.3;
 
-/** Basisdefinitionen für das OEREB-Katasterrahmenmodell
+/** Basisdefinitionen fÃ¼r das OEREB-Katasterrahmenmodell
  */
 !!@ furtherInformation=http://www.cadastre.ch/oereb-public
 !!@ technicalContact=mailto:infovd@swisstopo.ch
@@ -9550,11 +9550,11 @@ VERSION "2016-08-15"  =
 
   DOMAIN
 
-    /** Themenspezifische, maschinen-lesbare Art der Eigentumsbeschränkung
+    /** Themenspezifische, maschinen-lesbare Art der EigentumsbeschrÃ¤nkung
      */
     ArtEigentumsbeschraenkung = TEXT*40;
 
-    /** Wertebereich für den Artikeltext einer Rechtsvorschrift oder einer gesetzlichen Grundlage.
+    /** Wertebereich fÃ¼r den Artikeltext einer Rechtsvorschrift oder einer gesetzlichen Grundlage.
      */
     ArtikelInhalt = MTEXT;
 
@@ -9564,14 +9564,14 @@ VERSION "2016-08-15"  =
 
     Datum = FORMAT INTERLIS.XMLDate "1848-1-1" .. "2100-12-31";
 
-    /** Wertebereich für Objektidentifikatoren. Der Wert soll mit einem gültigen Internet Domain-Name anfangen, z.B. "ch.admin.sr.720"
+    /** Wertebereich fÃ¼r Objektidentifikatoren. Der Wert soll mit einem gÃ¼ltigen Internet Domain-Name anfangen, z.B. "ch.admin.sr.720"
      */
     OEREBOID = OID TEXT;
 
-    /** Werteliste zur Unterscheidung ob eine Eigentumsbeschränkung in Kraft ist oder nicht.
+    /** Werteliste zur Unterscheidung ob eine EigentumsbeschrÃ¤nkung in Kraft ist oder nicht.
      */
     RechtsStatus = (
-      /** Die Eigentumsbeschränkung ist in Kraft.
+      /** Die EigentumsbeschrÃ¤nkung ist in Kraft.
        */
       inKraft,
       /** gem. OeREBKV Art. 12 Abs. 2
@@ -9581,7 +9581,7 @@ VERSION "2016-08-15"  =
 
     SubThema = TEXT*60;
 
-    /** Liste der Geobasisdaten die ÖREB-Themen sind (Wird durch den Bundesrat definiert). Die Liste kann durch Kantone erweitert werden.
+    /** Liste der Geobasisdaten die Ã–REB-Themen sind (Wird durch den Bundesrat definiert). Die Liste kann durch Kantone erweitert werden.
      */
     Thema = (
       /** GeoIV Datensatz 73
@@ -9640,7 +9640,7 @@ VERSION "2016-08-15"  =
       WeiteresThema
     );
 
-    /** Unternehmensindentifikation (gemäss. Bundesgesetz über die Unternehmens-Identifikationsnummer SR 431.03) ohne Formatierung z.B. CHE116068369
+    /** Unternehmensindentifikation (gemÃ¤ss. Bundesgesetz Ã¼ber die Unternehmens-Identifikationsnummer SR 431.03) ohne Formatierung z.B. CHE116068369
      */
     UID = TEXT*12;
 
@@ -9651,7 +9651,7 @@ VERSION "2016-08-15"  =
     /** z.B. kantonale Themen. Der Code wird nach folgendem Muster gebildet: ch.{canton}.{topic}
      * fl.{topic}
      * ch.{bfsnr}.{topic}
-     * Wobei {canton} das offizielle zwei-stellige Kürzel des Kantons ist, {to-pic} der Themenname und {bfsnr} die Gemeindenummer gem. BFS.
+     * Wobei {canton} das offizielle zwei-stellige KÃ¼rzel des Kantons ist, {to-pic} der Themenname und {bfsnr} die Gemeindenummer gem. BFS.
      */
     WeiteresThema = TEXT*120;
   STRUCTURE ArtikelNummer_ = value : MANDATORY ArtikelNummer; END ArtikelNummer_;
@@ -9659,7 +9659,7 @@ VERSION "2016-08-15"  =
   STRUCTURE Thema_ = value : MANDATORY Thema; END Thema_;
   STRUCTURE WebReferenz_ = value : MANDATORY WebReferenz; END WebReferenz_;
 
-  /** Wertebereich für den Artikeltext einer Rechtsvorschrift oder einer gesetzlichen Grundlage.
+  /** Wertebereich fÃ¼r den Artikeltext einer Rechtsvorschrift oder einer gesetzlichen Grundlage.
    */
   STRUCTURE ArtikelInhaltMehrsprachig
   EXTENDS LocalisationCH_V1.MultilingualMText =
@@ -9675,11 +9675,11 @@ VERSION "2016-08-15"  =
     UNIQUE (LOCAL) LocalisedText:Language;
   END MultilingualUri;
 
-  /** Anzeigetexte für Aufzählungen des Rahmenmodells
+  /** Anzeigetexte fÃ¼r AufzÃ¤hlungen des Rahmenmodells
    */
   TOPIC CodelistenText =
 
-    /** Anzeigetexte für die Aufzählung RechtsStatus
+    /** Anzeigetexte fÃ¼r die AufzÃ¤hlung RechtsStatus
      */
     CLASS RechtsStatusTxt
     EXTENDS CatalogueObjects_V1.Catalogues.Item =
@@ -9688,7 +9688,7 @@ VERSION "2016-08-15"  =
       UNIQUE Code;
     END RechtsStatusTxt;
 
-    /** Anzeigetexte für die Aufzählung Thema
+    /** Anzeigetexte fÃ¼r die AufzÃ¤hlung Thema
      */
     CLASS ThemaTxt
     EXTENDS CatalogueObjects_V1.Catalogues.Item =
@@ -9704,7 +9704,7 @@ END OeREBKRM_V1_1.
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.ili','2.3','SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822{ GeometryCHLV95_V1 CHAdminCodes_V1}','INTERLIS 2.3;
 
 /** !!------------------------------------------------------------------------------
- * !! Version    | wer | Änderung
+ * !! Version    | wer | Ã„nderung
  * !!------------------------------------------------------------------------------
  * !! 2015-08-22 | SZ  | Initialversion
  */
@@ -9778,7 +9778,7 @@ VERSION "2018-08-22"  =
   TOPIC Nachfuehrungskreise =
     OID AS INTERLIS.UUIDOID;
 
-    /** Gemeinde mit zuständigem Nachführungsgeometer und Anschrift der Firma etc.
+    /** Gemeinde mit zustÃ¤ndigem NachfÃ¼hrungsgeometer und Anschrift der Firma etc.
      */
     CLASS Gemeinde =
       /** Name der politischen Gemeinde
@@ -9790,13 +9790,13 @@ VERSION "2018-08-22"  =
       /** Geometrie der politischen Gemeinde
        */
       Perimeter : MANDATORY GeometryCHLV95_V1.MultiSurface;
-      /** Nachname des Nachführungsgeometers
+      /** Nachname des NachfÃ¼hrungsgeometers
        */
       NFG_Name : MANDATORY TEXT*255;
-      /** Vorname des Nachführungsgeometers
+      /** Vorname des NachfÃ¼hrungsgeometers
        */
       NFG_Vorname : MANDATORY TEXT*255;
-      /** Titel des Nachführungsgeometers (z.B. Dr.)
+      /** Titel des NachfÃ¼hrungsgeometers (z.B. Dr.)
        */
       NFG_Titel : TEXT*255;
       /** Name der Firma
@@ -10054,7 +10054,7 @@ INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDa
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
    BASISMODULE DES BUNDES           MODULES DE BASE DE LA CONFEDERATION
-   FÜR MINIMALE GEODATENMODELLE     POUR LES MODELES DE GEODONNEES MINIMAUX
+   FÃœR MINIMALE GEODATENMODELLE     POUR LES MODELES DE GEODONNEES MINIMAUX
    
    PROVIDER: GKG/KOGIS - GCS/COSIG             CONTACT: models@geo.admin.ch
    PUBLISHED: 2011-0830
@@ -10232,7 +10232,7 @@ INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDa
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
    BASISMODULE DES BUNDES           MODULES DE BASE DE LA CONFEDERATION
-   FÜR MINIMALE GEODATENMODELLE     POUR LES MODELES DE GEODONNEES MINIMAUX
+   FÃœR MINIMALE GEODATENMODELLE     POUR LES MODELES DE GEODONNEES MINIMAUX
    
    PROVIDER: GKG/KOGIS - GCS/COSIG             CONTACT: models@geo.admin.ch
    PUBLISHED: 2011-08-30
@@ -10320,7 +10320,7 @@ INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDa
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
    BASISMODULE DES BUNDES           MODULES DE BASE DE LA CONFEDERATION
-   FÜR MINIMALE GEODATENMODELLE     POUR LES MODELES DE GEODONNEES MINIMAUX
+   FÃœR MINIMALE GEODATENMODELLE     POUR LES MODELES DE GEODONNEES MINIMAUX
    
    PROVIDER: GKG/KOGIS - GCS/COSIG             CONTACT: models@geo.admin.ch
    PUBLISHED: 2011-08-30
@@ -16222,7 +16222,7 @@ TRANSFER INTERLIS1;
 !! Das vorliegende Datenmodell gilt fuer den Bezugsrahmen "Landesvermessung 1903+
 !! (LV95)".
 !!
-!! Dieses Datenmodell basiert auf dem Datenmodell DM.01-AV-CH-24d enthält jedoch
+!! Dieses Datenmodell basiert auf dem Datenmodell DM.01-AV-CH-24d enthÃ¤lt jedoch
 !! nur das TOPIC PLZOrtschaft. In der Tabelle PLZ6 wurde der Identifikator
 !! "IDENT PLZ, Zusatzziffern" entfernt, da es PLZ-Flaechen gibt, welche mehrere
 !! Geometrien besitzen, so dass der Identifikator nicht eingehalten werden kann.
@@ -18566,7 +18566,7 @@ CREATE TABLE live.oerebkrm_v1_1codelistentext_rechtsstatustxt (
 )
 ;
 CREATE INDEX oerbkrm_v1_1c_rchtssttstxt_t_basket_idx ON live.oerebkrm_v1_1codelistentext_rechtsstatustxt ( t_basket );
-COMMENT ON TABLE live.oerebkrm_v1_1codelistentext_rechtsstatustxt IS 'Anzeigetexte für die Aufzählung RechtsStatus';
+COMMENT ON TABLE live.oerebkrm_v1_1codelistentext_rechtsstatustxt IS 'Anzeigetexte fÃ¼r die AufzÃ¤hlung RechtsStatus';
 -- OeREBKRM_V1_1.CodelistenText.ThemaTxt
 CREATE TABLE live.oerebkrm_v1_1codelistentext_thematxt (
   T_Id bigint PRIMARY KEY DEFAULT nextval('live.t_ili2db_seq')
@@ -18584,7 +18584,7 @@ CREATE TABLE live.oerebkrm_v1_1codelistentext_thematxt (
 )
 ;
 CREATE INDEX oerbkrm_v1_1cstntxt_thmtxt_t_basket_idx ON live.oerebkrm_v1_1codelistentext_thematxt ( t_basket );
-COMMENT ON TABLE live.oerebkrm_v1_1codelistentext_thematxt IS 'Anzeigetexte für die Aufzählung Thema';
+COMMENT ON TABLE live.oerebkrm_v1_1codelistentext_thematxt IS 'Anzeigetexte fÃ¼r die AufzÃ¤hlung Thema';
 -- GeometryCHLV95_V1.SurfaceStructure
 CREATE TABLE live.geometrychlv95_v1_surfacestructure (
   T_Id bigint PRIMARY KEY DEFAULT nextval('live.t_ili2db_seq')
@@ -18756,7 +18756,7 @@ CREATE TABLE live.oerbkrmvs_v1_1vorschriften_amt (
 )
 ;
 CREATE INDEX oerbkrmvs_v1_vrschrftn_amt_t_basket_idx ON live.oerbkrmvs_v1_1vorschriften_amt ( t_basket );
-COMMENT ON TABLE live.oerbkrmvs_v1_1vorschriften_amt IS 'Eine organisatorische Einheit innerhalb der öffentlichen Verwaltung, z.B. eine für Geobasisdaten zuständige Stelle.';
+COMMENT ON TABLE live.oerbkrmvs_v1_1vorschriften_amt IS 'Eine organisatorische Einheit innerhalb der Ã¶ffentlichen Verwaltung, z.B. eine fÃ¼r Geobasisdaten zustÃ¤ndige Stelle.';
 COMMENT ON COLUMN live.oerbkrmvs_v1_1vorschriften_amt.amtimweb IS 'Verweis auf die Website des Amtes z.B. "http://www.jgk.be.ch/jgk/de/index/direktion/organisation/agr.html".';
 COMMENT ON COLUMN live.oerbkrmvs_v1_1vorschriften_amt.auid IS 'UID der organisatorischen Einheit';
 -- OeREBKRMvs_V1_1.Vorschriften.Artikel
@@ -18782,7 +18782,7 @@ CREATE INDEX oerbkrmvs_v1_schrftn_rtkel_dokument_idx ON live.oerbkrmvs_v1_1vorsc
 COMMENT ON TABLE live.oerbkrmvs_v1_1vorschriften_artikel IS 'Einzelner Artikel einer Rechtsvorschrift oder einer gesetzlichen Grundlage.';
 COMMENT ON COLUMN live.oerbkrmvs_v1_1vorschriften_artikel.nr IS 'Nummer des Artikels innerhalb der gesetzlichen Grundlage oder der Rechtsvorschrift. z.B. "23"';
 COMMENT ON COLUMN live.oerbkrmvs_v1_1vorschriften_artikel.rechtsstatus IS 'Status, ob dieses Element in Kraft ist';
-COMMENT ON COLUMN live.oerbkrmvs_v1_1vorschriften_artikel.publiziertab IS 'Datum, ab dem dieses Element in Auszügen erscheint';
+COMMENT ON COLUMN live.oerbkrmvs_v1_1vorschriften_artikel.publiziertab IS 'Datum, ab dem dieses Element in AuszÃ¼gen erscheint';
 -- OeREBKRMvs_V1_1.Vorschriften.Dokument
 CREATE TABLE live.oerbkrmvs_v1_1vorschriften_dokument (
   T_Id bigint PRIMARY KEY DEFAULT nextval('live.t_ili2db_seq')
@@ -18820,11 +18820,11 @@ CREATE INDEX oerbkrmvs_v1_chrftn_dkment_t_basket_idx ON live.oerbkrmvs_v1_1vorsc
 CREATE INDEX oerbkrmvs_v1_chrftn_dkment_zustaendigestelle_idx ON live.oerbkrmvs_v1_1vorschriften_dokument ( zustaendigestelle );
 COMMENT ON TABLE live.oerbkrmvs_v1_1vorschriften_dokument IS 'Dokumente im allgemeinen (Gesetze, Verordnungen, Rechtsvorschriften)';
 COMMENT ON COLUMN live.oerbkrmvs_v1_1vorschriften_dokument.offiziellenr IS 'Offizielle Nummer des Gesetzes; z.B. "SR 700"';
-COMMENT ON COLUMN live.oerbkrmvs_v1_1vorschriften_dokument.kanton IS 'Kantonskürzel falls Vorschrift des Kantons oder der Gemeinde. Falls die Angabe fehlt, ist es eine Vorschrift des Bundes. z.B. "BE"';
+COMMENT ON COLUMN live.oerbkrmvs_v1_1vorschriften_dokument.kanton IS 'KantonskÃ¼rzel falls Vorschrift des Kantons oder der Gemeinde. Falls die Angabe fehlt, ist es eine Vorschrift des Bundes. z.B. "BE"';
 COMMENT ON COLUMN live.oerbkrmvs_v1_1vorschriften_dokument.gemeinde IS 'Falls die Angabe fehlt, ist es ein Erlass des Kantons oder des Bundes. z.B. "942"';
 COMMENT ON COLUMN live.oerbkrmvs_v1_1vorschriften_dokument.dokument IS 'Das Dokument als PDF-Datei';
 COMMENT ON COLUMN live.oerbkrmvs_v1_1vorschriften_dokument.rechtsstatus IS 'Status, ob dieses Element in Kraft ist';
-COMMENT ON COLUMN live.oerbkrmvs_v1_1vorschriften_dokument.publiziertab IS 'Datum, ab dem dieses Element in Auszügen erscheint';
+COMMENT ON COLUMN live.oerbkrmvs_v1_1vorschriften_dokument.publiziertab IS 'Datum, ab dem dieses Element in AuszÃ¼gen erscheint';
 -- OeREBKRMvs_V1_1.Vorschriften.HinweisWeitereDokumente
 CREATE TABLE live.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente (
   T_Id bigint PRIMARY KEY DEFAULT nextval('live.t_ili2db_seq')
@@ -18909,13 +18909,13 @@ CREATE TABLE live.so_g_v_0180822nachfuehrngskrise_gemeinde (
 ;
 CREATE INDEX so_g_v_018082rngskrs_gmnde_t_basket_idx ON live.so_g_v_0180822nachfuehrngskrise_gemeinde ( t_basket );
 CREATE INDEX so_g_v_018082rngskrs_gmnde_perimeter_idx ON live.so_g_v_0180822nachfuehrngskrise_gemeinde USING GIST ( perimeter );
-COMMENT ON TABLE live.so_g_v_0180822nachfuehrngskrise_gemeinde IS 'Gemeinde mit zuständigem Nachführungsgeometer und Anschrift der Firma etc.';
+COMMENT ON TABLE live.so_g_v_0180822nachfuehrngskrise_gemeinde IS 'Gemeinde mit zustÃ¤ndigem NachfÃ¼hrungsgeometer und Anschrift der Firma etc.';
 COMMENT ON COLUMN live.so_g_v_0180822nachfuehrngskrise_gemeinde.gemeindename IS 'Name der politischen Gemeinde';
 COMMENT ON COLUMN live.so_g_v_0180822nachfuehrngskrise_gemeinde.bfsnr IS 'BFS-Nr. der politischen Gemeinde';
 COMMENT ON COLUMN live.so_g_v_0180822nachfuehrngskrise_gemeinde.perimeter IS 'Geometrie der politischen Gemeinde';
-COMMENT ON COLUMN live.so_g_v_0180822nachfuehrngskrise_gemeinde.nfg_name IS 'Nachname des Nachführungsgeometers';
-COMMENT ON COLUMN live.so_g_v_0180822nachfuehrngskrise_gemeinde.nfg_vorname IS 'Vorname des Nachführungsgeometers';
-COMMENT ON COLUMN live.so_g_v_0180822nachfuehrngskrise_gemeinde.nfg_titel IS 'Titel des Nachführungsgeometers (z.B. Dr.)';
+COMMENT ON COLUMN live.so_g_v_0180822nachfuehrngskrise_gemeinde.nfg_name IS 'Nachname des NachfÃ¼hrungsgeometers';
+COMMENT ON COLUMN live.so_g_v_0180822nachfuehrngskrise_gemeinde.nfg_vorname IS 'Vorname des NachfÃ¼hrungsgeometers';
+COMMENT ON COLUMN live.so_g_v_0180822nachfuehrngskrise_gemeinde.nfg_titel IS 'Titel des NachfÃ¼hrungsgeometers (z.B. Dr.)';
 COMMENT ON COLUMN live.so_g_v_0180822nachfuehrngskrise_gemeinde.firma IS 'Name der Firma';
 COMMENT ON COLUMN live.so_g_v_0180822nachfuehrngskrise_gemeinde.firma_zusatz IS 'Zusatzname der Firma';
 COMMENT ON COLUMN live.so_g_v_0180822nachfuehrngskrise_gemeinde.strasse IS 'Strassenname';
@@ -18952,19 +18952,19 @@ CREATE TABLE live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung (
 CREATE INDEX oerbkrmfr_v1_tmsbschrnkung_t_basket_idx ON live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung ( t_basket );
 CREATE INDEX oerbkrmfr_v1_tmsbschrnkung_darstellungsdienst_idx ON live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung ( darstellungsdienst );
 CREATE INDEX oerbkrmfr_v1_tmsbschrnkung_zustaendigestelle_idx ON live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung ( zustaendigestelle );
-COMMENT ON TABLE live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung IS 'Wurzelelement für Informationen über eine Beschränkung des Grundeigentums, die rechtskräftig, z.B. auf Grund einer Genehmigung oder eines richterlichen Entscheids, zustande gekommen ist.';
-COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.thema IS 'Einordnung der Eigentumsbeschränkung in ein ÖREBK-Thema';
+COMMENT ON TABLE live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung IS 'Wurzelelement fÃ¼r Informationen Ã¼ber eine BeschrÃ¤nkung des Grundeigentums, die rechtskrÃ¤ftig, z.B. auf Grund einer Genehmigung oder eines richterlichen Entscheids, zustande gekommen ist.';
+COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.thema IS 'Einordnung der EigentumsbeschrÃ¤nkung in ein Ã–REBK-Thema';
 COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.subthema IS 'z.B. Planungszonen innerhalb Nutzungsplanung';
 COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.weiteresthema IS 'z.B. kantonale Themen. Der Code wird nach folgendem Muster gebildet: ch.{canton}.{topic}
 fl.{topic}
 ch.{bfsnr}.{topic}
-Wobei {canton} das offizielle zwei-stellige Kürzel des Kantons ist, {to-pic} der Themenname und {bfsnr} die Gemeindenummer gem. BFS.';
-COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.artcode IS 'Themenspezifische, maschinen-lesbare Art gem. Originalmodell der Eigentumsbeschränkung';
-COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.artcodeliste IS 'Identifikation der Codeliste bzw. des Wertebereichs für ArtCode';
-COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.rechtsstatus IS 'Status, ob diese Eigentumsbeschränkung in Kraft ist';
-COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.publiziertab IS 'Datum, ab dem diese Eigentumsbeschränkung in Auszügen erscheint';
-COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.darstellungsdienst IS 'Darstellungsdienst, auf dem diese Eigentumsbeschränkung sichtbar, aber nicht hervorgehoben, ist.';
-COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.zustaendigestelle IS 'Zuständige Stelle für die Geobasisdaten (Originaldaten) gem. GeoIG Art. 8 Abs. 1';
+Wobei {canton} das offizielle zwei-stellige KÃ¼rzel des Kantons ist, {to-pic} der Themenname und {bfsnr} die Gemeindenummer gem. BFS.';
+COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.artcode IS 'Themenspezifische, maschinen-lesbare Art gem. Originalmodell der EigentumsbeschrÃ¤nkung';
+COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.artcodeliste IS 'Identifikation der Codeliste bzw. des Wertebereichs fÃ¼r ArtCode';
+COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.rechtsstatus IS 'Status, ob diese EigentumsbeschrÃ¤nkung in Kraft ist';
+COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.publiziertab IS 'Datum, ab dem diese EigentumsbeschrÃ¤nkung in AuszÃ¼gen erscheint';
+COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.darstellungsdienst IS 'Darstellungsdienst, auf dem diese EigentumsbeschrÃ¤nkung sichtbar, aber nicht hervorgehoben, ist.';
+COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung.zustaendigestelle IS 'ZustÃ¤ndige Stelle fÃ¼r die Geobasisdaten (Originaldaten) gem. GeoIG Art. 8 Abs. 1';
 -- OeREBKRMtrsfr_V1_1.Transferstruktur.Geometrie
 CREATE TABLE live.oerbkrmfr_v1_1transferstruktur_geometrie (
   T_Id bigint PRIMARY KEY DEFAULT nextval('live.t_ili2db_seq')
@@ -18993,12 +18993,12 @@ CREATE INDEX oerbkrmfr_v1_strktr_gmtrie_flaeche_lv03_idx ON live.oerbkrmfr_v1_1t
 CREATE INDEX oerbkrmfr_v1_strktr_gmtrie_flaeche_lv95_idx ON live.oerbkrmfr_v1_1transferstruktur_geometrie USING GIST ( flaeche_lv95 );
 CREATE INDEX oerbkrmfr_v1_strktr_gmtrie_eigentumsbeschraenkung_idx ON live.oerbkrmfr_v1_1transferstruktur_geometrie ( eigentumsbeschraenkung );
 CREATE INDEX oerbkrmfr_v1_strktr_gmtrie_zustaendigestelle_idx ON live.oerbkrmfr_v1_1transferstruktur_geometrie ( zustaendigestelle );
-COMMENT ON TABLE live.oerbkrmfr_v1_1transferstruktur_geometrie IS 'Punkt-, linien-, oder flächenförmige Geometrie. Neu zu definierende Eigentumsbeschränkungen sollten i.d.R. flächenförmig sein.';
+COMMENT ON TABLE live.oerbkrmfr_v1_1transferstruktur_geometrie IS 'Punkt-, linien-, oder flÃ¤chenfÃ¶rmige Geometrie. Neu zu definierende EigentumsbeschrÃ¤nkungen sollten i.d.R. flÃ¤chenfÃ¶rmig sein.';
 COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_geometrie.punkt_lv03 IS 'Punktgeometrie';
-COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_geometrie.linie_lv03 IS 'Linienförmige Geometrie';
-COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_geometrie.flaeche_lv03 IS 'Flächenförmige Geometrie';
+COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_geometrie.linie_lv03 IS 'LinienfÃ¶rmige Geometrie';
+COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_geometrie.flaeche_lv03 IS 'FlÃ¤chenfÃ¶rmige Geometrie';
 COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_geometrie.rechtsstatus IS 'Status, ob diese Geometrie in Kraft ist';
-COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_geometrie.publiziertab IS 'Datum, ab dem diese Geometrie in Auszügen erscheint';
+COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_geometrie.publiziertab IS 'Datum, ab dem diese Geometrie in AuszÃ¼gen erscheint';
 COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_geometrie.metadatengeobasisdaten IS 'Verweis auf maschinenlesbare Metadaten (XML) der zugrundeliegenden Geobasisdaten. z.B. http://www.geocat.ch/geonetwork/srv/deu/gm03.xml?id=705';
 -- OeREBKRMtrsfr_V1_1.Transferstruktur.HinweisDefinition
 CREATE TABLE live.oerbkrmfr_v1_1transferstruktur_hinweisdefinition (
@@ -19014,10 +19014,10 @@ CREATE TABLE live.oerbkrmfr_v1_1transferstruktur_hinweisdefinition (
 ;
 CREATE INDEX oerbkrmfr_v1_r_hnwsdfntion_t_basket_idx ON live.oerbkrmfr_v1_1transferstruktur_hinweisdefinition ( t_basket );
 CREATE INDEX oerbkrmfr_v1_r_hnwsdfntion_zustaendigestelle_idx ON live.oerbkrmfr_v1_1transferstruktur_hinweisdefinition ( zustaendigestelle );
-COMMENT ON TABLE live.oerbkrmfr_v1_1transferstruktur_hinweisdefinition IS 'Definition für Hinweise, die unabhängig von einer konkreten Eigentumsbeschränkung gelten (z.B. der Hinweis auf eine Systematische Rechtssammlung). Der Hinweis kann aber beschränkt werden auf eine bestimmtes ÖREB-Thema und/oder Kanton und/oder Gemeinde.';
-COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_hinweisdefinition.thema IS 'Thema falls der Hinweis für ein bestimmtes ÖREB-Thema gilt. Falls die Angabe fehlt, ist es ein Hinweis der für alle ÖREB-Themen gilt.';
-COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_hinweisdefinition.kanton IS 'Kantonskürzel falls der Hinweis für ein Kantons-oder Gemeindegebiet gilt. Falls die Angabe fehlt, ist es ein Hinweis der für alle Kantone gilt. z.B. "BE".';
-COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_hinweisdefinition.gemeinde IS 'BFSNr falls der Hinweis für ein Gemeindegebiet gilt. Falls die Angabe fehlt, ist es ein Hinweis der für den Kanton oder die Schweiz gilt. z.B. "942".';
+COMMENT ON TABLE live.oerbkrmfr_v1_1transferstruktur_hinweisdefinition IS 'Definition fÃ¼r Hinweise, die unabhÃ¤ngig von einer konkreten EigentumsbeschrÃ¤nkung gelten (z.B. der Hinweis auf eine Systematische Rechtssammlung). Der Hinweis kann aber beschrÃ¤nkt werden auf eine bestimmtes Ã–REB-Thema und/oder Kanton und/oder Gemeinde.';
+COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_hinweisdefinition.thema IS 'Thema falls der Hinweis fÃ¼r ein bestimmtes Ã–REB-Thema gilt. Falls die Angabe fehlt, ist es ein Hinweis der fÃ¼r alle Ã–REB-Themen gilt.';
+COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_hinweisdefinition.kanton IS 'KantonskÃ¼rzel falls der Hinweis fÃ¼r ein Kantons-oder Gemeindegebiet gilt. Falls die Angabe fehlt, ist es ein Hinweis der fÃ¼r alle Kantone gilt. z.B. "BE".';
+COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_hinweisdefinition.gemeinde IS 'BFSNr falls der Hinweis fÃ¼r ein Gemeindegebiet gilt. Falls die Angabe fehlt, ist es ein Hinweis der fÃ¼r den Kanton oder die Schweiz gilt. z.B. "942".';
 -- OeREBKRMtrsfr_V1_1.Transferstruktur.LegendeEintrag
 CREATE TABLE live.oerbkrmfr_v1_1transferstruktur_legendeeintrag (
   T_Id bigint PRIMARY KEY DEFAULT nextval('live.t_ili2db_seq')
@@ -19042,10 +19042,10 @@ CREATE TABLE live.oerbkrmfr_v1_1transferstruktur_legendeeintrag (
 CREATE INDEX oerbkrmfr_v1_ktr_lgndntrag_t_basket_idx ON live.oerbkrmfr_v1_1transferstruktur_legendeeintrag ( t_basket );
 CREATE INDEX oerbkrmfr_v1_ktr_lgndntrag_oerbkrmfr_vstngsdnst_lgnde_idx ON live.oerbkrmfr_v1_1transferstruktur_legendeeintrag ( oerbkrmfr_vstllngsdnst_legende );
 COMMENT ON TABLE live.oerbkrmfr_v1_1transferstruktur_legendeeintrag IS 'Ein Eintrag in der Planlegende.';
-COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_legendeeintrag.symbol IS 'Grafischer Teil des Legendeneintrages für die Darstellung. Im PNG-Format mit 300dpi oder im SVG-Format';
-COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_legendeeintrag.artcode IS 'Art der Eigentumsbeschränkung, die durch diesen Legendeneintrag dargestellt wird';
-COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_legendeeintrag.artcodeliste IS 'Codeliste der Eigentumsbeschränkung, die durch diesen Legendeneintrag dargestellt wird';
-COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_legendeeintrag.thema IS 'Zu welchem ÖREB-Thema der Legendeneintrag gehört';
+COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_legendeeintrag.symbol IS 'Grafischer Teil des Legendeneintrages fÃ¼r die Darstellung. Im PNG-Format mit 300dpi oder im SVG-Format';
+COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_legendeeintrag.artcode IS 'Art der EigentumsbeschrÃ¤nkung, die durch diesen Legendeneintrag dargestellt wird';
+COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_legendeeintrag.artcodeliste IS 'Codeliste der EigentumsbeschrÃ¤nkung, die durch diesen Legendeneintrag dargestellt wird';
+COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_legendeeintrag.thema IS 'Zu welchem Ã–REB-Thema der Legendeneintrag gehÃ¶rt';
 COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_legendeeintrag.subthema IS 'z.B. Planungszonen innerhalb Nutzungsplanung';
 -- OeREBKRMtrsfr_V1_1.Transferstruktur.DarstellungsDienst
 CREATE TABLE live.oerbkrmfr_v1_1transferstruktur_darstellungsdienst (
@@ -19059,7 +19059,7 @@ CREATE TABLE live.oerbkrmfr_v1_1transferstruktur_darstellungsdienst (
 ;
 CREATE INDEX oerbkrmfr_v1_drstllngsdnst_t_basket_idx ON live.oerbkrmfr_v1_1transferstruktur_darstellungsdienst ( t_basket );
 COMMENT ON TABLE live.oerbkrmfr_v1_1transferstruktur_darstellungsdienst IS 'Angaben zum Darstellungsdienst.';
-COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_darstellungsdienst.verweiswms IS 'WMS GetMap-Request (für Maschine-Maschine-Kommunikation) inkl. alle benötigten Parameter, z.B. "https://wms.geo.admin.ch/?SERVICE=WMS&REQUEST=GetMap&VERSION=1.1.1&STYLES=default&SRS=EPSG:21781&BBOX=475000,60000,845000,310000&WIDTH=740&HEIGHT=500&FORMAT=image/png&LAYERS=ch.bazl.kataster-belasteter-standorte-zivilflugplaetze.oereb"';
+COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_darstellungsdienst.verweiswms IS 'WMS GetMap-Request (fÃ¼r Maschine-Maschine-Kommunikation) inkl. alle benÃ¶tigten Parameter, z.B. "https://wms.geo.admin.ch/?SERVICE=WMS&REQUEST=GetMap&VERSION=1.1.1&STYLES=default&SRS=EPSG:21781&BBOX=475000,60000,845000,310000&WIDTH=740&HEIGHT=500&FORMAT=image/png&LAYERS=ch.bazl.kataster-belasteter-standorte-zivilflugplaetze.oereb"';
 COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_darstellungsdienst.legendeimweb IS 'Verweis auf ein Dokument das die Karte beschreibt; z.B. "https://wms.geo.admin.ch/?SERVICE=WMS&REQUEST=GetLegendGraphic&VERSION=1.1.1&FORMAT=image/png&LAYER=ch.bazl.kataster-belasteter-standorte-zivilflugplaetze.oereb"';
 -- OeREBKRMtrsfr_V1_1.Transferstruktur.GrundlageVerfeinerung
 CREATE TABLE live.oerbkrmfr_v1_1transferstruktur_grundlageverfeinerung (
@@ -19102,8 +19102,8 @@ CREATE INDEX oerbkrmfr_v1_hnwsvrschrift_t_basket_idx ON live.oerbkrmfr_v1_1trans
 CREATE INDEX oerbkrmfr_v1_hnwsvrschrift_eigentumsbeschraenkung_idx ON live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift ( eigentumsbeschraenkung );
 CREATE INDEX oerbkrmfr_v1_hnwsvrschrift_vorschrft_rbkschrftn_rtkel_idx ON live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift ( vorschrift_oerbkrmvs_v1_1vorschriften_artikel );
 CREATE INDEX oerbkrmfr_v1_hnwsvrschrift_vorschrft_rbkchrftn_dkment_idx ON live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift ( vorschrift_oerbkrmvs_v1_1vorschriften_dokument );
-COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_artikel IS 'Rechtsvorschrift der Eigentumsbeschränkung';
-COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument IS 'Rechtsvorschrift der Eigentumsbeschränkung';
+COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_artikel IS 'Rechtsvorschrift der EigentumsbeschrÃ¤nkung';
+COMMENT ON COLUMN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument IS 'Rechtsvorschrift der EigentumsbeschrÃ¤nkung';
 ALTER TABLE live.localisation_v1_localisedtext ADD CONSTRAINT localisation_v1_loclsdtext_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.localisation_v1_localisedtext ADD CONSTRAINT localisation_v1_loclsdtext_loclstn_v1_mltxt_lclsdtext_fkey FOREIGN KEY ( loclstn_v1_mltlngltext_localisedtext ) REFERENCES live.localisation_v1_multilingualtext DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.localisation_v1_localisedmtext ADD CONSTRAINT localisation_v1_lclsdmtext_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
@@ -19637,7 +19637,7 @@ INSERT INTO live.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('oerebkrm_v
 INSERT INTO live.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('oerebkrm_v1_1_artikelnummer_','ch.ehi.ili2db.tableKind','STRUCTURE');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMtrsfr_V1_1.ili','2.3','OeREBKRMtrsfr_V1_1{ GeometryCHLV95_V1 CHAdminCodes_V1 LocalisationCH_V1 GeometryCHLV03_V1 OeREBKRM_V1_1 OeREBKRMvs_V1_1}','INTERLIS 2.3;
 
-/** Schnittstelle zwischen zuständiger Stelle für die Geobasisdaten und Katasterorganisation des Kantons.
+/** Schnittstelle zwischen zustÃ¤ndiger Stelle fÃ¼r die Geobasisdaten und Katasterorganisation des Kantons.
  */
 !!@ furtherInformation=http://www.cadastre.ch/oereb-public
 !!@ technicalContact=mailto:infovd@swisstopo.ch
@@ -19646,19 +19646,19 @@ AT "http://models.geo.admin.ch/V_D/OeREB/"
 VERSION "2016-08-15"  =
   IMPORTS OeREBKRM_V1_1,OeREBKRMvs_V1_1,CHAdminCodes_V1,LocalisationCH_V1,GeometryCHLV03_V1,GeometryCHLV95_V1;
 
-  /** Dieses Teilmodell definiert die Struktur der Daten, wie sie von der zuständigen Stelle für die Geobasisdaten an die Abgabestelle des ÖREB-Kataster-Auszugs geliefert werden müssen. Dieses Datenmodell definiert somit, welche Daten ein minimales Datenmodell enthalten muss, um als ÖREB-Kataster fähiges Datenmodell zu gelten.
+  /** Dieses Teilmodell definiert die Struktur der Daten, wie sie von der zustÃ¤ndigen Stelle fÃ¼r die Geobasisdaten an die Abgabestelle des Ã–REB-Kataster-Auszugs geliefert werden mÃ¼ssen. Dieses Datenmodell definiert somit, welche Daten ein minimales Datenmodell enthalten muss, um als Ã–REB-Kataster fÃ¤higes Datenmodell zu gelten.
    */
   TOPIC Transferstruktur
   EXTENDS OeREBKRMvs_V1_1.Vorschriften =
     DEPENDS ON OeREBKRMvs_V1_1.HinweiseGesetzlicheGrundlagen;
 
-    /** Wurzelelement für Informationen über eine Beschränkung des Grundeigentums, die rechtskräftig, z.B. auf Grund einer Genehmigung oder eines richterlichen Entscheids, zustande gekommen ist.
+    /** Wurzelelement fÃ¼r Informationen Ã¼ber eine BeschrÃ¤nkung des Grundeigentums, die rechtskrÃ¤ftig, z.B. auf Grund einer Genehmigung oder eines richterlichen Entscheids, zustande gekommen ist.
      */
     CLASS Eigentumsbeschraenkung =
-      /** Textliche Beschreibung der Beschränkung; z.B. "Wohnen W3"
+      /** Textliche Beschreibung der BeschrÃ¤nkung; z.B. "Wohnen W3"
        */
       Aussage : MANDATORY LocalisationCH_V1.MultilingualMText;
-      /** Einordnung der Eigentumsbeschränkung in ein ÖREBK-Thema
+      /** Einordnung der EigentumsbeschrÃ¤nkung in ein Ã–REBK-Thema
        */
       Thema : MANDATORY OeREBKRM_V1_1.Thema;
       /** z.B. Planungszonen innerhalb Nutzungsplanung
@@ -19667,43 +19667,43 @@ VERSION "2016-08-15"  =
       /** z.B. kantonale Themen. Der Code wird nach folgendem Muster gebildet: ch.{canton}.{topic}
        * fl.{topic}
        * ch.{bfsnr}.{topic}
-       * Wobei {canton} das offizielle zwei-stellige Kürzel des Kantons ist, {to-pic} der Themenname und {bfsnr} die Gemeindenummer gem. BFS.
+       * Wobei {canton} das offizielle zwei-stellige KÃ¼rzel des Kantons ist, {to-pic} der Themenname und {bfsnr} die Gemeindenummer gem. BFS.
        */
       WeiteresThema : OeREBKRM_V1_1.WeiteresThema;
-      /** Themenspezifische, maschinen-lesbare Art gem. Originalmodell der Eigentumsbeschränkung
+      /** Themenspezifische, maschinen-lesbare Art gem. Originalmodell der EigentumsbeschrÃ¤nkung
        */
       ArtCode : OeREBKRM_V1_1.ArtEigentumsbeschraenkung;
-      /** Identifikation der Codeliste bzw. des Wertebereichs für ArtCode
+      /** Identifikation der Codeliste bzw. des Wertebereichs fÃ¼r ArtCode
        */
       ArtCodeliste : URI;
-      /** Status, ob diese Eigentumsbeschränkung in Kraft ist
+      /** Status, ob diese EigentumsbeschrÃ¤nkung in Kraft ist
        */
       Rechtsstatus : MANDATORY OeREBKRM_V1_1.RechtsStatus;
-      /** Datum, ab dem diese Eigentumsbeschränkung in Auszügen erscheint
+      /** Datum, ab dem diese EigentumsbeschrÃ¤nkung in AuszÃ¼gen erscheint
        */
       publiziertAb : MANDATORY OeREBKRM_V1_1.Datum;
       MANDATORY CONSTRAINT Thema!=#WeiteresThema OR DEFINED(WeiteresThema);
     END Eigentumsbeschraenkung;
 
-    /** Punkt-, linien-, oder flächenförmige Geometrie. Neu zu definierende Eigentumsbeschränkungen sollten i.d.R. flächenförmig sein.
+    /** Punkt-, linien-, oder flÃ¤chenfÃ¶rmige Geometrie. Neu zu definierende EigentumsbeschrÃ¤nkungen sollten i.d.R. flÃ¤chenfÃ¶rmig sein.
      */
     CLASS Geometrie =
       /** Punktgeometrie
        */
       Punkt_LV03 : GeometryCHLV03_V1.Coord2;
       Punkt_LV95 : GeometryCHLV95_V1.Coord2;
-      /** Linienförmige Geometrie
+      /** LinienfÃ¶rmige Geometrie
        */
       Linie_LV03 : GeometryCHLV03_V1.Line;
       Linie_LV95 : GeometryCHLV95_V1.Line;
-      /** Flächenförmige Geometrie
+      /** FlÃ¤chenfÃ¶rmige Geometrie
        */
       Flaeche_LV03 : GeometryCHLV03_V1.Surface;
       Flaeche_LV95 : GeometryCHLV95_V1.Surface;
       /** Status, ob diese Geometrie in Kraft ist
        */
       Rechtsstatus : MANDATORY OeREBKRM_V1_1.RechtsStatus;
-      /** Datum, ab dem diese Geometrie in Auszügen erscheint
+      /** Datum, ab dem diese Geometrie in AuszÃ¼gen erscheint
        */
       publiziertAb : MANDATORY OeREBKRM_V1_1.Datum;
       /** Verweis auf maschinenlesbare Metadaten (XML) der zugrundeliegenden Geobasisdaten. z.B. http://www.geocat.ch/geonetwork/srv/deu/gm03.xml?id=705
@@ -19712,16 +19712,16 @@ VERSION "2016-08-15"  =
       MANDATORY CONSTRAINT DEFINED(Punkt_LV03) OR DEFINED(Linie_LV03) OR DEFINED(Flaeche_LV03) OR DEFINED(Punkt_LV95) OR DEFINED(Linie_LV95) OR DEFINED(Flaeche_LV95);
     END Geometrie;
 
-    /** Definition für Hinweise, die unabhängig von einer konkreten Eigentumsbeschränkung gelten (z.B. der Hinweis auf eine Systematische Rechtssammlung). Der Hinweis kann aber beschränkt werden auf eine bestimmtes ÖREB-Thema und/oder Kanton und/oder Gemeinde.
+    /** Definition fÃ¼r Hinweise, die unabhÃ¤ngig von einer konkreten EigentumsbeschrÃ¤nkung gelten (z.B. der Hinweis auf eine Systematische Rechtssammlung). Der Hinweis kann aber beschrÃ¤nkt werden auf eine bestimmtes Ã–REB-Thema und/oder Kanton und/oder Gemeinde.
      */
     CLASS HinweisDefinition =
-      /** Thema falls der Hinweis für ein bestimmtes ÖREB-Thema gilt. Falls die Angabe fehlt, ist es ein Hinweis der für alle ÖREB-Themen gilt.
+      /** Thema falls der Hinweis fÃ¼r ein bestimmtes Ã–REB-Thema gilt. Falls die Angabe fehlt, ist es ein Hinweis der fÃ¼r alle Ã–REB-Themen gilt.
        */
       Thema : OeREBKRM_V1_1.Thema;
-      /** Kantonskürzel falls der Hinweis für ein Kantons-oder Gemeindegebiet gilt. Falls die Angabe fehlt, ist es ein Hinweis der für alle Kantone gilt. z.B. "BE".
+      /** KantonskÃ¼rzel falls der Hinweis fÃ¼r ein Kantons-oder Gemeindegebiet gilt. Falls die Angabe fehlt, ist es ein Hinweis der fÃ¼r alle Kantone gilt. z.B. "BE".
        */
       Kanton : CHAdminCodes_V1.CHCantonCode;
-      /** BFSNr falls der Hinweis für ein Gemeindegebiet gilt. Falls die Angabe fehlt, ist es ein Hinweis der für den Kanton oder die Schweiz gilt. z.B. "942".
+      /** BFSNr falls der Hinweis fÃ¼r ein Gemeindegebiet gilt. Falls die Angabe fehlt, ist es ein Hinweis der fÃ¼r den Kanton oder die Schweiz gilt. z.B. "942".
        */
       Gemeinde : CHAdminCodes_V1.CHMunicipalityCode;
     END HinweisDefinition;
@@ -19729,19 +19729,19 @@ VERSION "2016-08-15"  =
     /** Ein Eintrag in der Planlegende.
      */
     STRUCTURE LegendeEintrag =
-      /** Grafischer Teil des Legendeneintrages für die Darstellung. Im PNG-Format mit 300dpi oder im SVG-Format
+      /** Grafischer Teil des Legendeneintrages fÃ¼r die Darstellung. Im PNG-Format mit 300dpi oder im SVG-Format
        */
       Symbol : MANDATORY BLACKBOX BINARY;
       /** Text des Legendeneintrages
        */
       LegendeText : MANDATORY LocalisationCH_V1.MultilingualText;
-      /** Art der Eigentumsbeschränkung, die durch diesen Legendeneintrag dargestellt wird
+      /** Art der EigentumsbeschrÃ¤nkung, die durch diesen Legendeneintrag dargestellt wird
        */
       ArtCode : MANDATORY OeREBKRM_V1_1.ArtEigentumsbeschraenkung;
-      /** Codeliste der Eigentumsbeschränkung, die durch diesen Legendeneintrag dargestellt wird
+      /** Codeliste der EigentumsbeschrÃ¤nkung, die durch diesen Legendeneintrag dargestellt wird
        */
       ArtCodeliste : MANDATORY URI;
-      /** Zu welchem ÖREB-Thema der Legendeneintrag gehört
+      /** Zu welchem Ã–REB-Thema der Legendeneintrag gehÃ¶rt
        */
       Thema : MANDATORY OeREBKRM_V1_1.Thema;
       /** z.B. Planungszonen innerhalb Nutzungsplanung
@@ -19754,7 +19754,7 @@ VERSION "2016-08-15"  =
     /** Angaben zum Darstellungsdienst.
      */
     CLASS DarstellungsDienst =
-      /** WMS GetMap-Request (für Maschine-Maschine-Kommunikation) inkl. alle benötigten Parameter, z.B. "https://wms.geo.admin.ch/?SERVICE=WMS&REQUEST=GetMap&VERSION=1.1.1&STYLES=default&SRS=EPSG:21781&BBOX=475000,60000,845000,310000&WIDTH=740&HEIGHT=500&FORMAT=image/png&LAYERS=ch.bazl.kataster-belasteter-standorte-zivilflugplaetze.oereb"
+      /** WMS GetMap-Request (fÃ¼r Maschine-Maschine-Kommunikation) inkl. alle benÃ¶tigten Parameter, z.B. "https://wms.geo.admin.ch/?SERVICE=WMS&REQUEST=GetMap&VERSION=1.1.1&STYLES=default&SRS=EPSG:21781&BBOX=475000,60000,845000,310000&WIDTH=740&HEIGHT=500&FORMAT=image/png&LAYERS=ch.bazl.kataster-belasteter-standorte-zivilflugplaetze.oereb"
        */
       VerweisWMS : MANDATORY URI;
       /** Verweis auf ein Dokument das die Karte beschreibt; z.B. "https://wms.geo.admin.ch/?SERVICE=WMS&REQUEST=GetLegendGraphic&VERSION=1.1.1&FORMAT=image/png&LAYER=ch.bazl.kataster-belasteter-standorte-zivilflugplaetze.oereb"
@@ -19765,7 +19765,7 @@ VERSION "2016-08-15"  =
     END DarstellungsDienst;
 
     ASSOCIATION GeometrieEigentumsbeschraenkung =
-      /** Geometrie der Eigentumsbeschränkung, die Rechtswirkung hat (als Basis für den Verschnitt mit den Liegenschaften)
+      /** Geometrie der EigentumsbeschrÃ¤nkung, die Rechtswirkung hat (als Basis fÃ¼r den Verschnitt mit den Liegenschaften)
        */
       Geometrie -- {0..*} Geometrie;
       Eigentumsbeschraenkung -<#> {1} Eigentumsbeschraenkung;
@@ -19788,7 +19788,7 @@ VERSION "2016-08-15"  =
 
     ASSOCIATION HinweisVorschrift =
       Eigentumsbeschraenkung -- {0..*} Eigentumsbeschraenkung;
-      /** Rechtsvorschrift der Eigentumsbeschränkung
+      /** Rechtsvorschrift der EigentumsbeschrÃ¤nkung
        */
       Vorschrift -- {1..*} OeREBKRMvs_V1_1.Vorschriften.DokumentBasis;
       /** Hinweis auf spezifische Artikel.
@@ -19797,7 +19797,7 @@ VERSION "2016-08-15"  =
     END HinweisVorschrift;
 
     ASSOCIATION ZustaendigeStelleEigentumsbeschraenkung =
-      /** Zuständige Stelle für die Geobasisdaten (Originaldaten) gem. GeoIG Art. 8 Abs. 1
+      /** ZustÃ¤ndige Stelle fÃ¼r die Geobasisdaten (Originaldaten) gem. GeoIG Art. 8 Abs. 1
        */
       ZustaendigeStelle -- {1} OeREBKRMvs_V1_1.Vorschriften.Amt;
       Eigentumsbeschraenkung -<> {0..*} Eigentumsbeschraenkung;
@@ -19809,7 +19809,7 @@ VERSION "2016-08-15"  =
     END ZustaendigeStelleGeometrie;
 
     ASSOCIATION DarstellungsDienstEigentumsbeschraenkung =
-      /** Darstellungsdienst, auf dem diese Eigentumsbeschränkung sichtbar, aber nicht hervorgehoben, ist.
+      /** Darstellungsdienst, auf dem diese EigentumsbeschrÃ¤nkung sichtbar, aber nicht hervorgehoben, ist.
        */
       DarstellungsDienst -- {0..1} DarstellungsDienst;
       Eigentumsbeschraenkung -<> {1..*} Eigentumsbeschraenkung;
@@ -19821,7 +19821,7 @@ END OeREBKRMtrsfr_V1_1.
 ','2019-07-03 15:31:47.976');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMvs_V1_1.ili','2.3','OeREBKRMvs_V1_1{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1}','INTERLIS 2.3;
 
-/** Basisdefinition für Erlasse (Rechtsvorschriften, Hinweise auf Gesetzliche Grundlagen)
+/** Basisdefinition fÃ¼r Erlasse (Rechtsvorschriften, Hinweise auf Gesetzliche Grundlagen)
  */
 !!@ furtherInformation=http://www.cadastre.ch/oereb-public
 !!@ technicalContact=mailto:infovd@swisstopo.ch
@@ -19830,16 +19830,16 @@ AT "http://models.geo.admin.ch/V_D/OeREB/"
 VERSION "2016-08-15"  =
   IMPORTS OeREBKRM_V1_1,CHAdminCodes_V1,LocalisationCH_V1;
 
-  /** Dieses Teilmodell definiert die Struktur für die Erlasse im Allgemeinen.
-   * OID als URIs damit der Verweis auf Grundlagenerlasse (z.B. Kantonale Gesetze auf Bundesgesetze) in einem anderen Behälter (da durch eine andere Stelle erfasst/nachgeführt) verweisen können.
+  /** Dieses Teilmodell definiert die Struktur fÃ¼r die Erlasse im Allgemeinen.
+   * OID als URIs damit der Verweis auf Grundlagenerlasse (z.B. Kantonale Gesetze auf Bundesgesetze) in einem anderen BehÃ¤lter (da durch eine andere Stelle erfasst/nachgefÃ¼hrt) verweisen kÃ¶nnen.
    */
   TOPIC Vorschriften =
     OID AS OeREBKRM_V1_1.OEREBOID;
 
-    /** Eine organisatorische Einheit innerhalb der öffentlichen Verwaltung, z.B. eine für Geobasisdaten zuständige Stelle.
+    /** Eine organisatorische Einheit innerhalb der Ã¶ffentlichen Verwaltung, z.B. eine fÃ¼r Geobasisdaten zustÃ¤ndige Stelle.
      */
     CLASS Amt =
-      /** Name des Amtes z.B. "Amt für Gemeinden und Raumordnung des Kantons Bern".
+      /** Name des Amtes z.B. "Amt fÃ¼r Gemeinden und Raumordnung des Kantons Bern".
        */
       Name : MANDATORY LocalisationCH_V1.MultilingualText;
       /** Verweis auf die Website des Amtes z.B. "http://www.jgk.be.ch/jgk/de/index/direktion/organisation/agr.html".
@@ -19859,7 +19859,7 @@ VERSION "2016-08-15"  =
       /** Status, ob dieses Element in Kraft ist
        */
       Rechtsstatus : MANDATORY OeREBKRM_V1_1.RechtsStatus;
-      /** Datum, ab dem dieses Element in Auszügen erscheint
+      /** Datum, ab dem dieses Element in AuszÃ¼gen erscheint
        */
       publiziertAb : MANDATORY OeREBKRM_V1_1.Datum;
     END DokumentBasis;
@@ -19883,16 +19883,16 @@ VERSION "2016-08-15"  =
       /** Titel (oder falls vorhanden Kurztitel) des Dokuments; z.B. "Raumplanungsgesetz"
        */
       Titel : MANDATORY LocalisationCH_V1.MultilingualText;
-      /** Offizieller Titel des Dokuments; z.B.  "Bundesgesetz über die Raumplanung"
+      /** Offizieller Titel des Dokuments; z.B.  "Bundesgesetz Ã¼ber die Raumplanung"
        */
       OffiziellerTitel : LocalisationCH_V1.MultilingualText;
-      /** Abkürzung des Gesetzes; z.B. "RPG"
+      /** AbkÃ¼rzung des Gesetzes; z.B. "RPG"
        */
       Abkuerzung : LocalisationCH_V1.MultilingualText;
       /** Offizielle Nummer des Gesetzes; z.B. "SR 700"
        */
       OffizielleNr : TEXT*20;
-      /** Kantonskürzel falls Vorschrift des Kantons oder der Gemeinde. Falls die Angabe fehlt, ist es eine Vorschrift des Bundes. z.B. "BE"
+      /** KantonskÃ¼rzel falls Vorschrift des Kantons oder der Gemeinde. Falls die Angabe fehlt, ist es eine Vorschrift des Bundes. z.B. "BE"
        */
       Kanton : CHAdminCodes_V1.CHCantonCode;
       /** Falls die Angabe fehlt, ist es ein Erlass des Kantons oder des Bundes. z.B. "942"
@@ -19903,7 +19903,7 @@ VERSION "2016-08-15"  =
       Dokument : BLACKBOX BINARY;
     END Dokument;
 
-    /** Reglemente, Vorschriften etc. die generell konkret sind (generell für die Person, die nicht bekannt ist, konkret für dass der Raumbezug mit Karte definiert ist), die zusammen mit der exakten geometrischen Definition als Einheit die Eigentumsbeschränkung unmittelbar beschreiben und innerhalb desselben Verfahrens verabschiedet worden sind.
+    /** Reglemente, Vorschriften etc. die generell konkret sind (generell fÃ¼r die Person, die nicht bekannt ist, konkret fÃ¼r dass der Raumbezug mit Karte definiert ist), die zusammen mit der exakten geometrischen Definition als Einheit die EigentumsbeschrÃ¤nkung unmittelbar beschreiben und innerhalb desselben Verfahrens verabschiedet worden sind.
      */
     CLASS Rechtsvorschrift
     EXTENDS Dokument =
@@ -19931,8 +19931,8 @@ VERSION "2016-08-15"  =
 
   END Vorschriften;
 
-  /** Dieses Teilmodell definiert die Struktur für die Hinweise auf die gesetzlichen Grundlagen, die als solche nicht Teil des ÖREB-Katasters sind, von diesem aber referenziert werden können.
-   * OID als URIs damit der Verweis auf Grundlagengesetze (z.B. Kantonale Gesetze auf Bundesgesetze) in einem anderen Behälter (da durch eine andere Stelle erfasst/nachgeführt) verweisen können.
+  /** Dieses Teilmodell definiert die Struktur fÃ¼r die Hinweise auf die gesetzlichen Grundlagen, die als solche nicht Teil des Ã–REB-Katasters sind, von diesem aber referenziert werden kÃ¶nnen.
+   * OID als URIs damit der Verweis auf Grundlagengesetze (z.B. Kantonale Gesetze auf Bundesgesetze) in einem anderen BehÃ¤lter (da durch eine andere Stelle erfasst/nachgefÃ¼hrt) verweisen kÃ¶nnen.
    */
   TOPIC HinweiseGesetzlicheGrundlagen
   EXTENDS OeREBKRMvs_V1_1.Vorschriften =
@@ -19945,7 +19945,7 @@ INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDat
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
    BASISMODULE DES BUNDES           MODULES DE BASE DE LA CONFEDERATION
-   FÜR MINIMALE GEODATENMODELLE     POUR LES MODELES DE GEODONNEES MINIMAUX
+   FÃœR MINIMALE GEODATENMODELLE     POUR LES MODELES DE GEODONNEES MINIMAUX
    
    PROVIDER: GKG/KOGIS - GCS/COSIG             CONTACT: models@geo.admin.ch
    PUBLISHED: 2011-08-30
@@ -20163,7 +20163,7 @@ END AdministrativeUnitsCH_V1.
 ','2019-07-03 15:31:47.976');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRM_V1_1.ili','2.3','OeREBKRM_V1_1{ InternationalCodes_V1 LocalisationCH_V1 CatalogueObjects_V1}','INTERLIS 2.3;
 
-/** Basisdefinitionen für das OEREB-Katasterrahmenmodell
+/** Basisdefinitionen fÃ¼r das OEREB-Katasterrahmenmodell
  */
 !!@ furtherInformation=http://www.cadastre.ch/oereb-public
 !!@ technicalContact=mailto:infovd@swisstopo.ch
@@ -20174,11 +20174,11 @@ VERSION "2016-08-15"  =
 
   DOMAIN
 
-    /** Themenspezifische, maschinen-lesbare Art der Eigentumsbeschränkung
+    /** Themenspezifische, maschinen-lesbare Art der EigentumsbeschrÃ¤nkung
      */
     ArtEigentumsbeschraenkung = TEXT*40;
 
-    /** Wertebereich für den Artikeltext einer Rechtsvorschrift oder einer gesetzlichen Grundlage.
+    /** Wertebereich fÃ¼r den Artikeltext einer Rechtsvorschrift oder einer gesetzlichen Grundlage.
      */
     ArtikelInhalt = MTEXT;
 
@@ -20188,14 +20188,14 @@ VERSION "2016-08-15"  =
 
     Datum = FORMAT INTERLIS.XMLDate "1848-1-1" .. "2100-12-31";
 
-    /** Wertebereich für Objektidentifikatoren. Der Wert soll mit einem gültigen Internet Domain-Name anfangen, z.B. "ch.admin.sr.720"
+    /** Wertebereich fÃ¼r Objektidentifikatoren. Der Wert soll mit einem gÃ¼ltigen Internet Domain-Name anfangen, z.B. "ch.admin.sr.720"
      */
     OEREBOID = OID TEXT;
 
-    /** Werteliste zur Unterscheidung ob eine Eigentumsbeschränkung in Kraft ist oder nicht.
+    /** Werteliste zur Unterscheidung ob eine EigentumsbeschrÃ¤nkung in Kraft ist oder nicht.
      */
     RechtsStatus = (
-      /** Die Eigentumsbeschränkung ist in Kraft.
+      /** Die EigentumsbeschrÃ¤nkung ist in Kraft.
        */
       inKraft,
       /** gem. OeREBKV Art. 12 Abs. 2
@@ -20205,7 +20205,7 @@ VERSION "2016-08-15"  =
 
     SubThema = TEXT*60;
 
-    /** Liste der Geobasisdaten die ÖREB-Themen sind (Wird durch den Bundesrat definiert). Die Liste kann durch Kantone erweitert werden.
+    /** Liste der Geobasisdaten die Ã–REB-Themen sind (Wird durch den Bundesrat definiert). Die Liste kann durch Kantone erweitert werden.
      */
     Thema = (
       /** GeoIV Datensatz 73
@@ -20264,7 +20264,7 @@ VERSION "2016-08-15"  =
       WeiteresThema
     );
 
-    /** Unternehmensindentifikation (gemäss. Bundesgesetz über die Unternehmens-Identifikationsnummer SR 431.03) ohne Formatierung z.B. CHE116068369
+    /** Unternehmensindentifikation (gemÃ¤ss. Bundesgesetz Ã¼ber die Unternehmens-Identifikationsnummer SR 431.03) ohne Formatierung z.B. CHE116068369
      */
     UID = TEXT*12;
 
@@ -20275,7 +20275,7 @@ VERSION "2016-08-15"  =
     /** z.B. kantonale Themen. Der Code wird nach folgendem Muster gebildet: ch.{canton}.{topic}
      * fl.{topic}
      * ch.{bfsnr}.{topic}
-     * Wobei {canton} das offizielle zwei-stellige Kürzel des Kantons ist, {to-pic} der Themenname und {bfsnr} die Gemeindenummer gem. BFS.
+     * Wobei {canton} das offizielle zwei-stellige KÃ¼rzel des Kantons ist, {to-pic} der Themenname und {bfsnr} die Gemeindenummer gem. BFS.
      */
     WeiteresThema = TEXT*120;
   STRUCTURE ArtikelNummer_ = value : MANDATORY ArtikelNummer; END ArtikelNummer_;
@@ -20283,7 +20283,7 @@ VERSION "2016-08-15"  =
   STRUCTURE Thema_ = value : MANDATORY Thema; END Thema_;
   STRUCTURE WebReferenz_ = value : MANDATORY WebReferenz; END WebReferenz_;
 
-  /** Wertebereich für den Artikeltext einer Rechtsvorschrift oder einer gesetzlichen Grundlage.
+  /** Wertebereich fÃ¼r den Artikeltext einer Rechtsvorschrift oder einer gesetzlichen Grundlage.
    */
   STRUCTURE ArtikelInhaltMehrsprachig
   EXTENDS LocalisationCH_V1.MultilingualMText =
@@ -20299,11 +20299,11 @@ VERSION "2016-08-15"  =
     UNIQUE (LOCAL) LocalisedText:Language;
   END MultilingualUri;
 
-  /** Anzeigetexte für Aufzählungen des Rahmenmodells
+  /** Anzeigetexte fÃ¼r AufzÃ¤hlungen des Rahmenmodells
    */
   TOPIC CodelistenText =
 
-    /** Anzeigetexte für die Aufzählung RechtsStatus
+    /** Anzeigetexte fÃ¼r die AufzÃ¤hlung RechtsStatus
      */
     CLASS RechtsStatusTxt
     EXTENDS CatalogueObjects_V1.Catalogues.Item =
@@ -20312,7 +20312,7 @@ VERSION "2016-08-15"  =
       UNIQUE Code;
     END RechtsStatusTxt;
 
-    /** Anzeigetexte für die Aufzählung Thema
+    /** Anzeigetexte fÃ¼r die AufzÃ¤hlung Thema
      */
     CLASS ThemaTxt
     EXTENDS CatalogueObjects_V1.Catalogues.Item =
@@ -20328,7 +20328,7 @@ END OeREBKRM_V1_1.
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.ili','2.3','SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822{ GeometryCHLV95_V1 CHAdminCodes_V1}','INTERLIS 2.3;
 
 /** !!------------------------------------------------------------------------------
- * !! Version    | wer | Änderung
+ * !! Version    | wer | Ã„nderung
  * !!------------------------------------------------------------------------------
  * !! 2015-08-22 | SZ  | Initialversion
  */
@@ -20402,7 +20402,7 @@ VERSION "2018-08-22"  =
   TOPIC Nachfuehrungskreise =
     OID AS INTERLIS.UUIDOID;
 
-    /** Gemeinde mit zuständigem Nachführungsgeometer und Anschrift der Firma etc.
+    /** Gemeinde mit zustÃ¤ndigem NachfÃ¼hrungsgeometer und Anschrift der Firma etc.
      */
     CLASS Gemeinde =
       /** Name der politischen Gemeinde
@@ -20414,13 +20414,13 @@ VERSION "2018-08-22"  =
       /** Geometrie der politischen Gemeinde
        */
       Perimeter : MANDATORY GeometryCHLV95_V1.MultiSurface;
-      /** Nachname des Nachführungsgeometers
+      /** Nachname des NachfÃ¼hrungsgeometers
        */
       NFG_Name : MANDATORY TEXT*255;
-      /** Vorname des Nachführungsgeometers
+      /** Vorname des NachfÃ¼hrungsgeometers
        */
       NFG_Vorname : MANDATORY TEXT*255;
-      /** Titel des Nachführungsgeometers (z.B. Dr.)
+      /** Titel des NachfÃ¼hrungsgeometers (z.B. Dr.)
        */
       NFG_Titel : TEXT*255;
       /** Name der Firma
@@ -20678,7 +20678,7 @@ INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDat
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
    BASISMODULE DES BUNDES           MODULES DE BASE DE LA CONFEDERATION
-   FÜR MINIMALE GEODATENMODELLE     POUR LES MODELES DE GEODONNEES MINIMAUX
+   FÃœR MINIMALE GEODATENMODELLE     POUR LES MODELES DE GEODONNEES MINIMAUX
    
    PROVIDER: GKG/KOGIS - GCS/COSIG             CONTACT: models@geo.admin.ch
    PUBLISHED: 2011-0830
@@ -20856,7 +20856,7 @@ INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDat
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
    BASISMODULE DES BUNDES           MODULES DE BASE DE LA CONFEDERATION
-   FÜR MINIMALE GEODATENMODELLE     POUR LES MODELES DE GEODONNEES MINIMAUX
+   FÃœR MINIMALE GEODATENMODELLE     POUR LES MODELES DE GEODONNEES MINIMAUX
    
    PROVIDER: GKG/KOGIS - GCS/COSIG             CONTACT: models@geo.admin.ch
    PUBLISHED: 2011-08-30
@@ -20944,7 +20944,7 @@ INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDat
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
    BASISMODULE DES BUNDES           MODULES DE BASE DE LA CONFEDERATION
-   FÜR MINIMALE GEODATENMODELLE     POUR LES MODELES DE GEODONNEES MINIMAUX
+   FÃœR MINIMALE GEODATENMODELLE     POUR LES MODELES DE GEODONNEES MINIMAUX
    
    PROVIDER: GKG/KOGIS - GCS/COSIG             CONTACT: models@geo.admin.ch
    PUBLISHED: 2011-08-30
