@@ -5541,7 +5541,7 @@ TRANSFER INTERLIS1;
 !! Das vorliegende Datenmodell gilt fuer den Bezugsrahmen "Landesvermessung 1903+
 !! (LV95)".
 !!
-!! Dieses Datenmodell basiert auf dem Datenmodell DM.01-AV-CH-24d enth√§lt jedoch
+!! Dieses Datenmodell basiert auf dem Datenmodell DM.01-AV-CH-24d enth‰lt jedoch
 !! nur das TOPIC PLZOrtschaft. In der Tabelle PLZ6 wurde der Identifikator
 !! "IDENT PLZ, Zusatzziffern" entfernt, da es PLZ-Flaechen gibt, welche mehrere
 !! Geometrien besitzen, so dass der Identifikator nicht eingehalten werden kann.
@@ -5743,7 +5743,7 @@ CODE
   TID = ANY;
 END.
 
-','2019-07-03 15:31:43.351');
+','2019-07-04 17:51:07.723');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('DM.01-AV-CH_LV95_24d_ili1.ili','1.0','DM01AVCH24LV95D','
 TRANSFER INTERLIS1;
 
@@ -7723,7 +7723,7 @@ CODE
   TID = ANY;
 END.
 
-','2019-07-03 15:31:43.351');
+','2019-07-04 17:51:07.723');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createMetaInfo','True');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.arrayTrafo','coalesce');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.nameOptimization','disable');
