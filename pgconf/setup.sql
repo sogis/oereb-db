@@ -2445,11 +2445,9 @@ ALTER TABLE stage.plzoch1lv95dplzortschaft_plz6 ADD CONSTRAINT plzch1lv95dpzrtsc
 ALTER TABLE stage.plzoch1lv95dplzortschaft_plz6 ADD CONSTRAINT plzch1lv95dpzrtschft_plz6_zusatzziffern_check CHECK( zusatzziffern BETWEEN 0 AND 99);
 ALTER TABLE stage.plzoch1lv95dplzortschaft_plz6 ADD CONSTRAINT plzch1lv95dplzrtschft_plz6_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES stage.plzoch1lv95dplzortschaft_plz6nachfuehrung DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.plzoch1lv95dplzortschaft_plz6 ADD CONSTRAINT plzch1lv95dplzrtschft_plz6_plz6_von_fkey FOREIGN KEY ( plz6_von ) REFERENCES stage.plzoch1lv95dplzortschaft_ortschaft DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_nbident_identifikator_key ON stage.dm01vch24lv95dfixpunktekatgrie1_lfp1nachfuehrung (nbident,identifikator)
-;
+
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie1_lfp1nachfuehrung ADD CONSTRAINT dm01vch24lv95lfp1nchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2tgr1_lfp1_nbident_nummer_key ON stage.dm01vch24lv95dfixpunktekatgrie1_lfp1 (nbident,nummer)
-;
+
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie1_lfp1 ADD CONSTRAINT dm01vch24lv95nktktgr1_lfp1_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie1_lfp1 ADD CONSTRAINT dm01vch24lv9nktktgr1_lfp1_hoehegeom_check CHECK( hoehegeom BETWEEN -200.0 AND 5000.0);
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie1_lfp1 ADD CONSTRAINT dm01vch24lv9nktktgr1_lfp1_lagegen_check CHECK( lagegen BETWEEN 0.0 AND 700.0);
@@ -2461,13 +2459,10 @@ ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie1_lfp1pos ADD CONSTRAINT dm01vch
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie1_lfp1symbol ADD CONSTRAINT dm01vch24lv95r1_lfp1symbol_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie1_lfp1symbol ADD CONSTRAINT dm01vch24lv9r1_lfp1symbol_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie1_lfp1symbol ADD CONSTRAINT dm01vch24lv95r1_lfp1symbol_lfp1symbol_von_fkey FOREIGN KEY ( lfp1symbol_von ) REFERENCES stage.dm01vch24lv95dfixpunktekatgrie1_lfp1 DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_identifikator_nbident_key ON stage.dm01vch24lv95dfixpunktekatgrie1_hfp1nachfuehrung (identifikator,nbident)
-;
+
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie1_hfp1nachfuehrung ADD CONSTRAINT dm01vch24lv95hfp1nchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2tgr1_hfp1_nummer_nbident_key ON stage.dm01vch24lv95dfixpunktekatgrie1_hfp1 (nummer,nbident)
-;
-CREATE UNIQUE INDEX dm01vch24lv95nktktgr1_hfp1_geometrie_key ON stage.dm01vch24lv95dfixpunktekatgrie1_hfp1 (ST_AsBinary(geometrie))
-;
+
+
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie1_hfp1 ADD CONSTRAINT dm01vch24lv95nktktgr1_hfp1_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie1_hfp1 ADD CONSTRAINT dm01vch24lv9nktktgr1_hfp1_hoehegeom_check CHECK( hoehegeom BETWEEN -200.0 AND 5000.0);
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie1_hfp1 ADD CONSTRAINT dm01vch24lv9nktktgr1_hfp1_lagegen_check CHECK( lagegen BETWEEN 0.0 AND 700.0);
@@ -2476,11 +2471,9 @@ ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie1_hfp1 ADD CONSTRAINT dm01vch24l
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie1_hfp1pos ADD CONSTRAINT dm01vch24lv95ktgr1_hfp1pos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie1_hfp1pos ADD CONSTRAINT dm01vch24lv9ktgr1_hfp1pos_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie1_hfp1pos ADD CONSTRAINT dm01vch24lv95ktgr1_hfp1pos_hfp1pos_von_fkey FOREIGN KEY ( hfp1pos_von ) REFERENCES stage.dm01vch24lv95dfixpunktekatgrie1_hfp1 DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_nbident_identifikator_key1 ON stage.dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung (nbident,identifikator)
-;
+
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung ADD CONSTRAINT dm01vch24lv95lfp2nchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2tgr2_lfp2_nummer_nbident_key ON stage.dm01vch24lv95dfixpunktekatgrie2_lfp2 (nummer,nbident)
-;
+
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie2_lfp2 ADD CONSTRAINT dm01vch24lv95nktktgr2_lfp2_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie2_lfp2 ADD CONSTRAINT dm01vch24lv9nktktgr2_lfp2_hoehegeom_check CHECK( hoehegeom BETWEEN -200.0 AND 5000.0);
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie2_lfp2 ADD CONSTRAINT dm01vch24lv9nktktgr2_lfp2_lagegen_check CHECK( lagegen BETWEEN 0.0 AND 700.0);
@@ -2492,13 +2485,9 @@ ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie2_lfp2pos ADD CONSTRAINT dm01vch
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie2_lfp2symbol ADD CONSTRAINT dm01vch24lv95r2_lfp2symbol_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie2_lfp2symbol ADD CONSTRAINT dm01vch24lv9r2_lfp2symbol_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie2_lfp2symbol ADD CONSTRAINT dm01vch24lv95r2_lfp2symbol_lfp2symbol_von_fkey FOREIGN KEY ( lfp2symbol_von ) REFERENCES stage.dm01vch24lv95dfixpunktekatgrie2_lfp2 DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_identifikator_nbident_key1 ON stage.dm01vch24lv95dfixpunktekatgrie2_hfp2nachfuehrung (identifikator,nbident)
-;
+
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie2_hfp2nachfuehrung ADD CONSTRAINT dm01vch24lv95hfp2nchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2tgr2_hfp2_nummer_nbident_key ON stage.dm01vch24lv95dfixpunktekatgrie2_hfp2 (nummer,nbident)
-;
-CREATE UNIQUE INDEX dm01vch24lv95nktktgr2_hfp2_geometrie_key ON stage.dm01vch24lv95dfixpunktekatgrie2_hfp2 (ST_AsBinary(geometrie))
-;
+
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie2_hfp2 ADD CONSTRAINT dm01vch24lv95nktktgr2_hfp2_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie2_hfp2 ADD CONSTRAINT dm01vch24lv9nktktgr2_hfp2_hoehegeom_check CHECK( hoehegeom BETWEEN -200.0 AND 5000.0);
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie2_hfp2 ADD CONSTRAINT dm01vch24lv9nktktgr2_hfp2_lagegen_check CHECK( lagegen BETWEEN 0.0 AND 700.0);
@@ -2507,13 +2496,9 @@ ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie2_hfp2 ADD CONSTRAINT dm01vch24l
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie2_hfp2pos ADD CONSTRAINT dm01vch24lv95ktgr2_hfp2pos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie2_hfp2pos ADD CONSTRAINT dm01vch24lv9ktgr2_hfp2pos_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie2_hfp2pos ADD CONSTRAINT dm01vch24lv95ktgr2_hfp2pos_hfp2pos_von_fkey FOREIGN KEY ( hfp2pos_von ) REFERENCES stage.dm01vch24lv95dfixpunktekatgrie2_hfp2 DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_identifikator_nbident_key2 ON stage.dm01vch24lv95dfixpunktekatgrie3_lfp3nachfuehrung (identifikator,nbident)
-;
+
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie3_lfp3nachfuehrung ADD CONSTRAINT dm01vch24lv95lfp3nchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch24lv95nktktgr3_lfp3_geometrie_key ON stage.dm01vch24lv95dfixpunktekatgrie3_lfp3 (ST_AsBinary(geometrie))
-;
-CREATE UNIQUE INDEX dm01vch2tgr3_lfp3_nbident_nummer_key ON stage.dm01vch24lv95dfixpunktekatgrie3_lfp3 (nbident,nummer)
-;
+
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie3_lfp3 ADD CONSTRAINT dm01vch24lv95nktktgr3_lfp3_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie3_lfp3 ADD CONSTRAINT dm01vch24lv9nktktgr3_lfp3_hoehegeom_check CHECK( hoehegeom BETWEEN -200.0 AND 5000.0);
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie3_lfp3 ADD CONSTRAINT dm01vch24lv9nktktgr3_lfp3_lagegen_check CHECK( lagegen BETWEEN 0.0 AND 700.0);
@@ -2525,13 +2510,9 @@ ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie3_lfp3pos ADD CONSTRAINT dm01vch
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie3_lfp3symbol ADD CONSTRAINT dm01vch24lv95r3_lfp3symbol_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie3_lfp3symbol ADD CONSTRAINT dm01vch24lv9r3_lfp3symbol_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie3_lfp3symbol ADD CONSTRAINT dm01vch24lv95r3_lfp3symbol_lfp3symbol_von_fkey FOREIGN KEY ( lfp3symbol_von ) REFERENCES stage.dm01vch24lv95dfixpunktekatgrie3_lfp3 DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_nbident_identifikator_key2 ON stage.dm01vch24lv95dfixpunktekatgrie3_hfp3nachfuehrung (nbident,identifikator)
-;
+
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie3_hfp3nachfuehrung ADD CONSTRAINT dm01vch24lv95hfp3nchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2tgr3_hfp3_nbident_nummer_key ON stage.dm01vch24lv95dfixpunktekatgrie3_hfp3 (nbident,nummer)
-;
-CREATE UNIQUE INDEX dm01vch24lv95nktktgr3_hfp3_geometrie_key ON stage.dm01vch24lv95dfixpunktekatgrie3_hfp3 (ST_AsBinary(geometrie))
-;
+
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie3_hfp3 ADD CONSTRAINT dm01vch24lv95nktktgr3_hfp3_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie3_hfp3 ADD CONSTRAINT dm01vch24lv9nktktgr3_hfp3_hoehegeom_check CHECK( hoehegeom BETWEEN -200.0 AND 5000.0);
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie3_hfp3 ADD CONSTRAINT dm01vch24lv9nktktgr3_hfp3_lagegen_check CHECK( lagegen BETWEEN 0.0 AND 700.0);
@@ -2540,8 +2521,7 @@ ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie3_hfp3 ADD CONSTRAINT dm01vch24l
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie3_hfp3pos ADD CONSTRAINT dm01vch24lv95ktgr3_hfp3pos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie3_hfp3pos ADD CONSTRAINT dm01vch24lv9ktgr3_hfp3pos_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie3_hfp3pos ADD CONSTRAINT dm01vch24lv95ktgr3_hfp3pos_hfp3pos_von_fkey FOREIGN KEY ( hfp3pos_von ) REFERENCES stage.dm01vch24lv95dfixpunktekatgrie3_hfp3 DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_nbident_identifikator_key3 ON stage.dm01vch24lv95dbodenbedeckung_bbnachfuehrung (nbident,identifikator)
-;
+
 ALTER TABLE stage.dm01vch24lv95dbodenbedeckung_bbnachfuehrung ADD CONSTRAINT dm01vch24lv95g_bbnchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dbodenbedeckung_projboflaeche ADD CONSTRAINT dm01vch24lv95kng_prjbflche_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dbodenbedeckung_projboflaeche ADD CONSTRAINT dm01vch24lv95kng_prjbflche_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES stage.dm01vch24lv95dbodenbedeckung_bbnachfuehrung DEFERRABLE INITIALLY DEFERRED;
@@ -2575,16 +2555,14 @@ ALTER TABLE stage.dm01vch24lv95dbodenbedeckung_objektnamepos ADD CONSTRAINT dm01
 ALTER TABLE stage.dm01vch24lv95dbodenbedeckung_boflaechesymbol ADD CONSTRAINT dm01vch24lv95g_bflchsymbol_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dbodenbedeckung_boflaechesymbol ADD CONSTRAINT dm01vch24lv9g_bflchsymbol_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE stage.dm01vch24lv95dbodenbedeckung_boflaechesymbol ADD CONSTRAINT dm01vch24lv95g_bflchsymbol_boflaechesymbol_von_fkey FOREIGN KEY ( boflaechesymbol_von ) REFERENCES stage.dm01vch24lv95dbodenbedeckung_boflaeche DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch24lv95dckng_nzlpnkt_geometrie_key ON stage.dm01vch24lv95dbodenbedeckung_einzelpunkt (ST_AsBinary(geometrie))
-;
+
 ALTER TABLE stage.dm01vch24lv95dbodenbedeckung_einzelpunkt ADD CONSTRAINT dm01vch24lv95dckng_nzlpnkt_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dbodenbedeckung_einzelpunkt ADD CONSTRAINT dm01vch24lv9dckng_nzlpnkt_lagegen_check CHECK( lagegen BETWEEN 0.0 AND 700.0);
 ALTER TABLE stage.dm01vch24lv95dbodenbedeckung_einzelpunkt ADD CONSTRAINT dm01vch24lv95dckng_nzlpnkt_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES stage.dm01vch24lv95dbodenbedeckung_bbnachfuehrung DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dbodenbedeckung_einzelpunktpos ADD CONSTRAINT dm01vch24lv95ng_nzlpnktpos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dbodenbedeckung_einzelpunktpos ADD CONSTRAINT dm01vch24lv9ng_nzlpnktpos_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE stage.dm01vch24lv95dbodenbedeckung_einzelpunktpos ADD CONSTRAINT dm01vch24lv95ng_nzlpnktpos_einzelpunktpos_von_fkey FOREIGN KEY ( einzelpunktpos_von ) REFERENCES stage.dm01vch24lv95dbodenbedeckung_einzelpunkt DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_identifikator_nbident_key3 ON stage.dm01vch24lv95deinzelobjekte_eonachfuehrung (identifikator,nbident)
-;
+
 ALTER TABLE stage.dm01vch24lv95deinzelobjekte_eonachfuehrung ADD CONSTRAINT dm01vch24lv95jkt_nchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95deinzelobjekte_einzelobjekt ADD CONSTRAINT dm01vch24lv95bjkt_nzlbjekt_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95deinzelobjekte_einzelobjekt ADD CONSTRAINT dm01vch24lv95bjkt_nzlbjekt_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES stage.dm01vch24lv95deinzelobjekte_eonachfuehrung DEFERRABLE INITIALLY DEFERRED;
@@ -2612,19 +2590,16 @@ ALTER TABLE stage.dm01vch24lv95deinzelobjekte_objektnummer ADD CONSTRAINT dm01vc
 ALTER TABLE stage.dm01vch24lv95deinzelobjekte_objektnummerpos ADD CONSTRAINT dm01vch24lv95t_bjktnmmrpos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95deinzelobjekte_objektnummerpos ADD CONSTRAINT dm01vch24lv9t_bjktnmmrpos_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE stage.dm01vch24lv95deinzelobjekte_objektnummerpos ADD CONSTRAINT dm01vch24lv95t_bjktnmmrpos_objektnummerpos_von_fkey FOREIGN KEY ( objektnummerpos_von ) REFERENCES stage.dm01vch24lv95deinzelobjekte_objektnummer DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch24lv95lbjkt_nzlpnkt_geometrie_key ON stage.dm01vch24lv95deinzelobjekte_einzelpunkt (ST_AsBinary(geometrie))
-;
+
 ALTER TABLE stage.dm01vch24lv95deinzelobjekte_einzelpunkt ADD CONSTRAINT dm01vch24lv95lbjkt_nzlpnkt_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95deinzelobjekte_einzelpunkt ADD CONSTRAINT dm01vch24lv9lbjkt_nzlpnkt_lagegen_check CHECK( lagegen BETWEEN 0.0 AND 700.0);
 ALTER TABLE stage.dm01vch24lv95deinzelobjekte_einzelpunkt ADD CONSTRAINT dm01vch24lv95lbjkt_nzlpnkt_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES stage.dm01vch24lv95deinzelobjekte_eonachfuehrung DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95deinzelobjekte_einzelpunktpos ADD CONSTRAINT dm01vch24lv95kt_nzlpnktpos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95deinzelobjekte_einzelpunktpos ADD CONSTRAINT dm01vch24lv9kt_nzlpnktpos_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE stage.dm01vch24lv95deinzelobjekte_einzelpunktpos ADD CONSTRAINT dm01vch24lv95kt_nzlpnktpos_einzelpunktpos_von_fkey FOREIGN KEY ( einzelpunktpos_von ) REFERENCES stage.dm01vch24lv95deinzelobjekte_einzelpunkt DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_nbident_identifikator_key4 ON stage.dm01vch24lv95dhoehen_honachfuehrung (nbident,identifikator)
-;
+
 ALTER TABLE stage.dm01vch24lv95dhoehen_honachfuehrung ADD CONSTRAINT dm01vch24lv95hn_hnchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch24lv95dhohn_hhnpnkt_geometrie_key ON stage.dm01vch24lv95dhoehen_hoehenpunkt (ST_AsBinary(geometrie))
-;
+
 ALTER TABLE stage.dm01vch24lv95dhoehen_hoehenpunkt ADD CONSTRAINT dm01vch24lv95dhohn_hhnpnkt_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dhoehen_hoehenpunkt ADD CONSTRAINT dm01vch24lv95dhohn_hhnpnkt_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES stage.dm01vch24lv95dhoehen_honachfuehrung DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dhoehen_hoehenpunktpos ADD CONSTRAINT dm01vch24lv95hn_hhnpnktpos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
@@ -2634,8 +2609,7 @@ ALTER TABLE stage.dm01vch24lv95dhoehen_gelaendekante ADD CONSTRAINT dm01vch24lv9
 ALTER TABLE stage.dm01vch24lv95dhoehen_gelaendekante ADD CONSTRAINT dm01vch24lv95dhhn_glndknte_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES stage.dm01vch24lv95dhoehen_honachfuehrung DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dhoehen_aussparung ADD CONSTRAINT dm01vch24lv95dhohn_ssprung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dhoehen_aussparung ADD CONSTRAINT dm01vch24lv95dhohn_ssprung_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES stage.dm01vch24lv95dhoehen_honachfuehrung DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_nbident_identifikator_key5 ON stage.dm01vch24lv95dnomenklatur_nknachfuehrung (nbident,identifikator)
-;
+
 ALTER TABLE stage.dm01vch24lv95dnomenklatur_nknachfuehrung ADD CONSTRAINT dm01vch24lv95r_nknchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dnomenklatur_flurname ADD CONSTRAINT dm01vch24lv95nkltr_flrname_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dnomenklatur_flurname ADD CONSTRAINT dm01vch24lv95nkltr_flrname_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES stage.dm01vch24lv95dnomenklatur_nknachfuehrung DEFERRABLE INITIALLY DEFERRED;
@@ -2652,11 +2626,9 @@ ALTER TABLE stage.dm01vch24lv95dnomenklatur_gelaendename ADD CONSTRAINT dm01vch2
 ALTER TABLE stage.dm01vch24lv95dnomenklatur_gelaendenamepos ADD CONSTRAINT dm01vch24lv95ltr_glndnmpos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dnomenklatur_gelaendenamepos ADD CONSTRAINT dm01vch24lv9ltr_glndnmpos_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE stage.dm01vch24lv95dnomenklatur_gelaendenamepos ADD CONSTRAINT dm01vch24lv95ltr_glndnmpos_gelaendenamepos_von_fkey FOREIGN KEY ( gelaendenamepos_von ) REFERENCES stage.dm01vch24lv95dnomenklatur_gelaendename DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_identifikator_nbident_key4 ON stage.dm01vch24lv95dliegenschaften_lsnachfuehrung (identifikator,nbident)
-;
+
 ALTER TABLE stage.dm01vch24lv95dliegenschaften_lsnachfuehrung ADD CONSTRAINT dm01vch24lv95n_lsnchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch24lv95hftn_grnzpnkt_geometrie_key ON stage.dm01vch24lv95dliegenschaften_grenzpunkt (ST_AsBinary(geometrie))
-;
+
 ALTER TABLE stage.dm01vch24lv95dliegenschaften_grenzpunkt ADD CONSTRAINT dm01vch24lv95hftn_grnzpnkt_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dliegenschaften_grenzpunkt ADD CONSTRAINT dm01vch24lv9hftn_grnzpnkt_lagegen_check CHECK( lagegen BETWEEN 0.0 AND 700.0);
 ALTER TABLE stage.dm01vch24lv95dliegenschaften_grenzpunkt ADD CONSTRAINT dm01vch24lv95hftn_grnzpnkt_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES stage.dm01vch24lv95dliegenschaften_lsnachfuehrung DEFERRABLE INITIALLY DEFERRED;
@@ -2696,8 +2668,7 @@ ALTER TABLE stage.dm01vch24lv95dliegenschaften_selbstrecht ADD CONSTRAINT dm01vc
 ALTER TABLE stage.dm01vch24lv95dliegenschaften_bergwerk ADD CONSTRAINT dm01vch24lv95chftn_brgwerk_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dliegenschaften_bergwerk ADD CONSTRAINT dm01vch24lv9chftn_brgwerk_flaechenmass_check CHECK( flaechenmass BETWEEN 1 AND 999999999);
 ALTER TABLE stage.dm01vch24lv95dliegenschaften_bergwerk ADD CONSTRAINT dm01vch24lv95chftn_brgwerk_bergwerk_von_fkey FOREIGN KEY ( bergwerk_von ) REFERENCES stage.dm01vch24lv95dliegenschaften_grundstueck DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_nbident_identifikator_key6 ON stage.dm01vch24lv95drohrleitungen_rlnachfuehrung (nbident,identifikator)
-;
+
 ALTER TABLE stage.dm01vch24lv95drohrleitungen_rlnachfuehrung ADD CONSTRAINT dm01vch24lv95n_rlnchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95drohrleitungen_leitungsobjekt ADD CONSTRAINT dm01vch24lv95gn_ltngsbjekt_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95drohrleitungen_leitungsobjekt ADD CONSTRAINT dm01vch24lv95gn_ltngsbjekt_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES stage.dm01vch24lv95drohrleitungen_rlnachfuehrung DEFERRABLE INITIALLY DEFERRED;
@@ -2717,8 +2688,7 @@ ALTER TABLE stage.dm01vch24lv95drohrleitungen_signalpunkt ADD CONSTRAINT dm01vch
 ALTER TABLE stage.dm01vch24lv95drohrleitungen_signalpunktpos ADD CONSTRAINT dm01vch24lv95n_sgnlpnktpos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95drohrleitungen_signalpunktpos ADD CONSTRAINT dm01vch24lv9n_sgnlpnktpos_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE stage.dm01vch24lv95drohrleitungen_signalpunktpos ADD CONSTRAINT dm01vch24lv95n_sgnlpnktpos_signalpunktpos_von_fkey FOREIGN KEY ( signalpunktpos_von ) REFERENCES stage.dm01vch24lv95drohrleitungen_signalpunkt DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch24lv95ltngn_nzlpnkt_geometrie_key ON stage.dm01vch24lv95drohrleitungen_einzelpunkt (ST_AsBinary(geometrie))
-;
+
 ALTER TABLE stage.dm01vch24lv95drohrleitungen_einzelpunkt ADD CONSTRAINT dm01vch24lv95ltngn_nzlpnkt_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95drohrleitungen_einzelpunkt ADD CONSTRAINT dm01vch24lv9ltngn_nzlpnkt_lagegen_check CHECK( lagegen BETWEEN 0.0 AND 700.0);
 ALTER TABLE stage.dm01vch24lv95drohrleitungen_einzelpunkt ADD CONSTRAINT dm01vch24lv95ltngn_nzlpnkt_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES stage.dm01vch24lv95drohrleitungen_rlnachfuehrung DEFERRABLE INITIALLY DEFERRED;
@@ -2731,11 +2701,9 @@ ALTER TABLE stage.dm01vch24lv95dnummerierngsbrche_nbgeometrie ADD CONSTRAINT dm0
 ALTER TABLE stage.dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos ADD CONSTRAINT dm01vch24lv95mrrngsbrchpos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos ADD CONSTRAINT dm01vch24lv9mrrngsbrchpos_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE stage.dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos ADD CONSTRAINT dm01vch24lv95mrrngsbrchpos_nummerierungsbereichps_von_fkey FOREIGN KEY ( nummerierungsbereichpos_von ) REFERENCES stage.dm01vch24lv95dnummerierngsbrche_nummerierungsbereich DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_identifikator_nbident_key5 ON stage.dm01vch24lv95dgemeindegrenzen_gemnachfuehrung (identifikator,nbident)
-;
+
 ALTER TABLE stage.dm01vch24lv95dgemeindegrenzen_gemnachfuehrung ADD CONSTRAINT dm01vch24lv95n_gmnchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch24lv95_hhtsgrnzpnkt_geometrie_key ON stage.dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt (ST_AsBinary(geometrie))
-;
+
 ALTER TABLE stage.dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt ADD CONSTRAINT dm01vch24lv95_hhtsgrnzpnkt_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt ADD CONSTRAINT dm01vch24lv9_hhtsgrnzpnkt_lagegen_check CHECK( lagegen BETWEEN 0.0 AND 700.0);
 ALTER TABLE stage.dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt ADD CONSTRAINT dm01vch24lv95_hhtsgrnzpnkt_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES stage.dm01vch24lv95dgemeindegrenzen_gemnachfuehrung DEFERRABLE INITIALLY DEFERRED;
@@ -2762,20 +2730,17 @@ ALTER TABLE stage.dm01vch24lv95dplaneinteilungen_plangeometrie ADD CONSTRAINT dm
 ALTER TABLE stage.dm01vch24lv95dplaneinteilungen_planpos ADD CONSTRAINT dm01vch24lv95ntlngn_plnpos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dplaneinteilungen_planpos ADD CONSTRAINT dm01vch24lv9ntlngn_plnpos_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE stage.dm01vch24lv95dplaneinteilungen_planpos ADD CONSTRAINT dm01vch24lv95ntlngn_plnpos_planpos_von_fkey FOREIGN KEY ( planpos_von ) REFERENCES stage.dm01vch24lv95dplaneinteilungen_plan DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2lrnzstufe_identifikator_nbident_key ON stage.dm01vch24lv95dtseinteilung_toleranzstufe (identifikator,nbident)
-;
+
 ALTER TABLE stage.dm01vch24lv95dtseinteilung_toleranzstufe ADD CONSTRAINT dm01vch24lv95ng_tlrnzstufe_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dtseinteilung_toleranzstufepos ADD CONSTRAINT dm01vch24lv95g_tlrnzstfpos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dtseinteilung_toleranzstufepos ADD CONSTRAINT dm01vch24lv9g_tlrnzstfpos_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE stage.dm01vch24lv95dtseinteilung_toleranzstufepos ADD CONSTRAINT dm01vch24lv95g_tlrnzstfpos_toleranzstufepos_von_fkey FOREIGN KEY ( toleranzstufepos_von ) REFERENCES stage.dm01vch24lv95dtseinteilung_toleranzstufe DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2_rtschung_nbident_identifikator_key ON stage.dm01vch24lv95drutschgebiete_rutschung (nbident,identifikator)
-;
+
 ALTER TABLE stage.dm01vch24lv95drutschgebiete_rutschung ADD CONSTRAINT dm01vch24lv95hgbt_rtschung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95drutschgebiete_rutschungpos ADD CONSTRAINT dm01vch24lv95bt_rtschngpos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95drutschgebiete_rutschungpos ADD CONSTRAINT dm01vch24lv9bt_rtschngpos_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE stage.dm01vch24lv95drutschgebiete_rutschungpos ADD CONSTRAINT dm01vch24lv95bt_rtschngpos_rutschungpos_von_fkey FOREIGN KEY ( rutschungpos_von ) REFERENCES stage.dm01vch24lv95drutschgebiete_rutschung DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_nbident_identifikator_key7 ON stage.dm01vch24lv95dplzortschaft_osnachfuehrung (nbident,identifikator)
-;
+
 ALTER TABLE stage.dm01vch24lv95dplzortschaft_osnachfuehrung ADD CONSTRAINT dm01vch24lv95ft_snchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dplzortschaft_ortschaftsverbund ADD CONSTRAINT dm01vch24lv95tschftsvrbund_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dplzortschaft_ortschaftsverbundtext ADD CONSTRAINT dm01vch24lv95hftsvrbndtext_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
@@ -2788,18 +2753,15 @@ ALTER TABLE stage.dm01vch24lv95dplzortschaft_ortschaftsname ADD CONSTRAINT dm01v
 ALTER TABLE stage.dm01vch24lv95dplzortschaft_ortschaftsname_pos ADD CONSTRAINT dm01vch24lv95tschftsnm_pos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dplzortschaft_ortschaftsname_pos ADD CONSTRAINT dm01vch24lv9tschftsnm_pos_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE stage.dm01vch24lv95dplzortschaft_ortschaftsname_pos ADD CONSTRAINT dm01vch24lv95tschftsnm_pos_ortschaftsname_pos_von_fkey FOREIGN KEY ( ortschaftsname_pos_von ) REFERENCES stage.dm01vch24lv95dplzortschaft_ortschaftsname DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_identifikator_nbident_key6 ON stage.dm01vch24lv95dplzortschaft_plz6nachfuehrung (identifikator,nbident)
-;
+
 ALTER TABLE stage.dm01vch24lv95dplzortschaft_plz6nachfuehrung ADD CONSTRAINT dm01vch24lv95plz6nchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2chft_plz6_plz_zusatzziffern_key ON stage.dm01vch24lv95dplzortschaft_plz6 (plz,zusatzziffern)
-;
+
 ALTER TABLE stage.dm01vch24lv95dplzortschaft_plz6 ADD CONSTRAINT dm01vch24lv95zrtschft_plz6_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dplzortschaft_plz6 ADD CONSTRAINT dm01vch24lv9zrtschft_plz6_plz_check CHECK( plz BETWEEN 1000 AND 9999);
 ALTER TABLE stage.dm01vch24lv95dplzortschaft_plz6 ADD CONSTRAINT dm01vch24lv9zrtschft_plz6_zusatzziffern_check CHECK( zusatzziffern BETWEEN 0 AND 99);
 ALTER TABLE stage.dm01vch24lv95dplzortschaft_plz6 ADD CONSTRAINT dm01vch24lv95zrtschft_plz6_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES stage.dm01vch24lv95dplzortschaft_plz6nachfuehrung DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dplzortschaft_plz6 ADD CONSTRAINT dm01vch24lv95zrtschft_plz6_plz6_von_fkey FOREIGN KEY ( plz6_von ) REFERENCES stage.dm01vch24lv95dplzortschaft_ortschaft DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_identifikator_nbident_key7 ON stage.dm01vch24lv95dgebaeudeadressen_gebnachfuehrung (identifikator,nbident)
-;
+
 ALTER TABLE stage.dm01vch24lv95dgebaeudeadressen_gebnachfuehrung ADD CONSTRAINT dm01vch24lv95n_gbnchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dgebaeudeadressen_lokalisation ADD CONSTRAINT dm01vch24lv95rssn_lklstion_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dgebaeudeadressen_lokalisation ADD CONSTRAINT dm01vch24lv95rssn_lklstion_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES stage.dm01vch24lv95dgebaeudeadressen_gebnachfuehrung DEFERRABLE INITIALLY DEFERRED;
@@ -2831,8 +2793,7 @@ ALTER TABLE stage.dm01vch24lv95dgebaeudeadressen_gebaeudenamepos ADD CONSTRAINT 
 ALTER TABLE stage.dm01vch24lv95dgebaeudeadressen_gebaeudenamepos ADD CONSTRAINT dm01vch24lv95rssn_gbdnmpos_gebaeudenamepos_von_fkey FOREIGN KEY ( gebaeudenamepos_von ) REFERENCES stage.dm01vch24lv95dgebaeudeadressen_gebaeudename DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dgebaeudeadressen_gebaeudebeschreibung ADD CONSTRAINT dm01vch24lv95_gbdbschrbung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dgebaeudeadressen_gebaeudebeschreibung ADD CONSTRAINT dm01vch24lv95_gbdbschrbung_gebaeudebeschreibung_von_fkey FOREIGN KEY ( gebaeudebeschreibung_von ) REFERENCES stage.dm01vch24lv95dgebaeudeadressen_gebaeudeeingang DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2_plnlyout_identifikator_nbident_key ON stage.dm01vch24lv95dplanrahmen_planlayout (identifikator,nbident)
-;
+
 ALTER TABLE stage.dm01vch24lv95dplanrahmen_planlayout ADD CONSTRAINT dm01vch24lv95rhmn_plnlyout_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dplanrahmen_planlayout ADD CONSTRAINT dm01vch24lv9rhmn_plnlyout_massstabszahl_check CHECK( massstabszahl BETWEEN 1 AND 1000000);
 ALTER TABLE stage.dm01vch24lv95dplanrahmen_planlayout ADD CONSTRAINT dm01vch24lv9rhmn_plnlyout_e_azimut_check CHECK( e_azimut BETWEEN 0.0 AND 399.9);
@@ -13098,11 +13059,9 @@ ALTER TABLE live.plzoch1lv95dplzortschaft_plz6 ADD CONSTRAINT plzch1lv95dpzrtsch
 ALTER TABLE live.plzoch1lv95dplzortschaft_plz6 ADD CONSTRAINT plzch1lv95dpzrtschft_plz6_zusatzziffern_check CHECK( zusatzziffern BETWEEN 0 AND 99);
 ALTER TABLE live.plzoch1lv95dplzortschaft_plz6 ADD CONSTRAINT plzch1lv95dplzrtschft_plz6_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES live.plzoch1lv95dplzortschaft_plz6nachfuehrung DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.plzoch1lv95dplzortschaft_plz6 ADD CONSTRAINT plzch1lv95dplzrtschft_plz6_plz6_von_fkey FOREIGN KEY ( plz6_von ) REFERENCES live.plzoch1lv95dplzortschaft_ortschaft DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_nbident_identifikator_key ON live.dm01vch24lv95dfixpunktekatgrie1_lfp1nachfuehrung (nbident,identifikator)
-;
+
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie1_lfp1nachfuehrung ADD CONSTRAINT dm01vch24lv95lfp1nchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2tgr1_lfp1_nbident_nummer_key ON live.dm01vch24lv95dfixpunktekatgrie1_lfp1 (nbident,nummer)
-;
+
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie1_lfp1 ADD CONSTRAINT dm01vch24lv95nktktgr1_lfp1_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie1_lfp1 ADD CONSTRAINT dm01vch24lv9nktktgr1_lfp1_hoehegeom_check CHECK( hoehegeom BETWEEN -200.0 AND 5000.0);
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie1_lfp1 ADD CONSTRAINT dm01vch24lv9nktktgr1_lfp1_lagegen_check CHECK( lagegen BETWEEN 0.0 AND 700.0);
@@ -13114,13 +13073,9 @@ ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie1_lfp1pos ADD CONSTRAINT dm01vch2
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie1_lfp1symbol ADD CONSTRAINT dm01vch24lv95r1_lfp1symbol_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie1_lfp1symbol ADD CONSTRAINT dm01vch24lv9r1_lfp1symbol_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie1_lfp1symbol ADD CONSTRAINT dm01vch24lv95r1_lfp1symbol_lfp1symbol_von_fkey FOREIGN KEY ( lfp1symbol_von ) REFERENCES live.dm01vch24lv95dfixpunktekatgrie1_lfp1 DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_identifikator_nbident_key ON live.dm01vch24lv95dfixpunktekatgrie1_hfp1nachfuehrung (identifikator,nbident)
-;
+
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie1_hfp1nachfuehrung ADD CONSTRAINT dm01vch24lv95hfp1nchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2tgr1_hfp1_nummer_nbident_key ON live.dm01vch24lv95dfixpunktekatgrie1_hfp1 (nummer,nbident)
-;
-CREATE UNIQUE INDEX dm01vch24lv95nktktgr1_hfp1_geometrie_key ON live.dm01vch24lv95dfixpunktekatgrie1_hfp1 (ST_AsBinary(geometrie))
-;
+
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie1_hfp1 ADD CONSTRAINT dm01vch24lv95nktktgr1_hfp1_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie1_hfp1 ADD CONSTRAINT dm01vch24lv9nktktgr1_hfp1_hoehegeom_check CHECK( hoehegeom BETWEEN -200.0 AND 5000.0);
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie1_hfp1 ADD CONSTRAINT dm01vch24lv9nktktgr1_hfp1_lagegen_check CHECK( lagegen BETWEEN 0.0 AND 700.0);
@@ -13129,11 +13084,9 @@ ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie1_hfp1 ADD CONSTRAINT dm01vch24lv
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie1_hfp1pos ADD CONSTRAINT dm01vch24lv95ktgr1_hfp1pos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie1_hfp1pos ADD CONSTRAINT dm01vch24lv9ktgr1_hfp1pos_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie1_hfp1pos ADD CONSTRAINT dm01vch24lv95ktgr1_hfp1pos_hfp1pos_von_fkey FOREIGN KEY ( hfp1pos_von ) REFERENCES live.dm01vch24lv95dfixpunktekatgrie1_hfp1 DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_nbident_identifikator_key1 ON live.dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung (nbident,identifikator)
-;
+
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung ADD CONSTRAINT dm01vch24lv95lfp2nchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2tgr2_lfp2_nummer_nbident_key ON live.dm01vch24lv95dfixpunktekatgrie2_lfp2 (nummer,nbident)
-;
+
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie2_lfp2 ADD CONSTRAINT dm01vch24lv95nktktgr2_lfp2_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie2_lfp2 ADD CONSTRAINT dm01vch24lv9nktktgr2_lfp2_hoehegeom_check CHECK( hoehegeom BETWEEN -200.0 AND 5000.0);
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie2_lfp2 ADD CONSTRAINT dm01vch24lv9nktktgr2_lfp2_lagegen_check CHECK( lagegen BETWEEN 0.0 AND 700.0);
@@ -13145,13 +13098,9 @@ ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie2_lfp2pos ADD CONSTRAINT dm01vch2
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie2_lfp2symbol ADD CONSTRAINT dm01vch24lv95r2_lfp2symbol_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie2_lfp2symbol ADD CONSTRAINT dm01vch24lv9r2_lfp2symbol_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie2_lfp2symbol ADD CONSTRAINT dm01vch24lv95r2_lfp2symbol_lfp2symbol_von_fkey FOREIGN KEY ( lfp2symbol_von ) REFERENCES live.dm01vch24lv95dfixpunktekatgrie2_lfp2 DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_identifikator_nbident_key1 ON live.dm01vch24lv95dfixpunktekatgrie2_hfp2nachfuehrung (identifikator,nbident)
-;
+
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie2_hfp2nachfuehrung ADD CONSTRAINT dm01vch24lv95hfp2nchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2tgr2_hfp2_nummer_nbident_key ON live.dm01vch24lv95dfixpunktekatgrie2_hfp2 (nummer,nbident)
-;
-CREATE UNIQUE INDEX dm01vch24lv95nktktgr2_hfp2_geometrie_key ON live.dm01vch24lv95dfixpunktekatgrie2_hfp2 (ST_AsBinary(geometrie))
-;
+
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie2_hfp2 ADD CONSTRAINT dm01vch24lv95nktktgr2_hfp2_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie2_hfp2 ADD CONSTRAINT dm01vch24lv9nktktgr2_hfp2_hoehegeom_check CHECK( hoehegeom BETWEEN -200.0 AND 5000.0);
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie2_hfp2 ADD CONSTRAINT dm01vch24lv9nktktgr2_hfp2_lagegen_check CHECK( lagegen BETWEEN 0.0 AND 700.0);
@@ -13160,13 +13109,9 @@ ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie2_hfp2 ADD CONSTRAINT dm01vch24lv
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie2_hfp2pos ADD CONSTRAINT dm01vch24lv95ktgr2_hfp2pos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie2_hfp2pos ADD CONSTRAINT dm01vch24lv9ktgr2_hfp2pos_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie2_hfp2pos ADD CONSTRAINT dm01vch24lv95ktgr2_hfp2pos_hfp2pos_von_fkey FOREIGN KEY ( hfp2pos_von ) REFERENCES live.dm01vch24lv95dfixpunktekatgrie2_hfp2 DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_identifikator_nbident_key2 ON live.dm01vch24lv95dfixpunktekatgrie3_lfp3nachfuehrung (identifikator,nbident)
-;
+
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie3_lfp3nachfuehrung ADD CONSTRAINT dm01vch24lv95lfp3nchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch24lv95nktktgr3_lfp3_geometrie_key ON live.dm01vch24lv95dfixpunktekatgrie3_lfp3 (ST_AsBinary(geometrie))
-;
-CREATE UNIQUE INDEX dm01vch2tgr3_lfp3_nbident_nummer_key ON live.dm01vch24lv95dfixpunktekatgrie3_lfp3 (nbident,nummer)
-;
+
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie3_lfp3 ADD CONSTRAINT dm01vch24lv95nktktgr3_lfp3_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie3_lfp3 ADD CONSTRAINT dm01vch24lv9nktktgr3_lfp3_hoehegeom_check CHECK( hoehegeom BETWEEN -200.0 AND 5000.0);
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie3_lfp3 ADD CONSTRAINT dm01vch24lv9nktktgr3_lfp3_lagegen_check CHECK( lagegen BETWEEN 0.0 AND 700.0);
@@ -13178,13 +13123,9 @@ ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie3_lfp3pos ADD CONSTRAINT dm01vch2
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie3_lfp3symbol ADD CONSTRAINT dm01vch24lv95r3_lfp3symbol_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie3_lfp3symbol ADD CONSTRAINT dm01vch24lv9r3_lfp3symbol_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie3_lfp3symbol ADD CONSTRAINT dm01vch24lv95r3_lfp3symbol_lfp3symbol_von_fkey FOREIGN KEY ( lfp3symbol_von ) REFERENCES live.dm01vch24lv95dfixpunktekatgrie3_lfp3 DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_nbident_identifikator_key2 ON live.dm01vch24lv95dfixpunktekatgrie3_hfp3nachfuehrung (nbident,identifikator)
-;
+
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie3_hfp3nachfuehrung ADD CONSTRAINT dm01vch24lv95hfp3nchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2tgr3_hfp3_nbident_nummer_key ON live.dm01vch24lv95dfixpunktekatgrie3_hfp3 (nbident,nummer)
-;
-CREATE UNIQUE INDEX dm01vch24lv95nktktgr3_hfp3_geometrie_key ON live.dm01vch24lv95dfixpunktekatgrie3_hfp3 (ST_AsBinary(geometrie))
-;
+
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie3_hfp3 ADD CONSTRAINT dm01vch24lv95nktktgr3_hfp3_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie3_hfp3 ADD CONSTRAINT dm01vch24lv9nktktgr3_hfp3_hoehegeom_check CHECK( hoehegeom BETWEEN -200.0 AND 5000.0);
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie3_hfp3 ADD CONSTRAINT dm01vch24lv9nktktgr3_hfp3_lagegen_check CHECK( lagegen BETWEEN 0.0 AND 700.0);
@@ -13193,8 +13134,7 @@ ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie3_hfp3 ADD CONSTRAINT dm01vch24lv
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie3_hfp3pos ADD CONSTRAINT dm01vch24lv95ktgr3_hfp3pos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie3_hfp3pos ADD CONSTRAINT dm01vch24lv9ktgr3_hfp3pos_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE live.dm01vch24lv95dfixpunktekatgrie3_hfp3pos ADD CONSTRAINT dm01vch24lv95ktgr3_hfp3pos_hfp3pos_von_fkey FOREIGN KEY ( hfp3pos_von ) REFERENCES live.dm01vch24lv95dfixpunktekatgrie3_hfp3 DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_nbident_identifikator_key3 ON live.dm01vch24lv95dbodenbedeckung_bbnachfuehrung (nbident,identifikator)
-;
+
 ALTER TABLE live.dm01vch24lv95dbodenbedeckung_bbnachfuehrung ADD CONSTRAINT dm01vch24lv95g_bbnchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dbodenbedeckung_projboflaeche ADD CONSTRAINT dm01vch24lv95kng_prjbflche_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dbodenbedeckung_projboflaeche ADD CONSTRAINT dm01vch24lv95kng_prjbflche_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES live.dm01vch24lv95dbodenbedeckung_bbnachfuehrung DEFERRABLE INITIALLY DEFERRED;
@@ -13228,16 +13168,14 @@ ALTER TABLE live.dm01vch24lv95dbodenbedeckung_objektnamepos ADD CONSTRAINT dm01v
 ALTER TABLE live.dm01vch24lv95dbodenbedeckung_boflaechesymbol ADD CONSTRAINT dm01vch24lv95g_bflchsymbol_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dbodenbedeckung_boflaechesymbol ADD CONSTRAINT dm01vch24lv9g_bflchsymbol_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE live.dm01vch24lv95dbodenbedeckung_boflaechesymbol ADD CONSTRAINT dm01vch24lv95g_bflchsymbol_boflaechesymbol_von_fkey FOREIGN KEY ( boflaechesymbol_von ) REFERENCES live.dm01vch24lv95dbodenbedeckung_boflaeche DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch24lv95dckng_nzlpnkt_geometrie_key ON live.dm01vch24lv95dbodenbedeckung_einzelpunkt (ST_AsBinary(geometrie))
-;
+
 ALTER TABLE live.dm01vch24lv95dbodenbedeckung_einzelpunkt ADD CONSTRAINT dm01vch24lv95dckng_nzlpnkt_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dbodenbedeckung_einzelpunkt ADD CONSTRAINT dm01vch24lv9dckng_nzlpnkt_lagegen_check CHECK( lagegen BETWEEN 0.0 AND 700.0);
 ALTER TABLE live.dm01vch24lv95dbodenbedeckung_einzelpunkt ADD CONSTRAINT dm01vch24lv95dckng_nzlpnkt_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES live.dm01vch24lv95dbodenbedeckung_bbnachfuehrung DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dbodenbedeckung_einzelpunktpos ADD CONSTRAINT dm01vch24lv95ng_nzlpnktpos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dbodenbedeckung_einzelpunktpos ADD CONSTRAINT dm01vch24lv9ng_nzlpnktpos_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE live.dm01vch24lv95dbodenbedeckung_einzelpunktpos ADD CONSTRAINT dm01vch24lv95ng_nzlpnktpos_einzelpunktpos_von_fkey FOREIGN KEY ( einzelpunktpos_von ) REFERENCES live.dm01vch24lv95dbodenbedeckung_einzelpunkt DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_identifikator_nbident_key3 ON live.dm01vch24lv95deinzelobjekte_eonachfuehrung (identifikator,nbident)
-;
+
 ALTER TABLE live.dm01vch24lv95deinzelobjekte_eonachfuehrung ADD CONSTRAINT dm01vch24lv95jkt_nchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95deinzelobjekte_einzelobjekt ADD CONSTRAINT dm01vch24lv95bjkt_nzlbjekt_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95deinzelobjekte_einzelobjekt ADD CONSTRAINT dm01vch24lv95bjkt_nzlbjekt_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES live.dm01vch24lv95deinzelobjekte_eonachfuehrung DEFERRABLE INITIALLY DEFERRED;
@@ -13265,19 +13203,16 @@ ALTER TABLE live.dm01vch24lv95deinzelobjekte_objektnummer ADD CONSTRAINT dm01vch
 ALTER TABLE live.dm01vch24lv95deinzelobjekte_objektnummerpos ADD CONSTRAINT dm01vch24lv95t_bjktnmmrpos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95deinzelobjekte_objektnummerpos ADD CONSTRAINT dm01vch24lv9t_bjktnmmrpos_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE live.dm01vch24lv95deinzelobjekte_objektnummerpos ADD CONSTRAINT dm01vch24lv95t_bjktnmmrpos_objektnummerpos_von_fkey FOREIGN KEY ( objektnummerpos_von ) REFERENCES live.dm01vch24lv95deinzelobjekte_objektnummer DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch24lv95lbjkt_nzlpnkt_geometrie_key ON live.dm01vch24lv95deinzelobjekte_einzelpunkt (ST_AsBinary(geometrie))
-;
+
 ALTER TABLE live.dm01vch24lv95deinzelobjekte_einzelpunkt ADD CONSTRAINT dm01vch24lv95lbjkt_nzlpnkt_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95deinzelobjekte_einzelpunkt ADD CONSTRAINT dm01vch24lv9lbjkt_nzlpnkt_lagegen_check CHECK( lagegen BETWEEN 0.0 AND 700.0);
 ALTER TABLE live.dm01vch24lv95deinzelobjekte_einzelpunkt ADD CONSTRAINT dm01vch24lv95lbjkt_nzlpnkt_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES live.dm01vch24lv95deinzelobjekte_eonachfuehrung DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95deinzelobjekte_einzelpunktpos ADD CONSTRAINT dm01vch24lv95kt_nzlpnktpos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95deinzelobjekte_einzelpunktpos ADD CONSTRAINT dm01vch24lv9kt_nzlpnktpos_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE live.dm01vch24lv95deinzelobjekte_einzelpunktpos ADD CONSTRAINT dm01vch24lv95kt_nzlpnktpos_einzelpunktpos_von_fkey FOREIGN KEY ( einzelpunktpos_von ) REFERENCES live.dm01vch24lv95deinzelobjekte_einzelpunkt DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_nbident_identifikator_key4 ON live.dm01vch24lv95dhoehen_honachfuehrung (nbident,identifikator)
-;
+
 ALTER TABLE live.dm01vch24lv95dhoehen_honachfuehrung ADD CONSTRAINT dm01vch24lv95hn_hnchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch24lv95dhohn_hhnpnkt_geometrie_key ON live.dm01vch24lv95dhoehen_hoehenpunkt (ST_AsBinary(geometrie))
-;
+
 ALTER TABLE live.dm01vch24lv95dhoehen_hoehenpunkt ADD CONSTRAINT dm01vch24lv95dhohn_hhnpnkt_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dhoehen_hoehenpunkt ADD CONSTRAINT dm01vch24lv95dhohn_hhnpnkt_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES live.dm01vch24lv95dhoehen_honachfuehrung DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dhoehen_hoehenpunktpos ADD CONSTRAINT dm01vch24lv95hn_hhnpnktpos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
@@ -13287,8 +13222,7 @@ ALTER TABLE live.dm01vch24lv95dhoehen_gelaendekante ADD CONSTRAINT dm01vch24lv95
 ALTER TABLE live.dm01vch24lv95dhoehen_gelaendekante ADD CONSTRAINT dm01vch24lv95dhhn_glndknte_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES live.dm01vch24lv95dhoehen_honachfuehrung DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dhoehen_aussparung ADD CONSTRAINT dm01vch24lv95dhohn_ssprung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dhoehen_aussparung ADD CONSTRAINT dm01vch24lv95dhohn_ssprung_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES live.dm01vch24lv95dhoehen_honachfuehrung DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_nbident_identifikator_key5 ON live.dm01vch24lv95dnomenklatur_nknachfuehrung (nbident,identifikator)
-;
+
 ALTER TABLE live.dm01vch24lv95dnomenklatur_nknachfuehrung ADD CONSTRAINT dm01vch24lv95r_nknchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dnomenklatur_flurname ADD CONSTRAINT dm01vch24lv95nkltr_flrname_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dnomenklatur_flurname ADD CONSTRAINT dm01vch24lv95nkltr_flrname_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES live.dm01vch24lv95dnomenklatur_nknachfuehrung DEFERRABLE INITIALLY DEFERRED;
@@ -13305,11 +13239,9 @@ ALTER TABLE live.dm01vch24lv95dnomenklatur_gelaendename ADD CONSTRAINT dm01vch24
 ALTER TABLE live.dm01vch24lv95dnomenklatur_gelaendenamepos ADD CONSTRAINT dm01vch24lv95ltr_glndnmpos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dnomenklatur_gelaendenamepos ADD CONSTRAINT dm01vch24lv9ltr_glndnmpos_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE live.dm01vch24lv95dnomenklatur_gelaendenamepos ADD CONSTRAINT dm01vch24lv95ltr_glndnmpos_gelaendenamepos_von_fkey FOREIGN KEY ( gelaendenamepos_von ) REFERENCES live.dm01vch24lv95dnomenklatur_gelaendename DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_identifikator_nbident_key4 ON live.dm01vch24lv95dliegenschaften_lsnachfuehrung (identifikator,nbident)
-;
+
 ALTER TABLE live.dm01vch24lv95dliegenschaften_lsnachfuehrung ADD CONSTRAINT dm01vch24lv95n_lsnchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch24lv95hftn_grnzpnkt_geometrie_key ON live.dm01vch24lv95dliegenschaften_grenzpunkt (ST_AsBinary(geometrie))
-;
+
 ALTER TABLE live.dm01vch24lv95dliegenschaften_grenzpunkt ADD CONSTRAINT dm01vch24lv95hftn_grnzpnkt_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dliegenschaften_grenzpunkt ADD CONSTRAINT dm01vch24lv9hftn_grnzpnkt_lagegen_check CHECK( lagegen BETWEEN 0.0 AND 700.0);
 ALTER TABLE live.dm01vch24lv95dliegenschaften_grenzpunkt ADD CONSTRAINT dm01vch24lv95hftn_grnzpnkt_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES live.dm01vch24lv95dliegenschaften_lsnachfuehrung DEFERRABLE INITIALLY DEFERRED;
@@ -13349,8 +13281,7 @@ ALTER TABLE live.dm01vch24lv95dliegenschaften_selbstrecht ADD CONSTRAINT dm01vch
 ALTER TABLE live.dm01vch24lv95dliegenschaften_bergwerk ADD CONSTRAINT dm01vch24lv95chftn_brgwerk_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dliegenschaften_bergwerk ADD CONSTRAINT dm01vch24lv9chftn_brgwerk_flaechenmass_check CHECK( flaechenmass BETWEEN 1 AND 999999999);
 ALTER TABLE live.dm01vch24lv95dliegenschaften_bergwerk ADD CONSTRAINT dm01vch24lv95chftn_brgwerk_bergwerk_von_fkey FOREIGN KEY ( bergwerk_von ) REFERENCES live.dm01vch24lv95dliegenschaften_grundstueck DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_nbident_identifikator_key6 ON live.dm01vch24lv95drohrleitungen_rlnachfuehrung (nbident,identifikator)
-;
+
 ALTER TABLE live.dm01vch24lv95drohrleitungen_rlnachfuehrung ADD CONSTRAINT dm01vch24lv95n_rlnchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95drohrleitungen_leitungsobjekt ADD CONSTRAINT dm01vch24lv95gn_ltngsbjekt_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95drohrleitungen_leitungsobjekt ADD CONSTRAINT dm01vch24lv95gn_ltngsbjekt_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES live.dm01vch24lv95drohrleitungen_rlnachfuehrung DEFERRABLE INITIALLY DEFERRED;
@@ -13370,8 +13301,7 @@ ALTER TABLE live.dm01vch24lv95drohrleitungen_signalpunkt ADD CONSTRAINT dm01vch2
 ALTER TABLE live.dm01vch24lv95drohrleitungen_signalpunktpos ADD CONSTRAINT dm01vch24lv95n_sgnlpnktpos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95drohrleitungen_signalpunktpos ADD CONSTRAINT dm01vch24lv9n_sgnlpnktpos_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE live.dm01vch24lv95drohrleitungen_signalpunktpos ADD CONSTRAINT dm01vch24lv95n_sgnlpnktpos_signalpunktpos_von_fkey FOREIGN KEY ( signalpunktpos_von ) REFERENCES live.dm01vch24lv95drohrleitungen_signalpunkt DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch24lv95ltngn_nzlpnkt_geometrie_key ON live.dm01vch24lv95drohrleitungen_einzelpunkt (ST_AsBinary(geometrie))
-;
+
 ALTER TABLE live.dm01vch24lv95drohrleitungen_einzelpunkt ADD CONSTRAINT dm01vch24lv95ltngn_nzlpnkt_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95drohrleitungen_einzelpunkt ADD CONSTRAINT dm01vch24lv9ltngn_nzlpnkt_lagegen_check CHECK( lagegen BETWEEN 0.0 AND 700.0);
 ALTER TABLE live.dm01vch24lv95drohrleitungen_einzelpunkt ADD CONSTRAINT dm01vch24lv95ltngn_nzlpnkt_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES live.dm01vch24lv95drohrleitungen_rlnachfuehrung DEFERRABLE INITIALLY DEFERRED;
@@ -13384,11 +13314,9 @@ ALTER TABLE live.dm01vch24lv95dnummerierngsbrche_nbgeometrie ADD CONSTRAINT dm01
 ALTER TABLE live.dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos ADD CONSTRAINT dm01vch24lv95mrrngsbrchpos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos ADD CONSTRAINT dm01vch24lv9mrrngsbrchpos_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE live.dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos ADD CONSTRAINT dm01vch24lv95mrrngsbrchpos_nummerierungsbereichps_von_fkey FOREIGN KEY ( nummerierungsbereichpos_von ) REFERENCES live.dm01vch24lv95dnummerierngsbrche_nummerierungsbereich DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_identifikator_nbident_key5 ON live.dm01vch24lv95dgemeindegrenzen_gemnachfuehrung (identifikator,nbident)
-;
+
 ALTER TABLE live.dm01vch24lv95dgemeindegrenzen_gemnachfuehrung ADD CONSTRAINT dm01vch24lv95n_gmnchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch24lv95_hhtsgrnzpnkt_geometrie_key ON live.dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt (ST_AsBinary(geometrie))
-;
+
 ALTER TABLE live.dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt ADD CONSTRAINT dm01vch24lv95_hhtsgrnzpnkt_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt ADD CONSTRAINT dm01vch24lv9_hhtsgrnzpnkt_lagegen_check CHECK( lagegen BETWEEN 0.0 AND 700.0);
 ALTER TABLE live.dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt ADD CONSTRAINT dm01vch24lv95_hhtsgrnzpnkt_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES live.dm01vch24lv95dgemeindegrenzen_gemnachfuehrung DEFERRABLE INITIALLY DEFERRED;
@@ -13415,20 +13343,17 @@ ALTER TABLE live.dm01vch24lv95dplaneinteilungen_plangeometrie ADD CONSTRAINT dm0
 ALTER TABLE live.dm01vch24lv95dplaneinteilungen_planpos ADD CONSTRAINT dm01vch24lv95ntlngn_plnpos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dplaneinteilungen_planpos ADD CONSTRAINT dm01vch24lv9ntlngn_plnpos_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE live.dm01vch24lv95dplaneinteilungen_planpos ADD CONSTRAINT dm01vch24lv95ntlngn_plnpos_planpos_von_fkey FOREIGN KEY ( planpos_von ) REFERENCES live.dm01vch24lv95dplaneinteilungen_plan DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2lrnzstufe_identifikator_nbident_key ON live.dm01vch24lv95dtseinteilung_toleranzstufe (identifikator,nbident)
-;
+
 ALTER TABLE live.dm01vch24lv95dtseinteilung_toleranzstufe ADD CONSTRAINT dm01vch24lv95ng_tlrnzstufe_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dtseinteilung_toleranzstufepos ADD CONSTRAINT dm01vch24lv95g_tlrnzstfpos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dtseinteilung_toleranzstufepos ADD CONSTRAINT dm01vch24lv9g_tlrnzstfpos_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE live.dm01vch24lv95dtseinteilung_toleranzstufepos ADD CONSTRAINT dm01vch24lv95g_tlrnzstfpos_toleranzstufepos_von_fkey FOREIGN KEY ( toleranzstufepos_von ) REFERENCES live.dm01vch24lv95dtseinteilung_toleranzstufe DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2_rtschung_nbident_identifikator_key ON live.dm01vch24lv95drutschgebiete_rutschung (nbident,identifikator)
-;
+
 ALTER TABLE live.dm01vch24lv95drutschgebiete_rutschung ADD CONSTRAINT dm01vch24lv95hgbt_rtschung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95drutschgebiete_rutschungpos ADD CONSTRAINT dm01vch24lv95bt_rtschngpos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95drutschgebiete_rutschungpos ADD CONSTRAINT dm01vch24lv9bt_rtschngpos_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE live.dm01vch24lv95drutschgebiete_rutschungpos ADD CONSTRAINT dm01vch24lv95bt_rtschngpos_rutschungpos_von_fkey FOREIGN KEY ( rutschungpos_von ) REFERENCES live.dm01vch24lv95drutschgebiete_rutschung DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_nbident_identifikator_key7 ON live.dm01vch24lv95dplzortschaft_osnachfuehrung (nbident,identifikator)
-;
+
 ALTER TABLE live.dm01vch24lv95dplzortschaft_osnachfuehrung ADD CONSTRAINT dm01vch24lv95ft_snchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dplzortschaft_ortschaftsverbund ADD CONSTRAINT dm01vch24lv95tschftsvrbund_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dplzortschaft_ortschaftsverbundtext ADD CONSTRAINT dm01vch24lv95hftsvrbndtext_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
@@ -13441,18 +13366,15 @@ ALTER TABLE live.dm01vch24lv95dplzortschaft_ortschaftsname ADD CONSTRAINT dm01vc
 ALTER TABLE live.dm01vch24lv95dplzortschaft_ortschaftsname_pos ADD CONSTRAINT dm01vch24lv95tschftsnm_pos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dplzortschaft_ortschaftsname_pos ADD CONSTRAINT dm01vch24lv9tschftsnm_pos_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE live.dm01vch24lv95dplzortschaft_ortschaftsname_pos ADD CONSTRAINT dm01vch24lv95tschftsnm_pos_ortschaftsname_pos_von_fkey FOREIGN KEY ( ortschaftsname_pos_von ) REFERENCES live.dm01vch24lv95dplzortschaft_ortschaftsname DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_identifikator_nbident_key6 ON live.dm01vch24lv95dplzortschaft_plz6nachfuehrung (identifikator,nbident)
-;
+
 ALTER TABLE live.dm01vch24lv95dplzortschaft_plz6nachfuehrung ADD CONSTRAINT dm01vch24lv95plz6nchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2chft_plz6_plz_zusatzziffern_key ON live.dm01vch24lv95dplzortschaft_plz6 (plz,zusatzziffern)
-;
+
 ALTER TABLE live.dm01vch24lv95dplzortschaft_plz6 ADD CONSTRAINT dm01vch24lv95zrtschft_plz6_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dplzortschaft_plz6 ADD CONSTRAINT dm01vch24lv9zrtschft_plz6_plz_check CHECK( plz BETWEEN 1000 AND 9999);
 ALTER TABLE live.dm01vch24lv95dplzortschaft_plz6 ADD CONSTRAINT dm01vch24lv9zrtschft_plz6_zusatzziffern_check CHECK( zusatzziffern BETWEEN 0 AND 99);
 ALTER TABLE live.dm01vch24lv95dplzortschaft_plz6 ADD CONSTRAINT dm01vch24lv95zrtschft_plz6_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES live.dm01vch24lv95dplzortschaft_plz6nachfuehrung DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dplzortschaft_plz6 ADD CONSTRAINT dm01vch24lv95zrtschft_plz6_plz6_von_fkey FOREIGN KEY ( plz6_von ) REFERENCES live.dm01vch24lv95dplzortschaft_ortschaft DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2nchfhrung_identifikator_nbident_key7 ON live.dm01vch24lv95dgebaeudeadressen_gebnachfuehrung (identifikator,nbident)
-;
+
 ALTER TABLE live.dm01vch24lv95dgebaeudeadressen_gebnachfuehrung ADD CONSTRAINT dm01vch24lv95n_gbnchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dgebaeudeadressen_lokalisation ADD CONSTRAINT dm01vch24lv95rssn_lklstion_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dgebaeudeadressen_lokalisation ADD CONSTRAINT dm01vch24lv95rssn_lklstion_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES live.dm01vch24lv95dgebaeudeadressen_gebnachfuehrung DEFERRABLE INITIALLY DEFERRED;
@@ -13484,8 +13406,7 @@ ALTER TABLE live.dm01vch24lv95dgebaeudeadressen_gebaeudenamepos ADD CONSTRAINT d
 ALTER TABLE live.dm01vch24lv95dgebaeudeadressen_gebaeudenamepos ADD CONSTRAINT dm01vch24lv95rssn_gbdnmpos_gebaeudenamepos_von_fkey FOREIGN KEY ( gebaeudenamepos_von ) REFERENCES live.dm01vch24lv95dgebaeudeadressen_gebaeudename DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dgebaeudeadressen_gebaeudebeschreibung ADD CONSTRAINT dm01vch24lv95_gbdbschrbung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dgebaeudeadressen_gebaeudebeschreibung ADD CONSTRAINT dm01vch24lv95_gbdbschrbung_gebaeudebeschreibung_von_fkey FOREIGN KEY ( gebaeudebeschreibung_von ) REFERENCES live.dm01vch24lv95dgebaeudeadressen_gebaeudeeingang DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX dm01vch2_plnlyout_identifikator_nbident_key ON live.dm01vch24lv95dplanrahmen_planlayout (identifikator,nbident)
-;
+
 ALTER TABLE live.dm01vch24lv95dplanrahmen_planlayout ADD CONSTRAINT dm01vch24lv95rhmn_plnlyout_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES live.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE live.dm01vch24lv95dplanrahmen_planlayout ADD CONSTRAINT dm01vch24lv9rhmn_plnlyout_massstabszahl_check CHECK( massstabszahl BETWEEN 1 AND 1000000);
 ALTER TABLE live.dm01vch24lv95dplanrahmen_planlayout ADD CONSTRAINT dm01vch24lv9rhmn_plnlyout_e_azimut_check CHECK( e_azimut BETWEEN 0.0 AND 399.9);
