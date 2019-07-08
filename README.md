@@ -9,18 +9,12 @@ Docker image providing a PostGIS database with OEREB tables
 
 The image is built and tested automatically by Travis CI and is available from https://hub.docker.com/r/sogis/oereb-db.
 
-If you want to build the image manually:
+Commands for building and testing the image manually:
 
 ```
 docker build -t sogis/oereb-db:latest .
-```
-
-If you want to test the image manually:
-
-```
-docker-compose -f docker-compose.test.yml --project-name ci up -d --build
-docker logs -f ci_sut_1
-docker wait ci_sut_1
+docker-compose -f docker-compose.test.yml up --build --abort-on-container-exit --exit-code-from sut
+docker-compose -f docker-compose.test.yml down
 ```
 
 ## Running the image
