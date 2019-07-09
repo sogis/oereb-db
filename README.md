@@ -13,8 +13,9 @@ Commands for building and testing the image manually:
 
 ```
 docker build -t sogis/oereb-db:latest .
-docker-compose -f docker-compose.test.yml up --build --abort-on-container-exit --exit-code-from sut
+docker-compose -f docker-compose.test.yml build
 docker-compose -f docker-compose.test.yml down
+docker-compose -f docker-compose.test.yml run sut
 ```
 
 ## Running the image

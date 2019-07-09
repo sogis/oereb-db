@@ -8,7 +8,8 @@ env:
 
 script:
   - docker build -t $DOCKER_ACCOUNT/$DOCKER_REPO:latest -t $DOCKER_ACCOUNT/$DOCKER_REPO:$TRAVIS_BUILD_NUMBER .
-  - docker-compose -f docker-compose.test.yml up --build --abort-on-container-exit --exit-code-from sut
+  - docker-compose -f docker-compose.test.yml build
+  - docker-compose -f docker-compose.test.yml run sut
 
 deploy:
   provider: script
