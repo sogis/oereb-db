@@ -7,7 +7,7 @@ schemas[ili1]="DM01AVCH24LV95D;PLZOCH1LV95D"
 for env in "stage" "live"; do
   for schema in ${!schemas[@]}; do
     schemaname="${env}_${schema}"
-    java -jar ${ILI2PG} \
+    java -jar ${ILI2PG_PATH} \
     --dbschema ${env} --models ${schemas[${schema}]} \
     --strokeArcs --createFk --createFkIdx --createGeomIdx   --createTidCol --createBasketCol --createTypeDiscriminator --createImportTabs --createMetaInfo --disableNameOptimization --defaultSrsCode 2056 --createUnique --createNumChecks \
     --createscript sql/${schemaname}.sql
