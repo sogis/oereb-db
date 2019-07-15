@@ -9,7 +9,7 @@ for env in "stage" "live"; do
     schemaname="${env}_${schema}"
     java -jar ${ILI2PG_PATH} \
     --dbschema ${env} --models ${schemas[${schema}]} \
-    --strokeArcs --createFk --createFkIdx --createGeomIdx   --createTidCol --createBasketCol --createTypeDiscriminator --createImportTabs --createMetaInfo --disableNameOptimization --defaultSrsCode 2056 --createUnique --createNumChecks \
+    --strokeArcs --createFk --createFkIdx --createGeomIdx --createTidCol --createBasketCol --createTypeDiscriminator --createImportTabs --createMetaInfo --disableNameOptimization --defaultSrsCode 2056 --createUnique --createNumChecks \
     --createscript sql/${schemaname}.sql
   done
 done
