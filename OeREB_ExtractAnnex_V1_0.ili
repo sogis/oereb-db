@@ -1,0 +1,88 @@
+INTERLIS 2.3;
+
+/** Zusatzdaten fuer statischen OEREB-Auszug
+ */
+MODEL OeREB_ExtractAnnex_V1_0 (de)
+AT "mailto:ce@eisenhutinformatik.ch"
+VERSION "2019-07-04"  =
+  IMPORTS OeREBKRM_V1_1,CHAdminCodes_V1,LocalisationCH_V1;
+
+    DOMAIN
+      Code = TEXT*60;
+      STRUCTURE Code_ = value : MANDATORY Code; END Code_;
+    TOPIC Annex =
+        
+        CLASS ThemaTxt EXTENDS OeREBKRM_V1_1.CodelistenText.ThemaTxt =
+          /** 
+           * Kantonales Subthema zu einem Bundesthema:
+           *   Code=Nutzungsplanung
+           *   otherCode=ch.so.Nutzungsplanung.CantonalBuildingLines
+           *   In der Transferstruktur:
+           *     Eigentumsbeschraenkung/Thema=Nutzungsplanung
+           *     Eigentumsbeschraenkung/SubThema=CantonalBuildingLines
+           * Kantonales Thema (kein Subthema zu einem Bundesthema): 
+           *   Code=WeiteresThema
+           *   otherCode=ch.so.Einzelschutz
+           *   In der Transferstruktur:
+           *     Eigentumsbeschraenkung/Thema=WeiteresThema
+           *     Eigentumsbeschraenkung/SubThema=ch.so.Einzelschutz
+           */
+          otherCode : Code;
+          MANDATORY CONSTRAINT Code!=#WeiteresThema OR DEFINED(otherCode);
+        END ThemaTxt;
+        
+		CLASS Logo =
+		  /** ch.plr, ch, ch.so oder ch.bfsnr
+		   */
+		  code : MANDATORY Code;
+		  logo : MANDATORY BLACKBOX BINARY;
+		  UNIQUE code;
+		END Logo;
+		
+		CLASS MunicipalityWithPLRC =
+		  municipality : MANDATORY CHAdminCodes_V1.CHMunicipalityCode;
+		  themes : BAG OF Code_;
+		  baseDataDate : INTERLIS.XMLDateTime;
+		  metadataOfGeographicalBaseData : URI;
+		  UNIQUE municipality;
+		END MunicipalityWithPLRC;
+		
+		CLASS Office =
+		  Name : MANDATORY LocalisationCH_V1.MultilingualText;
+		  /** OfficeAtWeb wird fuer die referenzierung verwendet!
+		   * solange UID nicht generell zugeordnet.
+		   */
+		  OfficeAtWeb : MANDATORY OeREBKRM_V1_1.WebReferenz;
+		  UID : OeREBKRM_V1_1.UID;
+		  Line1 : TEXT*80;
+		  Line2 : TEXT*80;
+		  Street : TEXT*100;
+		  Number : TEXT*7;
+		  PostalCode : TEXT*4;
+		  City : TEXT*60;
+		  UNIQUE UID;
+		  UNIQUE OfficeAtWeb;
+		END Office;
+
+    CLASS Glossary =
+      Title : MANDATORY LocalisationCH_V1.MultilingualText;
+      Content : MANDATORY LocalisationCH_V1.MultilingualMText;
+    END Glossary;
+
+    CLASS ExclusionOfLiability =
+      Title : MANDATORY LocalisationCH_V1.MultilingualText;
+      Content : MANDATORY LocalisationCH_V1.MultilingualMText;
+    END ExclusionOfLiability;
+		
+    CLASS  GeneralInformation =
+      Content : MANDATORY LocalisationCH_V1.MultilingualMText;
+    END GeneralInformation;
+
+    CLASS  BaseData =
+      Content : MANDATORY LocalisationCH_V1.MultilingualMText;
+	END BaseData;		
+		
+	END Annex;
+    
+
+END OeREB_ExtractAnnex_V1_0.
