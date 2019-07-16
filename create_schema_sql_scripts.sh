@@ -1,6 +1,6 @@
 #!/bin/bash
 
-models_ili1="DM01AVCH24LV95D;PLZOCH1LV95D"
+models_ili1="DM01AVSO24LV95;PLZOCH1LV95D"
 models_ili2="OeREBKRM_V1_1;OeREBKRMtrsfr_V1_1;OeREBKRMvs_V1_1;SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822;OeREB_ExtractAnnex_V1_0"
 
 for env in "stage" "live"; do
