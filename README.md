@@ -74,8 +74,6 @@ psql -h localhost -p 54321 -d oereb -U ogc_server
 
 Run `ILI2PG_PATH=/opt/ili2pg-4.1.0/ili2pg-4.1.0.jar ./create_schema_sql_scripts.sh` for generating the SQL scripts that create the DB schemas and tables. (Set `ILI2PG_PATH` according to your installation.) In case only a specific model needs an update, adapt the script to your needs before running it.
 
-ATTENTION: You must manually edit the `*_ili2.sql` scripts and remove the duplicate DDL statements (duplicate to the ili1 script).
-
 After updating the SQL scripts, remember to commit the changes to the repository. And to re-generate the `pgconf/setup.sql` file with the following command:
 
 ```
