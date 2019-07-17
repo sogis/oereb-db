@@ -1,6 +1,10 @@
 FROM crunchydata/crunchy-postgres-gis:centos7-11.2-2.3.1
 
-# LABEL ...
+LABEL name="sogis/oereb-db"
+LABEL vendor="AGI"
+LABEL url="https://agi.so.ch"
+LABEL summary="Image based on crunchydata/crunchy-postgres-gis providing a PostGIS database with OEREB tables"
+LABEL description="This image provides a PostGIS database with empty OEREB tables, ready for importing data with ili2pg."
 
 USER root
 
