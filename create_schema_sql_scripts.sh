@@ -27,7 +27,7 @@ sed -i -E -e 's/(ALTER TABLE .*T_ILI2DB.* ADD CONSTRAINT .* FOREIGN KEY)/-- \1/'
 sed -i -E -e 's/(INSERT INTO .*T_ILI2DB_SETTINGS)/-- \1/' sql/*_ili2.sql
 
 # create temporary SQL file for oereb-wms views
-./create_oereb-wms_views.sql > sql/oereb-wms-views.sql
+./create_oereb-wms_views.sh > sql/oereb-wms-views.sql
 
 # Append all SQL scripts to one single setup script
 cat sql/setup_original.sql sql/set_role.sql sql/begin_transaction.sql \
