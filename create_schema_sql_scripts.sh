@@ -26,7 +26,11 @@ sed -i -E -e 's/(CREATE.*INDEX) (T_ILI2DB)/\1 IF NOT EXISTS \2/' sql/*_ili2.sql
 sed -i -E -e 's/(ALTER TABLE .*T_ILI2DB.* ADD CONSTRAINT .* FOREIGN KEY)/-- \1/' sql/*_ili2.sql
 sed -i -E -e 's/(INSERT INTO .*T_ILI2DB_SETTINGS)/-- \1/' sql/*_ili2.sql
 
+# create temporary SQL file for oereb-wms views
+./create_oereb-wms_views.sql > sql/oereb-wms-views.sql
+
 # Append all SQL scripts to one single setup script
 cat sql/setup_original.sql sql/set_role.sql sql/begin_transaction.sql \
 sql/*_ili1.sql sql/*_ili2.sql \
+sql/oereb-wms-views.sql \
 sql/commit_transaction.sql > pgconf/setup.sql
