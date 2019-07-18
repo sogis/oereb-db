@@ -13,7 +13,7 @@ import ch.so.agi.gretl.tasks.*
 import ch.so.agi.gretl.api.TransferSet
 
 
-defaultTasks 'systemTest', 'importTest', 'readTest', 'writeTest'
+defaultTasks 'systemTest', 'importTest', 'readTest'
 
 
 task systemTest(type: SqlExecutor) {
@@ -47,12 +47,5 @@ task readTest(type: SqlExecutor) {
     database = [dbUri, dbUserRead, dbPwdRead]
     sqlFiles = [
         'readTest.sql'
-    ]
-}
-
-task writeTest(type: SqlExecutor) {
-    database = [dbUri, dbUserWrite, dbPwdWrite]
-    sqlFiles = [
-        'writeTest.sql'
     ]
 }
