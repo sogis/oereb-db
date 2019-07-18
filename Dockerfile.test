@@ -7,6 +7,7 @@ WORKDIR /tmp
 COPY tests/testscript.sh /tmp/
 COPY tests/build.gradle /tmp/
 COPY tests/*.sql /tmp/
+COPY tests/*.itf /tmp/
 
 USER 1001
 
