@@ -32,14 +32,14 @@ task importTest(dependsOn: ['importTestStage', 'importTestLive']) {
 task importTestStage(type: Ili2pgReplace) {
     database = [dbUri, dbUserWrite, dbPwdWrite]
     dbschema = 'stage'
-    dataFile = '252500.itf'
+    dataFile = 'ch_252500.itf'
     dataset = 2525
 }
 
 task importTestLive(type: Ili2pgReplace) {
     database = [dbUri, dbUserWrite, dbPwdWrite]
     dbschema = 'live'
-    dataFile = '252500.itf'
+    dataFile = 'ch_252500.itf'
     dataset = 2525
 }
 
