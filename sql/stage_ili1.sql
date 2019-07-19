@@ -5823,7 +5823,7 @@ CODE
   TID = ANY;
 END.
 
-','2019-07-16 16:38:43.98');
+','2019-07-18 12:11:04.241');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('dm01avso24lv95.ili','1.0','DM01AVSO24LV95','TRANSFER INTERLIS1;
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!
@@ -7643,7 +7643,7 @@ CODE
   BLANK = DEFAULT, UNDEFINED = DEFAULT, CONTINUE = DEFAULT;
   TID = ANY;
 END.
-','2019-07-16 16:38:43.98');
+','2019-07-18 12:11:04.241');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createMetaInfo','True');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.arrayTrafo','coalesce');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.nameOptimization','disable');

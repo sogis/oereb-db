@@ -5880,7 +5880,7 @@ CODE
   TID = ANY;
 END.
 
-','2019-07-16 16:38:45.308');
+','2019-07-18 12:11:05.517');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('dm01avso24lv95.ili','1.0','DM01AVSO24LV95','TRANSFER INTERLIS1;
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!
@@ -7700,7 +7700,7 @@ CODE
   BLANK = DEFAULT, UNDEFINED = DEFAULT, CONTINUE = DEFAULT;
   TID = ANY;
 END.
-','2019-07-16 16:38:45.308');
+','2019-07-18 12:11:05.517');
 INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createMetaInfo','True');
 INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.arrayTrafo','coalesce');
 INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.nameOptimization','disable');
@@ -13551,7 +13551,7 @@ CODE
   TID = ANY;
 END.
 
-','2019-07-16 16:38:43.98');
+','2019-07-18 12:11:04.241');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('dm01avso24lv95.ili','1.0','DM01AVSO24LV95','TRANSFER INTERLIS1;
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!
@@ -15371,7 +15371,7 @@ CODE
   BLANK = DEFAULT, UNDEFINED = DEFAULT, CONTINUE = DEFAULT;
   TID = ANY;
 END.
-','2019-07-16 16:38:43.98');
+','2019-07-18 12:11:04.241');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createMetaInfo','True');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.arrayTrafo','coalesce');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.nameOptimization','disable');
@@ -16930,7 +16930,7 @@ REFSYSTEM MODEL CoordSys (en) AT "http://www.interlis.ch/models"
 
 END CoordSys.
 
-','2019-07-16 16:38:45.972');
+','2019-07-18 12:11:06.12');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREB_ExtractAnnex_V1_0.ili','2.3','OeREB_ExtractAnnex_V1_0{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1}','INTERLIS 2.3;
 
 /** Zusatzdaten fuer statischen OEREB-Auszug
@@ -17019,7 +17019,7 @@ VERSION "2019-07-04"  =
     
 
 END OeREB_ExtractAnnex_V1_0.
-','2019-07-16 16:38:45.972');
+','2019-07-18 12:11:06.12');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMvs_V1_1.ili','2.3','OeREBKRMvs_V1_1{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1}','INTERLIS 2.3;
 
 /** Basisdefinition für Erlasse (Rechtsvorschriften, Hinweise auf Gesetzliche Grundlagen)
@@ -17141,7 +17141,7 @@ VERSION "2016-08-15"  =
   END HinweiseGesetzlicheGrundlagen;
 
 END OeREBKRMvs_V1_1.
-','2019-07-16 16:38:45.972');
+','2019-07-18 12:11:06.12');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRM_V1_1.ili','2.3','OeREBKRM_V1_1{ InternationalCodes_V1 LocalisationCH_V1 CatalogueObjects_V1}','INTERLIS 2.3;
 
 /** Basisdefinitionen für das OEREB-Katasterrahmenmodell
@@ -17305,7 +17305,7 @@ VERSION "2016-08-15"  =
   END CodelistenText;
 
 END OeREBKRM_V1_1.
-','2019-07-16 16:38:45.972');
+','2019-07-18 12:11:06.12');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part1_GEOMETRY_20110830.ili','2.3','GeometryCHLV03_V1{ CoordSys Units INTERLIS} GeometryCHLV95_V1{ CoordSys Units INTERLIS}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -17483,7 +17483,7 @@ TYPE MODEL GeometryCHLV95_V1 (en)
 END GeometryCHLV95_V1.
 
 !! ########################################################################
-','2019-07-16 16:38:45.972');
+','2019-07-18 12:11:06.12');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMtrsfr_V1_1.ili','2.3','OeREBKRMtrsfr_V1_1{ GeometryCHLV95_V1 CHAdminCodes_V1 LocalisationCH_V1 GeometryCHLV03_V1 OeREBKRM_V1_1 OeREBKRMvs_V1_1}','INTERLIS 2.3;
 
 /** Schnittstelle zwischen zuständiger Stelle für die Geobasisdaten und Katasterorganisation des Kantons.
@@ -17667,7 +17667,7 @@ VERSION "2016-08-15"  =
   END Transferstruktur;
 
 END OeREBKRMtrsfr_V1_1.
-','2019-07-16 16:38:45.972');
+','2019-07-18 12:11:06.12');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part4_ADMINISTRATIVEUNITS_20110830.ili','2.3','CHAdminCodes_V1 AdministrativeUnits_V1{ CHAdminCodes_V1 InternationalCodes_V1 Dictionaries_V1 Localisation_V1 INTERLIS} AdministrativeUnitsCH_V1{ CHAdminCodes_V1 InternationalCodes_V1 LocalisationCH_V1 AdministrativeUnits_V1 INTERLIS}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -17887,7 +17887,7 @@ MODEL AdministrativeUnitsCH_V1 (en)
 END AdministrativeUnitsCH_V1.
 
 !! ########################################################################
-','2019-07-16 16:38:45.972');
+','2019-07-18 12:11:06.12');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part2_LOCALISATION_20110830.ili','2.3','InternationalCodes_V1 Localisation_V1{ InternationalCodes_V1} LocalisationCH_V1{ InternationalCodes_V1 Localisation_V1} Dictionaries_V1{ InternationalCodes_V1} DictionariesCH_V1{ InternationalCodes_V1 Dictionaries_V1}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -18059,7 +18059,7 @@ MODEL DictionariesCH_V1 (en)
 END DictionariesCH_V1.
 
 !! ########################################################################
-','2019-07-16 16:38:45.972');
+','2019-07-18 12:11:06.12');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.ili','2.3','SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822{ GeometryCHLV95_V1 CHAdminCodes_V1}','INTERLIS 2.3;
 
 /** !!------------------------------------------------------------------------------
@@ -18193,7 +18193,7 @@ VERSION "2018-08-22"  =
   END Nachfuehrungskreise;
 
 END SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.
-','2019-07-16 16:38:45.972');
+','2019-07-18 12:11:06.12');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part3_CATALOGUEOBJECTS_20110830.ili','2.3','CatalogueObjects_V1{ INTERLIS} CatalogueObjectTrees_V1{ INTERLIS CatalogueObjects_V1}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -18281,7 +18281,7 @@ MODEL CatalogueObjectTrees_V1 (en)
 END CatalogueObjectTrees_V1.
 
 !! ########################################################################
-','2019-07-16 16:38:45.972');
+','2019-07-18 12:11:06.12');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('Units-20120220.ili','2.3','Units','!! File Units.ili Release 2012-02-20
 
 INTERLIS 2.3;
@@ -18379,7 +18379,7 @@ CONTRACTED TYPE MODEL Units (en) AT "http://www.interlis.ch/models"
 
 END Units.
 
-','2019-07-16 16:38:45.972');
+','2019-07-18 12:11:06.12');
 -- INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createMetaInfo','True');
 -- INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.arrayTrafo','coalesce');
 -- INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.nameOptimization','disable');
@@ -19958,7 +19958,7 @@ REFSYSTEM MODEL CoordSys (en) AT "http://www.interlis.ch/models"
 
 END CoordSys.
 
-','2019-07-16 16:38:44.669');
+','2019-07-18 12:11:04.873');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREB_ExtractAnnex_V1_0.ili','2.3','OeREB_ExtractAnnex_V1_0{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1}','INTERLIS 2.3;
 
 /** Zusatzdaten fuer statischen OEREB-Auszug
@@ -20047,7 +20047,7 @@ VERSION "2019-07-04"  =
     
 
 END OeREB_ExtractAnnex_V1_0.
-','2019-07-16 16:38:44.669');
+','2019-07-18 12:11:04.873');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMvs_V1_1.ili','2.3','OeREBKRMvs_V1_1{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1}','INTERLIS 2.3;
 
 /** Basisdefinition für Erlasse (Rechtsvorschriften, Hinweise auf Gesetzliche Grundlagen)
@@ -20169,7 +20169,7 @@ VERSION "2016-08-15"  =
   END HinweiseGesetzlicheGrundlagen;
 
 END OeREBKRMvs_V1_1.
-','2019-07-16 16:38:44.669');
+','2019-07-18 12:11:04.873');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRM_V1_1.ili','2.3','OeREBKRM_V1_1{ InternationalCodes_V1 LocalisationCH_V1 CatalogueObjects_V1}','INTERLIS 2.3;
 
 /** Basisdefinitionen für das OEREB-Katasterrahmenmodell
@@ -20333,7 +20333,7 @@ VERSION "2016-08-15"  =
   END CodelistenText;
 
 END OeREBKRM_V1_1.
-','2019-07-16 16:38:44.669');
+','2019-07-18 12:11:04.873');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part1_GEOMETRY_20110830.ili','2.3','GeometryCHLV03_V1{ CoordSys Units INTERLIS} GeometryCHLV95_V1{ CoordSys Units INTERLIS}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -20511,7 +20511,7 @@ TYPE MODEL GeometryCHLV95_V1 (en)
 END GeometryCHLV95_V1.
 
 !! ########################################################################
-','2019-07-16 16:38:44.669');
+','2019-07-18 12:11:04.873');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMtrsfr_V1_1.ili','2.3','OeREBKRMtrsfr_V1_1{ GeometryCHLV95_V1 CHAdminCodes_V1 LocalisationCH_V1 GeometryCHLV03_V1 OeREBKRM_V1_1 OeREBKRMvs_V1_1}','INTERLIS 2.3;
 
 /** Schnittstelle zwischen zuständiger Stelle für die Geobasisdaten und Katasterorganisation des Kantons.
@@ -20695,7 +20695,7 @@ VERSION "2016-08-15"  =
   END Transferstruktur;
 
 END OeREBKRMtrsfr_V1_1.
-','2019-07-16 16:38:44.669');
+','2019-07-18 12:11:04.873');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part4_ADMINISTRATIVEUNITS_20110830.ili','2.3','CHAdminCodes_V1 AdministrativeUnits_V1{ CHAdminCodes_V1 InternationalCodes_V1 Dictionaries_V1 Localisation_V1 INTERLIS} AdministrativeUnitsCH_V1{ CHAdminCodes_V1 InternationalCodes_V1 LocalisationCH_V1 AdministrativeUnits_V1 INTERLIS}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -20915,7 +20915,7 @@ MODEL AdministrativeUnitsCH_V1 (en)
 END AdministrativeUnitsCH_V1.
 
 !! ########################################################################
-','2019-07-16 16:38:44.669');
+','2019-07-18 12:11:04.873');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part2_LOCALISATION_20110830.ili','2.3','InternationalCodes_V1 Localisation_V1{ InternationalCodes_V1} LocalisationCH_V1{ InternationalCodes_V1 Localisation_V1} Dictionaries_V1{ InternationalCodes_V1} DictionariesCH_V1{ InternationalCodes_V1 Dictionaries_V1}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -21087,7 +21087,7 @@ MODEL DictionariesCH_V1 (en)
 END DictionariesCH_V1.
 
 !! ########################################################################
-','2019-07-16 16:38:44.669');
+','2019-07-18 12:11:04.873');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.ili','2.3','SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822{ GeometryCHLV95_V1 CHAdminCodes_V1}','INTERLIS 2.3;
 
 /** !!------------------------------------------------------------------------------
@@ -21221,7 +21221,7 @@ VERSION "2018-08-22"  =
   END Nachfuehrungskreise;
 
 END SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.
-','2019-07-16 16:38:44.669');
+','2019-07-18 12:11:04.873');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part3_CATALOGUEOBJECTS_20110830.ili','2.3','CatalogueObjects_V1{ INTERLIS} CatalogueObjectTrees_V1{ INTERLIS CatalogueObjects_V1}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -21309,7 +21309,7 @@ MODEL CatalogueObjectTrees_V1 (en)
 END CatalogueObjectTrees_V1.
 
 !! ########################################################################
-','2019-07-16 16:38:44.669');
+','2019-07-18 12:11:04.873');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('Units-20120220.ili','2.3','Units','!! File Units.ili Release 2012-02-20
 
 INTERLIS 2.3;
@@ -21407,7 +21407,7 @@ CONTRACTED TYPE MODEL Units (en) AT "http://www.interlis.ch/models"
 
 END Units.
 
-','2019-07-16 16:38:44.669');
+','2019-07-18 12:11:04.873');
 -- INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createMetaInfo','True');
 -- INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.arrayTrafo','coalesce');
 -- INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.nameOptimization','disable');
@@ -21453,4 +21453,458 @@ INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES (
 INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('OeREBKRMvs_V1_1','technicalContact','mailto:infovd@swisstopo.ch');
 INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('OeREBKRMtrsfr_V1_1','furtherInformation','http://www.cadastre.ch/oereb-public');
 INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('OeREBKRMtrsfr_V1_1','technicalContact','mailto:infovd@swisstopo.ch');
-COMMIT;
+
+
+-- schema nr 1 is stage
+---------------------------
+
+-- view 'nutzungsplanung_ueberlagernd_linie' with thema 'Nutzungsplanung', subthema 'Nutzungsplanung_Ueberlagernd' and geometry 'linie
+DROP VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_linie;
+CREATE OR replace VIEW stage.vw_oerebwms_nutzungsplanung_ueberlagernd_linie
+AS 
+  SELECT geom.t_id,
+         geom.t_type,
+         geom.t_ili_tid,
+         geom.linie_lv95 AS geom,
+         eigbe.aussage,
+         eigbe.thema,
+         eigbe.subthema AS sub_thema,
+         eigbe.weiteresthema AS weiteres_thema,
+         eigbe.rechtsstatus,
+         eigbe.publiziertab AS publiziert_ab,
+         zust.aname     AS zustaendige_stelle,
+         zust.amtimweb  AS amt_im_web,
+         geom.metadatengeobasisdaten,
+         eigbe.artcode,
+         eigbe.artcodeliste
+  FROM   stage.oerbkrmfr_v1_1transferstruktur_geometrie geom
+         left join stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
+                ON geom.eigentumsbeschraenkung = eigbe.t_id
+         left join stage.oerbkrmvs_v1_1vorschriften_amt zust
+                ON eigbe.zustaendigestelle = zust.t_id
+  WHERE  eigbe.thema = 'Nutzungsplanung'
+         AND eigbe.subthema = 'Nutzungsplanung_Ueberlagernd'
+         AND geom.linie_lv95 IS NOT NULL;
+
+-- view 'weiteres_thema_einzelschutz_flaeche' with thema 'WeiteresThema', subthema 'ch.so.Einzelschutz' and geometry 'flaeche
+DROP VIEW IF EXISTS stage.vw_oerebwms_weiteres_thema_einzelschutz_flaeche;
+CREATE OR replace VIEW stage.vw_oerebwms_weiteres_thema_einzelschutz_flaeche
+AS 
+  SELECT geom.t_id,
+         geom.t_type,
+         geom.t_ili_tid,
+         geom.flaeche_lv95 AS geom,
+         eigbe.aussage,
+         eigbe.thema,
+         eigbe.subthema AS sub_thema,
+         eigbe.weiteresthema AS weiteres_thema,
+         eigbe.rechtsstatus,
+         eigbe.publiziertab AS publiziert_ab,
+         zust.aname     AS zustaendige_stelle,
+         zust.amtimweb  AS amt_im_web,
+         geom.metadatengeobasisdaten,
+         eigbe.artcode,
+         eigbe.artcodeliste
+  FROM   stage.oerbkrmfr_v1_1transferstruktur_geometrie geom
+         left join stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
+                ON geom.eigentumsbeschraenkung = eigbe.t_id
+         left join stage.oerbkrmvs_v1_1vorschriften_amt zust
+                ON eigbe.zustaendigestelle = zust.t_id
+  WHERE  eigbe.thema = 'WeiteresThema'
+         AND eigbe.subthema = 'ch.so.Einzelschutz'
+         AND geom.flaeche_lv95 IS NOT NULL;
+
+-- view 'weiteres_thema_einzelschutz_punkt' with thema 'WeiteresThema', subthema 'ch.so.Einzelschutz' and geometry 'punkt
+DROP VIEW IF EXISTS stage.vw_oerebwms_weiteres_thema_einzelschutz_punkt;
+CREATE OR replace VIEW stage.vw_oerebwms_weiteres_thema_einzelschutz_punkt
+AS 
+  SELECT geom.t_id,
+         geom.t_type,
+         geom.t_ili_tid,
+         geom.punkt_lv95 AS geom,
+         eigbe.aussage,
+         eigbe.thema,
+         eigbe.subthema AS sub_thema,
+         eigbe.weiteresthema AS weiteres_thema,
+         eigbe.rechtsstatus,
+         eigbe.publiziertab AS publiziert_ab,
+         zust.aname     AS zustaendige_stelle,
+         zust.amtimweb  AS amt_im_web,
+         geom.metadatengeobasisdaten,
+         eigbe.artcode,
+         eigbe.artcodeliste
+  FROM   stage.oerbkrmfr_v1_1transferstruktur_geometrie geom
+         left join stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
+                ON geom.eigentumsbeschraenkung = eigbe.t_id
+         left join stage.oerbkrmvs_v1_1vorschriften_amt zust
+                ON eigbe.zustaendigestelle = zust.t_id
+  WHERE  eigbe.thema = 'WeiteresThema'
+         AND eigbe.subthema = 'ch.so.Einzelschutz'
+         AND geom.punkt_lv95 IS NOT NULL;
+
+-- view 'nutzungsplanung_sondernutzungsplaene_flaeche' with thema 'Nutzungsplanung', subthema 'Nutzungsplanung_Sondernutzungsplaene' and geometry 'flaeche
+DROP VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche;
+CREATE OR replace VIEW stage.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche
+AS 
+  SELECT geom.t_id,
+         geom.t_type,
+         geom.t_ili_tid,
+         geom.flaeche_lv95 AS geom,
+         eigbe.aussage,
+         eigbe.thema,
+         eigbe.subthema AS sub_thema,
+         eigbe.weiteresthema AS weiteres_thema,
+         eigbe.rechtsstatus,
+         eigbe.publiziertab AS publiziert_ab,
+         zust.aname     AS zustaendige_stelle,
+         zust.amtimweb  AS amt_im_web,
+         geom.metadatengeobasisdaten,
+         eigbe.artcode,
+         eigbe.artcodeliste
+  FROM   stage.oerbkrmfr_v1_1transferstruktur_geometrie geom
+         left join stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
+                ON geom.eigentumsbeschraenkung = eigbe.t_id
+         left join stage.oerbkrmvs_v1_1vorschriften_amt zust
+                ON eigbe.zustaendigestelle = zust.t_id
+  WHERE  eigbe.thema = 'Nutzungsplanung'
+         AND eigbe.subthema = 'Nutzungsplanung_Sondernutzungsplaene'
+         AND geom.flaeche_lv95 IS NOT NULL;
+
+-- view 'waldgrenzen_linie' with thema 'Waldgrenzen', subthema '' and geometry 'linie
+DROP VIEW IF EXISTS stage.vw_oerebwms_waldgrenzen_linie;
+CREATE OR replace VIEW stage.vw_oerebwms_waldgrenzen_linie
+AS 
+  SELECT geom.t_id,
+         geom.t_type,
+         geom.t_ili_tid,
+         geom.linie_lv95 AS geom,
+         eigbe.aussage,
+         eigbe.thema,
+         eigbe.subthema AS sub_thema,
+         eigbe.weiteresthema AS weiteres_thema,
+         eigbe.rechtsstatus,
+         eigbe.publiziertab AS publiziert_ab,
+         zust.aname     AS zustaendige_stelle,
+         zust.amtimweb  AS amt_im_web,
+         geom.metadatengeobasisdaten,
+         eigbe.artcode,
+         eigbe.artcodeliste
+  FROM   stage.oerbkrmfr_v1_1transferstruktur_geometrie geom
+         left join stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
+                ON geom.eigentumsbeschraenkung = eigbe.t_id
+         left join stage.oerbkrmvs_v1_1vorschriften_amt zust
+                ON eigbe.zustaendigestelle = zust.t_id
+  WHERE  eigbe.thema = 'Waldgrenzen'
+         AND eigbe.subthema = ''
+         AND geom.linie_lv95 IS NOT NULL;
+
+-- view 'nutzungsplanung_ueberlagernd_flaeche' with thema 'Nutzungsplanung', subthema 'Nutzungsplanung_Ueberlagernd' and geometry 'flaeche
+DROP VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche;
+CREATE OR replace VIEW stage.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche
+AS 
+  SELECT geom.t_id,
+         geom.t_type,
+         geom.t_ili_tid,
+         geom.flaeche_lv95 AS geom,
+         eigbe.aussage,
+         eigbe.thema,
+         eigbe.subthema AS sub_thema,
+         eigbe.weiteresthema AS weiteres_thema,
+         eigbe.rechtsstatus,
+         eigbe.publiziertab AS publiziert_ab,
+         zust.aname     AS zustaendige_stelle,
+         zust.amtimweb  AS amt_im_web,
+         geom.metadatengeobasisdaten,
+         eigbe.artcode,
+         eigbe.artcodeliste
+  FROM   stage.oerbkrmfr_v1_1transferstruktur_geometrie geom
+         left join stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
+                ON geom.eigentumsbeschraenkung = eigbe.t_id
+         left join stage.oerbkrmvs_v1_1vorschriften_amt zust
+                ON eigbe.zustaendigestelle = zust.t_id
+  WHERE  eigbe.thema = 'Nutzungsplanung'
+         AND eigbe.subthema = 'Nutzungsplanung_Ueberlagernd'
+         AND geom.flaeche_lv95 IS NOT NULL;
+
+-- view 'nutzungsplanung_ueberlagernd_punkt' with thema 'Nutzungsplanung', subthema 'Nutzungsplanung_Ueberlagernd' and geometry 'punkt
+DROP VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt;
+CREATE OR replace VIEW stage.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt
+AS 
+  SELECT geom.t_id,
+         geom.t_type,
+         geom.t_ili_tid,
+         geom.punkt_lv95 AS geom,
+         eigbe.aussage,
+         eigbe.thema,
+         eigbe.subthema AS sub_thema,
+         eigbe.weiteresthema AS weiteres_thema,
+         eigbe.rechtsstatus,
+         eigbe.publiziertab AS publiziert_ab,
+         zust.aname     AS zustaendige_stelle,
+         zust.amtimweb  AS amt_im_web,
+         geom.metadatengeobasisdaten,
+         eigbe.artcode,
+         eigbe.artcodeliste
+  FROM   stage.oerbkrmfr_v1_1transferstruktur_geometrie geom
+         left join stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
+                ON geom.eigentumsbeschraenkung = eigbe.t_id
+         left join stage.oerbkrmvs_v1_1vorschriften_amt zust
+                ON eigbe.zustaendigestelle = zust.t_id
+  WHERE  eigbe.thema = 'Nutzungsplanung'
+         AND eigbe.subthema = 'Nutzungsplanung_Ueberlagernd'
+         AND geom.punkt_lv95 IS NOT NULL;
+
+-- view 'nutzungsplanung_grundnutzung_flaeche' with thema 'Nutzungsplanung', subthema 'Grundnutzung_Zonenflaeche' and geometry 'flaeche
+DROP VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche;
+CREATE OR replace VIEW stage.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche
+AS 
+  SELECT geom.t_id,
+         geom.t_type,
+         geom.t_ili_tid,
+         geom.flaeche_lv95 AS geom,
+         eigbe.aussage,
+         eigbe.thema,
+         eigbe.subthema AS sub_thema,
+         eigbe.weiteresthema AS weiteres_thema,
+         eigbe.rechtsstatus,
+         eigbe.publiziertab AS publiziert_ab,
+         zust.aname     AS zustaendige_stelle,
+         zust.amtimweb  AS amt_im_web,
+         geom.metadatengeobasisdaten,
+         eigbe.artcode,
+         eigbe.artcodeliste
+  FROM   stage.oerbkrmfr_v1_1transferstruktur_geometrie geom
+         left join stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
+                ON geom.eigentumsbeschraenkung = eigbe.t_id
+         left join stage.oerbkrmvs_v1_1vorschriften_amt zust
+                ON eigbe.zustaendigestelle = zust.t_id
+  WHERE  eigbe.thema = 'Nutzungsplanung'
+         AND eigbe.subthema = 'Grundnutzung_Zonenflaeche'
+         AND geom.flaeche_lv95 IS NOT NULL;
+
+-- schema nr 2 is live
+---------------------------
+
+-- view 'nutzungsplanung_ueberlagernd_linie' with thema 'Nutzungsplanung', subthema 'Nutzungsplanung_Ueberlagernd' and geometry 'linie
+DROP VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_linie;
+CREATE OR replace VIEW live.vw_oerebwms_nutzungsplanung_ueberlagernd_linie
+AS 
+  SELECT geom.t_id,
+         geom.t_type,
+         geom.t_ili_tid,
+         geom.linie_lv95 AS geom,
+         eigbe.aussage,
+         eigbe.thema,
+         eigbe.subthema AS sub_thema,
+         eigbe.weiteresthema AS weiteres_thema,
+         eigbe.rechtsstatus,
+         eigbe.publiziertab AS publiziert_ab,
+         zust.aname     AS zustaendige_stelle,
+         zust.amtimweb  AS amt_im_web,
+         geom.metadatengeobasisdaten,
+         eigbe.artcode,
+         eigbe.artcodeliste
+  FROM   live.oerbkrmfr_v1_1transferstruktur_geometrie geom
+         left join live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
+                ON geom.eigentumsbeschraenkung = eigbe.t_id
+         left join live.oerbkrmvs_v1_1vorschriften_amt zust
+                ON eigbe.zustaendigestelle = zust.t_id
+  WHERE  eigbe.thema = 'Nutzungsplanung'
+         AND eigbe.subthema = 'Nutzungsplanung_Ueberlagernd'
+         AND geom.linie_lv95 IS NOT NULL;
+
+-- view 'weiteres_thema_einzelschutz_flaeche' with thema 'WeiteresThema', subthema 'ch.so.Einzelschutz' and geometry 'flaeche
+DROP VIEW IF EXISTS live.vw_oerebwms_weiteres_thema_einzelschutz_flaeche;
+CREATE OR replace VIEW live.vw_oerebwms_weiteres_thema_einzelschutz_flaeche
+AS 
+  SELECT geom.t_id,
+         geom.t_type,
+         geom.t_ili_tid,
+         geom.flaeche_lv95 AS geom,
+         eigbe.aussage,
+         eigbe.thema,
+         eigbe.subthema AS sub_thema,
+         eigbe.weiteresthema AS weiteres_thema,
+         eigbe.rechtsstatus,
+         eigbe.publiziertab AS publiziert_ab,
+         zust.aname     AS zustaendige_stelle,
+         zust.amtimweb  AS amt_im_web,
+         geom.metadatengeobasisdaten,
+         eigbe.artcode,
+         eigbe.artcodeliste
+  FROM   live.oerbkrmfr_v1_1transferstruktur_geometrie geom
+         left join live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
+                ON geom.eigentumsbeschraenkung = eigbe.t_id
+         left join live.oerbkrmvs_v1_1vorschriften_amt zust
+                ON eigbe.zustaendigestelle = zust.t_id
+  WHERE  eigbe.thema = 'WeiteresThema'
+         AND eigbe.subthema = 'ch.so.Einzelschutz'
+         AND geom.flaeche_lv95 IS NOT NULL;
+
+-- view 'weiteres_thema_einzelschutz_punkt' with thema 'WeiteresThema', subthema 'ch.so.Einzelschutz' and geometry 'punkt
+DROP VIEW IF EXISTS live.vw_oerebwms_weiteres_thema_einzelschutz_punkt;
+CREATE OR replace VIEW live.vw_oerebwms_weiteres_thema_einzelschutz_punkt
+AS 
+  SELECT geom.t_id,
+         geom.t_type,
+         geom.t_ili_tid,
+         geom.punkt_lv95 AS geom,
+         eigbe.aussage,
+         eigbe.thema,
+         eigbe.subthema AS sub_thema,
+         eigbe.weiteresthema AS weiteres_thema,
+         eigbe.rechtsstatus,
+         eigbe.publiziertab AS publiziert_ab,
+         zust.aname     AS zustaendige_stelle,
+         zust.amtimweb  AS amt_im_web,
+         geom.metadatengeobasisdaten,
+         eigbe.artcode,
+         eigbe.artcodeliste
+  FROM   live.oerbkrmfr_v1_1transferstruktur_geometrie geom
+         left join live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
+                ON geom.eigentumsbeschraenkung = eigbe.t_id
+         left join live.oerbkrmvs_v1_1vorschriften_amt zust
+                ON eigbe.zustaendigestelle = zust.t_id
+  WHERE  eigbe.thema = 'WeiteresThema'
+         AND eigbe.subthema = 'ch.so.Einzelschutz'
+         AND geom.punkt_lv95 IS NOT NULL;
+
+-- view 'nutzungsplanung_sondernutzungsplaene_flaeche' with thema 'Nutzungsplanung', subthema 'Nutzungsplanung_Sondernutzungsplaene' and geometry 'flaeche
+DROP VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche;
+CREATE OR replace VIEW live.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche
+AS 
+  SELECT geom.t_id,
+         geom.t_type,
+         geom.t_ili_tid,
+         geom.flaeche_lv95 AS geom,
+         eigbe.aussage,
+         eigbe.thema,
+         eigbe.subthema AS sub_thema,
+         eigbe.weiteresthema AS weiteres_thema,
+         eigbe.rechtsstatus,
+         eigbe.publiziertab AS publiziert_ab,
+         zust.aname     AS zustaendige_stelle,
+         zust.amtimweb  AS amt_im_web,
+         geom.metadatengeobasisdaten,
+         eigbe.artcode,
+         eigbe.artcodeliste
+  FROM   live.oerbkrmfr_v1_1transferstruktur_geometrie geom
+         left join live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
+                ON geom.eigentumsbeschraenkung = eigbe.t_id
+         left join live.oerbkrmvs_v1_1vorschriften_amt zust
+                ON eigbe.zustaendigestelle = zust.t_id
+  WHERE  eigbe.thema = 'Nutzungsplanung'
+         AND eigbe.subthema = 'Nutzungsplanung_Sondernutzungsplaene'
+         AND geom.flaeche_lv95 IS NOT NULL;
+
+-- view 'waldgrenzen_linie' with thema 'Waldgrenzen', subthema '' and geometry 'linie
+DROP VIEW IF EXISTS live.vw_oerebwms_waldgrenzen_linie;
+CREATE OR replace VIEW live.vw_oerebwms_waldgrenzen_linie
+AS 
+  SELECT geom.t_id,
+         geom.t_type,
+         geom.t_ili_tid,
+         geom.linie_lv95 AS geom,
+         eigbe.aussage,
+         eigbe.thema,
+         eigbe.subthema AS sub_thema,
+         eigbe.weiteresthema AS weiteres_thema,
+         eigbe.rechtsstatus,
+         eigbe.publiziertab AS publiziert_ab,
+         zust.aname     AS zustaendige_stelle,
+         zust.amtimweb  AS amt_im_web,
+         geom.metadatengeobasisdaten,
+         eigbe.artcode,
+         eigbe.artcodeliste
+  FROM   live.oerbkrmfr_v1_1transferstruktur_geometrie geom
+         left join live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
+                ON geom.eigentumsbeschraenkung = eigbe.t_id
+         left join live.oerbkrmvs_v1_1vorschriften_amt zust
+                ON eigbe.zustaendigestelle = zust.t_id
+  WHERE  eigbe.thema = 'Waldgrenzen'
+         AND eigbe.subthema = ''
+         AND geom.linie_lv95 IS NOT NULL;
+
+-- view 'nutzungsplanung_ueberlagernd_flaeche' with thema 'Nutzungsplanung', subthema 'Nutzungsplanung_Ueberlagernd' and geometry 'flaeche
+DROP VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche;
+CREATE OR replace VIEW live.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche
+AS 
+  SELECT geom.t_id,
+         geom.t_type,
+         geom.t_ili_tid,
+         geom.flaeche_lv95 AS geom,
+         eigbe.aussage,
+         eigbe.thema,
+         eigbe.subthema AS sub_thema,
+         eigbe.weiteresthema AS weiteres_thema,
+         eigbe.rechtsstatus,
+         eigbe.publiziertab AS publiziert_ab,
+         zust.aname     AS zustaendige_stelle,
+         zust.amtimweb  AS amt_im_web,
+         geom.metadatengeobasisdaten,
+         eigbe.artcode,
+         eigbe.artcodeliste
+  FROM   live.oerbkrmfr_v1_1transferstruktur_geometrie geom
+         left join live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
+                ON geom.eigentumsbeschraenkung = eigbe.t_id
+         left join live.oerbkrmvs_v1_1vorschriften_amt zust
+                ON eigbe.zustaendigestelle = zust.t_id
+  WHERE  eigbe.thema = 'Nutzungsplanung'
+         AND eigbe.subthema = 'Nutzungsplanung_Ueberlagernd'
+         AND geom.flaeche_lv95 IS NOT NULL;
+
+-- view 'nutzungsplanung_ueberlagernd_punkt' with thema 'Nutzungsplanung', subthema 'Nutzungsplanung_Ueberlagernd' and geometry 'punkt
+DROP VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt;
+CREATE OR replace VIEW live.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt
+AS 
+  SELECT geom.t_id,
+         geom.t_type,
+         geom.t_ili_tid,
+         geom.punkt_lv95 AS geom,
+         eigbe.aussage,
+         eigbe.thema,
+         eigbe.subthema AS sub_thema,
+         eigbe.weiteresthema AS weiteres_thema,
+         eigbe.rechtsstatus,
+         eigbe.publiziertab AS publiziert_ab,
+         zust.aname     AS zustaendige_stelle,
+         zust.amtimweb  AS amt_im_web,
+         geom.metadatengeobasisdaten,
+         eigbe.artcode,
+         eigbe.artcodeliste
+  FROM   live.oerbkrmfr_v1_1transferstruktur_geometrie geom
+         left join live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
+                ON geom.eigentumsbeschraenkung = eigbe.t_id
+         left join live.oerbkrmvs_v1_1vorschriften_amt zust
+                ON eigbe.zustaendigestelle = zust.t_id
+  WHERE  eigbe.thema = 'Nutzungsplanung'
+         AND eigbe.subthema = 'Nutzungsplanung_Ueberlagernd'
+         AND geom.punkt_lv95 IS NOT NULL;
+
+-- view 'nutzungsplanung_grundnutzung_flaeche' with thema 'Nutzungsplanung', subthema 'Grundnutzung_Zonenflaeche' and geometry 'flaeche
+DROP VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche;
+CREATE OR replace VIEW live.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche
+AS 
+  SELECT geom.t_id,
+         geom.t_type,
+         geom.t_ili_tid,
+         geom.flaeche_lv95 AS geom,
+         eigbe.aussage,
+         eigbe.thema,
+         eigbe.subthema AS sub_thema,
+         eigbe.weiteresthema AS weiteres_thema,
+         eigbe.rechtsstatus,
+         eigbe.publiziertab AS publiziert_ab,
+         zust.aname     AS zustaendige_stelle,
+         zust.amtimweb  AS amt_im_web,
+         geom.metadatengeobasisdaten,
+         eigbe.artcode,
+         eigbe.artcodeliste
+  FROM   live.oerbkrmfr_v1_1transferstruktur_geometrie geom
+         left join live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
+                ON geom.eigentumsbeschraenkung = eigbe.t_id
+         left join live.oerbkrmvs_v1_1vorschriften_amt zust
+                ON eigbe.zustaendigestelle = zust.t_id
+  WHERE  eigbe.thema = 'Nutzungsplanung'
+         AND eigbe.subthema = 'Grundnutzung_Zonenflaeche'
+         AND geom.flaeche_lv95 IS NOT NULL;COMMIT;
