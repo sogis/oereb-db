@@ -13,7 +13,7 @@ services:
     depends_on:
       - db
   db:
-    image: sogis/oereb-db:latest
+    image: ${IMAGE_NAME:-sogis/oereb-db:latest}
     environment:
       PG_DATABASE: oereb
       PG_LOCALE: de_CH.UTF-8
