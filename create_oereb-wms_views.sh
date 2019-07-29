@@ -54,7 +54,7 @@ AS
          geom.t_type,
          geom.t_ili_tid,
          geom.${pg_view[geom]}_lv95 AS geom,
-         eigbe.aussage,
+         eigbe.aussage_de AS aussage,
          eigbe.thema,
          eigbe.subthema AS sub_thema,
          eigbe.weiteresthema AS weiteres_thema,
