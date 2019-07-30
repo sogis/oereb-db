@@ -34,3 +34,10 @@ cat sql/setup_original.sql sql/set_role.sql sql/begin_transaction.sql \
 sql/*_ili1.sql sql/*_ili2.sql \
 sql/oereb-wms-views.sql \
 sql/commit_transaction.sql > pgconf/setup.sql
+
+# Create a separate single setup script for use in the AGI GDI
+cat sql/set_role.sql sql/begin_transaction.sql \
+sql/*_ili1.sql sql/*_ili2.sql \
+sql/oereb-wms-views.sql \
+sql/commit_transaction.sql \
+| sed -e 's/PG_USER/:PG_USER/g' > sql/setup_gdi.sql

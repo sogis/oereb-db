@@ -86,3 +86,20 @@ ILI2PG_PATH=/opt/ili2pg-4.1.0/ili2pg-4.1.0.jar && java -jar $ILI2PG_PATH \
 --dbschema stage --models PLZOCH1LV95D \
 --dataset ch --deleteData --import PLZO_INTERLIS_LV95/PLZO_ITF_LV95.itf
 ```
+
+# Setting up the OEREB database in the AGI GDI
+
+Create the database (and DB roles) using Ansible:
+```
+ansible-playbook -i ... dbserver.yml --tags=globals,create_db,pgwatch2
+```
+
+Create the DB schemas and tables:
+```
+psql -h ... -d oereb -v PG_USER=admin -f sql/setup_gdi.sql
+```
+
+Grant privileges:
+```
+psql -h ... -d oereb -v PG_WRITE_USER=gretl -v PG_READ_USER='ogc_server,oereb_service' -c "SET ROLE admin" -f sql/grants_gdi.sql
+```
