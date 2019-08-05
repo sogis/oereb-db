@@ -89,17 +89,26 @@ ILI2PG_PATH=/opt/ili2pg-4.1.0/ili2pg-4.1.0.jar && java -jar $ILI2PG_PATH \
 
 # Setting up the OEREB database in the AGI GDI
 
+In the following commands, replace `ENVIRONMENT_NAME`, `DB_HOST_NAME`, `OEREB_DB_NAME`, `EDIT_DB_NAME`, `ADMIN_USER`, `GRETL_USER`, `WMS_USER`, `OEREB_SERVICE_USER` with the values corresponding to your setup.
+
 Create the database (and DB roles) using Ansible:
 ```
-ansible-playbook -i ... dbserver.yml --tags=globals,create_db,pgwatch2
+ansible-playbook -i ENVIRONMENT_NAME dbserver.yml --tags=globals,create_db,pgwatch2
 ```
 
 Create the DB schemas and tables:
 ```
-psql -h ... -d oereb -v PG_USER=admin -f sql/setup_gdi.sql
+psql -h DB_HOST_NAME -d OEREB_DB_NAME -v PG_USER=ADMIN_USER -f sql/setup_gdi.sql
 ```
 
 Grant privileges:
 ```
-psql -h ... -d oereb -v PG_WRITE_USER=gretl -v PG_READ_USER='ogc_server,oereb_service' -c "SET ROLE admin" -f sql/grants_gdi.sql
+psql -h DB_HOST_NAME -d OEREB_DB_NAME -v PG_WRITE_USER=GRETL_USER -v PG_READ_USER='WMS_USER,OEREB_SERVICE_USER' -c "SET ROLE ADMIN_USER" -f sql/grants_gdi.sql
+```
+
+# Setting up the DB schemas used for transforming data into the OeREBKRMtrsfr_V1_1 model in the edit DB of the AGI GDI
+
+Create the DB schemas and tables, and grant privileges:
+```
+psql -h DB_HOST_NAME -d EDIT_DB_NAME -v PG_WRITE_USER=GRETL_USER -c "SET ROLE ADMIN_USER" -f sql/transfer_*_gdi.sql
 ```

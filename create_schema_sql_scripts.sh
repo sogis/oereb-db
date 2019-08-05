@@ -41,3 +41,18 @@ sql/*_ili1.sql sql/*_ili2.sql \
 sql/oereb-wms-views.sql \
 sql/commit_transaction.sql \
 | sed -e 's/PG_USER/:PG_USER/g' > sql/setup_gdi.sql
+
+# Create SQL scripts that create DB schemas used for transforming data into the OeREBKRMtrsfr_V1_1 model (so called "transfer schemas")
+# The java command here is the same as the second one above; please keep them in sync
+models=OeREBKRMtrsfr_V1_1
+for schemaname in "arp_npl_oereb"; do
+  java -jar ${ILI2PG_PATH} \
+  --dbschema ${schemaname} --models $models \
+  --strokeArcs --createFk --createFkIdx --createGeomIdx --createTidCol --createBasketCol --createTypeDiscriminator --createImportTabs --createMetaInfo --disableNameOptimization --defaultSrsCode 2056 --createNumChecks \
+  --createUnique \
+  --createscript "sql/transfer_${schemaname}_gdi.sql"
+  echo "COMMENT ON SCHEMA ${schemaname} IS 'Schema für den Datenumbau ins OEREB-Transferschema';" >> "sql/transfer_${schemaname}_gdi.sql"
+  echo "GRANT USAGE ON SCHEMA ${schemaname} TO :PG_WRITE_USER;" >> "sql/transfer_${schemaname}_gdi.sql"
+  echo "GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA ${schemaname} TO :PG_WRITE_USER;" >> "sql/transfer_${schemaname}_gdi.sql"
+  echo "GRANT USAGE ON ALL SEQUENCES IN SCHEMA ${schemaname} TO :PG_WRITE_USER;" >> "sql/transfer_${schemaname}_gdi.sql"
+done
