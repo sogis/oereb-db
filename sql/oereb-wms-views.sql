@@ -3,7 +3,7 @@
 -- schema nr 1 is stage
 ---------------------------
 
--- view 'nutzungsplanung_ueberlagernd_linie' with thema 'Nutzungsplanung', subthema 'Nutzungsplanung_Ueberlagernd' and geometry 'linie
+-- view 'nutzungsplanung_ueberlagernd_linie' with thema 'Nutzungsplanung', subthema 'NutzungsplanungUeberlagernd' and geometry 'linie
 DROP VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_linie;
 CREATE OR replace VIEW stage.vw_oerebwms_nutzungsplanung_ueberlagernd_linie
 AS 
@@ -28,7 +28,7 @@ AS
          left join stage.oerbkrmvs_v1_1vorschriften_amt zust
                 ON eigbe.zustaendigestelle = zust.t_id
   WHERE  eigbe.thema = 'Nutzungsplanung'
-         AND eigbe.subthema = 'Nutzungsplanung_Ueberlagernd'
+         AND eigbe.subthema = 'NutzungsplanungUeberlagernd'
          AND geom.linie_lv95 IS NOT NULL;
 
 -- view 'weiteres_thema_einzelschutz_flaeche' with thema 'WeiteresThema', subthema 'ch.so.Einzelschutz' and geometry 'flaeche
@@ -87,7 +87,7 @@ AS
          AND eigbe.subthema = 'ch.so.Einzelschutz'
          AND geom.punkt_lv95 IS NOT NULL;
 
--- view 'nutzungsplanung_sondernutzungsplaene_flaeche' with thema 'Nutzungsplanung', subthema 'Nutzungsplanung_Sondernutzungsplaene' and geometry 'flaeche
+-- view 'nutzungsplanung_sondernutzungsplaene_flaeche' with thema 'Nutzungsplanung', subthema 'NutzungsplanungSondernutzungsplaene' and geometry 'flaeche
 DROP VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche;
 CREATE OR replace VIEW stage.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche
 AS 
@@ -112,7 +112,7 @@ AS
          left join stage.oerbkrmvs_v1_1vorschriften_amt zust
                 ON eigbe.zustaendigestelle = zust.t_id
   WHERE  eigbe.thema = 'Nutzungsplanung'
-         AND eigbe.subthema = 'Nutzungsplanung_Sondernutzungsplaene'
+         AND eigbe.subthema = 'NutzungsplanungSondernutzungsplaene'
          AND geom.flaeche_lv95 IS NOT NULL;
 
 -- view 'waldgrenzen_linie' with thema 'Waldgrenzen', subthema '' and geometry 'linie
@@ -143,7 +143,7 @@ AS
          AND eigbe.subthema = ''
          AND geom.linie_lv95 IS NOT NULL;
 
--- view 'nutzungsplanung_ueberlagernd_flaeche' with thema 'Nutzungsplanung', subthema 'Nutzungsplanung_Ueberlagernd' and geometry 'flaeche
+-- view 'nutzungsplanung_ueberlagernd_flaeche' with thema 'Nutzungsplanung', subthema 'NutzungsplanungUeberlagernd' and geometry 'flaeche
 DROP VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche;
 CREATE OR replace VIEW stage.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche
 AS 
@@ -168,10 +168,10 @@ AS
          left join stage.oerbkrmvs_v1_1vorschriften_amt zust
                 ON eigbe.zustaendigestelle = zust.t_id
   WHERE  eigbe.thema = 'Nutzungsplanung'
-         AND eigbe.subthema = 'Nutzungsplanung_Ueberlagernd'
+         AND eigbe.subthema = 'NutzungsplanungUeberlagernd'
          AND geom.flaeche_lv95 IS NOT NULL;
 
--- view 'nutzungsplanung_ueberlagernd_punkt' with thema 'Nutzungsplanung', subthema 'Nutzungsplanung_Ueberlagernd' and geometry 'punkt
+-- view 'nutzungsplanung_ueberlagernd_punkt' with thema 'Nutzungsplanung', subthema 'NutzungsplanungUeberlagernd' and geometry 'punkt
 DROP VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt;
 CREATE OR replace VIEW stage.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt
 AS 
@@ -196,10 +196,10 @@ AS
          left join stage.oerbkrmvs_v1_1vorschriften_amt zust
                 ON eigbe.zustaendigestelle = zust.t_id
   WHERE  eigbe.thema = 'Nutzungsplanung'
-         AND eigbe.subthema = 'Nutzungsplanung_Ueberlagernd'
+         AND eigbe.subthema = 'NutzungsplanungUeberlagernd'
          AND geom.punkt_lv95 IS NOT NULL;
 
--- view 'nutzungsplanung_grundnutzung_flaeche' with thema 'Nutzungsplanung', subthema 'Grundnutzung_Zonenflaeche' and geometry 'flaeche
+-- view 'nutzungsplanung_grundnutzung_flaeche' with thema 'Nutzungsplanung', subthema 'NutzungsplanungGrundnutzung' and geometry 'flaeche
 DROP VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche;
 CREATE OR replace VIEW stage.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche
 AS 
@@ -224,13 +224,13 @@ AS
          left join stage.oerbkrmvs_v1_1vorschriften_amt zust
                 ON eigbe.zustaendigestelle = zust.t_id
   WHERE  eigbe.thema = 'Nutzungsplanung'
-         AND eigbe.subthema = 'Grundnutzung_Zonenflaeche'
+         AND eigbe.subthema = 'NutzungsplanungGrundnutzung'
          AND geom.flaeche_lv95 IS NOT NULL;
 
 -- schema nr 2 is live
 ---------------------------
 
--- view 'nutzungsplanung_ueberlagernd_linie' with thema 'Nutzungsplanung', subthema 'Nutzungsplanung_Ueberlagernd' and geometry 'linie
+-- view 'nutzungsplanung_ueberlagernd_linie' with thema 'Nutzungsplanung', subthema 'NutzungsplanungUeberlagernd' and geometry 'linie
 DROP VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_linie;
 CREATE OR replace VIEW live.vw_oerebwms_nutzungsplanung_ueberlagernd_linie
 AS 
@@ -255,7 +255,7 @@ AS
          left join live.oerbkrmvs_v1_1vorschriften_amt zust
                 ON eigbe.zustaendigestelle = zust.t_id
   WHERE  eigbe.thema = 'Nutzungsplanung'
-         AND eigbe.subthema = 'Nutzungsplanung_Ueberlagernd'
+         AND eigbe.subthema = 'NutzungsplanungUeberlagernd'
          AND geom.linie_lv95 IS NOT NULL;
 
 -- view 'weiteres_thema_einzelschutz_flaeche' with thema 'WeiteresThema', subthema 'ch.so.Einzelschutz' and geometry 'flaeche
@@ -314,7 +314,7 @@ AS
          AND eigbe.subthema = 'ch.so.Einzelschutz'
          AND geom.punkt_lv95 IS NOT NULL;
 
--- view 'nutzungsplanung_sondernutzungsplaene_flaeche' with thema 'Nutzungsplanung', subthema 'Nutzungsplanung_Sondernutzungsplaene' and geometry 'flaeche
+-- view 'nutzungsplanung_sondernutzungsplaene_flaeche' with thema 'Nutzungsplanung', subthema 'NutzungsplanungSondernutzungsplaene' and geometry 'flaeche
 DROP VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche;
 CREATE OR replace VIEW live.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche
 AS 
@@ -339,7 +339,7 @@ AS
          left join live.oerbkrmvs_v1_1vorschriften_amt zust
                 ON eigbe.zustaendigestelle = zust.t_id
   WHERE  eigbe.thema = 'Nutzungsplanung'
-         AND eigbe.subthema = 'Nutzungsplanung_Sondernutzungsplaene'
+         AND eigbe.subthema = 'NutzungsplanungSondernutzungsplaene'
          AND geom.flaeche_lv95 IS NOT NULL;
 
 -- view 'waldgrenzen_linie' with thema 'Waldgrenzen', subthema '' and geometry 'linie
@@ -370,7 +370,7 @@ AS
          AND eigbe.subthema = ''
          AND geom.linie_lv95 IS NOT NULL;
 
--- view 'nutzungsplanung_ueberlagernd_flaeche' with thema 'Nutzungsplanung', subthema 'Nutzungsplanung_Ueberlagernd' and geometry 'flaeche
+-- view 'nutzungsplanung_ueberlagernd_flaeche' with thema 'Nutzungsplanung', subthema 'NutzungsplanungUeberlagernd' and geometry 'flaeche
 DROP VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche;
 CREATE OR replace VIEW live.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche
 AS 
@@ -395,10 +395,10 @@ AS
          left join live.oerbkrmvs_v1_1vorschriften_amt zust
                 ON eigbe.zustaendigestelle = zust.t_id
   WHERE  eigbe.thema = 'Nutzungsplanung'
-         AND eigbe.subthema = 'Nutzungsplanung_Ueberlagernd'
+         AND eigbe.subthema = 'NutzungsplanungUeberlagernd'
          AND geom.flaeche_lv95 IS NOT NULL;
 
--- view 'nutzungsplanung_ueberlagernd_punkt' with thema 'Nutzungsplanung', subthema 'Nutzungsplanung_Ueberlagernd' and geometry 'punkt
+-- view 'nutzungsplanung_ueberlagernd_punkt' with thema 'Nutzungsplanung', subthema 'NutzungsplanungUeberlagernd' and geometry 'punkt
 DROP VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt;
 CREATE OR replace VIEW live.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt
 AS 
@@ -423,10 +423,10 @@ AS
          left join live.oerbkrmvs_v1_1vorschriften_amt zust
                 ON eigbe.zustaendigestelle = zust.t_id
   WHERE  eigbe.thema = 'Nutzungsplanung'
-         AND eigbe.subthema = 'Nutzungsplanung_Ueberlagernd'
+         AND eigbe.subthema = 'NutzungsplanungUeberlagernd'
          AND geom.punkt_lv95 IS NOT NULL;
 
--- view 'nutzungsplanung_grundnutzung_flaeche' with thema 'Nutzungsplanung', subthema 'Grundnutzung_Zonenflaeche' and geometry 'flaeche
+-- view 'nutzungsplanung_grundnutzung_flaeche' with thema 'Nutzungsplanung', subthema 'NutzungsplanungGrundnutzung' and geometry 'flaeche
 DROP VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche;
 CREATE OR replace VIEW live.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche
 AS 
@@ -451,5 +451,5 @@ AS
          left join live.oerbkrmvs_v1_1vorschriften_amt zust
                 ON eigbe.zustaendigestelle = zust.t_id
   WHERE  eigbe.thema = 'Nutzungsplanung'
-         AND eigbe.subthema = 'Grundnutzung_Zonenflaeche'
+         AND eigbe.subthema = 'NutzungsplanungGrundnutzung'
          AND geom.flaeche_lv95 IS NOT NULL;
