@@ -44,39 +44,148 @@ for schema in "${pg_schemas[@]}"
       eval "${pg_views[$view_name]}"
       #printf "view '$view_name' with thema '${pg_view[thema]}', subthema '${pg_view[subthema]}' and geometry '${pg_view[geom]}'\n"
       sql=$(cat << EOM
+      
+-- -----------------------------------------------------------------------------
+-- materialized view '$view_name' with thema '${pg_view[thema]}', subthema '${pg_view[subthema]}' and geometry '${pg_view[geom]}
+DROP MATERIALIZED VIEW IF EXISTS $schema.vw_oerebwms_$view_name;
+CREATE MATERIALIZED VIEW IF NOT EXISTS $schema.vw_oerebwms_$view_name AS 
+WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
+(
+    SELECT 
+        ursprung, 
+        hinweis, 
+        ARRAY[ursprung] AS parents, 
+        ursprung AS last_ursprung, 
+        0 AS "depth" 
+    FROM 
+        $schema.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente
+    WHERE
+        ursprung != hinweis
 
-
--- view '$view_name' with thema '${pg_view[thema]}', subthema '${pg_view[subthema]}' and geometry '${pg_view[geom]}
-DROP VIEW IF EXISTS $schema.vw_oerebwms_$view_name;
-CREATE OR replace VIEW $schema.vw_oerebwms_$view_name
-AS 
-  SELECT geom.t_id,
-         geom.t_type,
-         geom.t_ili_tid,
-         geom.${pg_view[geom]}_lv95 AS geom,
-         eigbe.aussage_de AS aussage,
-         eigbe.thema,
-         eigbe.subthema AS sub_thema,
-         eigbe.weiteresthema AS weiteres_thema,
-         eigbe.rechtsstatus,
-         eigbe.publiziertab AS publiziert_ab,
-         zust.aname     AS zustaendige_stelle,
-         zust.amtimweb  AS amt_im_web,
-         geom.metadatengeobasisdaten,
-         eigbe.artcode,
-         eigbe.artcodeliste
-  FROM   $schema.oerbkrmfr_v1_1transferstruktur_geometrie geom
-         left join $schema.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
-                ON geom.eigentumsbeschraenkung = eigbe.t_id
-         left join $schema.oerbkrmvs_v1_1vorschriften_amt zust
-                ON eigbe.zustaendigestelle = zust.t_id
-  WHERE  eigbe.thema = '${pg_view[thema]}'
-         AND eigbe.subthema = '${pg_view[subthema]}'
-         AND geom.${pg_view[geom]}_lv95 IS NOT NULL;
-
+    UNION ALL
+  
+    SELECT 
+        x.ursprung, 
+        x.hinweis, 
+        parents||t1.hinweis, 
+        t1.hinweis AS last_ursprung, 
+        x."depth" + 1
+    FROM 
+        x 
+        INNER JOIN $schema.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente t1 
+        ON (last_ursprung = t1.ursprung)
+    WHERE 
+        t1.hinweis IS NOT NULL
+)
+,
+flattened_documents AS 
+(
+    SELECT 
+        DISTINCT ON (x.last_ursprung, x.ursprung)
+        x.ursprung AS top_level_dokument,
+        x.last_ursprung AS t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM 
+        x
+        LEFT JOIN $schema.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        ON dokument.t_id = x.last_ursprung
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                $schema.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN $schema.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        last_ursprung NOT IN
+        (
+            SELECT 
+                DISTINCT ON (eigentumsbeschraenkung.t_id)
+                eigentumsbeschraenkung.t_id
+            FROM
+                $schema.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN $schema.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+)
+,
+-- remove duplicate documents with distinct first, then group them.
+json_documents AS 
+(
+    SELECT
+        DISTINCT ON (eigentumsbeschraenkung, flattened_documents.t_id)
+        hinweisvorschrift.eigentumsbeschraenkung,
+        json_strip_nulls(row_to_json(flattened_documents)) AS dokumente
+        
+    FROM  
+        flattened_documents
+        LEFT JOIN $schema.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+        ON hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument = flattened_documents.top_level_dokument
+    WHERE
+        eigentumsbeschraenkung IS NOT NULL
+)
+,
+grouped_json_documents AS
+(
+    SELECT
+        eigentumsbeschraenkung,
+        json_agg(dokumente) AS dokumente
+    FROM
+        json_documents
+    GROUP BY
+        eigentumsbeschraenkung
+)
+SELECT
+    geometrie.t_id AS t_id,
+    geometrie.${pg_view[geom]}_lv95 AS geom,
+    --geometrie.rechtsstatus AS geometrie_rechtsstatus,
+    --geometrie.publiziertab AS geometrie_publiziertab,
+    eigentumsbeschraenkung.aussage_de AS aussage,
+    grouped_json_documents.dokumente AS dokumente,
+    eigentumsbeschraenkung.thema,
+    eigentumsbeschraenkung.subthema AS sub_thema,
+    eigentumsbeschraenkung.weiteresthema AS weiteres_thema,
+    eigentumsbeschraenkung.rechtsstatus,
+    eigentumsbeschraenkung.publiziertab,
+    zustaendigestelle.aname_de AS zustaendige_stelle,
+    zustaendigestelle.amtimweb AS amt_im_web,
+    eigentumsbeschraenkung.artcode,
+    eigentumsbeschraenkung.artcodeliste AS artcode_liste
+FROM
+    $schema.oerbkrmfr_v1_1transferstruktur_geometrie AS geometrie
+    LEFT JOIN $schema.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+    ON eigentumsbeschraenkung.t_id = geometrie.eigentumsbeschraenkung
+    LEFT JOIN grouped_json_documents
+    ON grouped_json_documents.eigentumsbeschraenkung = eigentumsbeschraenkung.t_id
+    LEFT JOIN $schema.oerbkrmvs_v1_1vorschriften_amt zustaendigestelle
+    ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
+WHERE
+    eigentumsbeschraenkung.thema = '${pg_view[thema]}'
+    AND
+    eigentumsbeschraenkung.subthema = '${pg_view[subthema]}'
+    AND
+    geometrie.${pg_view[geom]}_lv95 IS NOT NULL
+;
 EOM
 )
-      printf "%s" "$sql"
+      printf "%s\n" "$sql"
     done
   let "ctr++"
   done
