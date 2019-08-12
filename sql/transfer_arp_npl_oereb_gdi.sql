@@ -1004,7 +1004,7 @@ REFSYSTEM MODEL CoordSys (en) AT "http://www.interlis.ch/models"
 
 END CoordSys.
 
-','2019-08-05 16:42:09.987');
+','2019-08-12 07:42:19.494');
 INSERT INTO arp_npl_oereb.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMvs_V1_1.ili','2.3','OeREBKRMvs_V1_1{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1}','INTERLIS 2.3;
 
 /** Basisdefinition für Erlasse (Rechtsvorschriften, Hinweise auf Gesetzliche Grundlagen)
@@ -1126,7 +1126,7 @@ VERSION "2016-08-15"  =
   END HinweiseGesetzlicheGrundlagen;
 
 END OeREBKRMvs_V1_1.
-','2019-08-05 16:42:09.987');
+','2019-08-12 07:42:19.494');
 INSERT INTO arp_npl_oereb.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRM_V1_1.ili','2.3','OeREBKRM_V1_1{ InternationalCodes_V1 LocalisationCH_V1 CatalogueObjects_V1}','INTERLIS 2.3;
 
 /** Basisdefinitionen für das OEREB-Katasterrahmenmodell
@@ -1290,7 +1290,7 @@ VERSION "2016-08-15"  =
   END CodelistenText;
 
 END OeREBKRM_V1_1.
-','2019-08-05 16:42:09.987');
+','2019-08-12 07:42:19.494');
 INSERT INTO arp_npl_oereb.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part1_GEOMETRY_20110830.ili','2.3','GeometryCHLV03_V1{ CoordSys Units INTERLIS} GeometryCHLV95_V1{ CoordSys Units INTERLIS}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -1468,7 +1468,7 @@ TYPE MODEL GeometryCHLV95_V1 (en)
 END GeometryCHLV95_V1.
 
 !! ########################################################################
-','2019-08-05 16:42:09.987');
+','2019-08-12 07:42:19.494');
 INSERT INTO arp_npl_oereb.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMtrsfr_V1_1.ili','2.3','OeREBKRMtrsfr_V1_1{ GeometryCHLV95_V1 CHAdminCodes_V1 LocalisationCH_V1 GeometryCHLV03_V1 OeREBKRM_V1_1 OeREBKRMvs_V1_1}','INTERLIS 2.3;
 
 /** Schnittstelle zwischen zuständiger Stelle für die Geobasisdaten und Katasterorganisation des Kantons.
@@ -1652,7 +1652,7 @@ VERSION "2016-08-15"  =
   END Transferstruktur;
 
 END OeREBKRMtrsfr_V1_1.
-','2019-08-05 16:42:09.987');
+','2019-08-12 07:42:19.494');
 INSERT INTO arp_npl_oereb.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part4_ADMINISTRATIVEUNITS_20110830.ili','2.3','CHAdminCodes_V1 AdministrativeUnits_V1{ CHAdminCodes_V1 InternationalCodes_V1 Dictionaries_V1 Localisation_V1 INTERLIS} AdministrativeUnitsCH_V1{ CHAdminCodes_V1 InternationalCodes_V1 LocalisationCH_V1 AdministrativeUnits_V1 INTERLIS}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -1872,7 +1872,7 @@ MODEL AdministrativeUnitsCH_V1 (en)
 END AdministrativeUnitsCH_V1.
 
 !! ########################################################################
-','2019-08-05 16:42:09.987');
+','2019-08-12 07:42:19.494');
 INSERT INTO arp_npl_oereb.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part2_LOCALISATION_20110830.ili','2.3','InternationalCodes_V1 Localisation_V1{ InternationalCodes_V1} LocalisationCH_V1{ InternationalCodes_V1 Localisation_V1} Dictionaries_V1{ InternationalCodes_V1} DictionariesCH_V1{ InternationalCodes_V1 Dictionaries_V1}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -2044,7 +2044,7 @@ MODEL DictionariesCH_V1 (en)
 END DictionariesCH_V1.
 
 !! ########################################################################
-','2019-08-05 16:42:09.987');
+','2019-08-12 07:42:19.494');
 INSERT INTO arp_npl_oereb.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part3_CATALOGUEOBJECTS_20110830.ili','2.3','CatalogueObjects_V1{ INTERLIS} CatalogueObjectTrees_V1{ INTERLIS CatalogueObjects_V1}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -2132,7 +2132,7 @@ MODEL CatalogueObjectTrees_V1 (en)
 END CatalogueObjectTrees_V1.
 
 !! ########################################################################
-','2019-08-05 16:42:09.987');
+','2019-08-12 07:42:19.494');
 INSERT INTO arp_npl_oereb.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('Units-20120220.ili','2.3','Units','!! File Units.ili Release 2012-02-20
 
 INTERLIS 2.3;
@@ -2230,7 +2230,7 @@ CONTRACTED TYPE MODEL Units (en) AT "http://www.interlis.ch/models"
 
 END Units.
 
-','2019-08-05 16:42:09.987');
+','2019-08-12 07:42:19.494');
 INSERT INTO arp_npl_oereb.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createMetaInfo','True');
 INSERT INTO arp_npl_oereb.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.arrayTrafo','coalesce');
 INSERT INTO arp_npl_oereb.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.nameOptimization','disable');

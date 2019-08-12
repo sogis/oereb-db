@@ -7427,7 +7427,7 @@ CODE
   TID = ANY;
 END.
 
-','2019-08-05 16:42:08.654');
+','2019-08-12 07:42:18.22');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('PLZO-CH_LV95_1d_ili1.ili','1.0','PLZOCH1LV95D','
 TRANSFER INTERLIS1;
 
@@ -7650,7 +7650,7 @@ CODE
   TID = ANY;
 END.
 
-','2019-08-05 16:42:08.654');
+','2019-08-12 07:42:18.22');
 INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createMetaInfo','True');
 INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.arrayTrafo','coalesce');
 INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.nameOptimization','disable');
@@ -10002,7 +10002,7 @@ CREATE TABLE stage.T_ILI2DB_MODEL (
   ,modelName text NOT NULL
   ,content text NOT NULL
   ,importDate timestamp NOT NULL
-  ,PRIMARY KEY (iliversion,modelName)
+  ,PRIMARY KEY (modelName,iliversion)
 )
 ;
 CREATE TABLE stage.T_ILI2DB_CLASSNAME (
@@ -10015,7 +10015,7 @@ CREATE TABLE stage.T_ILI2DB_ATTRNAME (
   ,SqlName varchar(1024) NOT NULL
   ,ColOwner varchar(1024) NOT NULL
   ,Target varchar(1024) NULL
-  ,PRIMARY KEY (SqlName,ColOwner)
+  ,PRIMARY KEY (ColOwner,SqlName)
 )
 ;
 CREATE TABLE stage.T_ILI2DB_COLUMN_PROP (
@@ -10409,9 +10409,9 @@ CREATE UNIQUE INDEX T_ILI2DB_DATASET_datasetName_key ON stage.T_ILI2DB_DATASET (
 ;
 ALTER TABLE stage.T_ILI2DB_IMPORT_BASKET ADD CONSTRAINT T_ILI2DB_IMPORT_BASKET_importrun_fkey FOREIGN KEY ( importrun ) REFERENCES stage.T_ILI2DB_IMPORT DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.T_ILI2DB_IMPORT_BASKET ADD CONSTRAINT T_ILI2DB_IMPORT_BASKET_basket_fkey FOREIGN KEY ( basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX T_ILI2DB_MODEL_iliversion_modelName_key ON stage.T_ILI2DB_MODEL (iliversion,modelName)
+CREATE UNIQUE INDEX T_ILI2DB_MODEL_modelName_iliversion_key ON stage.T_ILI2DB_MODEL (modelName,iliversion)
 ;
-CREATE UNIQUE INDEX T_ILI2DB_ATTRNAME_SqlName_ColOwner_key ON stage.T_ILI2DB_ATTRNAME (SqlName,ColOwner)
+CREATE UNIQUE INDEX T_ILI2DB_ATTRNAME_ColOwner_SqlName_key ON stage.T_ILI2DB_ATTRNAME (ColOwner,SqlName)
 ;
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ObjektnameObjektname_von','dm01vch24lv95dbodenbedeckung_objektnameobjektname_von');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.LokalisationsNamePos','dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos');
@@ -11686,1443 +11686,1443 @@ INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Linienelement','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Einzelobjekte.EinzelpunktPos','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanbeschriftungPosPlanbeschriftungPos_von','ch.ehi.ili2db.inheritance','embedded');
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.HFP2Pos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeNamePosGebaeudeNamePos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1Entstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2Symbol',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.BoFlaecheSymbol',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrenzpunktEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.ObjektnummerPosObjektnummerPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Einzelpunkt',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.LinienobjektLinienobjekt_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.KoordinatenLinie',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjBergwerk',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.Aussparung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrenzpunktSymbolGrenzpunktSymbol_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.HFP3',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Linienelement',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeNamePos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rutschgebiete.Rutschung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.Planbeschriftung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjObjektnamePos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.Gebaeudeeingang',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.LinienelementSymbol',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Punktelement',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.TSEinteilung.Toleranzstufe',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.PLZ6',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2Nachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.SignalpunktPosSignalpunktPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.EinzelpunktEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.Objektname',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjBoFlaecheSymbol',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.GelaendenamePosGelaendenamePos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.KoordinatenanschriftPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsName',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.HausnummerPosHausnummerPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.PLZ6Nachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Signalpunkt',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsNameOrtschaftsName_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1PosLFP1Pos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.LiegenschaftLiegenschaft_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.SelbstRechtSelbstRecht_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.PunktelementPunktelement_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6Entstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.FlaechenelementFlaechenelement_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeBeschreibungGebaeudeBeschreibung_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.HoehenpunktPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.FlurnameEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.ProjGemeindegrenzeProjGemeindegrenze_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjObjektnameProjObjektname_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1SymbolLFP1Symbol_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.Ortsname',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.HoheitsgrenzpunktSymbolHoheitsgrenzpunktSymbol_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Objektname',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.HFP3Entstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.EinzelpunktPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrenzpunktSymbol',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName_Pos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Flaechenelement',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planeinteilungen.Plan',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.AussparungEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.Bergwerk',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.BenanntesGebietBenanntesGebiet_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.HFP2',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.GebaeudenummerPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.SignalpunktPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.KoordinatenanschriftPosKoordinatenanschriftPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.LSNachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Punktelement',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.EinzelpunktPosEinzelpunktPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.Darstellungsflaeche',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjGrundstueckEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.NummerierungsbereichPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.LinienelementLinienelement_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.FlaechenelementSymbolFlaechenelementSymbol_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planeinteilungen.PlanPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rutschgebiete.RutschungPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.Grundstueck',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsVerbund',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.HFP1PosHFP1Pos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.ObjektnummerPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.BBNachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeNameGebaeudeName_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nummerierungsbereiche.Nummerierungsbereich',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Objektnummer',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjSelbstRechtProjSelbstRecht_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.Einzelpunkt',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.NBGeometrieNBGeometrie_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.HFP3Nachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2Pos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjLiegenschaftProjLiegenschaft_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.HoehenpunktPosHoehenpunktPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.ObjektnamePos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.EinzelpunktPosEinzelpunktPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Landesgrenzen.Landesgrenzabschnitt',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeBeschreibung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GEBNachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.GelaendenamePos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.BoFlaecheEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2SymbolLFP2Symbol_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ObjektnamePosObjektnamePos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.FlurnamePos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.EinzelpunktEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.FlurnamePosFlurnamePos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.HFP2Nachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.HoheitsgrenzpunktEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nummerierungsbereiche.NummerierungsbereichPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.NBGeometrie',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrundstueckEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.TSEinteilung.ToleranzstufePos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3PosLFP3Pos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.PLZ6PLZ6_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6Nachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeeingangGebaeudeeingang_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.Netzkreuz',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.NKNachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.Gemeinde',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrundstueckPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjBoFlaecheEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.HFP3PosHFP3Pos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsVerbundText',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrundstueckPosGrundstueckPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3Pos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName_PosOrtschaftsName_Pos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsVerbundText',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.LeitungsobjektEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.PLZ6Entstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftOrtschaft_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.Gebaeudenummer',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Flaechenelement',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.EinzelpunktPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3SymbolLFP3Symbol_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ObjektnameObjektname_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsName_PosOrtschaftsName_Pos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjGrundstueck',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nummerierungsbereiche.NummerierungsbereichPosNummerierungsbereichPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsVerbund',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.StrassenstueckStrassenstueck_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.SelbstRecht',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.HFP1Nachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.Gelaendename',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.HFP1',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanLayoutSymbol',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.GelaendenameEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjLiegenschaft',NULL);
 INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planeinteilungen.Plangeometrie',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.PunktelementPunktelement_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.GEMNachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanbeschriftungPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3Entstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeeingangEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanbeschriftungPosPlanbeschriftungPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nummerierungsbereiche.NBGeometrieNBGeometrie_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrenzpunktPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.EinzelpunktEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjGebaeudenummerProjGebaeudenummer_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.HoheitsgrenzpunktPosHoheitsgrenzpunktPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.Koordinatenanschrift',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.BenanntesGebiet',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3Symbol',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.LinienelementSymbolLinienelementSymbol_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.HFP2PosHFP2Pos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.LeitungsobjektPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjGrundstueckPosProjGrundstueckPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.KoordinatenanschriftKoordinatenanschrift_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Linienelement',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2Entstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanbeschriftungPlanbeschriftung_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrenzpunktPosGrenzpunktPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.LokalisationsNamePosLokalisationsNamePos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.LokalisationsName',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.ObjektnameObjektname_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftOrtschaft_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjGrundstueckPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1Pos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.Hoheitsgrenzpunkt',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.LokalisationsNamePos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.FlaechenelementFlaechenelement_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjGebaeudenummerPosProjGebaeudenummerPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.GebaeudenummerGebaeudenummer_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjSelbstRecht',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.LokalisationsNameBenannte',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.LinienelementLinienelement_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.Gemeindegrenze',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OSNachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.EinzelpunktPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1Nachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.SignalpunktEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjGebaeudenummerPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ObjektnamePos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.GebaeudenummerPosGebaeudenummerPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.GemeindegrenzeEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.Strassenstueck',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.Flurname',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.HFP1Pos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.HFP1Entstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.HoheitsgrenzpunktSymbol',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.KoordinatenLinieKoordinatenLinie_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjGebaeudenummer',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.HoheitsgrenzpunktPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.ObjektnummerObjektnummer_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.OrtsnamePos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.NummerierungsbereichPosNummerierungsbereichPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.Nummerierungsbereich',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Leitungsobjekt',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.BoFlaeche',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Kantonsgrenzen.Kantonsgrenzabschnitt',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.HFP3Pos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.TSEinteilung.ToleranzstufePosToleranzstufePos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanLayoutSymbolPlanLayoutSymbol_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsVerbundTextOrtschaftsVerbundText_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.HFP2Entstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.GelaendekanteEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6PLZ6_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.ObjektnamePosObjektnamePos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.Hoehenpunkt',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nummerierungsbereiche.NBGeometrie',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.ProjGemeindegrenzeEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.Lokalisation',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bezirksgrenzen.Bezirksgrenzabschnitt',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.ProjGemeindegrenze',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.Linienobjekt',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.EONachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.BoFlaecheSymbolBoFlaecheSymbol_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.HoehenpunktEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rutschgebiete.RutschungPosRutschungPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3Nachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.OrtsnameEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.BergwerkBergwerk_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2PosLFP2Pos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.DarstellungsflaecheDarstellungsflaeche_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjBergwerkProjBergwerk_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsVerbundTextOrtschaftsVerbundText_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1Symbol',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.EinzelpunktPosEinzelpunktPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.OrtsnamePosOrtsnamePos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.HONachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planeinteilungen.PlangeometriePlangeometrie_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.Liegenschaft',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Einzelpunkt',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planeinteilungen.PlanPosPlanPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.RLNachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.NetzkreuzNetzkreuz_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.FlaechenelementSymbol',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.Ortschaft',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OSNachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjBoFlaecheSymbolProjBoFlaecheSymbol_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.Gelaendekante',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.Ortschaft',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjLiegenschaftProjLiegenschaft_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeBeschreibungGebaeudeBeschreibung_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6Nachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nummerierungsbereiche.NummerierungsbereichPosNummerierungsbereichPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1PosLFP1Pos_von',NULL);
 INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanLayout',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.Grenzpunkt',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeName',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjBoFlaecheSymbolProjBoFlaecheSymbol_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.BergwerkBergwerk_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.KoordinatenanschriftPosKoordinatenanschriftPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2SymbolLFP2Symbol_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.HFP1',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.HoheitsgrenzpunktSymbol',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.BenanntesGebietBenanntesGebiet_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjGebaeudenummerProjGebaeudenummer_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjLiegenschaft',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrundstueckPosGrundstueckPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.GebaeudenummerGebaeudenummer_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrenzpunktSymbol',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rutschgebiete.Rutschung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjGebaeudenummerPosProjGebaeudenummerPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2Symbol',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Einzelpunkt',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.LokalisationsNameBenannte',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.Ortsname',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjBoFlaecheSymbol',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsVerbund',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.SelbstRechtSelbstRecht_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.NKNachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.ProjGemeindegrenzeEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjGrundstueckPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.FlurnamePosFlurnamePos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjObjektnameProjObjektname_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.Hoheitsgrenzpunkt',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3PosLFP3Pos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OSNachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjSelbstRecht',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.HoheitsgrenzpunktSymbolHoheitsgrenzpunktSymbol_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftOrtschaft_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Flaechenelement',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.NummerierungsbereichPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.Lokalisation',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.HFP1Nachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1Pos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.SignalpunktEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.HoheitsgrenzpunktEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsNameOrtschaftsName_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.HausnummerPosHausnummerPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.ObjektnamePos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsVerbundText',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3SymbolLFP3Symbol_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrenzpunktEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.LokalisationsNamePos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.Darstellungsflaeche',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanbeschriftungPlanbeschriftung_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.ObjektnummerPosObjektnummerPos_von',NULL);
 INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjObjektnamePosProjObjektnamePos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.LokalisationEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsNameOrtschaftsName_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Einzelobjekt',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjObjektname',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.EinzelobjektEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.GemeindegrenzeGemeindegrenze_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rutschgebiete.RutschungPosRutschungPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.FlaechenelementFlaechenelement_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.RLNachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.HFP1Pos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.EinzelpunktEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.KoordinatenanschriftKoordinatenanschrift_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.ObjektnummerObjektnummer_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.HONachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.HFP2',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.PLZ6PLZ6_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nummerierungsbereiche.Nummerierungsbereich',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.TSEinteilung.ToleranzstufePos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.NetzkreuzNetzkreuz_von',NULL);
 INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.HausnummerPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.GebaeudenummerPosGebaeudenummerPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2PosLFP2Pos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Einzelpunkt',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.BoFlaecheSymbol',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planeinteilungen.PlanPosPlanPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.NBGeometrie',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planeinteilungen.PlangeometriePlangeometrie_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.TSEinteilung.ToleranzstufePosToleranzstufePos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.ObjektnameObjektname_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsName',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeBeschreibung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Flaechenelement',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planeinteilungen.Plan',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeNamePosGebaeudeNamePos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Objektname',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.StrassenstueckStrassenstueck_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.Gelaendename',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanLayoutSymbolPlanLayoutSymbol_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.PunktelementPunktelement_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.AussparungEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6Entstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.EinzelpunktEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjBergwerk',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.LinienobjektLinienobjekt_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ObjektnamePos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.SignalpunktPosSignalpunktPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.LokalisationsName',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.HFP2Entstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1Entstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.EinzelpunktEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.OrtsnamePos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.HoheitsgrenzpunktPosHoheitsgrenzpunktPos_von',NULL);
 INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjBoFlaeche',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Signalpunkt',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.FlaechenelementFlaechenelement_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjGrundstueck',NULL);
 INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.LeitungsobjektPosLeitungsobjektPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.EONachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.HFP2Pos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.Koordinatenanschrift',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjSelbstRechtProjSelbstRecht_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.PLZ6',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.Gelaendekante',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.KoordinatenLinieKoordinatenLinie_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.ProjGemeindegrenzeProjGemeindegrenze_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.HFP2PosHFP2Pos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.LinienelementSymbolLinienelementSymbol_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.HoheitsgrenzpunktPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nummerierungsbereiche.NBGeometrie',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.OrtsnameEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjBoFlaecheEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.BoFlaecheEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.LokalisationEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.FlurnamePos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.HFP1Entstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ObjektnamePosObjektnamePos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.HoehenpunktPosHoehenpunktPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrenzpunktPosGrenzpunktPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3Pos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.LeitungsobjektEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1Nachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.GemeindegrenzeEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.OrtsnamePosOrtsnamePos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.Ortschaft',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2Nachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.ObjektnamePosObjektnamePos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjObjektname',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.BoFlaecheSymbolBoFlaecheSymbol_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrundstueckEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeNamePos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.Liegenschaft',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.BenanntesGebiet',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.Strassenstueck',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrenzpunktSymbolGrenzpunktSymbol_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.LiegenschaftLiegenschaft_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.Planbeschriftung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ObjektnameObjektname_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsVerbundTextOrtschaftsVerbundText_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.HFP3Entstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1Symbol',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.BoFlaeche',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsName_PosOrtschaftsName_Pos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.HFP3',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName_PosOrtschaftsName_Pos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.EinzelpunktPosEinzelpunktPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsVerbundText',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.LokalisationsNamePosLokalisationsNamePos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.NBGeometrieNBGeometrie_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.Grenzpunkt',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.Grundstueck',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsNameOrtschaftsName_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.HoehenpunktEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanbeschriftungPosPlanbeschriftungPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.GemeindegrenzeGemeindegrenze_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.KoordinatenanschriftPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.SelbstRecht',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planeinteilungen.PlanPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeeingangEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1SymbolLFP1Symbol_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.LSNachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.Netzkreuz',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.GelaendenamePosGelaendenamePos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftOrtschaft_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.HFP1PosHFP1Pos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Landesgrenzen.Landesgrenzabschnitt',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.LinienelementLinienelement_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.Einzelpunkt',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjGebaeudenummer',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GEBNachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2Pos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjGebaeudenummerPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.FlaechenelementSymbol',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.GEMNachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjObjektnamePos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.GebaeudenummerPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3Entstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.FlaechenelementSymbolFlaechenelementSymbol_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrenzpunktPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Linienelement',NULL);
 INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsName_Pos',NULL);
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_benanntesgebiet',NULL,'flaeche','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaeche',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projgebaeudenummerpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_projgebaeudenummerpos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'geometrie','ch.ehi.ili2db.geomType','LINESTRING');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_benanntesgebiet',NULL,'flaeche','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsnamepos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_gelaendename',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dnomenklatur_gelaendename"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunktpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_punktelement',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_punktelement',NULL,'punktelement_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95deinzelobjekte_einzelobjekt');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_leitungsobjektpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_flaechenelement',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95drohrleitungen_flaechenelement"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudeeingang',NULL,'lage','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnummerpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projobjektnamepos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbezirksgrenzen_bezirksgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.geomType','LINESTRING');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'hilfslinie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelementsymbol',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projbergwerk',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dliegenschaften_projbergwerk"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_hausnummerpos',NULL,'hausnummerpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgebaeudeadressen_gebaeudeeingang');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaft',NULL,'flaeche','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projselbstrecht',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunktpos',NULL,'einzelpunktpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95deinzelobjekte_einzelpunkt');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurname',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaft',NULL,'flaeche','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2pos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planbeschriftungpos',NULL,'planbeschriftungpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplanrahmen_planbeschriftung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelementsymbol',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_darstellungsflaeche',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_nknachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3pos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunkt',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_liegenschaft',NULL,'liegenschaft_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dliegenschaften_grundstueck');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_leitungsobjektpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_lsnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3',NULL,'geometrie','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufepos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dtseinteilung_toleranzstufepos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2pos',NULL,'lfp2pos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie2_lfp2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3pos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelement',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunktpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_gelaendenamepos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'hilfslinie','ch.ehi.ili2db.geomType','LINESTRING');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelement',NULL,'flaechenelement_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95deinzelobjekte_einzelobjekt');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_liegenschaft',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaechesymbol',NULL,'boflaechesymbol_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dbodenbedeckung_boflaeche');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_netzkreuz',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunkt',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemeindegrenze',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dlandesgrenzen_landesgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschungpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname_pos',NULL,'ortschaftsname_pos_von','ch.ehi.ili2db.foreignKey','plzoch1lv95dplzortschaft_ortschaftsname');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nbgeometrie',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'hilfslinie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenlinie',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelementsymbol',NULL,'linienelementsymbol_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95deinzelobjekte_linienelement');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunktpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsverbund',NULL,'T_Type','ch.ehi.ili2db.types','["plzoch1lv95dplzortschaft_ortschaftsverbund"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_gebaeudenummer',NULL,'gebaeudenummer_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dbodenbedeckung_boflaeche');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemeindegrenze',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgemeindegrenzen_gemeindegrenze"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projgebaeudenummerpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_flaechenelement',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_bergwerk',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelement',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'hilfslinie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'uebersichtplannullpunkt','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunktpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschungpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_bergwerk',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_osnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudeeingang',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgebaeudeadressen_gebaeudeeingang"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschungpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_selbstrecht',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunkt',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dliegenschaften_lsnachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_bergwerk',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschungpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunkt',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_gelaendenamepos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunktpos',NULL,'einzelpunktpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95drohrleitungen_einzelpunkt');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2symbol',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsnamepos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2pos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_flaechenelement',NULL,'flaechenelement_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95drohrleitungen_leitungsobjekt');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaft',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplzortschaft_osnachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_liegenschaft',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelementsymbol',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_nknachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_gebaeudenummerpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_flaechenelement',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projgebaeudenummer',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_projgebaeudenummer"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_hausnummerpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3nachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie3_hfp3nachfuehrung"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_hausnummerpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_planpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurnamepos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurname',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'plannullpunkt','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_eonachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2',NULL,'geometrie','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_selbstrecht',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planbeschriftungpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'hilfslinie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_netzkreuz',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_benanntesgebiet',NULL,'flaeche','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2pos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemeinde',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgemeindegrenzen_gemeinde"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaechesymbol',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname_pos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1pos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie2_lfp2"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelement',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planbeschriftungpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudeeingang',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgebaeudeadressen_gebnachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_gelaendekante',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunkt',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsname_pos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunkt',NULL,'geometrie','ch.ehi.ili2db.c3Max','5000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'uebersichtplannullpunkt','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6',NULL,'plz6_von','ch.ehi.ili2db.foreignKey','plzoch1lv95dplzortschaft_ortschaft');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_planpos',NULL,'planpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplaneinteilungen_plan');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunkt',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurnamepos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'hilfslinie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudeeingang',NULL,'lage','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudename',NULL,'gebaeudename_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgebaeudeadressen_gebaeudeeingang');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2pos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3',NULL,'hoehegeom','ch.ehi.ili2db.unit','m');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudeeingang',NULL,'lage','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_benanntesgebiet',NULL,'flaeche','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_projgemeindegrenze',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_darstellungsflaeche',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplanrahmen_darstellungsflaeche"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsname_pos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunktpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95drohrleitungen_einzelpunktpos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemeindegrenze',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunkt',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95drohrleitungen_rlnachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbezirksgrenzen_bezirksgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayoutsymbol',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_eonachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsverbundtext',NULL,'T_Type','ch.ehi.ili2db.types','["plzoch1lv95dplzortschaft_ortschaftsverbundtext"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_osnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie3_lfp3"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaeche',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_boflaeche"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunktpos',NULL,'grenzpunktpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dliegenschaften_grenzpunkt');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelement',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsname',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dnomenklatur_nknachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschung',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_punktelement',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95deinzelobjekte_punktelement"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunktpos',NULL,'hoehenpunktpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dhoehen_hoehenpunkt');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufepos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname_pos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'lokalisationsnamepos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgebaeudeadressen_lokalisationsname');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurname',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunkt',NULL,'geometrie','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3pos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_punktelement',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95drohrleitungen_punktelement"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_liegenschaft',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2pos',NULL,'hfp2pos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie2_hfp2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_planpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'e_azimut','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsnamepos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6nachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["plzoch1lv95dplzortschaft_plz6nachfuehrung"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie1_lfp1"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projselbstrecht',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueck',NULL,'gesamteflaechenmass','ch.ehi.ili2db.unit','m2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsname',NULL,'benannte','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgebaeudeadressen_lokalisation');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6',NULL,'T_Type','ch.ehi.ili2db.types','["plzoch1lv95dplzortschaft_plz6"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnummerpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaft',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplzortschaft_ortschaft"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_osnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudeeingang',NULL,'lage','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_aussparung',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projliegenschaft',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenanschriftpos',NULL,'koordinatenanschriftpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplanrahmen_koordinatenanschrift');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6',NULL,'flaeche','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschung',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunktpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaeche',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunktsymbol',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nbgeometrie',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projliegenschaft',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3pos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaechesymbol',NULL,'projboflaechesymbol_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dbodenbedeckung_projboflaeche');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'strassenstueck_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgebaeudeadressen_lokalisation');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsname_pos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projbergwerk',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufepos',NULL,'toleranzstufepos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dtseinteilung_toleranzstufe');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaft',NULL,'flaeche','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnummerpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3pos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsname',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaeche',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_eonachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufe',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dtseinteilung_toleranzstufe"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunktpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2',NULL,'geometrie','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3pos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dlandesgrenzen_landesgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dkantonsgrenzen_kantonsgrenzabschnitt',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dkantonsgrenzen_kantonsgrenzabschnitt"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelementsymbol',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_darstellungsflaeche',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunkt',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsname_pos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname_pos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_linienobjekt',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnamepos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_aussparung',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_nknachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_netzkreuz',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_flaechenelement',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6nachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplzortschaft_plz6nachfuehrung"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projobjektnamepos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6',NULL,'flaeche','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2pos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_eonachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planbeschriftungpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelement',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemeindegrenze',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname',NULL,'ortschaftsname_von','ch.ehi.ili2db.foreignKey','plzoch1lv95dplzortschaft_ortschaft');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2pos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_osnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnamepos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnummerpos',NULL,'objektnummerpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95deinzelobjekte_objektnummer');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaft',NULL,'flaeche','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'uebersichtplannullpunkt','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projselbstrecht',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_linienobjekt',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_linienobjekt',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktsymbol',NULL,'hoheitsgrenzpunktsymbol_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunktpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_osnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_planpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaft',NULL,'flaeche','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_benanntesgebiet',NULL,'flaeche','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname',NULL,'T_Type','ch.ehi.ili2db.types','["plzoch1lv95dplzortschaft_ortschaftsname"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurnamepos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projliegenschaft',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dliegenschaften_projliegenschaft"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelementsymbol',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95deinzelobjekte_flaechenelementsymbol"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_aussparung',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_rlnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projgebaeudenummerpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'hilfslinie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_bbnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunkt',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnummerpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_punktelement',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_nknachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_selbstrecht',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projbergwerk',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufepos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufepos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1symbol',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaechesymbol',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_projboflaechesymbol"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsname_pos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplzortschaft_ortschaftsname_pos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaft',NULL,'ortschaft_von','ch.ehi.ili2db.foreignKey','plzoch1lv95dplzortschaft_ortschaftsverbund');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaeche',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_gelaendekante',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dhoehen_honachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbezirksgrenzen_bezirksgrenzabschnitt',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbezirksgrenzen_bezirksgrenzabschnitt"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_bbnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_gebaeudenummerpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenanschriftpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplanrahmen_koordinatenanschriftpos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelementsymbol',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95deinzelobjekte_linienelementsymbol"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'hilfslinie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1pos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projbergwerk',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_aussparung',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaeche',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaechesymbol',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelobjekt',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95deinzelobjekte_eonachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunktpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_linienelement',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelement',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie3_hfp3"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_bbnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplzortschaft_plz6nachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemeindegrenze',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_benanntesgebiet',NULL,'benanntesgebiet_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgebaeudeadressen_lokalisation');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufe',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nbgeometrie',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_linienelement',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunkt',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95deinzelobjekte_einzelpunkt"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planbeschriftungpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemeindegrenze',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbezirksgrenzen_bezirksgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsname',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunkt',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dhoehen_honachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_darstellungsflaeche',NULL,'darstellungsflaeche_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplanrahmen_planlayout');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbezirksgrenzen_bezirksgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dlandesgrenzen_landesgrenzabschnitt',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dlandesgrenzen_landesgrenzabschnitt"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschung',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_objektnamepos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_rlnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunktpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_gelaendenamepos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6',NULL,'flaeche','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_netzkreuz',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1pos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunktpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_punktelement',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurname',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nbgeometrie',NULL,'nbgeometrie_von','ch.ehi.ili2db.foreignKey','plzoch1lv95dnummerierngsbrche_nummerierungsbereich');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'hilfslinie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_linienelement',NULL,'linienelement_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95drohrleitungen_leitungsobjekt');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_osnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelementsymbol',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_punktelement',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsnamepos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelement',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95deinzelobjekte_flaechenelement"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_osnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_leitungsobjektpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95drohrleitungen_leitungsobjektpos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_osnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nbgeometrie',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudeeingang',NULL,'lage','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaechesymbol',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_boflaechesymbol"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nbgeometrie',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2pos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaft',NULL,'entstehung','ch.ehi.ili2db.foreignKey','plzoch1lv95dplzortschaft_osnachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaeche',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_netzkreuz',NULL,'netzkreuz_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplanrahmen_planlayout');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_darstellungsflaeche',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2pos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie2_hfp2pos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_punktelement',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6',NULL,'flaeche','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_gelaendenamepos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dnomenklatur_gelaendenamepos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nbgeometrie',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplzortschaft_plz6"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelement',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_darstellungsflaeche',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3pos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'uebersichtplannullpunkt','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_selbstrecht',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaeche',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunkt',NULL,'geometrie','ch.ehi.ili2db.c3Min','-200.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'nummerierungsbereichpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dnummerierngsbrche_nummerierungsbereich');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayoutsymbol',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_netzkreuz',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'hilfslinie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelement',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelementsymbol',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_plangeometrie',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'hilfslinie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufe',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudebeschreibung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgebaeudeadressen_gebaeudebeschreibung"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projobjektnamepos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_linienelement',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktpos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaft',NULL,'flaeche','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'plannullpunkt','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie1_lfp1nachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_plangeometrie',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3',NULL,'geometrie','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunkt',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95deinzelobjekte_eonachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dkantonsgrenzen_kantonsgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsname_pos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunktsymbol',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dliegenschaften_grenzpunktsymbol"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_linienelement',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1pos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunkt',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunktpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nbgeometrie',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3pos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie3_lfp3pos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_bbnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'anfangspunkt','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaechesymbol',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunktpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunkt',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_einzelpunkt"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenlinie',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3pos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenlinie',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projselbstrecht',NULL,'flaechenmass','ch.ehi.ili2db.unit','m2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaechesymbol',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunktpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dliegenschaften_grenzpunktpos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_punktelement',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelement',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_linienobjekt',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemeindegrenze',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nbgeometrie',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_plangeometrie',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1pos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_benanntesgebiet',NULL,'flaeche','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_punktelement',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbezirksgrenzen_bezirksgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6',NULL,'flaeche','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'hilfslinie','ch.ehi.ili2db.geomType','LINESTRING');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2pos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_hausnummerpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.Nummerierungsbereich',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.PLZ6Entstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.EinzelpunktPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.EinzelpunktPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.HFP3PosHFP3Pos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.SignalpunktPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Punktelement',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Kantonsgrenzen.Kantonsgrenzabschnitt',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.Gebaeudeeingang',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanLayoutSymbol',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.EinzelpunktPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsVerbundTextOrtschaftsVerbundText_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.LeitungsobjektPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rutschgebiete.RutschungPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.Ortschaft',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.GelaendekanteEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.LinienelementLinienelement_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.Gemeinde',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.DarstellungsflaecheDarstellungsflaeche_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.Objektname',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.EinzelobjektEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.GelaendenameEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.LinienelementSymbol',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjBergwerkProjBergwerk_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeeingangGebaeudeeingang_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Einzelobjekt',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.Bergwerk',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bezirksgrenzen.Bezirksgrenzabschnitt',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.EinzelpunktPosEinzelpunktPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3Symbol',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.KoordinatenLinie',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.Hoehenpunkt',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.EinzelpunktPosEinzelpunktPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeNameGebaeudeName_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Punktelement',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.ProjGemeindegrenze',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.HFP3Nachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.PunktelementPunktelement_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Leitungsobjekt',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.Linienobjekt',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.HFP2Nachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.NummerierungsbereichPosNummerierungsbereichPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nummerierungsbereiche.NBGeometrieNBGeometrie_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.Gebaeudenummer',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsVerbund',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.PLZ6Nachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Objektnummer',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OSNachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3Nachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6PLZ6_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName_Pos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.ObjektnummerPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.HFP3Pos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.HoehenpunktPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nummerierungsbereiche.NummerierungsbereichPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeName',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.Aussparung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrundstueckPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjGrundstueckPosProjGrundstueckPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanbeschriftungPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.GelaendenamePos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2Entstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.Flurname',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.Gemeindegrenze',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Linienelement',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjGrundstueckEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.BBNachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.TSEinteilung.Toleranzstufe',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.FlurnameEntstehung',NULL);
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenanschriftpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1nachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie1_hfp1nachfuehrung"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projobjektname',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_projobjektname"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6',NULL,'flaeche','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_netzkreuz',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplanrahmen_netzkreuz"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschungpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschung',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3nachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie3_lfp3nachfuehrung"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projgebaeudenummerpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projselbstrecht',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'hilfslinie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie1_hfp1"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_bbnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_netzkreuz',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3pos',NULL,'lfp3pos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie3_lfp3');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsverbundtext',NULL,'ortschaftsverbundtext_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplzortschaft_ortschaftsverbund');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nbgeometrie',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dnummerierngsbrche_nbgeometrie"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'hilfslinie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_leitungsobjektpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelementsymbol',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayoutsymbol',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenlinie',NULL,'koordinatenlinie_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplanrahmen_planlayout');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsname',NULL,'ortschaftsname_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplzortschaft_ortschaft');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1pos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie1_hfp1pos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dliegenschaften_grundstueckpos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgebaeudeadressen_strassenstueck"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunkt',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_punktelement',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'plannullpunkt','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunkt',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dbodenbedeckung_bbnachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_gelaendekante',NULL,'geometrie','ch.ehi.ili2db.coordDimension','3');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsverbundtext',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplzortschaft_ortschaftsverbundtext"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie1_hfp1nachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_objektnamepos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_objektnamepos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_planpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemeindegrenze',NULL,'gemeindegrenze_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgemeindegrenzen_gemeinde');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnamepos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_honachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunktpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dhoehen_hoehenpunktpos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaechesymbol',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurname',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemeindegrenze',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_selbstrecht',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_gebaeudenummerpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projselbstrecht',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dliegenschaften_projselbstrecht"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunkt',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95drohrleitungen_signalpunkt"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'plannullpunkt','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnummerpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnamepos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunktpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95drohrleitungen_signalpunktpos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurnamepos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsname',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunkt',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planbeschriftungpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplanrahmen_planbeschriftungpos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektname',NULL,'objektname_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95deinzelobjekte_einzelobjekt');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_osnachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["plzoch1lv95dplzortschaft_osnachfuehrung"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsname_pos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'hilfslinie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_bergwerk',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudeeingang',NULL,'lage','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'grundstueckpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dliegenschaften_grundstueck');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_planpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplaneinteilungen_planpos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_bergwerk',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dliegenschaften_bergwerk"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaft',NULL,'flaeche','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenlinie',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'hilfslinie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1',NULL,'hoehegeom','ch.ehi.ili2db.unit','m');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_honachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaeche',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsname',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgebaeudeadressen_lokalisationsname"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaft',NULL,'flaeche','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunktpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1',NULL,'geometrie','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemnachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgemeindegrenzen_gemnachfuehrung"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3',NULL,'hoehegeom','ch.ehi.ili2db.unit','m');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaechesymbol',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie2_hfp2nachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaft',NULL,'flaeche','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_gebaeudenummerpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunktpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_gelaendekante',NULL,'geometrie','ch.ehi.ili2db.c3Min','-200.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_planpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaft',NULL,'flaeche','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'hilfslinie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunkt',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95drohrleitungen_einzelpunkt"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1',NULL,'geometrie','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektname',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95deinzelobjekte_objektname"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'hilfslinie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_rlnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dlandesgrenzen_landesgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1pos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3pos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_eonachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95deinzelobjekte_eonachfuehrung"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'anfangspunkt','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3pos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunktpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenanschrift',NULL,'koordinatenanschrift_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplanrahmen_planlayout');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunktpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbezirksgrenzen_bezirksgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_bergwerk',NULL,'bergwerk_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dliegenschaften_grundstueck');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsname',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dnomenklatur_ortsname"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_lsnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelement',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunkt',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6',NULL,'flaeche','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsverbundtext',NULL,'ortschaftsverbundtext_von','ch.ehi.ili2db.foreignKey','plzoch1lv95dplzortschaft_ortschaftsverbund');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_linienelement',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufepos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projbergwerk',NULL,'projbergwerk_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dliegenschaften_projgrundstueck');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_objektnamepos',NULL,'objektnamepos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dbodenbedeckung_objektname');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'uebersichtplannullpunkt','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunktpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95deinzelobjekte_einzelpunktpos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_gelaendenamepos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunkt',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3pos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelementsymbol',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_objektnamepos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projbergwerk',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dlandesgrenzen_landesgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_punktelement',NULL,'punktelement_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95drohrleitungen_leitungsobjekt');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsname',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_eonachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planbeschriftungpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunkt',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_gelaendename',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dnomenklatur_nknachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projliegenschaft',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_benanntesgebiet',NULL,'flaeche','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'nummerierungsbereichpos_von','ch.ehi.ili2db.foreignKey','plzoch1lv95dnummerierngsbrche_nummerierungsbereich');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisation',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgebaeudeadressen_gebnachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgebaeudeadressen_gebaeudenamepos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaeche',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_linienobjekt',NULL,'geometrie','ch.ehi.ili2db.geomType','LINESTRING');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projobjektnamepos',NULL,'projobjektnamepos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dbodenbedeckung_projobjektname');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_honachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1pos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nbgeometrie',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufe',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenanschrift',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplanrahmen_koordinatenanschrift"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurnamepos',NULL,'flurnamepos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dnomenklatur_flurname');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunkt',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nbgeometrie',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dkantonsgrenzen_kantonsgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.geomType','LINESTRING');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1pos',NULL,'hfp1pos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie1_hfp1');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunktpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_lsnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_lsnachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dliegenschaften_lsnachfuehrung"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6',NULL,'flaeche','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_osnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_bergwerk',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenanschriftpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_punktelement',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurnamepos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dnomenklatur_flurnamepos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nbgeometrie',NULL,'nbgeometrie_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dnummerierngsbrche_nummerierungsbereich');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_liegenschaft',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dliegenschaften_liegenschaft"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsname_pos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projbergwerk',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_linienelement',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95drohrleitungen_linienelement"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projgebaeudenummerpos',NULL,'projgebaeudenummerpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dbodenbedeckung_projgebaeudenummer');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsname',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunktsymbol',NULL,'grenzpunktsymbol_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dliegenschaften_grenzpunkt');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projselbstrecht',NULL,'projselbstrecht_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dliegenschaften_projgrundstueck');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nummerierungsbereich',NULL,'T_Type','ch.ehi.ili2db.types','["plzoch1lv95dnummerierngsbrche_nummerierungsbereich"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'uebersichtplannullpunkt','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3pos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie3_hfp3pos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1pos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayoutsymbol',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projliegenschaft',NULL,'flaechenmass','ch.ehi.ili2db.unit','m2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschungpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebnachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgebaeudeadressen_gebnachfuehrung"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname_pos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_netzkreuz',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelementsymbol',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_honachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dhoehen_honachfuehrung"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufe',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudebeschreibung',NULL,'gebaeudebeschreibung_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgebaeudeadressen_gebaeudeeingang');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_gebaeudenummerpos',NULL,'gebaeudenummerpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dbodenbedeckung_gebaeudenummer');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsnamepos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projbergwerk',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnamepos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projliegenschaft',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayoutsymbol',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnamepos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayoutsymbol',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_gebaeudenummer',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_gebaeudenummer"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_selbstrecht',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaeche',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_honachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenlinie',NULL,'geometrie','ch.ehi.ili2db.geomType','LINESTRING');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunkt',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dhoehen_hoehenpunkt"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaeche',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_projboflaeche"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayoutsymbol',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnamepos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_rlnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nummerierungsbereich',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dnummerierngsbrche_nummerierungsbereich"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_projgemeindegrenze',NULL,'projgemeindegrenze_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgemeindegrenzen_gemeinde');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschungpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95drutschgebiete_rutschungpos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projobjektnamepos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenlinie',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6',NULL,'plz6_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplzortschaft_ortschaft');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_rlnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurnamepos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2symbol',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie2_lfp2symbol"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_osnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3pos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'hilfslinie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueck',NULL,'gesamteflaechenmass','ch.ehi.ili2db.unit','m2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsnamepos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'anfangspunkt','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_punktelement',NULL,'geometrie','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplanrahmen_planlayout"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projbergwerk',NULL,'flaechenmass','ch.ehi.ili2db.unit','m2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_osnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2pos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnamepos',NULL,'objektnamepos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95deinzelobjekte_objektname');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_projgemeindegrenze',NULL,'geometrie','ch.ehi.ili2db.geomType','LINESTRING');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_leitungsobjektpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_gebaeudenummerpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_punktelement',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3pos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95drutschgebiete_rutschung"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunkt',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_leitungsobjekt',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95drohrleitungen_rlnachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_gelaendekante',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelement',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95deinzelobjekte_linienelement"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_plangeometrie',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_objektnamepos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_objektnamepos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnummer',NULL,'objektnummer_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95deinzelobjekte_einzelobjekt');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projgebaeudenummer',NULL,'projgebaeudenummer_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dbodenbedeckung_projboflaeche');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurname',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dnomenklatur_nknachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dkantonsgrenzen_kantonsgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschungpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_nknachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaechesymbol',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsname',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'plannullpunkt','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsnamepos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dnomenklatur_ortsnamepos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayoutsymbol',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnummerpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95deinzelobjekte_objektnummerpos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3pos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunktpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenanschriftpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_planpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufepos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projliegenschaft',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelementsymbol',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planbeschriftung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplanrahmen_planbeschriftung"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projobjektnamepos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_flaechenelement',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_objektname',NULL,'objektname_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dbodenbedeckung_boflaeche');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaechesymbol',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'hilfslinie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_bbnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3pos',NULL,'hfp3pos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie3_hfp3');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaeche',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dbodenbedeckung_bbnachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_lsnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_projgemeindegrenze',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6',NULL,'flaeche','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2pos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planbeschriftungpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaechesymbol',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_punktelement',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_leitungsobjektpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaechesymbol',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsverbund',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplzortschaft_ortschaftsverbund"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_lsnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunktpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_projgemeindegrenze',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenlinie',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunkt',NULL,'geometrie','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunkt',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95drohrleitungen_rlnachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'hilfslinie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelementsymbol',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie3_hfp3nachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'anfangspunkt','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1pos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'plannullpunkt','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1nachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie1_lfp1nachfuehrung"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6',NULL,'flaeche','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dliegenschaften_projgrundstueckpos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_linienelement',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelement',NULL,'geometrie','ch.ehi.ili2db.geomType','LINESTRING');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_gebaeudenummerpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelementsymbol',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_bergwerk',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsname',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_gelaendekante',NULL,'geometrie','ch.ehi.ili2db.c3Max','5000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschung',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3pos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projgebaeudenummerpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'hilfslinie','ch.ehi.ili2db.geomType','LINESTRING');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemeindegrenze',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgemeindegrenzen_gemnachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufepos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_gelaendekante',NULL,'geometrie','ch.ehi.ili2db.geomType','LINESTRING');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1pos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1symbol',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie1_lfp1symbol"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_aussparung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dhoehen_aussparung"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3symbol',NULL,'lfp3symbol_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie3_lfp3');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_nknachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelementsymbol',NULL,'flaechenelementsymbol_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95deinzelobjekte_flaechenelement');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnummer',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95deinzelobjekte_objektnummer"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_darstellungsflaeche',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelementsymbol',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnummerpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planbeschriftungpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_projgemeindegrenze',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgemeindegrenzen_gemnachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_linienelement',NULL,'geometrie','ch.ehi.ili2db.geomType','LINESTRING');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projgebaeudenummerpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nbgeometrie',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dlandesgrenzen_landesgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.geomType','LINESTRING');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsname_pos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunktpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3pos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschungpos',NULL,'rutschungpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95drutschgebiete_rutschung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_linienobjekt',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplanrahmen_linienobjekt"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planbeschriftungpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname_pos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunktpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'hilfslinie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname_pos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsnamepos',NULL,'ortsnamepos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dnomenklatur_ortsname');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2pos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_gelaendenamepos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueck',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dliegenschaften_lsnachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_gelaendekante',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_plangeometrie',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planbeschriftung',NULL,'planbeschriftung_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplanrahmen_planlayout');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'hilfslinie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenanschriftpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_liegenschaft',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudeeingang',NULL,'lage','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_rlnachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95drohrleitungen_rlnachfuehrung"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschungpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_osnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnummerpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_aussparung',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dhoehen_honachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6',NULL,'flaeche','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname_pos',NULL,'T_Type','ch.ehi.ili2db.types','["plzoch1lv95dplzortschaft_ortschaftsname_pos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_selbstrecht',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelement',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_benanntesgebiet',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgebaeudeadressen_benanntesgebiet"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_gebaeudenummerpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_gebaeudenummerpos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunkt',NULL,'geometrie','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_nknachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_osnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_aussparung',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_hausnummerpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_bbnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurnamepos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_honachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenanschriftpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1pos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudeeingang',NULL,'gebaeudeeingang_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgebaeudeadressen_lokalisation');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'T_Type','ch.ehi.ili2db.types','["plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelementsymbol',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_rlnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_projgemeindegrenze',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projobjektnamepos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_lsnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunktpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_selbstrecht',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dliegenschaften_selbstrecht"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenlinie',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplanrahmen_koordinatenlinie"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_leitungsobjektpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dkantonsgrenzen_kantonsgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_osnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1pos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_aussparung',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_honachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_gelaendenamepos',NULL,'gelaendenamepos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dnomenklatur_gelaendename');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_punktelement',NULL,'geometrie','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunktpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_planpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1',NULL,'hoehegeom','ch.ehi.ili2db.unit','m');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufepos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_punktelement',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_gebaeudenummerpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudename',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgebaeudeadressen_gebaeudename"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_punktelement',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaft',NULL,'T_Type','ch.ehi.ili2db.types','["plzoch1lv95dplzortschaft_ortschaft"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_gebaeudenummerpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueck',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dliegenschaften_projgrundstueck"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie2_hfp2"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunktpos',NULL,'einzelpunktpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dbodenbedeckung_einzelpunkt');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_osnachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplzortschaft_osnachfuehrung"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelementsymbol',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunktpos',NULL,'signalpunktpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95drohrleitungen_signalpunkt');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_objektname',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_objektname"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_lsnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_objektnamepos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunktpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunktpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunktpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname_pos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1pos',NULL,'lfp1pos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie1_lfp1');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2nachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie2_hfp2nachfuehrung"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'hilfslinie','ch.ehi.ili2db.geomType','LINESTRING');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayoutsymbol',NULL,'planlayoutsymbol_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplanrahmen_planlayout');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2',NULL,'hoehegeom','ch.ehi.ili2db.unit','m');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2pos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6',NULL,'flaeche','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_hausnummerpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsnamepos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaft',NULL,'ortschaft_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplzortschaft_ortschaftsverbund');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'projgrundstueckpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dliegenschaften_projgrundstueck');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_hausnummerpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelement',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktsymbol',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktsymbol"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'hilfslinie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_liegenschaft',NULL,'flaechenmass','ch.ehi.ili2db.unit','m2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1pos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_aussparung',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6',NULL,'flaeche','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_selbstrecht',NULL,'selbstrecht_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dliegenschaften_grundstueck');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projobjektname',NULL,'projobjektname_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dbodenbedeckung_projboflaeche');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dlandesgrenzen_landesgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2pos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelement',NULL,'linienelement_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95deinzelobjekte_einzelobjekt');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dlandesgrenzen_landesgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_flaechenelement',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'hilfslinie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2pos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayoutsymbol',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplanrahmen_planlayoutsymbol"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6',NULL,'entstehung','ch.ehi.ili2db.foreignKey','plzoch1lv95dplzortschaft_plz6nachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_liegenschaft',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projselbstrecht',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projliegenschaft',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelement',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_gelaendekante',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaeche',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_gelaendekante',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dhoehen_gelaendekante"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2pos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie2_lfp2pos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projgebaeudenummerpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_plangeometrie',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufe',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_objektnamepos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'plannullpunkt','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktsymbol',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_eonachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1symbol',NULL,'lfp1symbol_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie1_lfp1');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsnamepos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projselbstrecht',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaechesymbol',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_darstellungsflaeche',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaft',NULL,'flaeche','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_leitungsobjektpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaeche',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dkantonsgrenzen_kantonsgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnamepos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95deinzelobjekte_objektnamepos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaft',NULL,'flaeche','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenanschriftpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunkt',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dliegenschaften_grenzpunkt"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'uebersichtplannullpunkt','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_hausnummerpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projliegenschaft',NULL,'projliegenschaft_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dliegenschaften_projgrundstueck');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_gelaendekante',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2pos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projobjektnamepos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_objektnamepos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaechesymbol',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_bergwerk',NULL,'flaechenmass','ch.ehi.ili2db.unit','m2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2pos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunktpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_hausnummerpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nbgeometrie',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projliegenschaft',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projselbstrecht',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueck',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dliegenschaften_lsnachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunkt',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufe',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueck',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dliegenschaften_grundstueck"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_plan',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplaneinteilungen_plan"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaeche',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dbodenbedeckung_bbnachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_selbstrecht',NULL,'flaechenmass','ch.ehi.ili2db.unit','m2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurname',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dnomenklatur_flurname"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'anfangspunkt','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaechesymbol',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projobjektnamepos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_projobjektnamepos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsname_pos',NULL,'ortschaftsname_pos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplzortschaft_ortschaftsname');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'anfangspunkt','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2pos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_leitungsobjektpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_linienobjekt',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_linienobjekt',NULL,'linienobjekt_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplanrahmen_planlayout');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenanschriftpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschung',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_netzkreuz',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projgebaeudenummerpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie3_lfp3nachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_gelaendenamepos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname_pos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_projgemeindegrenze',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nbgeometrie',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1pos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurname',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsname',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplzortschaft_ortschaftsname"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nbgeometrie',NULL,'T_Type','ch.ehi.ili2db.types','["plzoch1lv95dnummerierngsbrche_nbgeometrie"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_flaechenelement',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_punktelement',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_gelaendenamepos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_liegenschaft',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaeche',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_bergwerk',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaechesymbol',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenanschriftpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projbergwerk',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_plangeometrie',NULL,'plangeometrie_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplaneinteilungen_plan');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2symbol',NULL,'lfp2symbol_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie2_lfp2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_liegenschaft',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufe',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurnamepos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nbgeometrie',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2',NULL,'hoehegeom','ch.ehi.ili2db.unit','m');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_bbnachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_bbnachfuehrung"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt',NULL,'geometrie','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbezirksgrenzen_bezirksgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_eonachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_darstellungsflaeche',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaft',NULL,'flaeche','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunkt',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3symbol',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie3_lfp3symbol"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurnamepos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_punktelement',NULL,'hoehegeom','ch.ehi.ili2db.unit','m');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dkantonsgrenzen_kantonsgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufepos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_planpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnummer',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95deinzelobjekte_objektnummer"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnummerpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_eonachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaechesymbol',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaechesymbol',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunktpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunktsymbol',NULL,'grenzpunktsymbol_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dliegenschaften_grenzpunkt');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschung',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenanschriftpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_gebaeudenummerpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_punktelement',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_planpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplaneinteilungen_planpos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenlinie',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projobjektnamepos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_nknachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'nummerierungsbereichpos_von','ch.ehi.ili2db.foreignKey','plzoch1lv95dnummerierngsbrche_nummerierungsbereich');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_osnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'hilfslinie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayoutsymbol',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_nknachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaechesymbol',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_boflaechesymbol"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaechesymbol',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelementsymbol',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktsymbol',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktsymbol"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaft',NULL,'flaeche','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projobjektnamepos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_selbstrecht',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_benanntesgebiet',NULL,'flaeche','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelement',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1pos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie1_hfp1pos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunktpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_gelaendename',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dnomenklatur_gelaendename"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunktpos',NULL,'grenzpunktpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dliegenschaften_grenzpunkt');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayoutsymbol',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie1_hfp1"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nbgeometrie',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaft',NULL,'flaeche','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1pos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie1_lfp1pos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projgebaeudenummerpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3pos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie3_hfp3pos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnummerpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_planpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaeche',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsnamepos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3nachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie3_hfp3nachfuehrung"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudeeingang',NULL,'lage','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projselbstrecht',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_flaechenelement',NULL,'flaechenelement_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95drohrleitungen_leitungsobjekt');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunkt',NULL,'geometrie','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayoutsymbol',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_bergwerk',NULL,'flaechenmass','ch.ehi.ili2db.unit','m2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemeindegrenze',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgemeindegrenzen_gemnachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaft',NULL,'flaeche','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_hausnummerpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgebaeudeadressen_hausnummerpos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunktpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'hilfslinie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projobjektnamepos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_honachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2pos',NULL,'hfp2pos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie2_hfp2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_flaechenelement',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2pos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_lsnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projgebaeudenummerpos',NULL,'projgebaeudenummerpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dbodenbedeckung_projgebaeudenummer');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunktpos',NULL,'hoehenpunktpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dhoehen_hoehenpunkt');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projbergwerk',NULL,'flaechenmass','ch.ehi.ili2db.unit','m2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_eonachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_lsnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschung',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_gelaendenamepos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_honachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_lsnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projselbstrecht',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnummerpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'hilfslinie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaft',NULL,'entstehung','ch.ehi.ili2db.foreignKey','plzoch1lv95dplzortschaft_osnachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnamepos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_plan',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplaneinteilungen_plan"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaechesymbol',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6',NULL,'flaeche','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktsymbol',NULL,'hoheitsgrenzpunktsymbol_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsnamepos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projobjektnamepos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelement',NULL,'geometrie','ch.ehi.ili2db.geomType','LINESTRING');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie3_lfp3"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueck',NULL,'gesamteflaechenmass','ch.ehi.ili2db.unit','m2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschungpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1symbol',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie1_lfp1symbol"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_osnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunkt',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95drohrleitungen_rlnachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_punktelement',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelementsymbol',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsname_pos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3pos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_osnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_gelaendenamepos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6',NULL,'flaeche','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname_pos',NULL,'T_Type','ch.ehi.ili2db.types','["plzoch1lv95dplzortschaft_ortschaftsname_pos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunktpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_gelaendekante',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dhoehen_gelaendekante"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayoutsymbol',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudeeingang',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgebaeudeadressen_gebaeudeeingang"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufe',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dtseinteilung_toleranzstufe"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsverbundtext',NULL,'T_Type','ch.ehi.ili2db.types','["plzoch1lv95dplzortschaft_ortschaftsverbundtext"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_leitungsobjektpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3pos',NULL,'lfp3pos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie3_lfp3');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_netzkreuz',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenanschriftpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nbgeometrie',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_bergwerk',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projgebaeudenummerpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplzortschaft_plz6nachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaechesymbol',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschungpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelement',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'hilfslinie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_projgemeindegrenze',NULL,'geometrie','ch.ehi.ili2db.geomType','LINESTRING');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projselbstrecht',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_punktelement',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenlinie',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_planpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschung',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_osnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_bergwerk',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaft',NULL,'flaeche','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1',NULL,'geometrie','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschung',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurnamepos',NULL,'flurnamepos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dnomenklatur_flurname');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_planpos',NULL,'planpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplaneinteilungen_plan');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_flaechenelement',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'plannullpunkt','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_benanntesgebiet',NULL,'flaeche','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_projgemeindegrenze',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_linienobjekt',NULL,'geometrie','ch.ehi.ili2db.geomType','LINESTRING');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_linienelement',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_punktelement',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_rlnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3pos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie2_hfp2nachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunkt',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_bbnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnamepos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_hausnummerpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projobjektnamepos',NULL,'projobjektnamepos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dbodenbedeckung_projobjektname');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelobjekt',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95deinzelobjekte_einzelobjekt"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_planpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelementsymbol',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunktpos',NULL,'einzelpunktpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95deinzelobjekte_einzelpunkt');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1pos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'hilfslinie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsnamepos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenanschriftpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6',NULL,'flaeche','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6nachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplzortschaft_plz6nachfuehrung"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_hausnummerpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnamepos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_aussparung',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dhoehen_honachfuehrung');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunkt',NULL,'geometrie','ch.ehi.ili2db.coordDimension','3');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dlandesgrenzen_landesgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.geomType','LINESTRING');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dkantonsgrenzen_kantonsgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.geomType','LINESTRING');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_gebaeudenummerpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planbeschriftungpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_plangeometrie',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgemeindegrenzen_gemnachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschung',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelementsymbol',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_aussparung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dhoehen_aussparung"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufe',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenanschriftpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbezirksgrenzen_bezirksgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.geomType','LINESTRING');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_hausnummerpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projbergwerk',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2pos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'hilfslinie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaechesymbol',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunkt',NULL,'geometrie','ch.ehi.ili2db.c3Max','5000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_liegenschaft',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dliegenschaften_liegenschaft"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_aussparung',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1pos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2',NULL,'hoehegeom','ch.ehi.ili2db.unit','m');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschung',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_projgemeindegrenze',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurname',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_darstellungsflaeche',NULL,'darstellungsflaeche_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplanrahmen_planlayout');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_gebaeudenummerpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1pos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnamepos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_rlnachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95drohrleitungen_rlnachfuehrung"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3pos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaechesymbol',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_honachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_osnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1pos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunkt',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95drohrleitungen_rlnachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudebeschreibung',NULL,'gebaeudebeschreibung_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgebaeudeadressen_gebaeudeeingang');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_netzkreuz',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planbeschriftung',NULL,'planbeschriftung_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplanrahmen_planlayout');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_punktelement',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaeche',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_benanntesgebiet',NULL,'flaeche','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_honachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_projgemeindegrenze',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planbeschriftungpos',NULL,'planbeschriftungpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplanrahmen_planbeschriftung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufe',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'hilfslinie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planbeschriftung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplanrahmen_planbeschriftung"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaeche',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelementsymbol',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelement',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'anfangspunkt','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'hilfslinie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaechesymbol',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1nachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie1_lfp1nachfuehrung"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemeindegrenze',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_osnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaft',NULL,'flaeche','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3pos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6',NULL,'flaeche','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_bbnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_linienelement',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95drohrleitungen_linienelement"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6',NULL,'flaeche','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaeche',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dbodenbedeckung_bbnachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_objektname',NULL,'objektname_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dbodenbedeckung_boflaeche');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_aussparung',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_leitungsobjektpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_linienobjekt',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_eonachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95deinzelobjekte_eonachfuehrung"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_linienobjekt',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufe',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_punktelement',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_gelaendekante',NULL,'geometrie','ch.ehi.ili2db.geomType','LINESTRING');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaeche',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_bergwerk',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurnamepos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaft',NULL,'flaeche','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_linienobjekt',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelementsymbol',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunkt',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname_pos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2pos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_gelaendekante',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1pos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projliegenschaft',NULL,'projliegenschaft_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dliegenschaften_projgrundstueck');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_objektname',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_objektname"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'hilfslinie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_plangeometrie',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenlinie',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_darstellungsflaeche',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'plannullpunkt','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemeindegrenze',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelement',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_gelaendenamepos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurname',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nbgeometrie',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nbgeometrie',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_projgemeindegrenze',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dkantonsgrenzen_kantonsgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelementsymbol',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95deinzelobjekte_flaechenelementsymbol"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_linienelement',NULL,'linienelement_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95drohrleitungen_leitungsobjekt');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1pos',NULL,'hfp1pos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie1_hfp1');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projobjektname',NULL,'projobjektname_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dbodenbedeckung_projboflaeche');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_plangeometrie',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurname',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelementsymbol',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2pos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_bbnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunkt',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'hilfslinie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'hilfslinie','ch.ehi.ili2db.geomType','LINESTRING');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_bbnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dkantonsgrenzen_kantonsgrenzabschnitt',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dkantonsgrenzen_kantonsgrenzabschnitt"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_linienelement',NULL,'geometrie','ch.ehi.ili2db.geomType','LINESTRING');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planbeschriftungpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufe',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_hausnummerpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'hilfslinie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_objektnamepos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_objektnamepos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebnachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgebaeudeadressen_gebnachfuehrung"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_linienelement',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_punktelement',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnamepos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunktpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayoutsymbol',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_punktelement',NULL,'geometrie','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunkt',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'nummerierungsbereichpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dnummerierngsbrche_nummerierungsbereich');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie3_lfp3nachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunkt',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projbergwerk',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemeindegrenze',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_osnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_objektnamepos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1nachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie1_hfp1nachfuehrung"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudeeingang',NULL,'lage','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie3_hfp3"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayoutsymbol',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_eonachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_linienobjekt',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaechesymbol',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelementsymbol',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_gelaendekante',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'hilfslinie','ch.ehi.ili2db.geomType','LINESTRING');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenanschriftpos',NULL,'koordinatenanschriftpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplanrahmen_koordinatenanschrift');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projobjektnamepos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaechesymbol',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_projboflaechesymbol"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnummerpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95deinzelobjekte_objektnummerpos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_bbnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt',NULL,'geometrie','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunktpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschungpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95drutschgebiete_rutschungpos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3pos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_liegenschaft',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufepos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaft',NULL,'flaeche','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie2_lfp2"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudeeingang',NULL,'lage','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_benanntesgebiet',NULL,'flaeche','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaechesymbol',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbezirksgrenzen_bezirksgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnummerpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'hilfslinie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbezirksgrenzen_bezirksgrenzabschnitt',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbezirksgrenzen_bezirksgrenzabschnitt"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'uebersichtplannullpunkt','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projgebaeudenummerpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_benanntesgebiet',NULL,'flaeche','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie1_lfp1nachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'plannullpunkt','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_gelaendenamepos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2pos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_plangeometrie',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplaneinteilungen_plangeometrie"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_selbstrecht',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'anfangspunkt','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'strassenstueck_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgebaeudeadressen_lokalisation');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_plangeometrie',NULL,'plangeometrie_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplaneinteilungen_plan');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_bbnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projgebaeudenummer',NULL,'projgebaeudenummer_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dbodenbedeckung_projboflaeche');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurnamepos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsname',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunktpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsname_pos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplzortschaft_ortschaftsname_pos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_hausnummerpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2symbol',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_rlnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3',NULL,'geometrie','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_bergwerk',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_rlnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktsymbol',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsname_pos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunktpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_objektnamepos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_punktelement',NULL,'punktelement_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95drohrleitungen_leitungsobjekt');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_projgemeindegrenze',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaft',NULL,'flaeche','ch.ehi.ili2db.c1Max','2850000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'hilfslinie','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_nknachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dnomenklatur_nknachfuehrung"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_linienobjekt',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projgebaeudenummerpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1pos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'gebaeudenamepos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgebaeudeadressen_gebaeudename');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_plangeometrie',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplaneinteilungen_plangeometrie"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'anfangspunkt','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_leitungsobjekt',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95drohrleitungen_leitungsobjekt"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_honachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_projgemeindegrenze',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgemeindegrenzen_projgemeindegrenze"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_objektnamepos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_flaechenelement',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurname',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaechesymbol',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_hausnummerpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgebaeudeadressen_hausnummerpos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projobjektnamepos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgemeindegrenzen_gemnachfuehrung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufepos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1pos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie1_lfp1pos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktpos',NULL,'hoheitsgrenzpunktpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dkantonsgrenzen_kantonsgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelementsymbol',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_gelaendenamepos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1pos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisation',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgebaeudeadressen_lokalisation"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunktpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_einzelpunktpos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaeche',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelobjekt',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95deinzelobjekte_einzelobjekt"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnamepos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3symbol',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnummerpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_plangeometrie',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunkt',NULL,'geometrie','ch.ehi.ili2db.c3Min','-200.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nbgeometrie',NULL,'nbgeometrie_von','ch.ehi.ili2db.foreignKey','plzoch1lv95dnummerierngsbrche_nummerierungsbereich');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projselbstrecht',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dliegenschaften_projselbstrecht"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunkt',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'grundstueckpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dliegenschaften_grundstueck');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenlinie',NULL,'koordinatenlinie_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplanrahmen_planlayout');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95drutschgebiete_rutschung"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'hilfslinie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'hilfslinie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'e_azimut','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1',NULL,'hoehegeom','ch.ehi.ili2db.unit','m');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'hilfslinie','ch.ehi.ili2db.geomType','LINESTRING');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_nknachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_rlnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenanschriftpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_honachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaechesymbol',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_rlnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_leitungsobjektpos',NULL,'leitungsobjektpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95drohrleitungen_leitungsobjekt');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschung',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_bbnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_linienelement',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunktpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunktpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_planpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projliegenschaft',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dliegenschaften_projliegenschaft"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_punktelement',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbezirksgrenzen_bezirksgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaft',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplzortschaft_osnachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6',NULL,'flaeche','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_rlnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschungpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nummerierungsbereich',NULL,'T_Type','ch.ehi.ili2db.types','["plzoch1lv95dnummerierngsbrche_nummerierungsbereich"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgebaeudeadressen_gebaeudenamepos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunktpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2pos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_rlnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbezirksgrenzen_bezirksgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'anfangspunkt','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenanschrift',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplanrahmen_koordinatenanschrift"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_nknachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaft',NULL,'ortschaft_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplzortschaft_ortschaftsverbund');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_leitungsobjektpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95drohrleitungen_leitungsobjektpos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudeeingang',NULL,'lage','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1pos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaft',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplzortschaft_ortschaft"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'hilfslinie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsname',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunktpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projobjektnamepos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'anfangspunkt','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_benanntesgebiet',NULL,'flaeche','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_projgemeindegrenze',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nbgeometrie',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurnamepos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufe',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunkt',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dbodenbedeckung_bbnachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projliegenschaft',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsname_pos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelement',NULL,'flaechenelement_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95deinzelobjekte_einzelobjekt');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_darstellungsflaeche',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nbgeometrie',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_linienobjekt',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_linienelement',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_netzkreuz',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6nachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["plzoch1lv95dplzortschaft_plz6nachfuehrung"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaeche',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'hilfslinie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunktpos',NULL,'einzelpunktpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dbodenbedeckung_einzelpunkt');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3pos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelementsymbol',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_linienelement',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_gelaendenamepos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_darstellungsflaeche',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_aussparung',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projliegenschaft',NULL,'flaechenmass','ch.ehi.ili2db.unit','m2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dkantonsgrenzen_kantonsgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsname_pos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_gebaeudenummerpos',NULL,'gebaeudenummerpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dbodenbedeckung_gebaeudenummer');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayoutsymbol',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaeche',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projselbstrecht',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_punktelement',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektname',NULL,'objektname_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95deinzelobjekte_einzelobjekt');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1symbol',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6',NULL,'flaeche','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaeche',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_boflaeche"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_projgemeindegrenze',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgemeindegrenzen_gemnachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsname',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_lsnachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dliegenschaften_lsnachfuehrung"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschungpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplanrahmen_planlayout"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsnamepos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dnomenklatur_ortsnamepos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurnamepos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_gelaendenamepos',NULL,'gelaendenamepos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dnomenklatur_gelaendename');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueck',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dliegenschaften_grundstueck"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_benanntesgebiet',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgebaeudeadressen_benanntesgebiet"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_plangeometrie',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunkt',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_einzelpunkt"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2pos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dlandesgrenzen_landesgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktpos',NULL,'hoheitsgrenzpunktpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planbeschriftungpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projbergwerk',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_selbstrecht',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1',NULL,'geometrie','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3symbol',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname_pos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_darstellungsflaeche',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projbergwerk',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelement',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunktpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95drohrleitungen_einzelpunktpos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_planpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projbergwerk',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nbgeometrie',NULL,'T_Type','ch.ehi.ili2db.types','["plzoch1lv95dnummerierngsbrche_nbgeometrie"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaechesymbol',NULL,'projboflaechesymbol_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dbodenbedeckung_projboflaeche');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_gelaendekante',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planbeschriftungpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunkt',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dliegenschaften_lsnachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunkt',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nbgeometrie',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie1_hfp1nachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3pos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufepos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1pos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunkt',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_bergwerk',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_plangeometrie',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projselbstrecht',NULL,'projselbstrecht_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dliegenschaften_projgrundstueck');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_punktelement',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunkt',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dliegenschaften_grenzpunkt"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_punktelement',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaeche',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'hilfslinie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nbgeometrie',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurname',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dnomenklatur_nknachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3pos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemeindegrenze',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_objektnamepos',NULL,'objektnamepos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dbodenbedeckung_objektname');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_objektnamepos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_honachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dhoehen_honachfuehrung"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaft',NULL,'flaeche','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1',NULL,'hoehegeom','ch.ehi.ili2db.unit','m');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaeche',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurname',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunktpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurnamepos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projliegenschaft',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektname',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95deinzelobjekte_objektname"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3pos',NULL,'hfp3pos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie3_hfp3');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6',NULL,'flaeche','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projselbstrecht',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnummerpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_gelaendekante',NULL,'geometrie','ch.ehi.ili2db.coordDimension','3');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufe',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'hilfslinie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'uebersichtplannullpunkt','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname_pos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dlandesgrenzen_landesgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_osnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2pos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenanschrift',NULL,'koordinatenanschrift_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplanrahmen_planlayout');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6',NULL,'entstehung','ch.ehi.ili2db.foreignKey','plzoch1lv95dplzortschaft_plz6nachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_osnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_liegenschaft',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nummerierungsbereich',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dnummerierngsbrche_nummerierungsbereich"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_punktelement',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_liegenschaft',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunkt',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaechesymbol',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunktpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95deinzelobjekte_einzelpunktpos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunktpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dlandesgrenzen_landesgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'hilfslinie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_lsnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsname',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgebaeudeadressen_lokalisationsname"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaechesymbol',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelementsymbol',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_darstellungsflaeche',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplanrahmen_darstellungsflaeche"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_liegenschaft',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsnamepos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemeindegrenze',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgemeindegrenzen_gemeindegrenze"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurname',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_bergwerk',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsverbundtext',NULL,'ortschaftsverbundtext_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplzortschaft_ortschaftsverbund');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueck',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dliegenschaften_lsnachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufepos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dtseinteilung_toleranzstufepos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufe',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayoutsymbol',NULL,'planlayoutsymbol_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplanrahmen_planlayout');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2pos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnamepos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunkt',NULL,'geometrie','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_nknachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'anfangspunkt','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_aussparung',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dkantonsgrenzen_kantonsgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudeeingang',NULL,'lage','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projobjektnamepos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaechesymbol',NULL,'boflaechesymbol_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dbodenbedeckung_boflaeche');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_linienobjekt',NULL,'linienobjekt_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplanrahmen_planlayout');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsname_pos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnamepos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemeindegrenze',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurname',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaeche',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_gelaendekante',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'anfangspunkt','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_liegenschaft',NULL,'flaechenmass','ch.ehi.ili2db.unit','m2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_gebaeudenummer',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_gebaeudenummer"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'geometrie','ch.ehi.ili2db.geomType','LINESTRING');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2pos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_gelaendenamepos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'lokalisationsnamepos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgebaeudeadressen_lokalisationsname');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname_pos',NULL,'ortschaftsname_pos_von','ch.ehi.ili2db.foreignKey','plzoch1lv95dplzortschaft_ortschaftsname');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'plannullpunkt','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudename',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgebaeudeadressen_gebaeudename"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaeche',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunkt',NULL,'geometrie','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'hilfslinie','ch.ehi.ili2db.geomType','LINESTRING');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_leitungsobjekt',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95drohrleitungen_leitungsobjekt"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_flaechenelement',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemnachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgemeindegrenzen_gemnachfuehrung"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_benanntesgebiet',NULL,'flaeche','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dkantonsgrenzen_kantonsgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunkt',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_punktelement',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95deinzelobjekte_punktelement"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaft',NULL,'flaeche','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname_pos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1pos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaft',NULL,'flaeche','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurnamepos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnummer',NULL,'objektnummer_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95deinzelobjekte_einzelobjekt');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufepos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projliegenschaft',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsname_pos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurname',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6',NULL,'flaeche','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_netzkreuz',NULL,'netzkreuz_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplanrahmen_planlayout');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_gebaeudenummer',NULL,'gebaeudenummer_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dbodenbedeckung_boflaeche');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_flaechenelement',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunktsymbol',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dliegenschaften_grenzpunktsymbol"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaechesymbol',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1pos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_leitungsobjektpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_objektnamepos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunktpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'uebersichtplannullpunkt','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelement',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projgebaeudenummerpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunktpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunkt',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95drohrleitungen_einzelpunkt"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsverbund',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplzortschaft_ortschaftsverbund"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3pos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3pos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_gebaeudenummerpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelementsymbol',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_punktelement',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelement',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_hausnummerpos',NULL,'hausnummerpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgebaeudeadressen_gebaeudeeingang');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3pos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnamepos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95deinzelobjekte_objektnamepos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsname_pos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnamepos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_selbstrecht',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_gebaeudenummerpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1pos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projbergwerk',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisation',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgebaeudeadressen_lokalisation"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nbgeometrie',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_aussparung',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenanschriftpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projgebaeudenummerpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_projgebaeudenummerpos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplzortschaft_plz6"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsname',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dnomenklatur_ortsname"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueck',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dliegenschaften_lsnachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3pos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname_pos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsname',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'plannullpunkt','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1pos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_bergwerk',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2pos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_leitungsobjektpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'uebersichtplannullpunkt','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaft',NULL,'flaeche','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6',NULL,'flaeche','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_netzkreuz',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3pos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_hausnummerpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projliegenschaft',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunktpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planbeschriftungpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudebeschreibung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgebaeudeadressen_gebaeudebeschreibung"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1symbol',NULL,'lfp1symbol_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie1_lfp1');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudename',NULL,'gebaeudename_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgebaeudeadressen_gebaeudeeingang');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_objektnamepos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projselbstrecht',NULL,'flaechenmass','ch.ehi.ili2db.unit','m2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_leitungsobjektpos',NULL,'leitungsobjektpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95drohrleitungen_leitungsobjekt');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'hilfslinie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projselbstrecht',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projselbstrecht',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaft',NULL,'flaeche','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaeche',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufepos',NULL,'toleranzstufepos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dtseinteilung_toleranzstufe');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsname_pos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_linienobjekt',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplanrahmen_linienobjekt"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunktpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dhoehen_hoehenpunktpos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3',NULL,'hoehegeom','ch.ehi.ili2db.unit','m');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projgebaeudenummerpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaeche',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_lsnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_liegenschaft',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_punktelement',NULL,'punktelement_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95deinzelobjekte_einzelobjekt');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_selbstrecht',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelement',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1pos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2pos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_gelaendekante',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_linienelement',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nbgeometrie',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelement',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nbgeometrie',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_netzkreuz',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayoutsymbol',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelementsymbol',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1pos',NULL,'lfp1pos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie1_lfp1');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelement',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projgebaeudenummerpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_gebaeudenummerpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_gebaeudenummerpos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie1_lfp1"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_benanntesgebiet',NULL,'benanntesgebiet_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgebaeudeadressen_lokalisation');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaeche',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dbodenbedeckung_bbnachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_osnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_gebaeudenummerpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_osnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_selbstrecht',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6',NULL,'flaeche','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_flaechenelement',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'hilfslinie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2pos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie2_lfp2pos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunktpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95drohrleitungen_signalpunktpos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_projgemeindegrenze',NULL,'projgemeindegrenze_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgemeindegrenzen_gemeinde');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projbergwerk',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dliegenschaften_projbergwerk"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1pos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6',NULL,'plz6_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplzortschaft_ortschaft');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_eonachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_gelaendekante',NULL,'geometrie','ch.ehi.ili2db.c3Min','-200.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnummerpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6',NULL,'T_Type','ch.ehi.ili2db.types','["plzoch1lv95dplzortschaft_plz6"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnummerpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsname',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'uebersichtplannullpunkt','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunkt',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dhoehen_honachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelement',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunktpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6',NULL,'flaeche','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsname',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplzortschaft_ortschaftsname"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsnamepos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschung',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunkt',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_selbstrecht',NULL,'selbstrecht_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dliegenschaften_grundstueck');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktpos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_gebaeudenummerpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelementsymbol',NULL,'flaechenelementsymbol_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95deinzelobjekte_flaechenelement');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dlandesgrenzen_landesgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_netzkreuz',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplanrahmen_netzkreuz"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dlandesgrenzen_landesgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbezirksgrenzen_bezirksgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_gelaendenamepos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dnomenklatur_gelaendenamepos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projgebaeudenummerpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_plangeometrie',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_planpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3nachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie3_lfp3nachfuehrung"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelement',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelementsymbol',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemeindegrenze',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschungpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelementsymbol',NULL,'linienelementsymbol_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95deinzelobjekte_linienelement');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dlandesgrenzen_landesgrenzabschnitt',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dlandesgrenzen_landesgrenzabschnitt"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_selbstrecht',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dliegenschaften_selbstrecht"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisation',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgebaeudeadressen_gebnachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname',NULL,'ortschaftsname_von','ch.ehi.ili2db.foreignKey','plzoch1lv95dplzortschaft_ortschaft');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nbgeometrie',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_darstellungsflaeche',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschungpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projobjektnamepos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_projobjektnamepos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'plannullpunkt','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunkt',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueck',NULL,'gesamteflaechenmass','ch.ehi.ili2db.unit','m2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_flaechenelement',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2symbol',NULL,'lfp2symbol_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie2_lfp2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunkt',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dhoehen_hoehenpunkt"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_gelaendename',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dnomenklatur_nknachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'hilfslinie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunktpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_punktelement',NULL,'hoehegeom','ch.ehi.ili2db.unit','m');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'T_Type','ch.ehi.ili2db.types','["plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelementsymbol',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenanschriftpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplanrahmen_koordinatenanschriftpos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planbeschriftungpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_linienobjekt',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaechesymbol',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_honachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname_pos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenlinie',NULL,'geometrie','ch.ehi.ili2db.geomType','LINESTRING');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenlinie',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nbgeometrie',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projliegenschaft',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_osnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projliegenschaft',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunkt',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname_pos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3pos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projgebaeudenummer',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_projgebaeudenummer"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projbergwerk',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunkt',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95deinzelobjekte_eonachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3',NULL,'hoehegeom','ch.ehi.ili2db.unit','m');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_eonachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_eonachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_honachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname',NULL,'T_Type','ch.ehi.ili2db.types','["plzoch1lv95dplzortschaft_ortschaftsname"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsname',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudeeingang',NULL,'lage','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'anfangspunkt','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaft',NULL,'T_Type','ch.ehi.ili2db.types','["plzoch1lv95dplzortschaft_ortschaft"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschungpos',NULL,'rutschungpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95drutschgebiete_rutschung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_objektnamepos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnamepos',NULL,'objektnamepos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95deinzelobjekte_objektname');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudeeingang',NULL,'gebaeudeeingang_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgebaeudeadressen_lokalisation');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemeinde',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgemeindegrenzen_gemeinde"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_gelaendekante',NULL,'geometrie','ch.ehi.ili2db.c3Max','5000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'gebaeudenamepos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgebaeudeadressen_gebaeudename');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_osnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projgebaeudenummerpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufepos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_leitungsobjektpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsname',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsnamepos',NULL,'ortsnamepos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dnomenklatur_ortsname');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelementsymbol',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbezirksgrenzen_bezirksgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'uebersichtplannullpunkt','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsverbundtext',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplzortschaft_ortschaftsverbundtext"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_gelaendenamepos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2pos',NULL,'lfp2pos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie2_lfp2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_hausnummerpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunktpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6',NULL,'flaeche','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projobjektname',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_projobjektname"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunkt',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueck',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dliegenschaften_projgrundstueck"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsname',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dnomenklatur_nknachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsnamepos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_objektnamepos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dkantonsgrenzen_kantonsgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_netzkreuz',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_nknachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_aussparung',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudeeingang',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgebaeudeadressen_gebnachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaeche',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_projboflaeche"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelement',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95deinzelobjekte_flaechenelement"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_darstellungsflaeche',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelobjekt',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95deinzelobjekte_eonachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_selbstrecht',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsverbund',NULL,'T_Type','ch.ehi.ili2db.types','["plzoch1lv95dplzortschaft_ortschaftsverbund"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2pos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunktpos',NULL,'signalpunktpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95drohrleitungen_signalpunkt');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsname_pos',NULL,'ortschaftsname_pos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplzortschaft_ortschaftsname');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_leitungsobjektpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3pos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnummerpos',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_nknachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie2_hfp2"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenanschriftpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenlinie',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunktpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunkt',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaeche',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunktpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dkantonsgrenzen_kantonsgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschungpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_aussparung',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelement',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6',NULL,'flaeche','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_osnachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["plzoch1lv95dplzortschaft_osnachfuehrung"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_hausnummerpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2nachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie2_hfp2nachfuehrung"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3pos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie3_lfp3pos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3symbol',NULL,'lfp3symbol_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie3_lfp3');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_lsnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsverbundtext',NULL,'ortschaftsverbundtext_von','ch.ehi.ili2db.foreignKey','plzoch1lv95dplzortschaft_ortschaftsverbund');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_eonachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_osnachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplzortschaft_osnachfuehrung"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_gelaendekante',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dhoehen_honachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_nknachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dnomenklatur_nknachfuehrung"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurnamepos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nbgeometrie',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dnummerierngsbrche_nbgeometrie"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunktpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurnamepos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dnomenklatur_flurnamepos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunktpos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2',NULL,'geometrie','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenlinie',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplanrahmen_koordinatenlinie"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_gelaendenamepos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelement',NULL,'linienelement_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95deinzelobjekte_einzelobjekt');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufepos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projbergwerk',NULL,'projbergwerk_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dliegenschaften_projgrundstueck');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2symbol',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie2_lfp2symbol"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planbeschriftungpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemeindegrenze',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufepos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunktpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'hilfslinie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsname',NULL,'benannte','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgebaeudeadressen_lokalisation');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudeeingang',NULL,'lage','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2pos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurnamepos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunkt',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95deinzelobjekte_einzelpunkt"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_flaechenelement',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelementsymbol',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_plangeometrie',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_projgemeindegrenze',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgemeindegrenzen_projgemeindegrenze"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemeindegrenze',NULL,'gemeindegrenze_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgemeindegrenzen_gemeinde');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dliegenschaften_projgrundstueckpos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planbeschriftungpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplanrahmen_planbeschriftungpos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'projgrundstueckpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dliegenschaften_projgrundstueck');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dliegenschaften_grundstueckpos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnummerpos',NULL,'objektnummerpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95deinzelobjekte_objektnummer');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsnamepos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_liegenschaft',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6',NULL,'plz6_von','ch.ehi.ili2db.foreignKey','plzoch1lv95dplzortschaft_ortschaft');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_lsnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2',NULL,'geometrie','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planbeschriftungpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurname',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dnomenklatur_flurname"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaft',NULL,'ortschaft_von','ch.ehi.ili2db.foreignKey','plzoch1lv95dplzortschaft_ortschaftsverbund');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsnamepos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunktpos',NULL,'einzelpunktpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95drohrleitungen_einzelpunkt');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_punktelement',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_liegenschaft',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_osnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname_pos',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1pos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_bergwerk',NULL,'bergwerk_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dliegenschaften_grundstueck');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_punktelement',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95drohrleitungen_punktelement"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3pos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgebaeudeadressen_strassenstueck"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_netzkreuz',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunktpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_einzelpunktpos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1pos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_punktelement',NULL,'geometrie','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projliegenschaft',NULL,'geometrie','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunkt',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95drohrleitungen_signalpunkt"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_flaechenelement',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95drohrleitungen_flaechenelement"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaft',NULL,'flaeche','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelement',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95deinzelobjekte_linienelement"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_netzkreuz',NULL,'pos','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2pos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'uebersichtplannullpunkt','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsname',NULL,'ortschaftsname_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplzortschaft_ortschaft');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunktpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufepos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunktpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dliegenschaften_grenzpunktpos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_leitungsobjektpos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaechesymbol',NULL,'pos','ch.ehi.ili2db.c2Min','1070000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3',NULL,'geometrie','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_darstellungsflaeche',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelementsymbol',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95deinzelobjekte_linienelementsymbol"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3symbol',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie3_lfp3symbol"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_leitungsobjekt',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95drohrleitungen_rlnachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschungpos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'hilfslinie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_liegenschaft',NULL,'liegenschaft_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dliegenschaften_grundstueck');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie3_hfp3nachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_rlnachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nbgeometrie',NULL,'nbgeometrie_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dnummerierngsbrche_nummerierungsbereich');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_leitungsobjektpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_bergwerk',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dliegenschaften_bergwerk"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_objektnamepos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunkt',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projobjektnamepos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunkt',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nbgeometrie',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dlandesgrenzen_landesgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2pos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie2_hfp2pos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_bbnachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_bbnachfuehrung"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenlinie',NULL,'geometrie','ch.ehi.ili2db.c1Min','2480000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaeche',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1pos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_gebaeudenummerpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_signalpunktpos',NULL,'pos','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_selbstrecht',NULL,'flaechenmass','ch.ehi.ili2db.unit','m2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout',NULL,'plannullpunkt','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunkt',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunktsymbol',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'pos','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunktpos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbezirksgrenzen_bezirksgrenzabschnitt',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('DM.01-AV-CH_LV95_24d_ili1.ili','1.0','DM01AVCH24LV95D','
 TRANSFER INTERLIS1;
 
@@ -15102,7 +15102,7 @@ CODE
   TID = ANY;
 END.
 
-','2019-08-05 16:42:07.377');
+','2019-08-12 07:42:15.203');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('PLZO-CH_LV95_1d_ili1.ili','1.0','PLZOCH1LV95D','
 TRANSFER INTERLIS1;
 
@@ -15325,7 +15325,7 @@ CODE
   TID = ANY;
 END.
 
-','2019-08-05 16:42:07.377');
+','2019-08-12 07:42:15.203');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createMetaInfo','True');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.arrayTrafo','coalesce');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.nameOptimization','disable');
@@ -16912,7 +16912,7 @@ REFSYSTEM MODEL CoordSys (en) AT "http://www.interlis.ch/models"
 
 END CoordSys.
 
-','2019-08-05 16:42:09.304');
+','2019-08-12 07:42:18.799');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMvs_V1_1.ili','2.3','OeREBKRMvs_V1_1{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1}','INTERLIS 2.3;
 
 /** Basisdefinition für Erlasse (Rechtsvorschriften, Hinweise auf Gesetzliche Grundlagen)
@@ -17034,7 +17034,7 @@ VERSION "2016-08-15"  =
   END HinweiseGesetzlicheGrundlagen;
 
 END OeREBKRMvs_V1_1.
-','2019-08-05 16:42:09.304');
+','2019-08-12 07:42:18.799');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREB_ExtractAnnex_V1_0.ili','2.3','OeREB_ExtractAnnex_V1_0{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1 CatalogueObjects_V1}','INTERLIS 2.3;
 
 /** Zusatzdaten für statischen OEREB-Auszug
@@ -17148,7 +17148,7 @@ VERSION "2019-07-24"  =
     
 
 END OeREB_ExtractAnnex_V1_0.
-','2019-08-05 16:42:09.304');
+','2019-08-12 07:42:18.799');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRM_V1_1.ili','2.3','OeREBKRM_V1_1{ InternationalCodes_V1 LocalisationCH_V1 CatalogueObjects_V1}','INTERLIS 2.3;
 
 /** Basisdefinitionen für das OEREB-Katasterrahmenmodell
@@ -17312,7 +17312,7 @@ VERSION "2016-08-15"  =
   END CodelistenText;
 
 END OeREBKRM_V1_1.
-','2019-08-05 16:42:09.304');
+','2019-08-12 07:42:18.799');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part1_GEOMETRY_20110830.ili','2.3','GeometryCHLV03_V1{ CoordSys Units INTERLIS} GeometryCHLV95_V1{ CoordSys Units INTERLIS}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -17490,7 +17490,7 @@ TYPE MODEL GeometryCHLV95_V1 (en)
 END GeometryCHLV95_V1.
 
 !! ########################################################################
-','2019-08-05 16:42:09.304');
+','2019-08-12 07:42:18.799');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMtrsfr_V1_1.ili','2.3','OeREBKRMtrsfr_V1_1{ GeometryCHLV95_V1 CHAdminCodes_V1 LocalisationCH_V1 GeometryCHLV03_V1 OeREBKRM_V1_1 OeREBKRMvs_V1_1}','INTERLIS 2.3;
 
 /** Schnittstelle zwischen zuständiger Stelle für die Geobasisdaten und Katasterorganisation des Kantons.
@@ -17674,7 +17674,7 @@ VERSION "2016-08-15"  =
   END Transferstruktur;
 
 END OeREBKRMtrsfr_V1_1.
-','2019-08-05 16:42:09.304');
+','2019-08-12 07:42:18.799');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part4_ADMINISTRATIVEUNITS_20110830.ili','2.3','CHAdminCodes_V1 AdministrativeUnits_V1{ CHAdminCodes_V1 InternationalCodes_V1 Dictionaries_V1 Localisation_V1 INTERLIS} AdministrativeUnitsCH_V1{ CHAdminCodes_V1 InternationalCodes_V1 LocalisationCH_V1 AdministrativeUnits_V1 INTERLIS}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -17894,7 +17894,7 @@ MODEL AdministrativeUnitsCH_V1 (en)
 END AdministrativeUnitsCH_V1.
 
 !! ########################################################################
-','2019-08-05 16:42:09.304');
+','2019-08-12 07:42:18.799');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part2_LOCALISATION_20110830.ili','2.3','InternationalCodes_V1 Localisation_V1{ InternationalCodes_V1} LocalisationCH_V1{ InternationalCodes_V1 Localisation_V1} Dictionaries_V1{ InternationalCodes_V1} DictionariesCH_V1{ InternationalCodes_V1 Dictionaries_V1}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -18066,7 +18066,7 @@ MODEL DictionariesCH_V1 (en)
 END DictionariesCH_V1.
 
 !! ########################################################################
-','2019-08-05 16:42:09.304');
+','2019-08-12 07:42:18.799');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.ili','2.3','SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822{ GeometryCHLV95_V1 CHAdminCodes_V1}','INTERLIS 2.3;
 
 /** !!------------------------------------------------------------------------------
@@ -18200,7 +18200,7 @@ VERSION "2018-08-22"  =
   END Nachfuehrungskreise;
 
 END SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.
-','2019-08-05 16:42:09.304');
+','2019-08-12 07:42:18.799');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part3_CATALOGUEOBJECTS_20110830.ili','2.3','CatalogueObjects_V1{ INTERLIS} CatalogueObjectTrees_V1{ INTERLIS CatalogueObjects_V1}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -18288,7 +18288,7 @@ MODEL CatalogueObjectTrees_V1 (en)
 END CatalogueObjectTrees_V1.
 
 !! ########################################################################
-','2019-08-05 16:42:09.304');
+','2019-08-12 07:42:18.799');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('Units-20120220.ili','2.3','Units','!! File Units.ili Release 2012-02-20
 
 INTERLIS 2.3;
@@ -18386,7 +18386,7 @@ CONTRACTED TYPE MODEL Units (en) AT "http://www.interlis.ch/models"
 
 END Units.
 
-','2019-08-05 16:42:09.304');
+','2019-08-12 07:42:18.799');
 -- INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createMetaInfo','True');
 -- INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.arrayTrafo','coalesce');
 -- INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.nameOptimization','disable');
@@ -18478,6 +18478,28 @@ CREATE TABLE stage.localisation_v1_multilingualmtext (
 )
 ;
 CREATE INDEX localisatn_v1_mltlnglmtext_t_basket_idx ON stage.localisation_v1_multilingualmtext ( t_basket );
+-- GeometryCHLV95_V1.SurfaceStructure
+CREATE TABLE stage.geometrychlv95_v1_surfacestructure (
+  T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
+  ,T_basket bigint NOT NULL
+  ,T_Type varchar(60) NOT NULL
+  ,T_Seq bigint NULL
+  ,surface geometry(POLYGON,2056) NULL
+  ,geomtrychlv1_mltsrface_surfaces bigint NULL
+)
+;
+CREATE INDEX geomtrychlv95_srfcstrcture_t_basket_idx ON stage.geometrychlv95_v1_surfacestructure ( t_basket );
+CREATE INDEX geomtrychlv95_srfcstrcture_surface_idx ON stage.geometrychlv95_v1_surfacestructure USING GIST ( surface );
+CREATE INDEX geomtrychlv95_srfcstrcture_geomtrychlv1_ltsrfc_srfces_idx ON stage.geometrychlv95_v1_surfacestructure ( geomtrychlv1_mltsrface_surfaces );
+-- GeometryCHLV95_V1.MultiSurface
+CREATE TABLE stage.geometrychlv95_v1_multisurface (
+  T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
+  ,T_basket bigint NOT NULL
+  ,T_Type varchar(60) NOT NULL
+  ,T_Seq bigint NULL
+)
+;
+CREATE INDEX geomtrychlv95_v1_mltsrface_t_basket_idx ON stage.geometrychlv95_v1_multisurface ( t_basket );
 -- OeREBKRM_V1_1.ArtikelNummer_
 CREATE TABLE stage.oerebkrm_v1_1_artikelnummer_ (
   T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
@@ -18586,28 +18608,94 @@ CREATE TABLE stage.oerebkrm_v1_1codelistentext_thematxt (
 ;
 CREATE INDEX oerbkrm_v1_1cstntxt_thmtxt_t_basket_idx ON stage.oerebkrm_v1_1codelistentext_thematxt ( t_basket );
 COMMENT ON TABLE stage.oerebkrm_v1_1codelistentext_thematxt IS 'Anzeigetexte für die Aufzählung Thema';
--- GeometryCHLV95_V1.SurfaceStructure
-CREATE TABLE stage.geometrychlv95_v1_surfacestructure (
+-- SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Grundbuchkreise.Grundbuchkreis
+CREATE TABLE stage.so_g_v_0180822grundbuchkreise_grundbuchkreis (
   T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
   ,T_basket bigint NOT NULL
   ,T_Type varchar(60) NOT NULL
-  ,T_Seq bigint NULL
-  ,surface geometry(POLYGON,2056) NULL
-  ,geomtrychlv1_mltsrface_surfaces bigint NULL
+  ,T_Ili_Tid uuid NULL DEFAULT uuid_generate_v4()
+  ,aname varchar(255) NOT NULL
+  ,art varchar(255) NOT NULL
+  ,nbident varchar(12) NOT NULL
+  ,grundbuchkreisnummer integer NULL
+  ,grundbuchkreis_bfsnr integer NOT NULL
+  ,bfsnr integer NOT NULL
+  ,perimeter geometry(MULTIPOLYGON,2056) NOT NULL
+  ,amtschreiberei varchar(255) NOT NULL
+  ,amt varchar(255) NULL
+  ,strasse varchar(255) NOT NULL
+  ,hausnummer varchar(255) NULL
+  ,plz integer NOT NULL
+  ,ortschaft varchar(255) NOT NULL
+  ,telefon varchar(255) NOT NULL
+  ,email varchar(255) NOT NULL
+  ,web varchar(1023) NOT NULL
+  ,auid varchar(15) NULL
 )
 ;
-CREATE INDEX geomtrychlv95_srfcstrcture_t_basket_idx ON stage.geometrychlv95_v1_surfacestructure ( t_basket );
-CREATE INDEX geomtrychlv95_srfcstrcture_surface_idx ON stage.geometrychlv95_v1_surfacestructure USING GIST ( surface );
-CREATE INDEX geomtrychlv95_srfcstrcture_geomtrychlv1_ltsrfc_srfces_idx ON stage.geometrychlv95_v1_surfacestructure ( geomtrychlv1_mltsrface_surfaces );
--- GeometryCHLV95_V1.MultiSurface
-CREATE TABLE stage.geometrychlv95_v1_multisurface (
+CREATE INDEX so_g_v_018082_grndbchkreis_t_basket_idx ON stage.so_g_v_0180822grundbuchkreise_grundbuchkreis ( t_basket );
+CREATE INDEX so_g_v_018082_grndbchkreis_perimeter_idx ON stage.so_g_v_0180822grundbuchkreise_grundbuchkreis USING GIST ( perimeter );
+COMMENT ON TABLE stage.so_g_v_0180822grundbuchkreise_grundbuchkreis IS 'Grundbuchkreisaufteilung inkl. Anschrift etc. der einzelnen Kreise';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.aname IS 'Name des Grundbuches';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.art IS 'Art des Grundbuches';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.nbident IS 'Nummerierungsbereich-Identifikator aus der amtlichen Vermessung';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.grundbuchkreisnummer IS 'Kantonale Nummer des Grundbuchkreises';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.grundbuchkreis_bfsnr IS 'Ehemalige Gemeindenummer des Grundbuches (z.B. vor Gemeindefusion).';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.bfsnr IS 'Perimeter des Grundbuchkreises';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.perimeter IS 'Perimeter des Grundbuchkreises';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.amtschreiberei IS 'Amtschreiberei';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.amt IS 'Amt der Amtschreiberei';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.strasse IS 'Strassenname';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.hausnummer IS 'Hausnummer';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.plz IS 'Postleitzahl';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.ortschaft IS 'Ortschaft';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.telefon IS 'Telefonnummer';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.email IS 'E-Mail-Adresse';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.web IS 'Internetadresse';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.auid IS 'Unternehmens-Identifikationsnummer';
+-- SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Nachfuehrungskreise.Gemeinde
+CREATE TABLE stage.so_g_v_0180822nachfuehrngskrise_gemeinde (
   T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
   ,T_basket bigint NOT NULL
   ,T_Type varchar(60) NOT NULL
-  ,T_Seq bigint NULL
+  ,T_Ili_Tid uuid NULL DEFAULT uuid_generate_v4()
+  ,gemeindename varchar(255) NOT NULL
+  ,bfsnr integer NOT NULL
+  ,perimeter geometry(MULTIPOLYGON,2056) NOT NULL
+  ,nfg_name varchar(255) NOT NULL
+  ,nfg_vorname varchar(255) NOT NULL
+  ,nfg_titel varchar(255) NULL
+  ,firma varchar(255) NOT NULL
+  ,firma_zusatz varchar(255) NULL
+  ,strasse varchar(255) NOT NULL
+  ,hausnummer varchar(255) NULL
+  ,plz integer NOT NULL
+  ,ortschaft varchar(255) NOT NULL
+  ,telefon varchar(255) NOT NULL
+  ,web varchar(1023) NOT NULL
+  ,email varchar(255) NOT NULL
+  ,auid varchar(15) NULL
 )
 ;
-CREATE INDEX geomtrychlv95_v1_mltsrface_t_basket_idx ON stage.geometrychlv95_v1_multisurface ( t_basket );
+CREATE INDEX so_g_v_018082rngskrs_gmnde_t_basket_idx ON stage.so_g_v_0180822nachfuehrngskrise_gemeinde ( t_basket );
+CREATE INDEX so_g_v_018082rngskrs_gmnde_perimeter_idx ON stage.so_g_v_0180822nachfuehrngskrise_gemeinde USING GIST ( perimeter );
+COMMENT ON TABLE stage.so_g_v_0180822nachfuehrngskrise_gemeinde IS 'Gemeinde mit zuständigem Nachführungsgeometer und Anschrift der Firma etc.';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.gemeindename IS 'Name der politischen Gemeinde';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.bfsnr IS 'BFS-Nr. der politischen Gemeinde';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.perimeter IS 'Geometrie der politischen Gemeinde';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.nfg_name IS 'Nachname des Nachführungsgeometers';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.nfg_vorname IS 'Vorname des Nachführungsgeometers';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.nfg_titel IS 'Titel des Nachführungsgeometers (z.B. Dr.)';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.firma IS 'Name der Firma';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.firma_zusatz IS 'Zusatzname der Firma';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.strasse IS 'Strassenname';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.hausnummer IS 'Hausnummer';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.plz IS 'Postleitzahl';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.ortschaft IS 'Ortschaft';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.telefon IS 'Telefonnummer';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.web IS 'Internetadresse';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.email IS 'E-Mail-Adresse';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.auid IS 'Unternehmer-Identifikationsnummer';
 -- OeREBKRMvs_V1_1.Vorschriften.Amt
 CREATE TABLE stage.oerbkrmvs_v1_1vorschriften_amt (
   T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
@@ -18875,94 +18963,6 @@ CREATE TABLE stage.oerb_xtnx_v1_0annex_basedata (
 )
 ;
 CREATE INDEX oerb_xtnx_v1_0annex_bsdata_t_basket_idx ON stage.oerb_xtnx_v1_0annex_basedata ( t_basket );
--- SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Grundbuchkreise.Grundbuchkreis
-CREATE TABLE stage.so_g_v_0180822grundbuchkreise_grundbuchkreis (
-  T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
-  ,T_basket bigint NOT NULL
-  ,T_Type varchar(60) NOT NULL
-  ,T_Ili_Tid uuid NULL DEFAULT uuid_generate_v4()
-  ,aname varchar(255) NOT NULL
-  ,art varchar(255) NOT NULL
-  ,nbident varchar(12) NOT NULL
-  ,grundbuchkreisnummer integer NULL
-  ,grundbuchkreis_bfsnr integer NOT NULL
-  ,bfsnr integer NOT NULL
-  ,perimeter geometry(MULTIPOLYGON,2056) NOT NULL
-  ,amtschreiberei varchar(255) NOT NULL
-  ,amt varchar(255) NULL
-  ,strasse varchar(255) NOT NULL
-  ,hausnummer varchar(255) NULL
-  ,plz integer NOT NULL
-  ,ortschaft varchar(255) NOT NULL
-  ,telefon varchar(255) NOT NULL
-  ,email varchar(255) NOT NULL
-  ,web varchar(1023) NOT NULL
-  ,auid varchar(15) NULL
-)
-;
-CREATE INDEX so_g_v_018082_grndbchkreis_t_basket_idx ON stage.so_g_v_0180822grundbuchkreise_grundbuchkreis ( t_basket );
-CREATE INDEX so_g_v_018082_grndbchkreis_perimeter_idx ON stage.so_g_v_0180822grundbuchkreise_grundbuchkreis USING GIST ( perimeter );
-COMMENT ON TABLE stage.so_g_v_0180822grundbuchkreise_grundbuchkreis IS 'Grundbuchkreisaufteilung inkl. Anschrift etc. der einzelnen Kreise';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.aname IS 'Name des Grundbuches';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.art IS 'Art des Grundbuches';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.nbident IS 'Nummerierungsbereich-Identifikator aus der amtlichen Vermessung';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.grundbuchkreisnummer IS 'Kantonale Nummer des Grundbuchkreises';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.grundbuchkreis_bfsnr IS 'Ehemalige Gemeindenummer des Grundbuches (z.B. vor Gemeindefusion).';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.bfsnr IS 'Perimeter des Grundbuchkreises';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.perimeter IS 'Perimeter des Grundbuchkreises';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.amtschreiberei IS 'Amtschreiberei';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.amt IS 'Amt der Amtschreiberei';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.strasse IS 'Strassenname';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.hausnummer IS 'Hausnummer';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.plz IS 'Postleitzahl';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.ortschaft IS 'Ortschaft';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.telefon IS 'Telefonnummer';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.email IS 'E-Mail-Adresse';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.web IS 'Internetadresse';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.auid IS 'Unternehmens-Identifikationsnummer';
--- SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Nachfuehrungskreise.Gemeinde
-CREATE TABLE stage.so_g_v_0180822nachfuehrngskrise_gemeinde (
-  T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
-  ,T_basket bigint NOT NULL
-  ,T_Type varchar(60) NOT NULL
-  ,T_Ili_Tid uuid NULL DEFAULT uuid_generate_v4()
-  ,gemeindename varchar(255) NOT NULL
-  ,bfsnr integer NOT NULL
-  ,perimeter geometry(MULTIPOLYGON,2056) NOT NULL
-  ,nfg_name varchar(255) NOT NULL
-  ,nfg_vorname varchar(255) NOT NULL
-  ,nfg_titel varchar(255) NULL
-  ,firma varchar(255) NOT NULL
-  ,firma_zusatz varchar(255) NULL
-  ,strasse varchar(255) NOT NULL
-  ,hausnummer varchar(255) NULL
-  ,plz integer NOT NULL
-  ,ortschaft varchar(255) NOT NULL
-  ,telefon varchar(255) NOT NULL
-  ,web varchar(1023) NOT NULL
-  ,email varchar(255) NOT NULL
-  ,auid varchar(15) NULL
-)
-;
-CREATE INDEX so_g_v_018082rngskrs_gmnde_t_basket_idx ON stage.so_g_v_0180822nachfuehrngskrise_gemeinde ( t_basket );
-CREATE INDEX so_g_v_018082rngskrs_gmnde_perimeter_idx ON stage.so_g_v_0180822nachfuehrngskrise_gemeinde USING GIST ( perimeter );
-COMMENT ON TABLE stage.so_g_v_0180822nachfuehrngskrise_gemeinde IS 'Gemeinde mit zuständigem Nachführungsgeometer und Anschrift der Firma etc.';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.gemeindename IS 'Name der politischen Gemeinde';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.bfsnr IS 'BFS-Nr. der politischen Gemeinde';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.perimeter IS 'Geometrie der politischen Gemeinde';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.nfg_name IS 'Nachname des Nachführungsgeometers';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.nfg_vorname IS 'Vorname des Nachführungsgeometers';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.nfg_titel IS 'Titel des Nachführungsgeometers (z.B. Dr.)';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.firma IS 'Name der Firma';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.firma_zusatz IS 'Zusatzname der Firma';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.strasse IS 'Strassenname';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.hausnummer IS 'Hausnummer';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.plz IS 'Postleitzahl';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.ortschaft IS 'Ortschaft';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.telefon IS 'Telefonnummer';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.web IS 'Internetadresse';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.email IS 'E-Mail-Adresse';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.auid IS 'Unternehmer-Identifikationsnummer';
 -- OeREBKRMtrsfr_V1_1.Transferstruktur.Eigentumsbeschraenkung
 CREATE TABLE stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung (
   T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
@@ -19131,16 +19131,16 @@ CREATE TABLE stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift (
   ,T_Type varchar(60) NOT NULL
   ,T_Ili_Tid varchar(200) NULL
   ,eigentumsbeschraenkung bigint NOT NULL
-  ,vorschrift_oerbkrmvs_v1_1vorschriften_artikel bigint NULL
   ,vorschrift_oerbkrmvs_v1_1vorschriften_dokument bigint NULL
+  ,vorschrift_oerbkrmvs_v1_1vorschriften_artikel bigint NULL
 )
 ;
 CREATE INDEX oerbkrmfr_v1_hnwsvrschrift_t_basket_idx ON stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift ( t_basket );
 CREATE INDEX oerbkrmfr_v1_hnwsvrschrift_eigentumsbeschraenkung_idx ON stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift ( eigentumsbeschraenkung );
-CREATE INDEX oerbkrmfr_v1_hnwsvrschrift_vorschrft_rbkschrftn_rtkel_idx ON stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift ( vorschrift_oerbkrmvs_v1_1vorschriften_artikel );
 CREATE INDEX oerbkrmfr_v1_hnwsvrschrift_vorschrft_rbkchrftn_dkment_idx ON stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift ( vorschrift_oerbkrmvs_v1_1vorschriften_dokument );
-COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_artikel IS 'Rechtsvorschrift der Eigentumsbeschränkung';
+CREATE INDEX oerbkrmfr_v1_hnwsvrschrift_vorschrft_rbkschrftn_rtkel_idx ON stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift ( vorschrift_oerbkrmvs_v1_1vorschriften_artikel );
 COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument IS 'Rechtsvorschrift der Eigentumsbeschränkung';
+COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_artikel IS 'Rechtsvorschrift der Eigentumsbeschränkung';
 CREATE TABLE IF NOT EXISTS stage.T_ILI2DB_BASKET (
   T_Id bigint PRIMARY KEY
   ,dataset bigint NULL
@@ -19209,7 +19209,7 @@ CREATE TABLE IF NOT EXISTS stage.T_ILI2DB_ATTRNAME (
   ,SqlName varchar(1024) NOT NULL
   ,ColOwner varchar(1024) NOT NULL
   ,Target varchar(1024) NULL
-  ,PRIMARY KEY (ColOwner,SqlName)
+  ,PRIMARY KEY (SqlName,ColOwner)
 )
 ;
 CREATE TABLE IF NOT EXISTS stage.T_ILI2DB_COLUMN_PROP (
@@ -19238,6 +19238,9 @@ ALTER TABLE stage.localisation_v1_localisedmtext ADD CONSTRAINT localisation_v1_
 ALTER TABLE stage.localisation_v1_localisedmtext ADD CONSTRAINT localisation_v1_lclsdmtext_loclstn_v1_lttxt_lclsdtext_fkey FOREIGN KEY ( loclstn_v1_ltlnglmtext_localisedtext ) REFERENCES stage.localisation_v1_multilingualmtext DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.localisation_v1_multilingualtext ADD CONSTRAINT localisatin_v1_mltlngltext_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.localisation_v1_multilingualmtext ADD CONSTRAINT localisatn_v1_mltlnglmtext_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.geometrychlv95_v1_surfacestructure ADD CONSTRAINT geomtrychlv95_srfcstrcture_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.geometrychlv95_v1_surfacestructure ADD CONSTRAINT geomtrychlv95_srfcstrcture_geomtrychlv1_ltsrfc_srfces_fkey FOREIGN KEY ( geomtrychlv1_mltsrface_surfaces ) REFERENCES stage.geometrychlv95_v1_multisurface DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.geometrychlv95_v1_multisurface ADD CONSTRAINT geomtrychlv95_v1_mltsrface_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.oerebkrm_v1_1_artikelnummer_ ADD CONSTRAINT oerebkrm_v1_1_artiklnmmer__T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.oerebkrm_v1_1_artikelnummer_ ADD CONSTRAINT oerebkrm_v1_1_artiklnmmer__oerbkrmvs_vwsrdkmnt_rtklnr_fkey FOREIGN KEY ( oerbkrmvs_vwswtrdkmnte_artikelnr ) REFERENCES stage.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.oerebkrm_v1_1_artikelnummer_ ADD CONSTRAINT oerebkrm_v1_1_artiklnmmer__oerbkrmfr_vwsschrft_rtklnr_fkey FOREIGN KEY ( oerbkrmfr_vwsvrschrift_artikelnr ) REFERENCES stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift DEFERRABLE INITIALLY DEFERRED;
@@ -19251,9 +19254,14 @@ ALTER TABLE stage.oerebkrm_v1_1_multilingualuri ADD CONSTRAINT oerebkrm_v1_1_mul
 ALTER TABLE stage.oerebkrm_v1_1_multilingualuri ADD CONSTRAINT oerebkrm_v1_1_multilngluri_oerbkrmvs_vrfdkmnt_txtmweb_fkey FOREIGN KEY ( oerbkrmvs_vrftn_dkment_textimweb ) REFERENCES stage.oerbkrmvs_v1_1vorschriften_dokument DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.oerebkrm_v1_1codelistentext_rechtsstatustxt ADD CONSTRAINT oerbkrm_v1_1c_rchtssttstxt_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.oerebkrm_v1_1codelistentext_thematxt ADD CONSTRAINT oerbkrm_v1_1cstntxt_thmtxt_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.geometrychlv95_v1_surfacestructure ADD CONSTRAINT geomtrychlv95_srfcstrcture_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.geometrychlv95_v1_surfacestructure ADD CONSTRAINT geomtrychlv95_srfcstrcture_geomtrychlv1_ltsrfc_srfces_fkey FOREIGN KEY ( geomtrychlv1_mltsrface_surfaces ) REFERENCES stage.geometrychlv95_v1_multisurface DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.geometrychlv95_v1_multisurface ADD CONSTRAINT geomtrychlv95_v1_mltsrface_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.so_g_v_0180822grundbuchkreise_grundbuchkreis ADD CONSTRAINT so_g_v_018082_grndbchkreis_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.so_g_v_0180822grundbuchkreise_grundbuchkreis ADD CONSTRAINT so_g_v_01808_grndbchkreis_grundbuchkreisnummer_check CHECK( grundbuchkreisnummer BETWEEN 1 AND 99);
+ALTER TABLE stage.so_g_v_0180822grundbuchkreise_grundbuchkreis ADD CONSTRAINT so_g_v_01808_grndbchkreis_grundbuchkreis_bfsnr_check CHECK( grundbuchkreis_bfsnr BETWEEN 1 AND 9999);
+ALTER TABLE stage.so_g_v_0180822grundbuchkreise_grundbuchkreis ADD CONSTRAINT so_g_v_01808_grndbchkreis_bfsnr_check CHECK( bfsnr BETWEEN 1 AND 9999);
+ALTER TABLE stage.so_g_v_0180822grundbuchkreise_grundbuchkreis ADD CONSTRAINT so_g_v_01808_grndbchkreis_plz_check CHECK( plz BETWEEN 1000 AND 9999);
+ALTER TABLE stage.so_g_v_0180822nachfuehrngskrise_gemeinde ADD CONSTRAINT so_g_v_018082rngskrs_gmnde_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.so_g_v_0180822nachfuehrngskrise_gemeinde ADD CONSTRAINT so_g_v_01808rngskrs_gmnde_bfsnr_check CHECK( bfsnr BETWEEN 1 AND 9999);
+ALTER TABLE stage.so_g_v_0180822nachfuehrngskrise_gemeinde ADD CONSTRAINT so_g_v_01808rngskrs_gmnde_plz_check CHECK( plz BETWEEN 1000 AND 9990);
 ALTER TABLE stage.oerbkrmvs_v1_1vorschriften_amt ADD CONSTRAINT oerbkrmvs_v1_vrschrftn_amt_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.oerbkrmvs_v1_1vorschriften_artikel ADD CONSTRAINT oerbkrmvs_v1_schrftn_rtkel_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.oerbkrmvs_v1_1vorschriften_artikel ADD CONSTRAINT oerbkrmvs_v1_schrftn_rtkel_dokument_fkey FOREIGN KEY ( dokument ) REFERENCES stage.oerbkrmvs_v1_1vorschriften_dokument DEFERRABLE INITIALLY DEFERRED;
@@ -19274,14 +19282,6 @@ ALTER TABLE stage.oerb_xtnx_v1_0annex_glossary ADD CONSTRAINT oerb_xtnx_v1_0annx
 ALTER TABLE stage.oerb_xtnx_v1_0annex_exclusionofliability ADD CONSTRAINT oerb_xtnx_v1__xclsnflblity_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.oerb_xtnx_v1_0annex_generalinformation ADD CONSTRAINT oerb_xtnx_v1__gnrlnfrmtion_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.oerb_xtnx_v1_0annex_basedata ADD CONSTRAINT oerb_xtnx_v1_0annex_bsdata_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.so_g_v_0180822grundbuchkreise_grundbuchkreis ADD CONSTRAINT so_g_v_018082_grndbchkreis_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.so_g_v_0180822grundbuchkreise_grundbuchkreis ADD CONSTRAINT so_g_v_01808_grndbchkreis_grundbuchkreisnummer_check CHECK( grundbuchkreisnummer BETWEEN 1 AND 99);
-ALTER TABLE stage.so_g_v_0180822grundbuchkreise_grundbuchkreis ADD CONSTRAINT so_g_v_01808_grndbchkreis_grundbuchkreis_bfsnr_check CHECK( grundbuchkreis_bfsnr BETWEEN 1 AND 9999);
-ALTER TABLE stage.so_g_v_0180822grundbuchkreise_grundbuchkreis ADD CONSTRAINT so_g_v_01808_grndbchkreis_bfsnr_check CHECK( bfsnr BETWEEN 1 AND 9999);
-ALTER TABLE stage.so_g_v_0180822grundbuchkreise_grundbuchkreis ADD CONSTRAINT so_g_v_01808_grndbchkreis_plz_check CHECK( plz BETWEEN 1000 AND 9999);
-ALTER TABLE stage.so_g_v_0180822nachfuehrngskrise_gemeinde ADD CONSTRAINT so_g_v_018082rngskrs_gmnde_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.so_g_v_0180822nachfuehrngskrise_gemeinde ADD CONSTRAINT so_g_v_01808rngskrs_gmnde_bfsnr_check CHECK( bfsnr BETWEEN 1 AND 9999);
-ALTER TABLE stage.so_g_v_0180822nachfuehrngskrise_gemeinde ADD CONSTRAINT so_g_v_01808rngskrs_gmnde_plz_check CHECK( plz BETWEEN 1000 AND 9990);
 ALTER TABLE stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung ADD CONSTRAINT oerbkrmfr_v1_tmsbschrnkung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung ADD CONSTRAINT oerbkrmfr_v1_tmsbschrnkung_darstellungsdienst_fkey FOREIGN KEY ( darstellungsdienst ) REFERENCES stage.oerbkrmfr_v1_1transferstruktur_darstellungsdienst DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung ADD CONSTRAINT oerbkrmfr_v1_tmsbschrnkung_zustaendigestelle_fkey FOREIGN KEY ( zustaendigestelle ) REFERENCES stage.oerbkrmvs_v1_1vorschriften_amt DEFERRABLE INITIALLY DEFERRED;
@@ -19302,8 +19302,8 @@ ALTER TABLE stage.oerbkrmfr_v1_1transferstruktur_hinweisdefinitiondokument ADD C
 ALTER TABLE stage.oerbkrmfr_v1_1transferstruktur_hinweisdefinitiondokument ADD CONSTRAINT oerbkrmfr_v1_wsdfntndkment_dokument_fkey FOREIGN KEY ( dokument ) REFERENCES stage.oerbkrmvs_v1_1vorschriften_dokument DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift ADD CONSTRAINT oerbkrmfr_v1_hnwsvrschrift_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift ADD CONSTRAINT oerbkrmfr_v1_hnwsvrschrift_eigentumsbeschraenkung_fkey FOREIGN KEY ( eigentumsbeschraenkung ) REFERENCES stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift ADD CONSTRAINT oerbkrmfr_v1_hnwsvrschrift_vorschrft_rbkschrftn_rtkel_fkey FOREIGN KEY ( vorschrift_oerbkrmvs_v1_1vorschriften_artikel ) REFERENCES stage.oerbkrmvs_v1_1vorschriften_artikel DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift ADD CONSTRAINT oerbkrmfr_v1_hnwsvrschrift_vorschrft_rbkchrftn_dkment_fkey FOREIGN KEY ( vorschrift_oerbkrmvs_v1_1vorschriften_dokument ) REFERENCES stage.oerbkrmvs_v1_1vorschriften_dokument DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift ADD CONSTRAINT oerbkrmfr_v1_hnwsvrschrift_vorschrft_rbkschrftn_rtkel_fkey FOREIGN KEY ( vorschrift_oerbkrmvs_v1_1vorschriften_artikel ) REFERENCES stage.oerbkrmvs_v1_1vorschriften_artikel DEFERRABLE INITIALLY DEFERRED;
 -- ALTER TABLE stage.T_ILI2DB_BASKET ADD CONSTRAINT T_ILI2DB_BASKET_dataset_fkey FOREIGN KEY ( dataset ) REFERENCES stage.T_ILI2DB_DATASET DEFERRABLE INITIALLY DEFERRED;
 CREATE UNIQUE INDEX IF NOT EXISTS T_ILI2DB_DATASET_datasetName_key ON stage.T_ILI2DB_DATASET (datasetName)
 ;
@@ -19311,7 +19311,7 @@ CREATE UNIQUE INDEX IF NOT EXISTS T_ILI2DB_DATASET_datasetName_key ON stage.T_IL
 -- ALTER TABLE stage.T_ILI2DB_IMPORT_BASKET ADD CONSTRAINT T_ILI2DB_IMPORT_BASKET_basket_fkey FOREIGN KEY ( basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 CREATE UNIQUE INDEX IF NOT EXISTS T_ILI2DB_MODEL_modelName_iliversion_key ON stage.T_ILI2DB_MODEL (modelName,iliversion)
 ;
-CREATE UNIQUE INDEX IF NOT EXISTS T_ILI2DB_ATTRNAME_ColOwner_SqlName_key ON stage.T_ILI2DB_ATTRNAME (ColOwner,SqlName)
+CREATE UNIQUE INDEX IF NOT EXISTS T_ILI2DB_ATTRNAME_SqlName_ColOwner_key ON stage.T_ILI2DB_ATTRNAME (SqlName,ColOwner)
 ;
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('OeREBKRMvs_V1_1.Vorschriften.ZustaendigeStelleDokument','oerbkrmvs_v1_1vorschriften_zustaendigestelledokument');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.MunicipalityWithPLRC','oerb_xtnx_v1_0annex_municipalitywithplrc');
@@ -19383,8 +19383,8 @@ INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('O
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.Geometrie.Punkt_LV03','punkt_lv03','oerbkrmfr_v1_1transferstruktur_geometrie',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.HinweisDefinitionZustaendigeStelle.ZustaendigeStelle','zustaendigestelle','oerbkrmfr_v1_1transferstruktur_hinweisdefinition','oerbkrmvs_v1_1vorschriften_amt');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.Office.Number','anumber','oerb_xtnx_v1_0annex_office',NULL);
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Dokument.Abkuerzung','abkuerzung','oerbkrmvs_v1_1vorschriften_dokument',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Grundbuchkreise.Grundbuchkreis.Amt','amt','so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL);
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Dokument.Abkuerzung','abkuerzung','oerbkrmvs_v1_1vorschriften_dokument',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Nachfuehrungskreise.Gemeinde.Strasse','strasse','so_g_v_0180822nachfuehrngskrise_gemeinde',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRM_V1_1.CodelistenText.RechtsStatusTxt.Titel','titel','oerebkrm_v1_1codelistentext_rechtsstatustxt',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Nachfuehrungskreise.Gemeinde.NFG_Titel','nfg_titel','so_g_v_0180822nachfuehrngskrise_gemeinde',NULL);
@@ -19433,8 +19433,8 @@ INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('O
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.HinweisDefinitionDokument.Dokument','dokument','oerbkrmfr_v1_1transferstruktur_hinweisdefinitiondokument','oerbkrmvs_v1_1vorschriften_dokument');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.Eigentumsbeschraenkung.publiziertAb','publiziertab','oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMvs_V1_1.Vorschriften.ZustaendigeStelleDokument.ZustaendigeStelle','zustaendigestelle','oerbkrmvs_v1_1vorschriften_dokument','oerbkrmvs_v1_1vorschriften_amt');
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.Logo.logo','logo','oerb_xtnx_v1_0annex_logo',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Grundbuchkreise.Grundbuchkreis.Web','web','so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL);
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.Logo.logo','logo','oerb_xtnx_v1_0annex_logo',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.LegendeEintrag.SubThema','subthema','oerbkrmfr_v1_1transferstruktur_legendeeintrag',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.Office.Name','aname','oerb_xtnx_v1_0annex_office',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRM_V1_1.ArtikelNummer_.value','avalue','oerebkrm_v1_1_artikelnummer_',NULL);
@@ -19482,16 +19482,16 @@ INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('O
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Grundbuchkreise.Grundbuchkreis.Telefon','telefon','so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.LegendeEintrag.LegendeText','legendetext','oerbkrmfr_v1_1transferstruktur_legendeeintrag',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.Office.PostalCode','postalcode','oerb_xtnx_v1_0annex_office',NULL);
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMvs_V1_1.Vorschriften.DokumentBasis.publiziertAb','publiziertab','oerbkrmvs_v1_1vorschriften_dokument',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Grundbuchkreise.Grundbuchkreis.Amtschreiberei','amtschreiberei','so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL);
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMvs_V1_1.Vorschriften.DokumentBasis.publiziertAb','publiziertab','oerbkrmvs_v1_1vorschriften_dokument',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.LegendeEintrag.ArtCodeliste','artcodeliste','oerbkrmfr_v1_1transferstruktur_legendeeintrag',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Nachfuehrungskreise.Gemeinde.NFG_Name','nfg_name','so_g_v_0180822nachfuehrngskrise_gemeinde',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Dokument.OffiziellerTitel','offiziellertitel','oerbkrmvs_v1_1vorschriften_dokument',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Grundbuchkreise.Grundbuchkreis.Grundbuchkreis_BFSNr','grundbuchkreis_bfsnr','so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.Geometrie.Linie_LV03','linie_lv03','oerbkrmfr_v1_1transferstruktur_geometrie',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.DarstellungsDienst.VerweisWMS','verweiswms','oerbkrmfr_v1_1transferstruktur_darstellungsdienst',NULL);
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.ExclusionOfLiability.Content','content','oerb_xtnx_v1_0annex_exclusionofliability',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Nachfuehrungskreise.Gemeinde.Web','web','so_g_v_0180822nachfuehrngskrise_gemeinde',NULL);
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.ExclusionOfLiability.Content','content','oerb_xtnx_v1_0annex_exclusionofliability',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('Localisation_V1.LocalisedMText.Text','atext','localisation_v1_localisedmtext',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.Eigentumsbeschraenkung.SubThema','subthema','oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Artikel.Text','atext','oerbkrmvs_v1_1vorschriften_artikel',NULL);
@@ -19569,8 +19569,8 @@ INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('LocalisationCH_V
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Dokument.OffiziellerTitel','ch.ehi.ili2db.multilingualTrafo','expand');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.HinweisDefinitionDokument','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('OeREBKRM_V1_1.CodelistenText.RechtsStatusTxt.Titel','ch.ehi.ili2db.multilingualTrafo','expand');
-INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Amt.Name','ch.ehi.ili2db.multilingualTrafo','expand');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Grundbuchkreise.Grundbuchkreis.Perimeter','ch.ehi.ili2db.multiSurfaceTrafo','coalesce');
+INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Amt.Name','ch.ehi.ili2db.multilingualTrafo','expand');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.Eigentumsbeschraenkung.Aussage','ch.ehi.ili2db.multilingualTrafo','expand');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('Localisation_V1.MultilingualMText','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('OeREBKRM_V1_1.Thema_','ch.ehi.ili2db.inheritance','newClass');
@@ -19579,191 +19579,191 @@ INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('OeREB_ExtractAnn
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Artikel.Text','ch.ehi.ili2db.multilingualTrafo','expand');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('GeometryCHLV95_V1.SurfaceStructure','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.HinweisVorschrift','ch.ehi.ili2db.inheritance','newClass');
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('CatalogueObjects_V1.Catalogues.Item',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('GeometryCHLV95_V1.MultiSurface',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.GeometrieEigentumsbeschraenkung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.Office',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.HinweisVorschrift',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.GeneralInformation',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.Datum_',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Dokument','OeREBKRMvs_V1_1.Vorschriften.DokumentBasis');
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('Localisation_V1.LocalisedText',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Artikel','OeREBKRMvs_V1_1.Vorschriften.DokumentBasis');
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.Glossary',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.DarstellungsDienst',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Grundbuchkreise.Grundbuchkreis',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.MunicipalityWithPLRC',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMvs_V1_1.Vorschriften.DokumentBasis',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.ArtikelNummer_',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('Localisation_V1.MultilingualText',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.CodelistenText.RechtsStatusTxt','CatalogueObjects_V1.Catalogues.Item');
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.Geometrie',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.WebReferenz_',NULL);
 INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('LocalisationCH_V1.LocalisedMText','Localisation_V1.LocalisedMText');
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('GeometryCHLV95_V1.SurfaceStructure',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.Eigentumsbeschraenkung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.ThemaTxt','CatalogueObjects_V1.Catalogues.Item');
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Rechtsvorschrift','OeREBKRMvs_V1_1.Vorschriften.Dokument');
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.Logo',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.DarstellungsDienstEigentumsbeschraenkung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.HinweisDefinitionDokument',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Code_',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.HinweisDefinitionZustaendigeStelle',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.GrundlageVerfeinerung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.ExclusionOfLiability',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMvs_V1_1.Vorschriften.ZustaendigeStelleDokument',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Amt',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.HinweisDefinition',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('Localisation_V1.LocalisedMText',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('LocalisationCH_V1.LocalisedText','Localisation_V1.LocalisedText');
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.ArtikelInhaltMehrsprachig','LocalisationCH_V1.MultilingualMText');
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Nachfuehrungskreise.Gemeinde',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.ZustaendigeStelleGeometrie',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('LocalisationCH_V1.MultilingualMText','Localisation_V1.MultilingualMText');
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.LegendeEintrag',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Dokument','OeREBKRMvs_V1_1.Vorschriften.DokumentBasis');
 INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMvs_V1_1.Vorschriften.HinweisWeitereDokumente',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.LocalisedUri',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.ZustaendigeStelleEigentumsbeschraenkung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.Thema_',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('LocalisationCH_V1.MultilingualText','Localisation_V1.MultilingualText');
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('Localisation_V1.MultilingualMText',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.CodelistenText.ThemaTxt','CatalogueObjects_V1.Catalogues.Item');
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Code_',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('LocalisationCH_V1.MultilingualMText','Localisation_V1.MultilingualMText');
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.WebReferenz_',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.HinweisDefinitionDokument',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.Geometrie',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.HinweisDefinition',NULL);
 INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.MultilingualUri',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.DarstellungsDienstEigentumsbeschraenkung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Artikel','OeREBKRMvs_V1_1.Vorschriften.DokumentBasis');
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('GeometryCHLV95_V1.MultiSurface',NULL);
 INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMvs_V1_1.Vorschriften.DokumentArtikel',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.Eigentumsbeschraenkung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.LegendeEintrag',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.HinweisDefinitionZustaendigeStelle',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('GeometryCHLV95_V1.SurfaceStructure',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.Thema_',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('Localisation_V1.LocalisedMText',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('LocalisationCH_V1.MultilingualText','Localisation_V1.MultilingualText');
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('CatalogueObjects_V1.Catalogues.Item',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.ArtikelInhaltMehrsprachig','LocalisationCH_V1.MultilingualMText');
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.MunicipalityWithPLRC',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.GrundlageVerfeinerung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.HinweisVorschrift',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('Localisation_V1.MultilingualMText',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.CodelistenText.RechtsStatusTxt','CatalogueObjects_V1.Catalogues.Item');
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.Office',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('LocalisationCH_V1.LocalisedText','Localisation_V1.LocalisedText');
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.GeometrieEigentumsbeschraenkung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.GeneralInformation',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.Glossary',NULL);
 INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.BaseData',NULL);
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'zustaendigestelle','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_amt');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('localisation_v1_localisedmtext',NULL,'T_Type','ch.ehi.ili2db.types','["localisation_v1_localisedmtext","localisationch_v1_localisedmtext"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'perimeter','ch.ehi.ili2db.c2Min','1045000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_localiseduri',NULL,'T_Type','ch.ehi.ili2db.types','["oerebkrm_v1_1_localiseduri"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1codelistentext_rechtsstatustxt',NULL,'T_Type','ch.ehi.ili2db.types','["oerebkrm_v1_1codelistentext_rechtsstatustxt"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_office',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_office"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv95','ch.ehi.ili2db.c1Max','2870000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_dokument',NULL,'zustaendigestelle','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_amt');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oereb_extractannex_v1_0_code_',NULL,'oerb_xtnx_vpltywthplrc_themes','ch.ehi.ili2db.foreignKey','oerb_xtnx_v1_0annex_municipalitywithplrc');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_multilingualuri',NULL,'T_Type','ch.ehi.ili2db.types','["oerebkrm_v1_1_multilingualuri"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'perimeter','ch.ehi.ili2db.c2Min','1045000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('localisation_v1_multilingualmtext',NULL,'T_Type','ch.ehi.ili2db.types','["localisation_v1_multilingualmtext","localisationch_v1_multilingualmtext","oerebkrm_v1_1_artikelinhaltmehrsprachig"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv95','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv03','ch.ehi.ili2db.c2Min','45000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'perimeter','ch.ehi.ili2db.geomType','MULTIPOLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'T_Type','ch.ehi.ili2db.types','["so_g_v_0180822nachfuehrngskrise_gemeinde"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv03','ch.ehi.ili2db.c2Min','45000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv95','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'surface','ch.ehi.ili2db.c1Min','2460000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'surface','ch.ehi.ili2db.c1Max','2870000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv03','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv03','ch.ehi.ili2db.c2Min','45000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'geomtrychlv1_mltsrface_surfaces','ch.ehi.ili2db.foreignKey','geometrychlv95_v1_multisurface');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'perimeter','ch.ehi.ili2db.c1Min','2460000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_artikel',NULL,'dokument','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_dokument');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv03','ch.ehi.ili2db.srid','21781');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv95','ch.ehi.ili2db.c1Min','2460000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('localisation_v1_localisedmtext',NULL,'loclstn_v1_ltlnglmtext_localisedtext','ch.ehi.ili2db.foreignKey','localisation_v1_multilingualmtext');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_exclusionofliability',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_exclusionofliability"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisdefinitiondokument',NULL,'dokument','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_dokument');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv95','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv95','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'surface','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1codelistentext_thematxt',NULL,'T_Type','ch.ehi.ili2db.types','["oerebkrm_v1_1codelistentext_thematxt"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_thematxt',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_thematxt"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_amt',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmvs_v1_1vorschriften_amt"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_artikelnummer_',NULL,'oerbkrmvs_vwswtrdkmnte_artikelnr','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisvorschrift',NULL,'eigentumsbeschraenkung','ch.ehi.ili2db.foreignKey','oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_grundlageverfeinerung',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_grundlageverfeinerung"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_glossary',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_glossary"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv03','ch.ehi.ili2db.srid','21781');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_grundlageverfeinerung',NULL,'grundlage','ch.ehi.ili2db.foreignKey','oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_legendeeintrag',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_legendeeintrag"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('localisation_v1_localisedmtext',NULL,'atext','ch.ehi.ili2db.textKind','MTEXT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_logo',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_logo"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'perimeter','ch.ehi.ili2db.c1Max','2870000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisdefinitiondokument',NULL,'hinweisdefinition','ch.ehi.ili2db.foreignKey','oerbkrmfr_v1_1transferstruktur_hinweisdefinition');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_multilingualuri',NULL,'oerbkrmvs_vrftn_dkment_textimweb','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_dokument');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv95','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv95','ch.ehi.ili2db.c2Min','1045000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('localisation_v1_localisedtext',NULL,'T_Type','ch.ehi.ili2db.types','["localisation_v1_localisedtext","localisationch_v1_localisedtext"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_webreferenz_',NULL,'T_Type','ch.ehi.ili2db.types','["oerebkrm_v1_1_webreferenz_"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'perimeter','ch.ehi.ili2db.c1Max','2870000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisdefinition',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_hinweisdefinition"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_datum_',NULL,'T_Type','ch.ehi.ili2db.types','["oerebkrm_v1_1_datum_"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv95','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv03','ch.ehi.ili2db.c1Max','870000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv95','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente',NULL,'ursprung','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_dokument');
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Amt',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.ZustaendigeStelleEigentumsbeschraenkung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.CodelistenText.ThemaTxt','CatalogueObjects_V1.Catalogues.Item');
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.ZustaendigeStelleGeometrie',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Nachfuehrungskreise.Gemeinde',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.ThemaTxt','CatalogueObjects_V1.Catalogues.Item');
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.ExclusionOfLiability',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('Localisation_V1.MultilingualText',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Rechtsvorschrift','OeREBKRMvs_V1_1.Vorschriften.Dokument');
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMvs_V1_1.Vorschriften.DokumentBasis',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.Logo',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Grundbuchkreise.Grundbuchkreis',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.DarstellungsDienst',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.Datum_',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('Localisation_V1.LocalisedText',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.ArtikelNummer_',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.LocalisedUri',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMvs_V1_1.Vorschriften.ZustaendigeStelleDokument',NULL);
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv95','ch.ehi.ili2db.c1Min','2460000.000');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'perimeter','ch.ehi.ili2db.c1Min','2460000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_darstellungsdienst',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_darstellungsdienst"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv03','ch.ehi.ili2db.c1Min','460000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv03','ch.ehi.ili2db.c1Max','870000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisvorschrift',NULL,'vorschrift_oerbkrmvs_v1_1vorschriften_artikel','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_artikel');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'surface','ch.ehi.ili2db.c2Min','1045000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv95','ch.ehi.ili2db.c1Max','2870000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv03','ch.ehi.ili2db.c1Min','460000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_generalinformation',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_generalinformation"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv03','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente',NULL,'hinweis','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_dokument');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_localiseduri',NULL,'oerbkrm_v1__mltlngluri_localisedtext','ch.ehi.ili2db.foreignKey','oerebkrm_v1_1_multilingualuri');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv03','ch.ehi.ili2db.c1Min','460000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_artikelnummer_',NULL,'oerbkrmfr_vwsvrschrift_artikelnr','ch.ehi.ili2db.foreignKey','oerbkrmfr_v1_1transferstruktur_hinweisvorschrift');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv03','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_legendeeintrag',NULL,'oerbkrmfr_vstllngsdnst_legende','ch.ehi.ili2db.foreignKey','oerbkrmfr_v1_1transferstruktur_darstellungsdienst');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_multisurface',NULL,'T_Type','ch.ehi.ili2db.types','["geometrychlv95_v1_multisurface"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv03','ch.ehi.ili2db.c2Max','310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung',NULL,'darstellungsdienst','ch.ehi.ili2db.foreignKey','oerbkrmfr_v1_1transferstruktur_darstellungsdienst');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv95','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv03','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv95','ch.ehi.ili2db.c1Min','2460000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv95','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'eigentumsbeschraenkung','ch.ehi.ili2db.foreignKey','oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_thema_',NULL,'T_Type','ch.ehi.ili2db.types','["oerebkrm_v1_1_thema_"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oereb_extractannex_v1_0_code_',NULL,'T_Type','ch.ehi.ili2db.types','["oereb_extractannex_v1_0_code_"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv03','ch.ehi.ili2db.geomType','LINESTRING');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_artikel',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmvs_v1_1vorschriften_artikel"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv03','ch.ehi.ili2db.srid','21781');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_geometrie"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisvorschrift',NULL,'vorschrift_oerbkrmvs_v1_1vorschriften_dokument','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_dokument');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv95','ch.ehi.ili2db.c2Min','1045000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisdefinitiondokument',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_hinweisdefinitiondokument"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv03','ch.ehi.ili2db.c2Max','310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('localisation_v1_localisedtext',NULL,'loclstn_v1_mltlngltext_localisedtext','ch.ehi.ili2db.foreignKey','localisation_v1_multilingualtext');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('localisation_v1_multilingualtext',NULL,'T_Type','ch.ehi.ili2db.types','["localisation_v1_multilingualtext","localisationch_v1_multilingualtext"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv95','ch.ehi.ili2db.c1Max','2870000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'T_Type','ch.ehi.ili2db.types','["so_g_v_0180822grundbuchkreise_grundbuchkreis"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv03','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'surface','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisdefinition',NULL,'zustaendigestelle','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_amt');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_multilingualuri',NULL,'oerbkrmvs_vhrftn_rtkel_textimweb','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_artikel');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv95','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv95','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_basedata',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_basedata"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'surface','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'surface','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_dokument',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmvs_v1_1vorschriften_dokument","oerbkrmvs_v1_1vorschriften_rechtsvorschrift"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv95','ch.ehi.ili2db.geomType','LINESTRING');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_grundlageverfeinerung',NULL,'verfeinerung','ch.ehi.ili2db.foreignKey','oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'perimeter','ch.ehi.ili2db.geomType','MULTIPOLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisvorschrift',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_hinweisvorschrift"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv03','ch.ehi.ili2db.c1Max','870000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv03','ch.ehi.ili2db.srid','21781');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv95','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('localisation_v1_multilingualmtext',NULL,'T_Type','ch.ehi.ili2db.types','["localisation_v1_multilingualmtext","localisationch_v1_multilingualmtext","oerebkrm_v1_1_artikelinhaltmehrsprachig"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv03','ch.ehi.ili2db.srid','21781');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'T_Type','ch.ehi.ili2db.types','["geometrychlv95_v1_surfacestructure"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_artikelnummer_',NULL,'T_Type','ch.ehi.ili2db.types','["oerebkrm_v1_1_artikelnummer_"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung',NULL,'zustaendigestelle','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_amt');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv95','ch.ehi.ili2db.c2Min','1045000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_municipalitywithplrc',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_municipalitywithplrc"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_exclusionofliability',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_exclusionofliability"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv03','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv03','ch.ehi.ili2db.c2Min','45000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_webreferenz_',NULL,'T_Type','ch.ehi.ili2db.types','["oerebkrm_v1_1_webreferenz_"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_grundlageverfeinerung',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_grundlageverfeinerung"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv03','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_localiseduri',NULL,'T_Type','ch.ehi.ili2db.types','["oerebkrm_v1_1_localiseduri"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'surface','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_darstellungsdienst',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_darstellungsdienst"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv03','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv95','ch.ehi.ili2db.c2Min','1045000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv95','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('localisation_v1_localisedtext',NULL,'loclstn_v1_mltlngltext_localisedtext','ch.ehi.ili2db.foreignKey','localisation_v1_multilingualtext');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_multilingualuri',NULL,'oerbkrmvs_vrftn_dkment_textimweb','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_dokument');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv95','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv03','ch.ehi.ili2db.c2Max','310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisvorschrift',NULL,'vorschrift_oerbkrmvs_v1_1vorschriften_dokument','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_dokument');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_amt',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmvs_v1_1vorschriften_amt"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('localisation_v1_localisedmtext',NULL,'T_Type','ch.ehi.ili2db.types','["localisation_v1_localisedmtext","localisationch_v1_localisedmtext"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_office',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_office"]');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv03','ch.ehi.ili2db.c2Max','310000.000');
-INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('oerebkrm_v1_1codelistentext_thematxt','ch.ehi.ili2db.tableKind','CATALOGUE');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_artikel',NULL,'dokument','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_dokument');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oereb_extractannex_v1_0_code_',NULL,'oerb_xtnx_vpltywthplrc_themes','ch.ehi.ili2db.foreignKey','oerb_xtnx_v1_0annex_municipalitywithplrc');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisdefinitiondokument',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_hinweisdefinitiondokument"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_localiseduri',NULL,'oerbkrm_v1__mltlngluri_localisedtext','ch.ehi.ili2db.foreignKey','oerebkrm_v1_1_multilingualuri');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_grundlageverfeinerung',NULL,'grundlage','ch.ehi.ili2db.foreignKey','oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv03','ch.ehi.ili2db.c1Max','870000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_dokument',NULL,'zustaendigestelle','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_amt');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung',NULL,'zustaendigestelle','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_amt');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_multilingualuri',NULL,'oerbkrmvs_vhrftn_rtkel_textimweb','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_artikel');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('localisation_v1_multilingualtext',NULL,'T_Type','ch.ehi.ili2db.types','["localisation_v1_multilingualtext","localisationch_v1_multilingualtext"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('localisation_v1_localisedmtext',NULL,'loclstn_v1_ltlnglmtext_localisedtext','ch.ehi.ili2db.foreignKey','localisation_v1_multilingualmtext');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_artikel',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmvs_v1_1vorschriften_artikel"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_thema_',NULL,'T_Type','ch.ehi.ili2db.types','["oerebkrm_v1_1_thema_"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'perimeter','ch.ehi.ili2db.c2Min','1045000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_logo',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_logo"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv95','ch.ehi.ili2db.c1Min','2460000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'perimeter','ch.ehi.ili2db.geomType','MULTIPOLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv95','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'perimeter','ch.ehi.ili2db.c1Min','2460000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung',NULL,'darstellungsdienst','ch.ehi.ili2db.foreignKey','oerbkrmfr_v1_1transferstruktur_darstellungsdienst');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv95','ch.ehi.ili2db.c1Max','2870000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv95','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv95','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv95','ch.ehi.ili2db.c1Max','2870000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_basedata',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_basedata"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_municipalitywithplrc',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_municipalitywithplrc"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv95','ch.ehi.ili2db.c2Min','1045000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'surface','ch.ehi.ili2db.c1Max','2870000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_thematxt',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_thematxt"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv03','ch.ehi.ili2db.c1Min','460000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_datum_',NULL,'T_Type','ch.ehi.ili2db.types','["oerebkrm_v1_1_datum_"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv95','ch.ehi.ili2db.geomType','LINESTRING');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'surface','ch.ehi.ili2db.c2Min','1045000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'eigentumsbeschraenkung','ch.ehi.ili2db.foreignKey','oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv03','ch.ehi.ili2db.c1Min','460000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1codelistentext_thematxt',NULL,'T_Type','ch.ehi.ili2db.types','["oerebkrm_v1_1codelistentext_thematxt"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv95','ch.ehi.ili2db.c2Min','1045000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_artikelnummer_',NULL,'oerbkrmfr_vwsvrschrift_artikelnr','ch.ehi.ili2db.foreignKey','oerbkrmfr_v1_1transferstruktur_hinweisvorschrift');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'geomtrychlv1_mltsrface_surfaces','ch.ehi.ili2db.foreignKey','geometrychlv95_v1_multisurface');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oereb_extractannex_v1_0_code_',NULL,'T_Type','ch.ehi.ili2db.types','["oereb_extractannex_v1_0_code_"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1codelistentext_rechtsstatustxt',NULL,'T_Type','ch.ehi.ili2db.types','["oerebkrm_v1_1codelistentext_rechtsstatustxt"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente',NULL,'hinweis','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_dokument');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv03','ch.ehi.ili2db.c2Min','45000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'zustaendigestelle','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_amt');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'perimeter','ch.ehi.ili2db.geomType','MULTIPOLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'perimeter','ch.ehi.ili2db.c1Max','2870000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv95','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_multilingualuri',NULL,'T_Type','ch.ehi.ili2db.types','["oerebkrm_v1_1_multilingualuri"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'surface','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_grundlageverfeinerung',NULL,'verfeinerung','ch.ehi.ili2db.foreignKey','oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv03','ch.ehi.ili2db.geomType','LINESTRING');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente',NULL,'ursprung','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_dokument');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisdefinitiondokument',NULL,'hinweisdefinition','ch.ehi.ili2db.foreignKey','oerbkrmfr_v1_1transferstruktur_hinweisdefinition');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'surface','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('localisation_v1_localisedmtext',NULL,'atext','ch.ehi.ili2db.textKind','MTEXT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv03','ch.ehi.ili2db.c2Min','45000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv95','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv03','ch.ehi.ili2db.srid','21781');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv95','ch.ehi.ili2db.c1Max','2870000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv95','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv03','ch.ehi.ili2db.c1Min','460000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv03','ch.ehi.ili2db.c1Max','870000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_generalinformation',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_generalinformation"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'perimeter','ch.ehi.ili2db.c2Min','1045000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisvorschrift',NULL,'vorschrift_oerbkrmvs_v1_1vorschriften_artikel','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_artikel');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_glossary',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_glossary"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_geometrie"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'T_Type','ch.ehi.ili2db.types','["so_g_v_0180822grundbuchkreise_grundbuchkreis"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_multisurface',NULL,'T_Type','ch.ehi.ili2db.types','["geometrychlv95_v1_multisurface"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'surface','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv03','ch.ehi.ili2db.c2Max','310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv03','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'surface','ch.ehi.ili2db.c1Min','2460000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_legendeeintrag',NULL,'oerbkrmfr_vstllngsdnst_legende','ch.ehi.ili2db.foreignKey','oerbkrmfr_v1_1transferstruktur_darstellungsdienst');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisdefinitiondokument',NULL,'dokument','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_dokument');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_legendeeintrag',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_legendeeintrag"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv95','ch.ehi.ili2db.c1Min','2460000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisdefinition',NULL,'zustaendigestelle','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_amt');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv03','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'T_Type','ch.ehi.ili2db.types','["so_g_v_0180822nachfuehrngskrise_gemeinde"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisvorschrift',NULL,'eigentumsbeschraenkung','ch.ehi.ili2db.foreignKey','oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv95','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'perimeter','ch.ehi.ili2db.c1Max','2870000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_artikelnummer_',NULL,'oerbkrmvs_vwswtrdkmnte_artikelnr','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_dokument',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmvs_v1_1vorschriften_dokument","oerbkrmvs_v1_1vorschriften_rechtsvorschrift"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv03','ch.ehi.ili2db.c1Max','870000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv95','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisdefinition',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_hinweisdefinition"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisvorschrift',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_hinweisvorschrift"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_artikelnummer_',NULL,'T_Type','ch.ehi.ili2db.types','["oerebkrm_v1_1_artikelnummer_"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('localisation_v1_localisedtext',NULL,'T_Type','ch.ehi.ili2db.types','["localisation_v1_localisedtext","localisationch_v1_localisedtext"]');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('localisation_v1_localisedtext','ch.ehi.ili2db.tableKind','STRUCTURE');
+INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('oerebkrm_v1_1codelistentext_thematxt','ch.ehi.ili2db.tableKind','CATALOGUE');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('oerebkrm_v1_1_localiseduri','ch.ehi.ili2db.tableKind','STRUCTURE');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('oerebkrm_v1_1_multilingualuri','ch.ehi.ili2db.tableKind','STRUCTURE');
-INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('geometrychlv95_v1_multisurface','ch.ehi.ili2db.tableKind','STRUCTURE');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_grundlageverfeinerung','ch.ehi.ili2db.tableKind','ASSOCIATION');
+INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('geometrychlv95_v1_multisurface','ch.ehi.ili2db.tableKind','STRUCTURE');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('localisation_v1_localisedmtext','ch.ehi.ili2db.tableKind','STRUCTURE');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisdefinitiondokument','ch.ehi.ili2db.tableKind','ASSOCIATION');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('oerebkrm_v1_1_datum_','ch.ehi.ili2db.tableKind','STRUCTURE');
@@ -19993,7 +19993,7 @@ REFSYSTEM MODEL CoordSys (en) AT "http://www.interlis.ch/models"
 
 END CoordSys.
 
-','2019-08-05 16:42:08.0');
+','2019-08-12 07:42:17.652');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMvs_V1_1.ili','2.3','OeREBKRMvs_V1_1{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1}','INTERLIS 2.3;
 
 /** Basisdefinition für Erlasse (Rechtsvorschriften, Hinweise auf Gesetzliche Grundlagen)
@@ -20115,7 +20115,7 @@ VERSION "2016-08-15"  =
   END HinweiseGesetzlicheGrundlagen;
 
 END OeREBKRMvs_V1_1.
-','2019-08-05 16:42:08.0');
+','2019-08-12 07:42:17.652');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREB_ExtractAnnex_V1_0.ili','2.3','OeREB_ExtractAnnex_V1_0{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1 CatalogueObjects_V1}','INTERLIS 2.3;
 
 /** Zusatzdaten für statischen OEREB-Auszug
@@ -20229,7 +20229,7 @@ VERSION "2019-07-24"  =
     
 
 END OeREB_ExtractAnnex_V1_0.
-','2019-08-05 16:42:08.0');
+','2019-08-12 07:42:17.652');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRM_V1_1.ili','2.3','OeREBKRM_V1_1{ InternationalCodes_V1 LocalisationCH_V1 CatalogueObjects_V1}','INTERLIS 2.3;
 
 /** Basisdefinitionen für das OEREB-Katasterrahmenmodell
@@ -20393,7 +20393,7 @@ VERSION "2016-08-15"  =
   END CodelistenText;
 
 END OeREBKRM_V1_1.
-','2019-08-05 16:42:08.0');
+','2019-08-12 07:42:17.652');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part1_GEOMETRY_20110830.ili','2.3','GeometryCHLV03_V1{ CoordSys Units INTERLIS} GeometryCHLV95_V1{ CoordSys Units INTERLIS}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -20571,7 +20571,7 @@ TYPE MODEL GeometryCHLV95_V1 (en)
 END GeometryCHLV95_V1.
 
 !! ########################################################################
-','2019-08-05 16:42:08.0');
+','2019-08-12 07:42:17.652');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMtrsfr_V1_1.ili','2.3','OeREBKRMtrsfr_V1_1{ GeometryCHLV95_V1 CHAdminCodes_V1 LocalisationCH_V1 GeometryCHLV03_V1 OeREBKRM_V1_1 OeREBKRMvs_V1_1}','INTERLIS 2.3;
 
 /** Schnittstelle zwischen zuständiger Stelle für die Geobasisdaten und Katasterorganisation des Kantons.
@@ -20755,7 +20755,7 @@ VERSION "2016-08-15"  =
   END Transferstruktur;
 
 END OeREBKRMtrsfr_V1_1.
-','2019-08-05 16:42:08.0');
+','2019-08-12 07:42:17.652');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part4_ADMINISTRATIVEUNITS_20110830.ili','2.3','CHAdminCodes_V1 AdministrativeUnits_V1{ CHAdminCodes_V1 InternationalCodes_V1 Dictionaries_V1 Localisation_V1 INTERLIS} AdministrativeUnitsCH_V1{ CHAdminCodes_V1 InternationalCodes_V1 LocalisationCH_V1 AdministrativeUnits_V1 INTERLIS}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -20975,7 +20975,7 @@ MODEL AdministrativeUnitsCH_V1 (en)
 END AdministrativeUnitsCH_V1.
 
 !! ########################################################################
-','2019-08-05 16:42:08.0');
+','2019-08-12 07:42:17.652');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part2_LOCALISATION_20110830.ili','2.3','InternationalCodes_V1 Localisation_V1{ InternationalCodes_V1} LocalisationCH_V1{ InternationalCodes_V1 Localisation_V1} Dictionaries_V1{ InternationalCodes_V1} DictionariesCH_V1{ InternationalCodes_V1 Dictionaries_V1}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -21147,7 +21147,7 @@ MODEL DictionariesCH_V1 (en)
 END DictionariesCH_V1.
 
 !! ########################################################################
-','2019-08-05 16:42:08.0');
+','2019-08-12 07:42:17.652');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.ili','2.3','SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822{ GeometryCHLV95_V1 CHAdminCodes_V1}','INTERLIS 2.3;
 
 /** !!------------------------------------------------------------------------------
@@ -21281,7 +21281,7 @@ VERSION "2018-08-22"  =
   END Nachfuehrungskreise;
 
 END SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.
-','2019-08-05 16:42:08.0');
+','2019-08-12 07:42:17.652');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part3_CATALOGUEOBJECTS_20110830.ili','2.3','CatalogueObjects_V1{ INTERLIS} CatalogueObjectTrees_V1{ INTERLIS CatalogueObjects_V1}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -21369,7 +21369,7 @@ MODEL CatalogueObjectTrees_V1 (en)
 END CatalogueObjectTrees_V1.
 
 !! ########################################################################
-','2019-08-05 16:42:08.0');
+','2019-08-12 07:42:17.652');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('Units-20120220.ili','2.3','Units','!! File Units.ili Release 2012-02-20
 
 INTERLIS 2.3;
@@ -21467,7 +21467,7 @@ CONTRACTED TYPE MODEL Units (en) AT "http://www.interlis.ch/models"
 
 END Units.
 
-','2019-08-05 16:42:08.0');
+','2019-08-12 07:42:17.652');
 -- INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createMetaInfo','True');
 -- INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.arrayTrafo','coalesce');
 -- INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.nameOptimization','disable');
@@ -21508,463 +21508,2239 @@ INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES (
 INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('AdministrativeUnitsCH_V1','technicalContact','models@geo.admin.ch');
 INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('OeREBKRM_V1_1','furtherInformation','http://www.cadastre.ch/oereb-public');
 INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('OeREBKRM_V1_1','technicalContact','mailto:infovd@swisstopo.ch');
+INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822','technicalContact','mailto:agi@bd.so.ch');
 INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('OeREBKRMvs_V1_1','furtherInformation','http://www.cadastre.ch/oereb-public');
 INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('OeREBKRMvs_V1_1','technicalContact','mailto:infovd@swisstopo.ch');
-INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822','technicalContact','mailto:agi@bd.so.ch');
 INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('OeREBKRMtrsfr_V1_1','furtherInformation','http://www.cadastre.ch/oereb-public');
 INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('OeREBKRMtrsfr_V1_1','technicalContact','mailto:infovd@swisstopo.ch');
 
 
 -- schema nr 1 is stage
----------------------------
+---------------------------      
+-- -----------------------------------------------------------------------------
+-- materialized view 'nutzungsplanung_ueberlagernd_linie' with thema 'Nutzungsplanung', subthema 'NutzungsplanungUeberlagernd' and geometry 'linie
+DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_linie;
+CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_linie AS 
+WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
+(
+    SELECT 
+        ursprung, 
+        hinweis, 
+        ARRAY[ursprung] AS parents, 
+        ursprung AS last_ursprung, 
+        0 AS "depth" 
+    FROM 
+        stage.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente
+    WHERE
+        ursprung != hinweis
 
--- view 'nutzungsplanung_ueberlagernd_linie' with thema 'Nutzungsplanung', subthema 'Nutzungsplanung_Ueberlagernd' and geometry 'linie
-DROP VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_linie;
-CREATE OR replace VIEW stage.vw_oerebwms_nutzungsplanung_ueberlagernd_linie
-AS 
-  SELECT geom.t_id,
-         geom.t_type,
-         geom.t_ili_tid,
-         geom.linie_lv95 AS geom,
-         eigbe.aussage_de AS aussage,
-         eigbe.thema,
-         eigbe.subthema AS sub_thema,
-         eigbe.weiteresthema AS weiteres_thema,
-         eigbe.rechtsstatus,
-         eigbe.publiziertab AS publiziert_ab,
-         zust.aname     AS zustaendige_stelle,
-         zust.amtimweb  AS amt_im_web,
-         geom.metadatengeobasisdaten,
-         eigbe.artcode,
-         eigbe.artcodeliste
-  FROM   stage.oerbkrmfr_v1_1transferstruktur_geometrie geom
-         left join stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
-                ON geom.eigentumsbeschraenkung = eigbe.t_id
-         left join stage.oerbkrmvs_v1_1vorschriften_amt zust
-                ON eigbe.zustaendigestelle = zust.t_id
-  WHERE  eigbe.thema = 'Nutzungsplanung'
-         AND eigbe.subthema = 'Nutzungsplanung_Ueberlagernd'
-         AND geom.linie_lv95 IS NOT NULL;
+    UNION ALL
+  
+    SELECT 
+        x.ursprung, 
+        x.hinweis, 
+        parents||t1.hinweis, 
+        t1.hinweis AS last_ursprung, 
+        x."depth" + 1
+    FROM 
+        x 
+        INNER JOIN stage.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente t1 
+        ON (last_ursprung = t1.ursprung)
+    WHERE 
+        t1.hinweis IS NOT NULL
+)
+,
+flattened_documents AS 
+(
+    SELECT 
+        DISTINCT ON (x.last_ursprung, x.ursprung)
+        x.ursprung AS top_level_dokument,
+        x.last_ursprung AS t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM 
+        x
+        LEFT JOIN stage.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        ON dokument.t_id = x.last_ursprung
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                stage.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN stage.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        last_ursprung NOT IN
+        (
+            SELECT 
+                DISTINCT ON (eigentumsbeschraenkung.t_id)
+                eigentumsbeschraenkung.t_id
+            FROM
+                stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+)
+,
+-- remove duplicate documents with distinct first, then group them.
+json_documents AS 
+(
+    SELECT
+        DISTINCT ON (eigentumsbeschraenkung, flattened_documents.t_id)
+        hinweisvorschrift.eigentumsbeschraenkung,
+        json_strip_nulls(row_to_json(flattened_documents)) AS dokumente
+        
+    FROM  
+        flattened_documents
+        LEFT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+        ON hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument = flattened_documents.top_level_dokument
+    WHERE
+        eigentumsbeschraenkung IS NOT NULL
+)
+,
+grouped_json_documents AS
+(
+    SELECT
+        eigentumsbeschraenkung,
+        json_agg(dokumente) AS dokumente
+    FROM
+        json_documents
+    GROUP BY
+        eigentumsbeschraenkung
+)
+SELECT
+    geometrie.t_id AS t_id,
+    geometrie.linie_lv95 AS geom,
+    --geometrie.rechtsstatus AS geometrie_rechtsstatus,
+    --geometrie.publiziertab AS geometrie_publiziertab,
+    eigentumsbeschraenkung.aussage_de AS aussage,
+    grouped_json_documents.dokumente AS dokumente,
+    eigentumsbeschraenkung.thema,
+    eigentumsbeschraenkung.subthema AS sub_thema,
+    eigentumsbeschraenkung.weiteresthema AS weiteres_thema,
+    eigentumsbeschraenkung.rechtsstatus,
+    eigentumsbeschraenkung.publiziertab,
+    zustaendigestelle.aname_de AS zustaendige_stelle,
+    zustaendigestelle.amtimweb AS amt_im_web,
+    eigentumsbeschraenkung.artcode,
+    eigentumsbeschraenkung.artcodeliste AS artcode_liste
+FROM
+    stage.oerbkrmfr_v1_1transferstruktur_geometrie AS geometrie
+    LEFT JOIN stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+    ON eigentumsbeschraenkung.t_id = geometrie.eigentumsbeschraenkung
+    LEFT JOIN grouped_json_documents
+    ON grouped_json_documents.eigentumsbeschraenkung = eigentumsbeschraenkung.t_id
+    LEFT JOIN stage.oerbkrmvs_v1_1vorschriften_amt zustaendigestelle
+    ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
+WHERE
+    eigentumsbeschraenkung.thema = 'Nutzungsplanung'
+    AND
+    eigentumsbeschraenkung.subthema = 'NutzungsplanungUeberlagernd'
+    AND
+    geometrie.linie_lv95 IS NOT NULL
+;
+      
+-- -----------------------------------------------------------------------------
+-- materialized view 'weiteres_thema_einzelschutz_flaeche' with thema 'WeiteresThema', subthema 'ch.so.Einzelschutz' and geometry 'flaeche
+DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_weiteres_thema_einzelschutz_flaeche;
+CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_weiteres_thema_einzelschutz_flaeche AS 
+WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
+(
+    SELECT 
+        ursprung, 
+        hinweis, 
+        ARRAY[ursprung] AS parents, 
+        ursprung AS last_ursprung, 
+        0 AS "depth" 
+    FROM 
+        stage.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente
+    WHERE
+        ursprung != hinweis
 
--- view 'weiteres_thema_einzelschutz_flaeche' with thema 'WeiteresThema', subthema 'ch.so.Einzelschutz' and geometry 'flaeche
-DROP VIEW IF EXISTS stage.vw_oerebwms_weiteres_thema_einzelschutz_flaeche;
-CREATE OR replace VIEW stage.vw_oerebwms_weiteres_thema_einzelschutz_flaeche
-AS 
-  SELECT geom.t_id,
-         geom.t_type,
-         geom.t_ili_tid,
-         geom.flaeche_lv95 AS geom,
-         eigbe.aussage_de AS aussage,
-         eigbe.thema,
-         eigbe.subthema AS sub_thema,
-         eigbe.weiteresthema AS weiteres_thema,
-         eigbe.rechtsstatus,
-         eigbe.publiziertab AS publiziert_ab,
-         zust.aname     AS zustaendige_stelle,
-         zust.amtimweb  AS amt_im_web,
-         geom.metadatengeobasisdaten,
-         eigbe.artcode,
-         eigbe.artcodeliste
-  FROM   stage.oerbkrmfr_v1_1transferstruktur_geometrie geom
-         left join stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
-                ON geom.eigentumsbeschraenkung = eigbe.t_id
-         left join stage.oerbkrmvs_v1_1vorschriften_amt zust
-                ON eigbe.zustaendigestelle = zust.t_id
-  WHERE  eigbe.thema = 'WeiteresThema'
-         AND eigbe.subthema = 'ch.so.Einzelschutz'
-         AND geom.flaeche_lv95 IS NOT NULL;
+    UNION ALL
+  
+    SELECT 
+        x.ursprung, 
+        x.hinweis, 
+        parents||t1.hinweis, 
+        t1.hinweis AS last_ursprung, 
+        x."depth" + 1
+    FROM 
+        x 
+        INNER JOIN stage.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente t1 
+        ON (last_ursprung = t1.ursprung)
+    WHERE 
+        t1.hinweis IS NOT NULL
+)
+,
+flattened_documents AS 
+(
+    SELECT 
+        DISTINCT ON (x.last_ursprung, x.ursprung)
+        x.ursprung AS top_level_dokument,
+        x.last_ursprung AS t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM 
+        x
+        LEFT JOIN stage.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        ON dokument.t_id = x.last_ursprung
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                stage.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN stage.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        last_ursprung NOT IN
+        (
+            SELECT 
+                DISTINCT ON (eigentumsbeschraenkung.t_id)
+                eigentumsbeschraenkung.t_id
+            FROM
+                stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+)
+,
+-- remove duplicate documents with distinct first, then group them.
+json_documents AS 
+(
+    SELECT
+        DISTINCT ON (eigentumsbeschraenkung, flattened_documents.t_id)
+        hinweisvorschrift.eigentumsbeschraenkung,
+        json_strip_nulls(row_to_json(flattened_documents)) AS dokumente
+        
+    FROM  
+        flattened_documents
+        LEFT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+        ON hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument = flattened_documents.top_level_dokument
+    WHERE
+        eigentumsbeschraenkung IS NOT NULL
+)
+,
+grouped_json_documents AS
+(
+    SELECT
+        eigentumsbeschraenkung,
+        json_agg(dokumente) AS dokumente
+    FROM
+        json_documents
+    GROUP BY
+        eigentumsbeschraenkung
+)
+SELECT
+    geometrie.t_id AS t_id,
+    geometrie.flaeche_lv95 AS geom,
+    --geometrie.rechtsstatus AS geometrie_rechtsstatus,
+    --geometrie.publiziertab AS geometrie_publiziertab,
+    eigentumsbeschraenkung.aussage_de AS aussage,
+    grouped_json_documents.dokumente AS dokumente,
+    eigentumsbeschraenkung.thema,
+    eigentumsbeschraenkung.subthema AS sub_thema,
+    eigentumsbeschraenkung.weiteresthema AS weiteres_thema,
+    eigentumsbeschraenkung.rechtsstatus,
+    eigentumsbeschraenkung.publiziertab,
+    zustaendigestelle.aname_de AS zustaendige_stelle,
+    zustaendigestelle.amtimweb AS amt_im_web,
+    eigentumsbeschraenkung.artcode,
+    eigentumsbeschraenkung.artcodeliste AS artcode_liste
+FROM
+    stage.oerbkrmfr_v1_1transferstruktur_geometrie AS geometrie
+    LEFT JOIN stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+    ON eigentumsbeschraenkung.t_id = geometrie.eigentumsbeschraenkung
+    LEFT JOIN grouped_json_documents
+    ON grouped_json_documents.eigentumsbeschraenkung = eigentumsbeschraenkung.t_id
+    LEFT JOIN stage.oerbkrmvs_v1_1vorschriften_amt zustaendigestelle
+    ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
+WHERE
+    eigentumsbeschraenkung.thema = 'WeiteresThema'
+    AND
+    eigentumsbeschraenkung.subthema = 'ch.so.Einzelschutz'
+    AND
+    geometrie.flaeche_lv95 IS NOT NULL
+;
+      
+-- -----------------------------------------------------------------------------
+-- materialized view 'weiteres_thema_einzelschutz_punkt' with thema 'WeiteresThema', subthema 'ch.so.Einzelschutz' and geometry 'punkt
+DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_weiteres_thema_einzelschutz_punkt;
+CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_weiteres_thema_einzelschutz_punkt AS 
+WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
+(
+    SELECT 
+        ursprung, 
+        hinweis, 
+        ARRAY[ursprung] AS parents, 
+        ursprung AS last_ursprung, 
+        0 AS "depth" 
+    FROM 
+        stage.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente
+    WHERE
+        ursprung != hinweis
 
--- view 'weiteres_thema_einzelschutz_punkt' with thema 'WeiteresThema', subthema 'ch.so.Einzelschutz' and geometry 'punkt
-DROP VIEW IF EXISTS stage.vw_oerebwms_weiteres_thema_einzelschutz_punkt;
-CREATE OR replace VIEW stage.vw_oerebwms_weiteres_thema_einzelschutz_punkt
-AS 
-  SELECT geom.t_id,
-         geom.t_type,
-         geom.t_ili_tid,
-         geom.punkt_lv95 AS geom,
-         eigbe.aussage_de AS aussage,
-         eigbe.thema,
-         eigbe.subthema AS sub_thema,
-         eigbe.weiteresthema AS weiteres_thema,
-         eigbe.rechtsstatus,
-         eigbe.publiziertab AS publiziert_ab,
-         zust.aname     AS zustaendige_stelle,
-         zust.amtimweb  AS amt_im_web,
-         geom.metadatengeobasisdaten,
-         eigbe.artcode,
-         eigbe.artcodeliste
-  FROM   stage.oerbkrmfr_v1_1transferstruktur_geometrie geom
-         left join stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
-                ON geom.eigentumsbeschraenkung = eigbe.t_id
-         left join stage.oerbkrmvs_v1_1vorschriften_amt zust
-                ON eigbe.zustaendigestelle = zust.t_id
-  WHERE  eigbe.thema = 'WeiteresThema'
-         AND eigbe.subthema = 'ch.so.Einzelschutz'
-         AND geom.punkt_lv95 IS NOT NULL;
+    UNION ALL
+  
+    SELECT 
+        x.ursprung, 
+        x.hinweis, 
+        parents||t1.hinweis, 
+        t1.hinweis AS last_ursprung, 
+        x."depth" + 1
+    FROM 
+        x 
+        INNER JOIN stage.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente t1 
+        ON (last_ursprung = t1.ursprung)
+    WHERE 
+        t1.hinweis IS NOT NULL
+)
+,
+flattened_documents AS 
+(
+    SELECT 
+        DISTINCT ON (x.last_ursprung, x.ursprung)
+        x.ursprung AS top_level_dokument,
+        x.last_ursprung AS t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM 
+        x
+        LEFT JOIN stage.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        ON dokument.t_id = x.last_ursprung
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                stage.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN stage.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        last_ursprung NOT IN
+        (
+            SELECT 
+                DISTINCT ON (eigentumsbeschraenkung.t_id)
+                eigentumsbeschraenkung.t_id
+            FROM
+                stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+)
+,
+-- remove duplicate documents with distinct first, then group them.
+json_documents AS 
+(
+    SELECT
+        DISTINCT ON (eigentumsbeschraenkung, flattened_documents.t_id)
+        hinweisvorschrift.eigentumsbeschraenkung,
+        json_strip_nulls(row_to_json(flattened_documents)) AS dokumente
+        
+    FROM  
+        flattened_documents
+        LEFT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+        ON hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument = flattened_documents.top_level_dokument
+    WHERE
+        eigentumsbeschraenkung IS NOT NULL
+)
+,
+grouped_json_documents AS
+(
+    SELECT
+        eigentumsbeschraenkung,
+        json_agg(dokumente) AS dokumente
+    FROM
+        json_documents
+    GROUP BY
+        eigentumsbeschraenkung
+)
+SELECT
+    geometrie.t_id AS t_id,
+    geometrie.punkt_lv95 AS geom,
+    --geometrie.rechtsstatus AS geometrie_rechtsstatus,
+    --geometrie.publiziertab AS geometrie_publiziertab,
+    eigentumsbeschraenkung.aussage_de AS aussage,
+    grouped_json_documents.dokumente AS dokumente,
+    eigentumsbeschraenkung.thema,
+    eigentumsbeschraenkung.subthema AS sub_thema,
+    eigentumsbeschraenkung.weiteresthema AS weiteres_thema,
+    eigentumsbeschraenkung.rechtsstatus,
+    eigentumsbeschraenkung.publiziertab,
+    zustaendigestelle.aname_de AS zustaendige_stelle,
+    zustaendigestelle.amtimweb AS amt_im_web,
+    eigentumsbeschraenkung.artcode,
+    eigentumsbeschraenkung.artcodeliste AS artcode_liste
+FROM
+    stage.oerbkrmfr_v1_1transferstruktur_geometrie AS geometrie
+    LEFT JOIN stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+    ON eigentumsbeschraenkung.t_id = geometrie.eigentumsbeschraenkung
+    LEFT JOIN grouped_json_documents
+    ON grouped_json_documents.eigentumsbeschraenkung = eigentumsbeschraenkung.t_id
+    LEFT JOIN stage.oerbkrmvs_v1_1vorschriften_amt zustaendigestelle
+    ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
+WHERE
+    eigentumsbeschraenkung.thema = 'WeiteresThema'
+    AND
+    eigentumsbeschraenkung.subthema = 'ch.so.Einzelschutz'
+    AND
+    geometrie.punkt_lv95 IS NOT NULL
+;
+      
+-- -----------------------------------------------------------------------------
+-- materialized view 'nutzungsplanung_sondernutzungsplaene_flaeche' with thema 'Nutzungsplanung', subthema 'NutzungsplanungSondernutzungsplaene' and geometry 'flaeche
+DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche;
+CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche AS 
+WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
+(
+    SELECT 
+        ursprung, 
+        hinweis, 
+        ARRAY[ursprung] AS parents, 
+        ursprung AS last_ursprung, 
+        0 AS "depth" 
+    FROM 
+        stage.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente
+    WHERE
+        ursprung != hinweis
 
--- view 'nutzungsplanung_sondernutzungsplaene_flaeche' with thema 'Nutzungsplanung', subthema 'Nutzungsplanung_Sondernutzungsplaene' and geometry 'flaeche
-DROP VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche;
-CREATE OR replace VIEW stage.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche
-AS 
-  SELECT geom.t_id,
-         geom.t_type,
-         geom.t_ili_tid,
-         geom.flaeche_lv95 AS geom,
-         eigbe.aussage_de AS aussage,
-         eigbe.thema,
-         eigbe.subthema AS sub_thema,
-         eigbe.weiteresthema AS weiteres_thema,
-         eigbe.rechtsstatus,
-         eigbe.publiziertab AS publiziert_ab,
-         zust.aname     AS zustaendige_stelle,
-         zust.amtimweb  AS amt_im_web,
-         geom.metadatengeobasisdaten,
-         eigbe.artcode,
-         eigbe.artcodeliste
-  FROM   stage.oerbkrmfr_v1_1transferstruktur_geometrie geom
-         left join stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
-                ON geom.eigentumsbeschraenkung = eigbe.t_id
-         left join stage.oerbkrmvs_v1_1vorschriften_amt zust
-                ON eigbe.zustaendigestelle = zust.t_id
-  WHERE  eigbe.thema = 'Nutzungsplanung'
-         AND eigbe.subthema = 'Nutzungsplanung_Sondernutzungsplaene'
-         AND geom.flaeche_lv95 IS NOT NULL;
+    UNION ALL
+  
+    SELECT 
+        x.ursprung, 
+        x.hinweis, 
+        parents||t1.hinweis, 
+        t1.hinweis AS last_ursprung, 
+        x."depth" + 1
+    FROM 
+        x 
+        INNER JOIN stage.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente t1 
+        ON (last_ursprung = t1.ursprung)
+    WHERE 
+        t1.hinweis IS NOT NULL
+)
+,
+flattened_documents AS 
+(
+    SELECT 
+        DISTINCT ON (x.last_ursprung, x.ursprung)
+        x.ursprung AS top_level_dokument,
+        x.last_ursprung AS t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM 
+        x
+        LEFT JOIN stage.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        ON dokument.t_id = x.last_ursprung
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                stage.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN stage.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        last_ursprung NOT IN
+        (
+            SELECT 
+                DISTINCT ON (eigentumsbeschraenkung.t_id)
+                eigentumsbeschraenkung.t_id
+            FROM
+                stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+)
+,
+-- remove duplicate documents with distinct first, then group them.
+json_documents AS 
+(
+    SELECT
+        DISTINCT ON (eigentumsbeschraenkung, flattened_documents.t_id)
+        hinweisvorschrift.eigentumsbeschraenkung,
+        json_strip_nulls(row_to_json(flattened_documents)) AS dokumente
+        
+    FROM  
+        flattened_documents
+        LEFT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+        ON hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument = flattened_documents.top_level_dokument
+    WHERE
+        eigentumsbeschraenkung IS NOT NULL
+)
+,
+grouped_json_documents AS
+(
+    SELECT
+        eigentumsbeschraenkung,
+        json_agg(dokumente) AS dokumente
+    FROM
+        json_documents
+    GROUP BY
+        eigentumsbeschraenkung
+)
+SELECT
+    geometrie.t_id AS t_id,
+    geometrie.flaeche_lv95 AS geom,
+    --geometrie.rechtsstatus AS geometrie_rechtsstatus,
+    --geometrie.publiziertab AS geometrie_publiziertab,
+    eigentumsbeschraenkung.aussage_de AS aussage,
+    grouped_json_documents.dokumente AS dokumente,
+    eigentumsbeschraenkung.thema,
+    eigentumsbeschraenkung.subthema AS sub_thema,
+    eigentumsbeschraenkung.weiteresthema AS weiteres_thema,
+    eigentumsbeschraenkung.rechtsstatus,
+    eigentumsbeschraenkung.publiziertab,
+    zustaendigestelle.aname_de AS zustaendige_stelle,
+    zustaendigestelle.amtimweb AS amt_im_web,
+    eigentumsbeschraenkung.artcode,
+    eigentumsbeschraenkung.artcodeliste AS artcode_liste
+FROM
+    stage.oerbkrmfr_v1_1transferstruktur_geometrie AS geometrie
+    LEFT JOIN stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+    ON eigentumsbeschraenkung.t_id = geometrie.eigentumsbeschraenkung
+    LEFT JOIN grouped_json_documents
+    ON grouped_json_documents.eigentumsbeschraenkung = eigentumsbeschraenkung.t_id
+    LEFT JOIN stage.oerbkrmvs_v1_1vorschriften_amt zustaendigestelle
+    ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
+WHERE
+    eigentumsbeschraenkung.thema = 'Nutzungsplanung'
+    AND
+    eigentumsbeschraenkung.subthema = 'NutzungsplanungSondernutzungsplaene'
+    AND
+    geometrie.flaeche_lv95 IS NOT NULL
+;
+      
+-- -----------------------------------------------------------------------------
+-- materialized view 'waldgrenzen_linie' with thema 'Waldgrenzen', subthema '' and geometry 'linie
+DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_waldgrenzen_linie;
+CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_waldgrenzen_linie AS 
+WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
+(
+    SELECT 
+        ursprung, 
+        hinweis, 
+        ARRAY[ursprung] AS parents, 
+        ursprung AS last_ursprung, 
+        0 AS "depth" 
+    FROM 
+        stage.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente
+    WHERE
+        ursprung != hinweis
 
--- view 'waldgrenzen_linie' with thema 'Waldgrenzen', subthema '' and geometry 'linie
-DROP VIEW IF EXISTS stage.vw_oerebwms_waldgrenzen_linie;
-CREATE OR replace VIEW stage.vw_oerebwms_waldgrenzen_linie
-AS 
-  SELECT geom.t_id,
-         geom.t_type,
-         geom.t_ili_tid,
-         geom.linie_lv95 AS geom,
-         eigbe.aussage_de AS aussage,
-         eigbe.thema,
-         eigbe.subthema AS sub_thema,
-         eigbe.weiteresthema AS weiteres_thema,
-         eigbe.rechtsstatus,
-         eigbe.publiziertab AS publiziert_ab,
-         zust.aname     AS zustaendige_stelle,
-         zust.amtimweb  AS amt_im_web,
-         geom.metadatengeobasisdaten,
-         eigbe.artcode,
-         eigbe.artcodeliste
-  FROM   stage.oerbkrmfr_v1_1transferstruktur_geometrie geom
-         left join stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
-                ON geom.eigentumsbeschraenkung = eigbe.t_id
-         left join stage.oerbkrmvs_v1_1vorschriften_amt zust
-                ON eigbe.zustaendigestelle = zust.t_id
-  WHERE  eigbe.thema = 'Waldgrenzen'
-         AND eigbe.subthema = ''
-         AND geom.linie_lv95 IS NOT NULL;
+    UNION ALL
+  
+    SELECT 
+        x.ursprung, 
+        x.hinweis, 
+        parents||t1.hinweis, 
+        t1.hinweis AS last_ursprung, 
+        x."depth" + 1
+    FROM 
+        x 
+        INNER JOIN stage.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente t1 
+        ON (last_ursprung = t1.ursprung)
+    WHERE 
+        t1.hinweis IS NOT NULL
+)
+,
+flattened_documents AS 
+(
+    SELECT 
+        DISTINCT ON (x.last_ursprung, x.ursprung)
+        x.ursprung AS top_level_dokument,
+        x.last_ursprung AS t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM 
+        x
+        LEFT JOIN stage.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        ON dokument.t_id = x.last_ursprung
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                stage.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN stage.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        last_ursprung NOT IN
+        (
+            SELECT 
+                DISTINCT ON (eigentumsbeschraenkung.t_id)
+                eigentumsbeschraenkung.t_id
+            FROM
+                stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+)
+,
+-- remove duplicate documents with distinct first, then group them.
+json_documents AS 
+(
+    SELECT
+        DISTINCT ON (eigentumsbeschraenkung, flattened_documents.t_id)
+        hinweisvorschrift.eigentumsbeschraenkung,
+        json_strip_nulls(row_to_json(flattened_documents)) AS dokumente
+        
+    FROM  
+        flattened_documents
+        LEFT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+        ON hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument = flattened_documents.top_level_dokument
+    WHERE
+        eigentumsbeschraenkung IS NOT NULL
+)
+,
+grouped_json_documents AS
+(
+    SELECT
+        eigentumsbeschraenkung,
+        json_agg(dokumente) AS dokumente
+    FROM
+        json_documents
+    GROUP BY
+        eigentumsbeschraenkung
+)
+SELECT
+    geometrie.t_id AS t_id,
+    geometrie.linie_lv95 AS geom,
+    --geometrie.rechtsstatus AS geometrie_rechtsstatus,
+    --geometrie.publiziertab AS geometrie_publiziertab,
+    eigentumsbeschraenkung.aussage_de AS aussage,
+    grouped_json_documents.dokumente AS dokumente,
+    eigentumsbeschraenkung.thema,
+    eigentumsbeschraenkung.subthema AS sub_thema,
+    eigentumsbeschraenkung.weiteresthema AS weiteres_thema,
+    eigentumsbeschraenkung.rechtsstatus,
+    eigentumsbeschraenkung.publiziertab,
+    zustaendigestelle.aname_de AS zustaendige_stelle,
+    zustaendigestelle.amtimweb AS amt_im_web,
+    eigentumsbeschraenkung.artcode,
+    eigentumsbeschraenkung.artcodeliste AS artcode_liste
+FROM
+    stage.oerbkrmfr_v1_1transferstruktur_geometrie AS geometrie
+    LEFT JOIN stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+    ON eigentumsbeschraenkung.t_id = geometrie.eigentumsbeschraenkung
+    LEFT JOIN grouped_json_documents
+    ON grouped_json_documents.eigentumsbeschraenkung = eigentumsbeschraenkung.t_id
+    LEFT JOIN stage.oerbkrmvs_v1_1vorschriften_amt zustaendigestelle
+    ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
+WHERE
+    eigentumsbeschraenkung.thema = 'Waldgrenzen'
+    AND
+    eigentumsbeschraenkung.subthema = ''
+    AND
+    geometrie.linie_lv95 IS NOT NULL
+;
+      
+-- -----------------------------------------------------------------------------
+-- materialized view 'nutzungsplanung_ueberlagernd_flaeche' with thema 'Nutzungsplanung', subthema 'NutzungsplanungUeberlagernd' and geometry 'flaeche
+DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche;
+CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche AS 
+WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
+(
+    SELECT 
+        ursprung, 
+        hinweis, 
+        ARRAY[ursprung] AS parents, 
+        ursprung AS last_ursprung, 
+        0 AS "depth" 
+    FROM 
+        stage.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente
+    WHERE
+        ursprung != hinweis
 
--- view 'nutzungsplanung_ueberlagernd_flaeche' with thema 'Nutzungsplanung', subthema 'Nutzungsplanung_Ueberlagernd' and geometry 'flaeche
-DROP VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche;
-CREATE OR replace VIEW stage.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche
-AS 
-  SELECT geom.t_id,
-         geom.t_type,
-         geom.t_ili_tid,
-         geom.flaeche_lv95 AS geom,
-         eigbe.aussage_de AS aussage,
-         eigbe.thema,
-         eigbe.subthema AS sub_thema,
-         eigbe.weiteresthema AS weiteres_thema,
-         eigbe.rechtsstatus,
-         eigbe.publiziertab AS publiziert_ab,
-         zust.aname     AS zustaendige_stelle,
-         zust.amtimweb  AS amt_im_web,
-         geom.metadatengeobasisdaten,
-         eigbe.artcode,
-         eigbe.artcodeliste
-  FROM   stage.oerbkrmfr_v1_1transferstruktur_geometrie geom
-         left join stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
-                ON geom.eigentumsbeschraenkung = eigbe.t_id
-         left join stage.oerbkrmvs_v1_1vorschriften_amt zust
-                ON eigbe.zustaendigestelle = zust.t_id
-  WHERE  eigbe.thema = 'Nutzungsplanung'
-         AND eigbe.subthema = 'Nutzungsplanung_Ueberlagernd'
-         AND geom.flaeche_lv95 IS NOT NULL;
+    UNION ALL
+  
+    SELECT 
+        x.ursprung, 
+        x.hinweis, 
+        parents||t1.hinweis, 
+        t1.hinweis AS last_ursprung, 
+        x."depth" + 1
+    FROM 
+        x 
+        INNER JOIN stage.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente t1 
+        ON (last_ursprung = t1.ursprung)
+    WHERE 
+        t1.hinweis IS NOT NULL
+)
+,
+flattened_documents AS 
+(
+    SELECT 
+        DISTINCT ON (x.last_ursprung, x.ursprung)
+        x.ursprung AS top_level_dokument,
+        x.last_ursprung AS t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM 
+        x
+        LEFT JOIN stage.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        ON dokument.t_id = x.last_ursprung
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                stage.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN stage.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        last_ursprung NOT IN
+        (
+            SELECT 
+                DISTINCT ON (eigentumsbeschraenkung.t_id)
+                eigentumsbeschraenkung.t_id
+            FROM
+                stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+)
+,
+-- remove duplicate documents with distinct first, then group them.
+json_documents AS 
+(
+    SELECT
+        DISTINCT ON (eigentumsbeschraenkung, flattened_documents.t_id)
+        hinweisvorschrift.eigentumsbeschraenkung,
+        json_strip_nulls(row_to_json(flattened_documents)) AS dokumente
+        
+    FROM  
+        flattened_documents
+        LEFT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+        ON hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument = flattened_documents.top_level_dokument
+    WHERE
+        eigentumsbeschraenkung IS NOT NULL
+)
+,
+grouped_json_documents AS
+(
+    SELECT
+        eigentumsbeschraenkung,
+        json_agg(dokumente) AS dokumente
+    FROM
+        json_documents
+    GROUP BY
+        eigentumsbeschraenkung
+)
+SELECT
+    geometrie.t_id AS t_id,
+    geometrie.flaeche_lv95 AS geom,
+    --geometrie.rechtsstatus AS geometrie_rechtsstatus,
+    --geometrie.publiziertab AS geometrie_publiziertab,
+    eigentumsbeschraenkung.aussage_de AS aussage,
+    grouped_json_documents.dokumente AS dokumente,
+    eigentumsbeschraenkung.thema,
+    eigentumsbeschraenkung.subthema AS sub_thema,
+    eigentumsbeschraenkung.weiteresthema AS weiteres_thema,
+    eigentumsbeschraenkung.rechtsstatus,
+    eigentumsbeschraenkung.publiziertab,
+    zustaendigestelle.aname_de AS zustaendige_stelle,
+    zustaendigestelle.amtimweb AS amt_im_web,
+    eigentumsbeschraenkung.artcode,
+    eigentumsbeschraenkung.artcodeliste AS artcode_liste
+FROM
+    stage.oerbkrmfr_v1_1transferstruktur_geometrie AS geometrie
+    LEFT JOIN stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+    ON eigentumsbeschraenkung.t_id = geometrie.eigentumsbeschraenkung
+    LEFT JOIN grouped_json_documents
+    ON grouped_json_documents.eigentumsbeschraenkung = eigentumsbeschraenkung.t_id
+    LEFT JOIN stage.oerbkrmvs_v1_1vorschriften_amt zustaendigestelle
+    ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
+WHERE
+    eigentumsbeschraenkung.thema = 'Nutzungsplanung'
+    AND
+    eigentumsbeschraenkung.subthema = 'NutzungsplanungUeberlagernd'
+    AND
+    geometrie.flaeche_lv95 IS NOT NULL
+;
+      
+-- -----------------------------------------------------------------------------
+-- materialized view 'nutzungsplanung_ueberlagernd_punkt' with thema 'Nutzungsplanung', subthema 'NutzungsplanungUeberlagernd' and geometry 'punkt
+DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt;
+CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt AS 
+WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
+(
+    SELECT 
+        ursprung, 
+        hinweis, 
+        ARRAY[ursprung] AS parents, 
+        ursprung AS last_ursprung, 
+        0 AS "depth" 
+    FROM 
+        stage.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente
+    WHERE
+        ursprung != hinweis
 
--- view 'nutzungsplanung_ueberlagernd_punkt' with thema 'Nutzungsplanung', subthema 'Nutzungsplanung_Ueberlagernd' and geometry 'punkt
-DROP VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt;
-CREATE OR replace VIEW stage.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt
-AS 
-  SELECT geom.t_id,
-         geom.t_type,
-         geom.t_ili_tid,
-         geom.punkt_lv95 AS geom,
-         eigbe.aussage_de AS aussage,
-         eigbe.thema,
-         eigbe.subthema AS sub_thema,
-         eigbe.weiteresthema AS weiteres_thema,
-         eigbe.rechtsstatus,
-         eigbe.publiziertab AS publiziert_ab,
-         zust.aname     AS zustaendige_stelle,
-         zust.amtimweb  AS amt_im_web,
-         geom.metadatengeobasisdaten,
-         eigbe.artcode,
-         eigbe.artcodeliste
-  FROM   stage.oerbkrmfr_v1_1transferstruktur_geometrie geom
-         left join stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
-                ON geom.eigentumsbeschraenkung = eigbe.t_id
-         left join stage.oerbkrmvs_v1_1vorschriften_amt zust
-                ON eigbe.zustaendigestelle = zust.t_id
-  WHERE  eigbe.thema = 'Nutzungsplanung'
-         AND eigbe.subthema = 'Nutzungsplanung_Ueberlagernd'
-         AND geom.punkt_lv95 IS NOT NULL;
+    UNION ALL
+  
+    SELECT 
+        x.ursprung, 
+        x.hinweis, 
+        parents||t1.hinweis, 
+        t1.hinweis AS last_ursprung, 
+        x."depth" + 1
+    FROM 
+        x 
+        INNER JOIN stage.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente t1 
+        ON (last_ursprung = t1.ursprung)
+    WHERE 
+        t1.hinweis IS NOT NULL
+)
+,
+flattened_documents AS 
+(
+    SELECT 
+        DISTINCT ON (x.last_ursprung, x.ursprung)
+        x.ursprung AS top_level_dokument,
+        x.last_ursprung AS t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM 
+        x
+        LEFT JOIN stage.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        ON dokument.t_id = x.last_ursprung
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                stage.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN stage.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        last_ursprung NOT IN
+        (
+            SELECT 
+                DISTINCT ON (eigentumsbeschraenkung.t_id)
+                eigentumsbeschraenkung.t_id
+            FROM
+                stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+)
+,
+-- remove duplicate documents with distinct first, then group them.
+json_documents AS 
+(
+    SELECT
+        DISTINCT ON (eigentumsbeschraenkung, flattened_documents.t_id)
+        hinweisvorschrift.eigentumsbeschraenkung,
+        json_strip_nulls(row_to_json(flattened_documents)) AS dokumente
+        
+    FROM  
+        flattened_documents
+        LEFT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+        ON hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument = flattened_documents.top_level_dokument
+    WHERE
+        eigentumsbeschraenkung IS NOT NULL
+)
+,
+grouped_json_documents AS
+(
+    SELECT
+        eigentumsbeschraenkung,
+        json_agg(dokumente) AS dokumente
+    FROM
+        json_documents
+    GROUP BY
+        eigentumsbeschraenkung
+)
+SELECT
+    geometrie.t_id AS t_id,
+    geometrie.punkt_lv95 AS geom,
+    --geometrie.rechtsstatus AS geometrie_rechtsstatus,
+    --geometrie.publiziertab AS geometrie_publiziertab,
+    eigentumsbeschraenkung.aussage_de AS aussage,
+    grouped_json_documents.dokumente AS dokumente,
+    eigentumsbeschraenkung.thema,
+    eigentumsbeschraenkung.subthema AS sub_thema,
+    eigentumsbeschraenkung.weiteresthema AS weiteres_thema,
+    eigentumsbeschraenkung.rechtsstatus,
+    eigentumsbeschraenkung.publiziertab,
+    zustaendigestelle.aname_de AS zustaendige_stelle,
+    zustaendigestelle.amtimweb AS amt_im_web,
+    eigentumsbeschraenkung.artcode,
+    eigentumsbeschraenkung.artcodeliste AS artcode_liste
+FROM
+    stage.oerbkrmfr_v1_1transferstruktur_geometrie AS geometrie
+    LEFT JOIN stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+    ON eigentumsbeschraenkung.t_id = geometrie.eigentumsbeschraenkung
+    LEFT JOIN grouped_json_documents
+    ON grouped_json_documents.eigentumsbeschraenkung = eigentumsbeschraenkung.t_id
+    LEFT JOIN stage.oerbkrmvs_v1_1vorschriften_amt zustaendigestelle
+    ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
+WHERE
+    eigentumsbeschraenkung.thema = 'Nutzungsplanung'
+    AND
+    eigentumsbeschraenkung.subthema = 'NutzungsplanungUeberlagernd'
+    AND
+    geometrie.punkt_lv95 IS NOT NULL
+;
+      
+-- -----------------------------------------------------------------------------
+-- materialized view 'nutzungsplanung_grundnutzung_flaeche' with thema 'Nutzungsplanung', subthema 'NutzungsplanungGrundnutzung' and geometry 'flaeche
+DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche;
+CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche AS 
+WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
+(
+    SELECT 
+        ursprung, 
+        hinweis, 
+        ARRAY[ursprung] AS parents, 
+        ursprung AS last_ursprung, 
+        0 AS "depth" 
+    FROM 
+        stage.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente
+    WHERE
+        ursprung != hinweis
 
--- view 'nutzungsplanung_grundnutzung_flaeche' with thema 'Nutzungsplanung', subthema 'Grundnutzung_Zonenflaeche' and geometry 'flaeche
-DROP VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche;
-CREATE OR replace VIEW stage.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche
-AS 
-  SELECT geom.t_id,
-         geom.t_type,
-         geom.t_ili_tid,
-         geom.flaeche_lv95 AS geom,
-         eigbe.aussage_de AS aussage,
-         eigbe.thema,
-         eigbe.subthema AS sub_thema,
-         eigbe.weiteresthema AS weiteres_thema,
-         eigbe.rechtsstatus,
-         eigbe.publiziertab AS publiziert_ab,
-         zust.aname     AS zustaendige_stelle,
-         zust.amtimweb  AS amt_im_web,
-         geom.metadatengeobasisdaten,
-         eigbe.artcode,
-         eigbe.artcodeliste
-  FROM   stage.oerbkrmfr_v1_1transferstruktur_geometrie geom
-         left join stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
-                ON geom.eigentumsbeschraenkung = eigbe.t_id
-         left join stage.oerbkrmvs_v1_1vorschriften_amt zust
-                ON eigbe.zustaendigestelle = zust.t_id
-  WHERE  eigbe.thema = 'Nutzungsplanung'
-         AND eigbe.subthema = 'Grundnutzung_Zonenflaeche'
-         AND geom.flaeche_lv95 IS NOT NULL;
+    UNION ALL
+  
+    SELECT 
+        x.ursprung, 
+        x.hinweis, 
+        parents||t1.hinweis, 
+        t1.hinweis AS last_ursprung, 
+        x."depth" + 1
+    FROM 
+        x 
+        INNER JOIN stage.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente t1 
+        ON (last_ursprung = t1.ursprung)
+    WHERE 
+        t1.hinweis IS NOT NULL
+)
+,
+flattened_documents AS 
+(
+    SELECT 
+        DISTINCT ON (x.last_ursprung, x.ursprung)
+        x.ursprung AS top_level_dokument,
+        x.last_ursprung AS t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM 
+        x
+        LEFT JOIN stage.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        ON dokument.t_id = x.last_ursprung
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                stage.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN stage.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        last_ursprung NOT IN
+        (
+            SELECT 
+                DISTINCT ON (eigentumsbeschraenkung.t_id)
+                eigentumsbeschraenkung.t_id
+            FROM
+                stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+)
+,
+-- remove duplicate documents with distinct first, then group them.
+json_documents AS 
+(
+    SELECT
+        DISTINCT ON (eigentumsbeschraenkung, flattened_documents.t_id)
+        hinweisvorschrift.eigentumsbeschraenkung,
+        json_strip_nulls(row_to_json(flattened_documents)) AS dokumente
+        
+    FROM  
+        flattened_documents
+        LEFT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+        ON hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument = flattened_documents.top_level_dokument
+    WHERE
+        eigentumsbeschraenkung IS NOT NULL
+)
+,
+grouped_json_documents AS
+(
+    SELECT
+        eigentumsbeschraenkung,
+        json_agg(dokumente) AS dokumente
+    FROM
+        json_documents
+    GROUP BY
+        eigentumsbeschraenkung
+)
+SELECT
+    geometrie.t_id AS t_id,
+    geometrie.flaeche_lv95 AS geom,
+    --geometrie.rechtsstatus AS geometrie_rechtsstatus,
+    --geometrie.publiziertab AS geometrie_publiziertab,
+    eigentumsbeschraenkung.aussage_de AS aussage,
+    grouped_json_documents.dokumente AS dokumente,
+    eigentumsbeschraenkung.thema,
+    eigentumsbeschraenkung.subthema AS sub_thema,
+    eigentumsbeschraenkung.weiteresthema AS weiteres_thema,
+    eigentumsbeschraenkung.rechtsstatus,
+    eigentumsbeschraenkung.publiziertab,
+    zustaendigestelle.aname_de AS zustaendige_stelle,
+    zustaendigestelle.amtimweb AS amt_im_web,
+    eigentumsbeschraenkung.artcode,
+    eigentumsbeschraenkung.artcodeliste AS artcode_liste
+FROM
+    stage.oerbkrmfr_v1_1transferstruktur_geometrie AS geometrie
+    LEFT JOIN stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+    ON eigentumsbeschraenkung.t_id = geometrie.eigentumsbeschraenkung
+    LEFT JOIN grouped_json_documents
+    ON grouped_json_documents.eigentumsbeschraenkung = eigentumsbeschraenkung.t_id
+    LEFT JOIN stage.oerbkrmvs_v1_1vorschriften_amt zustaendigestelle
+    ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
+WHERE
+    eigentumsbeschraenkung.thema = 'Nutzungsplanung'
+    AND
+    eigentumsbeschraenkung.subthema = 'NutzungsplanungGrundnutzung'
+    AND
+    geometrie.flaeche_lv95 IS NOT NULL
+;
+
 
 -- schema nr 2 is live
----------------------------
+---------------------------      
+-- -----------------------------------------------------------------------------
+-- materialized view 'nutzungsplanung_ueberlagernd_linie' with thema 'Nutzungsplanung', subthema 'NutzungsplanungUeberlagernd' and geometry 'linie
+DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_linie;
+CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_linie AS 
+WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
+(
+    SELECT 
+        ursprung, 
+        hinweis, 
+        ARRAY[ursprung] AS parents, 
+        ursprung AS last_ursprung, 
+        0 AS "depth" 
+    FROM 
+        live.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente
+    WHERE
+        ursprung != hinweis
 
--- view 'nutzungsplanung_ueberlagernd_linie' with thema 'Nutzungsplanung', subthema 'Nutzungsplanung_Ueberlagernd' and geometry 'linie
-DROP VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_linie;
-CREATE OR replace VIEW live.vw_oerebwms_nutzungsplanung_ueberlagernd_linie
-AS 
-  SELECT geom.t_id,
-         geom.t_type,
-         geom.t_ili_tid,
-         geom.linie_lv95 AS geom,
-         eigbe.aussage_de AS aussage,
-         eigbe.thema,
-         eigbe.subthema AS sub_thema,
-         eigbe.weiteresthema AS weiteres_thema,
-         eigbe.rechtsstatus,
-         eigbe.publiziertab AS publiziert_ab,
-         zust.aname     AS zustaendige_stelle,
-         zust.amtimweb  AS amt_im_web,
-         geom.metadatengeobasisdaten,
-         eigbe.artcode,
-         eigbe.artcodeliste
-  FROM   live.oerbkrmfr_v1_1transferstruktur_geometrie geom
-         left join live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
-                ON geom.eigentumsbeschraenkung = eigbe.t_id
-         left join live.oerbkrmvs_v1_1vorschriften_amt zust
-                ON eigbe.zustaendigestelle = zust.t_id
-  WHERE  eigbe.thema = 'Nutzungsplanung'
-         AND eigbe.subthema = 'Nutzungsplanung_Ueberlagernd'
-         AND geom.linie_lv95 IS NOT NULL;
+    UNION ALL
+  
+    SELECT 
+        x.ursprung, 
+        x.hinweis, 
+        parents||t1.hinweis, 
+        t1.hinweis AS last_ursprung, 
+        x."depth" + 1
+    FROM 
+        x 
+        INNER JOIN live.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente t1 
+        ON (last_ursprung = t1.ursprung)
+    WHERE 
+        t1.hinweis IS NOT NULL
+)
+,
+flattened_documents AS 
+(
+    SELECT 
+        DISTINCT ON (x.last_ursprung, x.ursprung)
+        x.ursprung AS top_level_dokument,
+        x.last_ursprung AS t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM 
+        x
+        LEFT JOIN live.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        ON dokument.t_id = x.last_ursprung
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                live.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN live.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        last_ursprung NOT IN
+        (
+            SELECT 
+                DISTINCT ON (eigentumsbeschraenkung.t_id)
+                eigentumsbeschraenkung.t_id
+            FROM
+                live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+)
+,
+-- remove duplicate documents with distinct first, then group them.
+json_documents AS 
+(
+    SELECT
+        DISTINCT ON (eigentumsbeschraenkung, flattened_documents.t_id)
+        hinweisvorschrift.eigentumsbeschraenkung,
+        json_strip_nulls(row_to_json(flattened_documents)) AS dokumente
+        
+    FROM  
+        flattened_documents
+        LEFT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+        ON hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument = flattened_documents.top_level_dokument
+    WHERE
+        eigentumsbeschraenkung IS NOT NULL
+)
+,
+grouped_json_documents AS
+(
+    SELECT
+        eigentumsbeschraenkung,
+        json_agg(dokumente) AS dokumente
+    FROM
+        json_documents
+    GROUP BY
+        eigentumsbeschraenkung
+)
+SELECT
+    geometrie.t_id AS t_id,
+    geometrie.linie_lv95 AS geom,
+    --geometrie.rechtsstatus AS geometrie_rechtsstatus,
+    --geometrie.publiziertab AS geometrie_publiziertab,
+    eigentumsbeschraenkung.aussage_de AS aussage,
+    grouped_json_documents.dokumente AS dokumente,
+    eigentumsbeschraenkung.thema,
+    eigentumsbeschraenkung.subthema AS sub_thema,
+    eigentumsbeschraenkung.weiteresthema AS weiteres_thema,
+    eigentumsbeschraenkung.rechtsstatus,
+    eigentumsbeschraenkung.publiziertab,
+    zustaendigestelle.aname_de AS zustaendige_stelle,
+    zustaendigestelle.amtimweb AS amt_im_web,
+    eigentumsbeschraenkung.artcode,
+    eigentumsbeschraenkung.artcodeliste AS artcode_liste
+FROM
+    live.oerbkrmfr_v1_1transferstruktur_geometrie AS geometrie
+    LEFT JOIN live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+    ON eigentumsbeschraenkung.t_id = geometrie.eigentumsbeschraenkung
+    LEFT JOIN grouped_json_documents
+    ON grouped_json_documents.eigentumsbeschraenkung = eigentumsbeschraenkung.t_id
+    LEFT JOIN live.oerbkrmvs_v1_1vorschriften_amt zustaendigestelle
+    ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
+WHERE
+    eigentumsbeschraenkung.thema = 'Nutzungsplanung'
+    AND
+    eigentumsbeschraenkung.subthema = 'NutzungsplanungUeberlagernd'
+    AND
+    geometrie.linie_lv95 IS NOT NULL
+;
+      
+-- -----------------------------------------------------------------------------
+-- materialized view 'weiteres_thema_einzelschutz_flaeche' with thema 'WeiteresThema', subthema 'ch.so.Einzelschutz' and geometry 'flaeche
+DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_weiteres_thema_einzelschutz_flaeche;
+CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_weiteres_thema_einzelschutz_flaeche AS 
+WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
+(
+    SELECT 
+        ursprung, 
+        hinweis, 
+        ARRAY[ursprung] AS parents, 
+        ursprung AS last_ursprung, 
+        0 AS "depth" 
+    FROM 
+        live.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente
+    WHERE
+        ursprung != hinweis
 
--- view 'weiteres_thema_einzelschutz_flaeche' with thema 'WeiteresThema', subthema 'ch.so.Einzelschutz' and geometry 'flaeche
-DROP VIEW IF EXISTS live.vw_oerebwms_weiteres_thema_einzelschutz_flaeche;
-CREATE OR replace VIEW live.vw_oerebwms_weiteres_thema_einzelschutz_flaeche
-AS 
-  SELECT geom.t_id,
-         geom.t_type,
-         geom.t_ili_tid,
-         geom.flaeche_lv95 AS geom,
-         eigbe.aussage_de AS aussage,
-         eigbe.thema,
-         eigbe.subthema AS sub_thema,
-         eigbe.weiteresthema AS weiteres_thema,
-         eigbe.rechtsstatus,
-         eigbe.publiziertab AS publiziert_ab,
-         zust.aname     AS zustaendige_stelle,
-         zust.amtimweb  AS amt_im_web,
-         geom.metadatengeobasisdaten,
-         eigbe.artcode,
-         eigbe.artcodeliste
-  FROM   live.oerbkrmfr_v1_1transferstruktur_geometrie geom
-         left join live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
-                ON geom.eigentumsbeschraenkung = eigbe.t_id
-         left join live.oerbkrmvs_v1_1vorschriften_amt zust
-                ON eigbe.zustaendigestelle = zust.t_id
-  WHERE  eigbe.thema = 'WeiteresThema'
-         AND eigbe.subthema = 'ch.so.Einzelschutz'
-         AND geom.flaeche_lv95 IS NOT NULL;
+    UNION ALL
+  
+    SELECT 
+        x.ursprung, 
+        x.hinweis, 
+        parents||t1.hinweis, 
+        t1.hinweis AS last_ursprung, 
+        x."depth" + 1
+    FROM 
+        x 
+        INNER JOIN live.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente t1 
+        ON (last_ursprung = t1.ursprung)
+    WHERE 
+        t1.hinweis IS NOT NULL
+)
+,
+flattened_documents AS 
+(
+    SELECT 
+        DISTINCT ON (x.last_ursprung, x.ursprung)
+        x.ursprung AS top_level_dokument,
+        x.last_ursprung AS t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM 
+        x
+        LEFT JOIN live.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        ON dokument.t_id = x.last_ursprung
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                live.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN live.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        last_ursprung NOT IN
+        (
+            SELECT 
+                DISTINCT ON (eigentumsbeschraenkung.t_id)
+                eigentumsbeschraenkung.t_id
+            FROM
+                live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+)
+,
+-- remove duplicate documents with distinct first, then group them.
+json_documents AS 
+(
+    SELECT
+        DISTINCT ON (eigentumsbeschraenkung, flattened_documents.t_id)
+        hinweisvorschrift.eigentumsbeschraenkung,
+        json_strip_nulls(row_to_json(flattened_documents)) AS dokumente
+        
+    FROM  
+        flattened_documents
+        LEFT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+        ON hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument = flattened_documents.top_level_dokument
+    WHERE
+        eigentumsbeschraenkung IS NOT NULL
+)
+,
+grouped_json_documents AS
+(
+    SELECT
+        eigentumsbeschraenkung,
+        json_agg(dokumente) AS dokumente
+    FROM
+        json_documents
+    GROUP BY
+        eigentumsbeschraenkung
+)
+SELECT
+    geometrie.t_id AS t_id,
+    geometrie.flaeche_lv95 AS geom,
+    --geometrie.rechtsstatus AS geometrie_rechtsstatus,
+    --geometrie.publiziertab AS geometrie_publiziertab,
+    eigentumsbeschraenkung.aussage_de AS aussage,
+    grouped_json_documents.dokumente AS dokumente,
+    eigentumsbeschraenkung.thema,
+    eigentumsbeschraenkung.subthema AS sub_thema,
+    eigentumsbeschraenkung.weiteresthema AS weiteres_thema,
+    eigentumsbeschraenkung.rechtsstatus,
+    eigentumsbeschraenkung.publiziertab,
+    zustaendigestelle.aname_de AS zustaendige_stelle,
+    zustaendigestelle.amtimweb AS amt_im_web,
+    eigentumsbeschraenkung.artcode,
+    eigentumsbeschraenkung.artcodeliste AS artcode_liste
+FROM
+    live.oerbkrmfr_v1_1transferstruktur_geometrie AS geometrie
+    LEFT JOIN live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+    ON eigentumsbeschraenkung.t_id = geometrie.eigentumsbeschraenkung
+    LEFT JOIN grouped_json_documents
+    ON grouped_json_documents.eigentumsbeschraenkung = eigentumsbeschraenkung.t_id
+    LEFT JOIN live.oerbkrmvs_v1_1vorschriften_amt zustaendigestelle
+    ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
+WHERE
+    eigentumsbeschraenkung.thema = 'WeiteresThema'
+    AND
+    eigentumsbeschraenkung.subthema = 'ch.so.Einzelschutz'
+    AND
+    geometrie.flaeche_lv95 IS NOT NULL
+;
+      
+-- -----------------------------------------------------------------------------
+-- materialized view 'weiteres_thema_einzelschutz_punkt' with thema 'WeiteresThema', subthema 'ch.so.Einzelschutz' and geometry 'punkt
+DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_weiteres_thema_einzelschutz_punkt;
+CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_weiteres_thema_einzelschutz_punkt AS 
+WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
+(
+    SELECT 
+        ursprung, 
+        hinweis, 
+        ARRAY[ursprung] AS parents, 
+        ursprung AS last_ursprung, 
+        0 AS "depth" 
+    FROM 
+        live.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente
+    WHERE
+        ursprung != hinweis
 
--- view 'weiteres_thema_einzelschutz_punkt' with thema 'WeiteresThema', subthema 'ch.so.Einzelschutz' and geometry 'punkt
-DROP VIEW IF EXISTS live.vw_oerebwms_weiteres_thema_einzelschutz_punkt;
-CREATE OR replace VIEW live.vw_oerebwms_weiteres_thema_einzelschutz_punkt
-AS 
-  SELECT geom.t_id,
-         geom.t_type,
-         geom.t_ili_tid,
-         geom.punkt_lv95 AS geom,
-         eigbe.aussage_de AS aussage,
-         eigbe.thema,
-         eigbe.subthema AS sub_thema,
-         eigbe.weiteresthema AS weiteres_thema,
-         eigbe.rechtsstatus,
-         eigbe.publiziertab AS publiziert_ab,
-         zust.aname     AS zustaendige_stelle,
-         zust.amtimweb  AS amt_im_web,
-         geom.metadatengeobasisdaten,
-         eigbe.artcode,
-         eigbe.artcodeliste
-  FROM   live.oerbkrmfr_v1_1transferstruktur_geometrie geom
-         left join live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
-                ON geom.eigentumsbeschraenkung = eigbe.t_id
-         left join live.oerbkrmvs_v1_1vorschriften_amt zust
-                ON eigbe.zustaendigestelle = zust.t_id
-  WHERE  eigbe.thema = 'WeiteresThema'
-         AND eigbe.subthema = 'ch.so.Einzelschutz'
-         AND geom.punkt_lv95 IS NOT NULL;
+    UNION ALL
+  
+    SELECT 
+        x.ursprung, 
+        x.hinweis, 
+        parents||t1.hinweis, 
+        t1.hinweis AS last_ursprung, 
+        x."depth" + 1
+    FROM 
+        x 
+        INNER JOIN live.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente t1 
+        ON (last_ursprung = t1.ursprung)
+    WHERE 
+        t1.hinweis IS NOT NULL
+)
+,
+flattened_documents AS 
+(
+    SELECT 
+        DISTINCT ON (x.last_ursprung, x.ursprung)
+        x.ursprung AS top_level_dokument,
+        x.last_ursprung AS t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM 
+        x
+        LEFT JOIN live.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        ON dokument.t_id = x.last_ursprung
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                live.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN live.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        last_ursprung NOT IN
+        (
+            SELECT 
+                DISTINCT ON (eigentumsbeschraenkung.t_id)
+                eigentumsbeschraenkung.t_id
+            FROM
+                live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+)
+,
+-- remove duplicate documents with distinct first, then group them.
+json_documents AS 
+(
+    SELECT
+        DISTINCT ON (eigentumsbeschraenkung, flattened_documents.t_id)
+        hinweisvorschrift.eigentumsbeschraenkung,
+        json_strip_nulls(row_to_json(flattened_documents)) AS dokumente
+        
+    FROM  
+        flattened_documents
+        LEFT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+        ON hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument = flattened_documents.top_level_dokument
+    WHERE
+        eigentumsbeschraenkung IS NOT NULL
+)
+,
+grouped_json_documents AS
+(
+    SELECT
+        eigentumsbeschraenkung,
+        json_agg(dokumente) AS dokumente
+    FROM
+        json_documents
+    GROUP BY
+        eigentumsbeschraenkung
+)
+SELECT
+    geometrie.t_id AS t_id,
+    geometrie.punkt_lv95 AS geom,
+    --geometrie.rechtsstatus AS geometrie_rechtsstatus,
+    --geometrie.publiziertab AS geometrie_publiziertab,
+    eigentumsbeschraenkung.aussage_de AS aussage,
+    grouped_json_documents.dokumente AS dokumente,
+    eigentumsbeschraenkung.thema,
+    eigentumsbeschraenkung.subthema AS sub_thema,
+    eigentumsbeschraenkung.weiteresthema AS weiteres_thema,
+    eigentumsbeschraenkung.rechtsstatus,
+    eigentumsbeschraenkung.publiziertab,
+    zustaendigestelle.aname_de AS zustaendige_stelle,
+    zustaendigestelle.amtimweb AS amt_im_web,
+    eigentumsbeschraenkung.artcode,
+    eigentumsbeschraenkung.artcodeliste AS artcode_liste
+FROM
+    live.oerbkrmfr_v1_1transferstruktur_geometrie AS geometrie
+    LEFT JOIN live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+    ON eigentumsbeschraenkung.t_id = geometrie.eigentumsbeschraenkung
+    LEFT JOIN grouped_json_documents
+    ON grouped_json_documents.eigentumsbeschraenkung = eigentumsbeschraenkung.t_id
+    LEFT JOIN live.oerbkrmvs_v1_1vorschriften_amt zustaendigestelle
+    ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
+WHERE
+    eigentumsbeschraenkung.thema = 'WeiteresThema'
+    AND
+    eigentumsbeschraenkung.subthema = 'ch.so.Einzelschutz'
+    AND
+    geometrie.punkt_lv95 IS NOT NULL
+;
+      
+-- -----------------------------------------------------------------------------
+-- materialized view 'nutzungsplanung_sondernutzungsplaene_flaeche' with thema 'Nutzungsplanung', subthema 'NutzungsplanungSondernutzungsplaene' and geometry 'flaeche
+DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche;
+CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche AS 
+WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
+(
+    SELECT 
+        ursprung, 
+        hinweis, 
+        ARRAY[ursprung] AS parents, 
+        ursprung AS last_ursprung, 
+        0 AS "depth" 
+    FROM 
+        live.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente
+    WHERE
+        ursprung != hinweis
 
--- view 'nutzungsplanung_sondernutzungsplaene_flaeche' with thema 'Nutzungsplanung', subthema 'Nutzungsplanung_Sondernutzungsplaene' and geometry 'flaeche
-DROP VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche;
-CREATE OR replace VIEW live.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche
-AS 
-  SELECT geom.t_id,
-         geom.t_type,
-         geom.t_ili_tid,
-         geom.flaeche_lv95 AS geom,
-         eigbe.aussage_de AS aussage,
-         eigbe.thema,
-         eigbe.subthema AS sub_thema,
-         eigbe.weiteresthema AS weiteres_thema,
-         eigbe.rechtsstatus,
-         eigbe.publiziertab AS publiziert_ab,
-         zust.aname     AS zustaendige_stelle,
-         zust.amtimweb  AS amt_im_web,
-         geom.metadatengeobasisdaten,
-         eigbe.artcode,
-         eigbe.artcodeliste
-  FROM   live.oerbkrmfr_v1_1transferstruktur_geometrie geom
-         left join live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
-                ON geom.eigentumsbeschraenkung = eigbe.t_id
-         left join live.oerbkrmvs_v1_1vorschriften_amt zust
-                ON eigbe.zustaendigestelle = zust.t_id
-  WHERE  eigbe.thema = 'Nutzungsplanung'
-         AND eigbe.subthema = 'Nutzungsplanung_Sondernutzungsplaene'
-         AND geom.flaeche_lv95 IS NOT NULL;
+    UNION ALL
+  
+    SELECT 
+        x.ursprung, 
+        x.hinweis, 
+        parents||t1.hinweis, 
+        t1.hinweis AS last_ursprung, 
+        x."depth" + 1
+    FROM 
+        x 
+        INNER JOIN live.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente t1 
+        ON (last_ursprung = t1.ursprung)
+    WHERE 
+        t1.hinweis IS NOT NULL
+)
+,
+flattened_documents AS 
+(
+    SELECT 
+        DISTINCT ON (x.last_ursprung, x.ursprung)
+        x.ursprung AS top_level_dokument,
+        x.last_ursprung AS t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM 
+        x
+        LEFT JOIN live.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        ON dokument.t_id = x.last_ursprung
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                live.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN live.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        last_ursprung NOT IN
+        (
+            SELECT 
+                DISTINCT ON (eigentumsbeschraenkung.t_id)
+                eigentumsbeschraenkung.t_id
+            FROM
+                live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+)
+,
+-- remove duplicate documents with distinct first, then group them.
+json_documents AS 
+(
+    SELECT
+        DISTINCT ON (eigentumsbeschraenkung, flattened_documents.t_id)
+        hinweisvorschrift.eigentumsbeschraenkung,
+        json_strip_nulls(row_to_json(flattened_documents)) AS dokumente
+        
+    FROM  
+        flattened_documents
+        LEFT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+        ON hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument = flattened_documents.top_level_dokument
+    WHERE
+        eigentumsbeschraenkung IS NOT NULL
+)
+,
+grouped_json_documents AS
+(
+    SELECT
+        eigentumsbeschraenkung,
+        json_agg(dokumente) AS dokumente
+    FROM
+        json_documents
+    GROUP BY
+        eigentumsbeschraenkung
+)
+SELECT
+    geometrie.t_id AS t_id,
+    geometrie.flaeche_lv95 AS geom,
+    --geometrie.rechtsstatus AS geometrie_rechtsstatus,
+    --geometrie.publiziertab AS geometrie_publiziertab,
+    eigentumsbeschraenkung.aussage_de AS aussage,
+    grouped_json_documents.dokumente AS dokumente,
+    eigentumsbeschraenkung.thema,
+    eigentumsbeschraenkung.subthema AS sub_thema,
+    eigentumsbeschraenkung.weiteresthema AS weiteres_thema,
+    eigentumsbeschraenkung.rechtsstatus,
+    eigentumsbeschraenkung.publiziertab,
+    zustaendigestelle.aname_de AS zustaendige_stelle,
+    zustaendigestelle.amtimweb AS amt_im_web,
+    eigentumsbeschraenkung.artcode,
+    eigentumsbeschraenkung.artcodeliste AS artcode_liste
+FROM
+    live.oerbkrmfr_v1_1transferstruktur_geometrie AS geometrie
+    LEFT JOIN live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+    ON eigentumsbeschraenkung.t_id = geometrie.eigentumsbeschraenkung
+    LEFT JOIN grouped_json_documents
+    ON grouped_json_documents.eigentumsbeschraenkung = eigentumsbeschraenkung.t_id
+    LEFT JOIN live.oerbkrmvs_v1_1vorschriften_amt zustaendigestelle
+    ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
+WHERE
+    eigentumsbeschraenkung.thema = 'Nutzungsplanung'
+    AND
+    eigentumsbeschraenkung.subthema = 'NutzungsplanungSondernutzungsplaene'
+    AND
+    geometrie.flaeche_lv95 IS NOT NULL
+;
+      
+-- -----------------------------------------------------------------------------
+-- materialized view 'waldgrenzen_linie' with thema 'Waldgrenzen', subthema '' and geometry 'linie
+DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_waldgrenzen_linie;
+CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_waldgrenzen_linie AS 
+WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
+(
+    SELECT 
+        ursprung, 
+        hinweis, 
+        ARRAY[ursprung] AS parents, 
+        ursprung AS last_ursprung, 
+        0 AS "depth" 
+    FROM 
+        live.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente
+    WHERE
+        ursprung != hinweis
 
--- view 'waldgrenzen_linie' with thema 'Waldgrenzen', subthema '' and geometry 'linie
-DROP VIEW IF EXISTS live.vw_oerebwms_waldgrenzen_linie;
-CREATE OR replace VIEW live.vw_oerebwms_waldgrenzen_linie
-AS 
-  SELECT geom.t_id,
-         geom.t_type,
-         geom.t_ili_tid,
-         geom.linie_lv95 AS geom,
-         eigbe.aussage_de AS aussage,
-         eigbe.thema,
-         eigbe.subthema AS sub_thema,
-         eigbe.weiteresthema AS weiteres_thema,
-         eigbe.rechtsstatus,
-         eigbe.publiziertab AS publiziert_ab,
-         zust.aname     AS zustaendige_stelle,
-         zust.amtimweb  AS amt_im_web,
-         geom.metadatengeobasisdaten,
-         eigbe.artcode,
-         eigbe.artcodeliste
-  FROM   live.oerbkrmfr_v1_1transferstruktur_geometrie geom
-         left join live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
-                ON geom.eigentumsbeschraenkung = eigbe.t_id
-         left join live.oerbkrmvs_v1_1vorschriften_amt zust
-                ON eigbe.zustaendigestelle = zust.t_id
-  WHERE  eigbe.thema = 'Waldgrenzen'
-         AND eigbe.subthema = ''
-         AND geom.linie_lv95 IS NOT NULL;
+    UNION ALL
+  
+    SELECT 
+        x.ursprung, 
+        x.hinweis, 
+        parents||t1.hinweis, 
+        t1.hinweis AS last_ursprung, 
+        x."depth" + 1
+    FROM 
+        x 
+        INNER JOIN live.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente t1 
+        ON (last_ursprung = t1.ursprung)
+    WHERE 
+        t1.hinweis IS NOT NULL
+)
+,
+flattened_documents AS 
+(
+    SELECT 
+        DISTINCT ON (x.last_ursprung, x.ursprung)
+        x.ursprung AS top_level_dokument,
+        x.last_ursprung AS t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM 
+        x
+        LEFT JOIN live.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        ON dokument.t_id = x.last_ursprung
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                live.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN live.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        last_ursprung NOT IN
+        (
+            SELECT 
+                DISTINCT ON (eigentumsbeschraenkung.t_id)
+                eigentumsbeschraenkung.t_id
+            FROM
+                live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+)
+,
+-- remove duplicate documents with distinct first, then group them.
+json_documents AS 
+(
+    SELECT
+        DISTINCT ON (eigentumsbeschraenkung, flattened_documents.t_id)
+        hinweisvorschrift.eigentumsbeschraenkung,
+        json_strip_nulls(row_to_json(flattened_documents)) AS dokumente
+        
+    FROM  
+        flattened_documents
+        LEFT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+        ON hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument = flattened_documents.top_level_dokument
+    WHERE
+        eigentumsbeschraenkung IS NOT NULL
+)
+,
+grouped_json_documents AS
+(
+    SELECT
+        eigentumsbeschraenkung,
+        json_agg(dokumente) AS dokumente
+    FROM
+        json_documents
+    GROUP BY
+        eigentumsbeschraenkung
+)
+SELECT
+    geometrie.t_id AS t_id,
+    geometrie.linie_lv95 AS geom,
+    --geometrie.rechtsstatus AS geometrie_rechtsstatus,
+    --geometrie.publiziertab AS geometrie_publiziertab,
+    eigentumsbeschraenkung.aussage_de AS aussage,
+    grouped_json_documents.dokumente AS dokumente,
+    eigentumsbeschraenkung.thema,
+    eigentumsbeschraenkung.subthema AS sub_thema,
+    eigentumsbeschraenkung.weiteresthema AS weiteres_thema,
+    eigentumsbeschraenkung.rechtsstatus,
+    eigentumsbeschraenkung.publiziertab,
+    zustaendigestelle.aname_de AS zustaendige_stelle,
+    zustaendigestelle.amtimweb AS amt_im_web,
+    eigentumsbeschraenkung.artcode,
+    eigentumsbeschraenkung.artcodeliste AS artcode_liste
+FROM
+    live.oerbkrmfr_v1_1transferstruktur_geometrie AS geometrie
+    LEFT JOIN live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+    ON eigentumsbeschraenkung.t_id = geometrie.eigentumsbeschraenkung
+    LEFT JOIN grouped_json_documents
+    ON grouped_json_documents.eigentumsbeschraenkung = eigentumsbeschraenkung.t_id
+    LEFT JOIN live.oerbkrmvs_v1_1vorschriften_amt zustaendigestelle
+    ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
+WHERE
+    eigentumsbeschraenkung.thema = 'Waldgrenzen'
+    AND
+    eigentumsbeschraenkung.subthema = ''
+    AND
+    geometrie.linie_lv95 IS NOT NULL
+;
+      
+-- -----------------------------------------------------------------------------
+-- materialized view 'nutzungsplanung_ueberlagernd_flaeche' with thema 'Nutzungsplanung', subthema 'NutzungsplanungUeberlagernd' and geometry 'flaeche
+DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche;
+CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche AS 
+WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
+(
+    SELECT 
+        ursprung, 
+        hinweis, 
+        ARRAY[ursprung] AS parents, 
+        ursprung AS last_ursprung, 
+        0 AS "depth" 
+    FROM 
+        live.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente
+    WHERE
+        ursprung != hinweis
 
--- view 'nutzungsplanung_ueberlagernd_flaeche' with thema 'Nutzungsplanung', subthema 'Nutzungsplanung_Ueberlagernd' and geometry 'flaeche
-DROP VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche;
-CREATE OR replace VIEW live.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche
-AS 
-  SELECT geom.t_id,
-         geom.t_type,
-         geom.t_ili_tid,
-         geom.flaeche_lv95 AS geom,
-         eigbe.aussage_de AS aussage,
-         eigbe.thema,
-         eigbe.subthema AS sub_thema,
-         eigbe.weiteresthema AS weiteres_thema,
-         eigbe.rechtsstatus,
-         eigbe.publiziertab AS publiziert_ab,
-         zust.aname     AS zustaendige_stelle,
-         zust.amtimweb  AS amt_im_web,
-         geom.metadatengeobasisdaten,
-         eigbe.artcode,
-         eigbe.artcodeliste
-  FROM   live.oerbkrmfr_v1_1transferstruktur_geometrie geom
-         left join live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
-                ON geom.eigentumsbeschraenkung = eigbe.t_id
-         left join live.oerbkrmvs_v1_1vorschriften_amt zust
-                ON eigbe.zustaendigestelle = zust.t_id
-  WHERE  eigbe.thema = 'Nutzungsplanung'
-         AND eigbe.subthema = 'Nutzungsplanung_Ueberlagernd'
-         AND geom.flaeche_lv95 IS NOT NULL;
+    UNION ALL
+  
+    SELECT 
+        x.ursprung, 
+        x.hinweis, 
+        parents||t1.hinweis, 
+        t1.hinweis AS last_ursprung, 
+        x."depth" + 1
+    FROM 
+        x 
+        INNER JOIN live.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente t1 
+        ON (last_ursprung = t1.ursprung)
+    WHERE 
+        t1.hinweis IS NOT NULL
+)
+,
+flattened_documents AS 
+(
+    SELECT 
+        DISTINCT ON (x.last_ursprung, x.ursprung)
+        x.ursprung AS top_level_dokument,
+        x.last_ursprung AS t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM 
+        x
+        LEFT JOIN live.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        ON dokument.t_id = x.last_ursprung
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                live.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN live.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        last_ursprung NOT IN
+        (
+            SELECT 
+                DISTINCT ON (eigentumsbeschraenkung.t_id)
+                eigentumsbeschraenkung.t_id
+            FROM
+                live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+)
+,
+-- remove duplicate documents with distinct first, then group them.
+json_documents AS 
+(
+    SELECT
+        DISTINCT ON (eigentumsbeschraenkung, flattened_documents.t_id)
+        hinweisvorschrift.eigentumsbeschraenkung,
+        json_strip_nulls(row_to_json(flattened_documents)) AS dokumente
+        
+    FROM  
+        flattened_documents
+        LEFT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+        ON hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument = flattened_documents.top_level_dokument
+    WHERE
+        eigentumsbeschraenkung IS NOT NULL
+)
+,
+grouped_json_documents AS
+(
+    SELECT
+        eigentumsbeschraenkung,
+        json_agg(dokumente) AS dokumente
+    FROM
+        json_documents
+    GROUP BY
+        eigentumsbeschraenkung
+)
+SELECT
+    geometrie.t_id AS t_id,
+    geometrie.flaeche_lv95 AS geom,
+    --geometrie.rechtsstatus AS geometrie_rechtsstatus,
+    --geometrie.publiziertab AS geometrie_publiziertab,
+    eigentumsbeschraenkung.aussage_de AS aussage,
+    grouped_json_documents.dokumente AS dokumente,
+    eigentumsbeschraenkung.thema,
+    eigentumsbeschraenkung.subthema AS sub_thema,
+    eigentumsbeschraenkung.weiteresthema AS weiteres_thema,
+    eigentumsbeschraenkung.rechtsstatus,
+    eigentumsbeschraenkung.publiziertab,
+    zustaendigestelle.aname_de AS zustaendige_stelle,
+    zustaendigestelle.amtimweb AS amt_im_web,
+    eigentumsbeschraenkung.artcode,
+    eigentumsbeschraenkung.artcodeliste AS artcode_liste
+FROM
+    live.oerbkrmfr_v1_1transferstruktur_geometrie AS geometrie
+    LEFT JOIN live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+    ON eigentumsbeschraenkung.t_id = geometrie.eigentumsbeschraenkung
+    LEFT JOIN grouped_json_documents
+    ON grouped_json_documents.eigentumsbeschraenkung = eigentumsbeschraenkung.t_id
+    LEFT JOIN live.oerbkrmvs_v1_1vorschriften_amt zustaendigestelle
+    ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
+WHERE
+    eigentumsbeschraenkung.thema = 'Nutzungsplanung'
+    AND
+    eigentumsbeschraenkung.subthema = 'NutzungsplanungUeberlagernd'
+    AND
+    geometrie.flaeche_lv95 IS NOT NULL
+;
+      
+-- -----------------------------------------------------------------------------
+-- materialized view 'nutzungsplanung_ueberlagernd_punkt' with thema 'Nutzungsplanung', subthema 'NutzungsplanungUeberlagernd' and geometry 'punkt
+DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt;
+CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt AS 
+WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
+(
+    SELECT 
+        ursprung, 
+        hinweis, 
+        ARRAY[ursprung] AS parents, 
+        ursprung AS last_ursprung, 
+        0 AS "depth" 
+    FROM 
+        live.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente
+    WHERE
+        ursprung != hinweis
 
--- view 'nutzungsplanung_ueberlagernd_punkt' with thema 'Nutzungsplanung', subthema 'Nutzungsplanung_Ueberlagernd' and geometry 'punkt
-DROP VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt;
-CREATE OR replace VIEW live.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt
-AS 
-  SELECT geom.t_id,
-         geom.t_type,
-         geom.t_ili_tid,
-         geom.punkt_lv95 AS geom,
-         eigbe.aussage_de AS aussage,
-         eigbe.thema,
-         eigbe.subthema AS sub_thema,
-         eigbe.weiteresthema AS weiteres_thema,
-         eigbe.rechtsstatus,
-         eigbe.publiziertab AS publiziert_ab,
-         zust.aname     AS zustaendige_stelle,
-         zust.amtimweb  AS amt_im_web,
-         geom.metadatengeobasisdaten,
-         eigbe.artcode,
-         eigbe.artcodeliste
-  FROM   live.oerbkrmfr_v1_1transferstruktur_geometrie geom
-         left join live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
-                ON geom.eigentumsbeschraenkung = eigbe.t_id
-         left join live.oerbkrmvs_v1_1vorschriften_amt zust
-                ON eigbe.zustaendigestelle = zust.t_id
-  WHERE  eigbe.thema = 'Nutzungsplanung'
-         AND eigbe.subthema = 'Nutzungsplanung_Ueberlagernd'
-         AND geom.punkt_lv95 IS NOT NULL;
+    UNION ALL
+  
+    SELECT 
+        x.ursprung, 
+        x.hinweis, 
+        parents||t1.hinweis, 
+        t1.hinweis AS last_ursprung, 
+        x."depth" + 1
+    FROM 
+        x 
+        INNER JOIN live.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente t1 
+        ON (last_ursprung = t1.ursprung)
+    WHERE 
+        t1.hinweis IS NOT NULL
+)
+,
+flattened_documents AS 
+(
+    SELECT 
+        DISTINCT ON (x.last_ursprung, x.ursprung)
+        x.ursprung AS top_level_dokument,
+        x.last_ursprung AS t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM 
+        x
+        LEFT JOIN live.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        ON dokument.t_id = x.last_ursprung
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                live.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN live.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        last_ursprung NOT IN
+        (
+            SELECT 
+                DISTINCT ON (eigentumsbeschraenkung.t_id)
+                eigentumsbeschraenkung.t_id
+            FROM
+                live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+)
+,
+-- remove duplicate documents with distinct first, then group them.
+json_documents AS 
+(
+    SELECT
+        DISTINCT ON (eigentumsbeschraenkung, flattened_documents.t_id)
+        hinweisvorschrift.eigentumsbeschraenkung,
+        json_strip_nulls(row_to_json(flattened_documents)) AS dokumente
+        
+    FROM  
+        flattened_documents
+        LEFT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+        ON hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument = flattened_documents.top_level_dokument
+    WHERE
+        eigentumsbeschraenkung IS NOT NULL
+)
+,
+grouped_json_documents AS
+(
+    SELECT
+        eigentumsbeschraenkung,
+        json_agg(dokumente) AS dokumente
+    FROM
+        json_documents
+    GROUP BY
+        eigentumsbeschraenkung
+)
+SELECT
+    geometrie.t_id AS t_id,
+    geometrie.punkt_lv95 AS geom,
+    --geometrie.rechtsstatus AS geometrie_rechtsstatus,
+    --geometrie.publiziertab AS geometrie_publiziertab,
+    eigentumsbeschraenkung.aussage_de AS aussage,
+    grouped_json_documents.dokumente AS dokumente,
+    eigentumsbeschraenkung.thema,
+    eigentumsbeschraenkung.subthema AS sub_thema,
+    eigentumsbeschraenkung.weiteresthema AS weiteres_thema,
+    eigentumsbeschraenkung.rechtsstatus,
+    eigentumsbeschraenkung.publiziertab,
+    zustaendigestelle.aname_de AS zustaendige_stelle,
+    zustaendigestelle.amtimweb AS amt_im_web,
+    eigentumsbeschraenkung.artcode,
+    eigentumsbeschraenkung.artcodeliste AS artcode_liste
+FROM
+    live.oerbkrmfr_v1_1transferstruktur_geometrie AS geometrie
+    LEFT JOIN live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+    ON eigentumsbeschraenkung.t_id = geometrie.eigentumsbeschraenkung
+    LEFT JOIN grouped_json_documents
+    ON grouped_json_documents.eigentumsbeschraenkung = eigentumsbeschraenkung.t_id
+    LEFT JOIN live.oerbkrmvs_v1_1vorschriften_amt zustaendigestelle
+    ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
+WHERE
+    eigentumsbeschraenkung.thema = 'Nutzungsplanung'
+    AND
+    eigentumsbeschraenkung.subthema = 'NutzungsplanungUeberlagernd'
+    AND
+    geometrie.punkt_lv95 IS NOT NULL
+;
+      
+-- -----------------------------------------------------------------------------
+-- materialized view 'nutzungsplanung_grundnutzung_flaeche' with thema 'Nutzungsplanung', subthema 'NutzungsplanungGrundnutzung' and geometry 'flaeche
+DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche;
+CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche AS 
+WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
+(
+    SELECT 
+        ursprung, 
+        hinweis, 
+        ARRAY[ursprung] AS parents, 
+        ursprung AS last_ursprung, 
+        0 AS "depth" 
+    FROM 
+        live.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente
+    WHERE
+        ursprung != hinweis
 
--- view 'nutzungsplanung_grundnutzung_flaeche' with thema 'Nutzungsplanung', subthema 'Grundnutzung_Zonenflaeche' and geometry 'flaeche
-DROP VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche;
-CREATE OR replace VIEW live.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche
-AS 
-  SELECT geom.t_id,
-         geom.t_type,
-         geom.t_ili_tid,
-         geom.flaeche_lv95 AS geom,
-         eigbe.aussage_de AS aussage,
-         eigbe.thema,
-         eigbe.subthema AS sub_thema,
-         eigbe.weiteresthema AS weiteres_thema,
-         eigbe.rechtsstatus,
-         eigbe.publiziertab AS publiziert_ab,
-         zust.aname     AS zustaendige_stelle,
-         zust.amtimweb  AS amt_im_web,
-         geom.metadatengeobasisdaten,
-         eigbe.artcode,
-         eigbe.artcodeliste
-  FROM   live.oerbkrmfr_v1_1transferstruktur_geometrie geom
-         left join live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung eigbe
-                ON geom.eigentumsbeschraenkung = eigbe.t_id
-         left join live.oerbkrmvs_v1_1vorschriften_amt zust
-                ON eigbe.zustaendigestelle = zust.t_id
-  WHERE  eigbe.thema = 'Nutzungsplanung'
-         AND eigbe.subthema = 'Grundnutzung_Zonenflaeche'
-         AND geom.flaeche_lv95 IS NOT NULL;COMMIT;
+    UNION ALL
+  
+    SELECT 
+        x.ursprung, 
+        x.hinweis, 
+        parents||t1.hinweis, 
+        t1.hinweis AS last_ursprung, 
+        x."depth" + 1
+    FROM 
+        x 
+        INNER JOIN live.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente t1 
+        ON (last_ursprung = t1.ursprung)
+    WHERE 
+        t1.hinweis IS NOT NULL
+)
+,
+flattened_documents AS 
+(
+    SELECT 
+        DISTINCT ON (x.last_ursprung, x.ursprung)
+        x.ursprung AS top_level_dokument,
+        x.last_ursprung AS t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM 
+        x
+        LEFT JOIN live.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        ON dokument.t_id = x.last_ursprung
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                live.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN live.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        last_ursprung NOT IN
+        (
+            SELECT 
+                DISTINCT ON (eigentumsbeschraenkung.t_id)
+                eigentumsbeschraenkung.t_id
+            FROM
+                live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+)
+,
+-- remove duplicate documents with distinct first, then group them.
+json_documents AS 
+(
+    SELECT
+        DISTINCT ON (eigentumsbeschraenkung, flattened_documents.t_id)
+        hinweisvorschrift.eigentumsbeschraenkung,
+        json_strip_nulls(row_to_json(flattened_documents)) AS dokumente
+        
+    FROM  
+        flattened_documents
+        LEFT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+        ON hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument = flattened_documents.top_level_dokument
+    WHERE
+        eigentumsbeschraenkung IS NOT NULL
+)
+,
+grouped_json_documents AS
+(
+    SELECT
+        eigentumsbeschraenkung,
+        json_agg(dokumente) AS dokumente
+    FROM
+        json_documents
+    GROUP BY
+        eigentumsbeschraenkung
+)
+SELECT
+    geometrie.t_id AS t_id,
+    geometrie.flaeche_lv95 AS geom,
+    --geometrie.rechtsstatus AS geometrie_rechtsstatus,
+    --geometrie.publiziertab AS geometrie_publiziertab,
+    eigentumsbeschraenkung.aussage_de AS aussage,
+    grouped_json_documents.dokumente AS dokumente,
+    eigentumsbeschraenkung.thema,
+    eigentumsbeschraenkung.subthema AS sub_thema,
+    eigentumsbeschraenkung.weiteresthema AS weiteres_thema,
+    eigentumsbeschraenkung.rechtsstatus,
+    eigentumsbeschraenkung.publiziertab,
+    zustaendigestelle.aname_de AS zustaendige_stelle,
+    zustaendigestelle.amtimweb AS amt_im_web,
+    eigentumsbeschraenkung.artcode,
+    eigentumsbeschraenkung.artcodeliste AS artcode_liste
+FROM
+    live.oerbkrmfr_v1_1transferstruktur_geometrie AS geometrie
+    LEFT JOIN live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+    ON eigentumsbeschraenkung.t_id = geometrie.eigentumsbeschraenkung
+    LEFT JOIN grouped_json_documents
+    ON grouped_json_documents.eigentumsbeschraenkung = eigentumsbeschraenkung.t_id
+    LEFT JOIN live.oerbkrmvs_v1_1vorschriften_amt zustaendigestelle
+    ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
+WHERE
+    eigentumsbeschraenkung.thema = 'Nutzungsplanung'
+    AND
+    eigentumsbeschraenkung.subthema = 'NutzungsplanungGrundnutzung'
+    AND
+    geometrie.flaeche_lv95 IS NOT NULL
+;
+COMMIT;
