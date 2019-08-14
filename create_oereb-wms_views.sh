@@ -11,24 +11,35 @@ declare -A pg_view
 pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="NutzungsplanungGrundnutzung"; pg_view[geom]="flaeche"
 string=$(declare -p pg_view)
 pg_views[nutzungsplanung_grundnutzung_flaeche]=${string}
+
 pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="NutzungsplanungUeberlagernd"; pg_view[geom]="flaeche"
 string=$(declare -p pg_view)
 pg_views[nutzungsplanung_ueberlagernd_flaeche]=${string}
+
 pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="NutzungsplanungUeberlagernd"; pg_view[geom]="linie"
 string=$(declare -p pg_view)
 pg_views[nutzungsplanung_ueberlagernd_linie]=${string}
+
 pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="NutzungsplanungUeberlagernd"; pg_view[geom]="punkt"
 string=$(declare -p pg_view)
 pg_views[nutzungsplanung_ueberlagernd_punkt]=${string}
+
 pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="NutzungsplanungSondernutzungsplaene"; pg_view[geom]="flaeche"
 string=$(declare -p pg_view)
 pg_views[nutzungsplanung_sondernutzungsplaene_flaeche]=${string}
+
+pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="Baulinien"; pg_view[geom]="linie"
+string=$(declare -p pg_view)
+pg_views[nutzungsplanung_baulinien_linie]=${string}
+
 pg_view[thema]="WeiteresThema"; pg_view[subthema]="ch.so.Einzelschutz"; pg_view[geom]="flaeche"
 string=$(declare -p pg_view)
 pg_views[weiteres_thema_einzelschutz_flaeche]=${string}
+
 pg_view[thema]="WeiteresThema"; pg_view[subthema]="ch.so.Einzelschutz"; pg_view[geom]="punkt"
 string=$(declare -p pg_view)
 pg_views[weiteres_thema_einzelschutz_punkt]=${string}
+
 pg_view[thema]="Waldgrenzen"; pg_view[subthema]=""; pg_view[geom]="linie"
 string=$(declare -p pg_view)
 pg_views[waldgrenzen_linie]=${string}
@@ -46,7 +57,7 @@ for schema in "${pg_schemas[@]}"
       sql=$(cat << EOM
       
 -- -----------------------------------------------------------------------------
--- materialized view '$view_name' with thema '${pg_view[thema]}', subthema '${pg_view[subthema]}' and geometry '${pg_view[geom]}
+-- materialized view '$view_name' with thema '${pg_view[thema]}', subthema '${pg_view[subthema]}' and geometry '${pg_view[geom]}'
 DROP MATERIALIZED VIEW IF EXISTS $schema.vw_oerebwms_$view_name;
 CREATE MATERIALIZED VIEW IF NOT EXISTS $schema.vw_oerebwms_$view_name AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
