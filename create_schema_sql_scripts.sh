@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 models_ili1="DM01AVCH24LV95D;PLZOCH1LV95D"
 models_ili2="OeREBKRM_V1_1;OeREBKRMtrsfr_V1_1;OeREBKRMvs_V1_1;SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822;OeREB_ExtractAnnex_V1_0"
@@ -21,10 +21,10 @@ done
 # Remove DDL and DML statements from the ili2 scripts that are duplicate to the ili1 scripts
 # (by commenting them out or by adding "IF NOT EXISTS")
 sed -i -E -e 's/CREATE SEQUENCE/-- CREATE SEQUENCE/' sql/*_ili2.sql
-sed -i -E -e 's/CREATE TABLE (.*T_ILI2DB)/CREATE TABLE IF NOT EXISTS \1/' sql/*_ili2.sql
-sed -i -E -e 's/(CREATE.*INDEX) (T_ILI2DB)/\1 IF NOT EXISTS \2/' sql/*_ili2.sql
-sed -i -E -e 's/(ALTER TABLE .*T_ILI2DB.* ADD CONSTRAINT .* FOREIGN KEY)/-- \1/' sql/*_ili2.sql
-sed -i -E -e 's/(INSERT INTO .*T_ILI2DB_SETTINGS)/-- \1/' sql/*_ili2.sql
+sed -i -E -e 's/CREATE TABLE \(.*T_ILI2DB\)/CREATE TABLE IF NOT EXISTS \1/' sql/*_ili2.sql
+sed -i -E -e 's/\(CREATE.*INDEX\) \(T_ILI2DB\)/\1 IF NOT EXISTS \2/' sql/*_ili2.sql
+sed -i -E -e 's/\(ALTER TABLE .*T_ILI2DB.* ADD CONSTRAINT .* FOREIGN KEY\)/-- \1/' sql/*_ili2.sql
+sed -i -E -e 's/\(INSERT INTO .*T_ILI2DB_SETTINGS\)/-- \1/' sql/*_ili2.sql
 
 # create temporary SQL file for oereb-wms views
 ./create_oereb-wms_views.sh > sql/oereb-wms-views.sql

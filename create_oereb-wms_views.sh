@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #script for the creation of view for each combination of oereb subthema and geometry types
 #to be used by QGIS server
 
