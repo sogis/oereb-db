@@ -12,7 +12,6 @@ for env in "stage" "live"; do
 
   java -jar ${ILI2PG_PATH} \
   --dbschema ${env} --models $models_ili2 \
-  --modeldir http://models.interlis.ch/\;. \
   --strokeArcs --createFk --createFkIdx --createGeomIdx --createTidCol --createBasketCol --createTypeDiscriminator --createImportTabs --createMetaInfo --disableNameOptimization --defaultSrsCode 2056 --createNumChecks \
   --createUnique \
   --createscript "sql/${env}_ili2.sql"
@@ -20,11 +19,11 @@ done
 
 # Remove DDL and DML statements from the ili2 scripts that are duplicate to the ili1 scripts
 # (by commenting them out or by adding "IF NOT EXISTS")
-sed -i -E -e 's/CREATE SEQUENCE/-- CREATE SEQUENCE/' sql/*_ili2.sql
-sed -i -E -e 's/CREATE TABLE \(.*T_ILI2DB\)/CREATE TABLE IF NOT EXISTS \1/' sql/*_ili2.sql
-sed -i -E -e 's/\(CREATE.*INDEX\) \(T_ILI2DB\)/\1 IF NOT EXISTS \2/' sql/*_ili2.sql
-sed -i -E -e 's/\(ALTER TABLE .*T_ILI2DB.* ADD CONSTRAINT .* FOREIGN KEY\)/-- \1/' sql/*_ili2.sql
-sed -i -E -e 's/\(INSERT INTO .*T_ILI2DB_SETTINGS\)/-- \1/' sql/*_ili2.sql
+sed -i .bak -E -e 's/CREATE SEQUENCE/-- CREATE SEQUENCE/' sql/*_ili2.sql
+sed -i .bak -E -e 's/CREATE TABLE (.*T_ILI2DB)/CREATE TABLE IF NOT EXISTS \1/' sql/*_ili2.sql
+sed -i .bak -E -e 's/(CREATE.*INDEX) (T_ILI2DB)/\1 IF NOT EXISTS \2/' sql/*_ili2.sql
+sed -i .bak -E -e 's/(ALTER TABLE .*T_ILI2DB.* ADD CONSTRAINT .* FOREIGN KEY)/-- \1/' sql/*_ili2.sql
+sed -i .bak -E -e 's/(INSERT INTO .*T_ILI2DB_SETTINGS)/-- \1/' sql/*_ili2.sql
 
 # create temporary SQL file for oereb-wms views
 ./create_oereb-wms_views.sh > sql/oereb-wms-views.sql
