@@ -238,6 +238,14 @@ WHERE
     AND
     geometrie.${pg_view[geom]}_lv95 IS NOT NULL
 ;
+-- spatial index
+CREATE INDEX in_oerebwms_${view_name}_geom
+  ON $schema.vw_oerebwms_$view_name
+  USING GIST ( geom );
+-- attribute index on artcode
+CREATE INDEX in_oerebwms_${view_name}_artcode
+  ON $schema.vw_oerebwms_$view_name
+  USING btree ( artcode );
 EOM
 )
       printf "%s\n" "$sql"

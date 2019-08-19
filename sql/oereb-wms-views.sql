@@ -184,6 +184,14 @@ WHERE
     AND
     geometrie.linie_lv95 IS NOT NULL
 ;
+-- spatial index
+CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_linie_geom
+  ON stage.vw_oerebwms_nutzungsplanung_ueberlagernd_linie
+  USING GIST ( geom );
+-- attribute index on artcode
+CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_linie_artcode
+  ON stage.vw_oerebwms_nutzungsplanung_ueberlagernd_linie
+  USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
 -- materialized view 'weiteres_thema_einzelschutz_flaeche' with thema 'WeiteresThema', subthema 'ch.so.Einzelschutz' and geometry 'flaeche'
@@ -367,6 +375,14 @@ WHERE
     AND
     geometrie.flaeche_lv95 IS NOT NULL
 ;
+-- spatial index
+CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_flaeche_geom
+  ON stage.vw_oerebwms_weiteres_thema_einzelschutz_flaeche
+  USING GIST ( geom );
+-- attribute index on artcode
+CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_flaeche_artcode
+  ON stage.vw_oerebwms_weiteres_thema_einzelschutz_flaeche
+  USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
 -- materialized view 'weiteres_thema_einzelschutz_punkt' with thema 'WeiteresThema', subthema 'ch.so.Einzelschutz' and geometry 'punkt'
@@ -550,6 +566,14 @@ WHERE
     AND
     geometrie.punkt_lv95 IS NOT NULL
 ;
+-- spatial index
+CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_punkt_geom
+  ON stage.vw_oerebwms_weiteres_thema_einzelschutz_punkt
+  USING GIST ( geom );
+-- attribute index on artcode
+CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_punkt_artcode
+  ON stage.vw_oerebwms_weiteres_thema_einzelschutz_punkt
+  USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
 -- materialized view 'nutzungsplanung_baulinien_linie' with thema 'Nutzungsplanung', subthema 'Baulinien' and geometry 'linie'
@@ -733,6 +757,14 @@ WHERE
     AND
     geometrie.linie_lv95 IS NOT NULL
 ;
+-- spatial index
+CREATE INDEX in_oerebwms_nutzungsplanung_baulinien_linie_geom
+  ON stage.vw_oerebwms_nutzungsplanung_baulinien_linie
+  USING GIST ( geom );
+-- attribute index on artcode
+CREATE INDEX in_oerebwms_nutzungsplanung_baulinien_linie_artcode
+  ON stage.vw_oerebwms_nutzungsplanung_baulinien_linie
+  USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
 -- materialized view 'nutzungsplanung_sondernutzungsplaene_flaeche' with thema 'Nutzungsplanung', subthema 'NutzungsplanungSondernutzungsplaene' and geometry 'flaeche'
@@ -916,6 +948,14 @@ WHERE
     AND
     geometrie.flaeche_lv95 IS NOT NULL
 ;
+-- spatial index
+CREATE INDEX in_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche_geom
+  ON stage.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche
+  USING GIST ( geom );
+-- attribute index on artcode
+CREATE INDEX in_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche_artcode
+  ON stage.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche
+  USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
 -- materialized view 'waldgrenzen_linie' with thema 'Waldgrenzen', subthema '' and geometry 'linie'
@@ -1099,6 +1139,14 @@ WHERE
     AND
     geometrie.linie_lv95 IS NOT NULL
 ;
+-- spatial index
+CREATE INDEX in_oerebwms_waldgrenzen_linie_geom
+  ON stage.vw_oerebwms_waldgrenzen_linie
+  USING GIST ( geom );
+-- attribute index on artcode
+CREATE INDEX in_oerebwms_waldgrenzen_linie_artcode
+  ON stage.vw_oerebwms_waldgrenzen_linie
+  USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
 -- materialized view 'nutzungsplanung_ueberlagernd_flaeche' with thema 'Nutzungsplanung', subthema 'NutzungsplanungUeberlagernd' and geometry 'flaeche'
@@ -1282,6 +1330,14 @@ WHERE
     AND
     geometrie.flaeche_lv95 IS NOT NULL
 ;
+-- spatial index
+CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_flaeche_geom
+  ON stage.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche
+  USING GIST ( geom );
+-- attribute index on artcode
+CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_flaeche_artcode
+  ON stage.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche
+  USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
 -- materialized view 'nutzungsplanung_ueberlagernd_punkt' with thema 'Nutzungsplanung', subthema 'NutzungsplanungUeberlagernd' and geometry 'punkt'
@@ -1465,6 +1521,14 @@ WHERE
     AND
     geometrie.punkt_lv95 IS NOT NULL
 ;
+-- spatial index
+CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_punkt_geom
+  ON stage.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt
+  USING GIST ( geom );
+-- attribute index on artcode
+CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_punkt_artcode
+  ON stage.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt
+  USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
 -- materialized view 'nutzungsplanung_grundnutzung_flaeche' with thema 'Nutzungsplanung', subthema 'NutzungsplanungGrundnutzung' and geometry 'flaeche'
@@ -1648,6 +1712,14 @@ WHERE
     AND
     geometrie.flaeche_lv95 IS NOT NULL
 ;
+-- spatial index
+CREATE INDEX in_oerebwms_nutzungsplanung_grundnutzung_flaeche_geom
+  ON stage.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche
+  USING GIST ( geom );
+-- attribute index on artcode
+CREATE INDEX in_oerebwms_nutzungsplanung_grundnutzung_flaeche_artcode
+  ON stage.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche
+  USING btree ( artcode );
 
 
 -- schema nr 2 is live
@@ -1834,6 +1906,14 @@ WHERE
     AND
     geometrie.linie_lv95 IS NOT NULL
 ;
+-- spatial index
+CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_linie_geom
+  ON live.vw_oerebwms_nutzungsplanung_ueberlagernd_linie
+  USING GIST ( geom );
+-- attribute index on artcode
+CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_linie_artcode
+  ON live.vw_oerebwms_nutzungsplanung_ueberlagernd_linie
+  USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
 -- materialized view 'weiteres_thema_einzelschutz_flaeche' with thema 'WeiteresThema', subthema 'ch.so.Einzelschutz' and geometry 'flaeche'
@@ -2017,6 +2097,14 @@ WHERE
     AND
     geometrie.flaeche_lv95 IS NOT NULL
 ;
+-- spatial index
+CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_flaeche_geom
+  ON live.vw_oerebwms_weiteres_thema_einzelschutz_flaeche
+  USING GIST ( geom );
+-- attribute index on artcode
+CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_flaeche_artcode
+  ON live.vw_oerebwms_weiteres_thema_einzelschutz_flaeche
+  USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
 -- materialized view 'weiteres_thema_einzelschutz_punkt' with thema 'WeiteresThema', subthema 'ch.so.Einzelschutz' and geometry 'punkt'
@@ -2200,6 +2288,14 @@ WHERE
     AND
     geometrie.punkt_lv95 IS NOT NULL
 ;
+-- spatial index
+CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_punkt_geom
+  ON live.vw_oerebwms_weiteres_thema_einzelschutz_punkt
+  USING GIST ( geom );
+-- attribute index on artcode
+CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_punkt_artcode
+  ON live.vw_oerebwms_weiteres_thema_einzelschutz_punkt
+  USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
 -- materialized view 'nutzungsplanung_baulinien_linie' with thema 'Nutzungsplanung', subthema 'Baulinien' and geometry 'linie'
@@ -2383,6 +2479,14 @@ WHERE
     AND
     geometrie.linie_lv95 IS NOT NULL
 ;
+-- spatial index
+CREATE INDEX in_oerebwms_nutzungsplanung_baulinien_linie_geom
+  ON live.vw_oerebwms_nutzungsplanung_baulinien_linie
+  USING GIST ( geom );
+-- attribute index on artcode
+CREATE INDEX in_oerebwms_nutzungsplanung_baulinien_linie_artcode
+  ON live.vw_oerebwms_nutzungsplanung_baulinien_linie
+  USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
 -- materialized view 'nutzungsplanung_sondernutzungsplaene_flaeche' with thema 'Nutzungsplanung', subthema 'NutzungsplanungSondernutzungsplaene' and geometry 'flaeche'
@@ -2566,6 +2670,14 @@ WHERE
     AND
     geometrie.flaeche_lv95 IS NOT NULL
 ;
+-- spatial index
+CREATE INDEX in_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche_geom
+  ON live.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche
+  USING GIST ( geom );
+-- attribute index on artcode
+CREATE INDEX in_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche_artcode
+  ON live.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche
+  USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
 -- materialized view 'waldgrenzen_linie' with thema 'Waldgrenzen', subthema '' and geometry 'linie'
@@ -2749,6 +2861,14 @@ WHERE
     AND
     geometrie.linie_lv95 IS NOT NULL
 ;
+-- spatial index
+CREATE INDEX in_oerebwms_waldgrenzen_linie_geom
+  ON live.vw_oerebwms_waldgrenzen_linie
+  USING GIST ( geom );
+-- attribute index on artcode
+CREATE INDEX in_oerebwms_waldgrenzen_linie_artcode
+  ON live.vw_oerebwms_waldgrenzen_linie
+  USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
 -- materialized view 'nutzungsplanung_ueberlagernd_flaeche' with thema 'Nutzungsplanung', subthema 'NutzungsplanungUeberlagernd' and geometry 'flaeche'
@@ -2932,6 +3052,14 @@ WHERE
     AND
     geometrie.flaeche_lv95 IS NOT NULL
 ;
+-- spatial index
+CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_flaeche_geom
+  ON live.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche
+  USING GIST ( geom );
+-- attribute index on artcode
+CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_flaeche_artcode
+  ON live.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche
+  USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
 -- materialized view 'nutzungsplanung_ueberlagernd_punkt' with thema 'Nutzungsplanung', subthema 'NutzungsplanungUeberlagernd' and geometry 'punkt'
@@ -3115,6 +3243,14 @@ WHERE
     AND
     geometrie.punkt_lv95 IS NOT NULL
 ;
+-- spatial index
+CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_punkt_geom
+  ON live.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt
+  USING GIST ( geom );
+-- attribute index on artcode
+CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_punkt_artcode
+  ON live.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt
+  USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
 -- materialized view 'nutzungsplanung_grundnutzung_flaeche' with thema 'Nutzungsplanung', subthema 'NutzungsplanungGrundnutzung' and geometry 'flaeche'
@@ -3298,3 +3434,11 @@ WHERE
     AND
     geometrie.flaeche_lv95 IS NOT NULL
 ;
+-- spatial index
+CREATE INDEX in_oerebwms_nutzungsplanung_grundnutzung_flaeche_geom
+  ON live.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche
+  USING GIST ( geom );
+-- attribute index on artcode
+CREATE INDEX in_oerebwms_nutzungsplanung_grundnutzung_flaeche_artcode
+  ON live.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche
+  USING btree ( artcode );
