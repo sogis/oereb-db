@@ -81,6 +81,50 @@ flattened_documents AS
                 RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
                 ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
         )
+    UNION ALL
+    
+    -- Hinzufügen der direkt verlinkten Dokumente.
+    SELECT 
+        dokument.t_id AS top_level_dokument,
+        dokument.t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM
+        stage.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                stage.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN stage.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        dokument.t_id IN 
+        (
+            SELECT 
+                DISTINCT ON (hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument)
+                hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument
+            FROM
+                stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
 )
 ,
 -- remove duplicate documents with distinct first, then group them.
@@ -215,6 +259,50 @@ flattened_documents AS
             SELECT 
                 DISTINCT ON (eigentumsbeschraenkung.t_id)
                 eigentumsbeschraenkung.t_id
+            FROM
+                stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+    UNION ALL
+    
+    -- Hinzufügen der direkt verlinkten Dokumente.
+    SELECT 
+        dokument.t_id AS top_level_dokument,
+        dokument.t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM
+        stage.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                stage.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN stage.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        dokument.t_id IN 
+        (
+            SELECT 
+                DISTINCT ON (hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument)
+                hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument
             FROM
                 stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
                 RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
@@ -359,6 +447,50 @@ flattened_documents AS
                 RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
                 ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
         )
+    UNION ALL
+    
+    -- Hinzufügen der direkt verlinkten Dokumente.
+    SELECT 
+        dokument.t_id AS top_level_dokument,
+        dokument.t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM
+        stage.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                stage.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN stage.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        dokument.t_id IN 
+        (
+            SELECT 
+                DISTINCT ON (hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument)
+                hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument
+            FROM
+                stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
 )
 ,
 -- remove duplicate documents with distinct first, then group them.
@@ -493,6 +625,50 @@ flattened_documents AS
             SELECT 
                 DISTINCT ON (eigentumsbeschraenkung.t_id)
                 eigentumsbeschraenkung.t_id
+            FROM
+                stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+    UNION ALL
+    
+    -- Hinzufügen der direkt verlinkten Dokumente.
+    SELECT 
+        dokument.t_id AS top_level_dokument,
+        dokument.t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM
+        stage.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                stage.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN stage.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        dokument.t_id IN 
+        (
+            SELECT 
+                DISTINCT ON (hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument)
+                hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument
             FROM
                 stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
                 RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
@@ -637,6 +813,50 @@ flattened_documents AS
                 RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
                 ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
         )
+    UNION ALL
+    
+    -- Hinzufügen der direkt verlinkten Dokumente.
+    SELECT 
+        dokument.t_id AS top_level_dokument,
+        dokument.t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM
+        stage.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                stage.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN stage.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        dokument.t_id IN 
+        (
+            SELECT 
+                DISTINCT ON (hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument)
+                hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument
+            FROM
+                stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
 )
 ,
 -- remove duplicate documents with distinct first, then group them.
@@ -771,6 +991,50 @@ flattened_documents AS
             SELECT 
                 DISTINCT ON (eigentumsbeschraenkung.t_id)
                 eigentumsbeschraenkung.t_id
+            FROM
+                stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+    UNION ALL
+    
+    -- Hinzufügen der direkt verlinkten Dokumente.
+    SELECT 
+        dokument.t_id AS top_level_dokument,
+        dokument.t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM
+        stage.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                stage.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN stage.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        dokument.t_id IN 
+        (
+            SELECT 
+                DISTINCT ON (hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument)
+                hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument
             FROM
                 stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
                 RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
@@ -915,6 +1179,50 @@ flattened_documents AS
                 RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
                 ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
         )
+    UNION ALL
+    
+    -- Hinzufügen der direkt verlinkten Dokumente.
+    SELECT 
+        dokument.t_id AS top_level_dokument,
+        dokument.t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM
+        stage.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                stage.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN stage.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        dokument.t_id IN 
+        (
+            SELECT 
+                DISTINCT ON (hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument)
+                hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument
+            FROM
+                stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
 )
 ,
 -- remove duplicate documents with distinct first, then group them.
@@ -1054,6 +1362,50 @@ flattened_documents AS
                 RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
                 ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
         )
+    UNION ALL
+    
+    -- Hinzufügen der direkt verlinkten Dokumente.
+    SELECT 
+        dokument.t_id AS top_level_dokument,
+        dokument.t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM
+        stage.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                stage.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN stage.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        dokument.t_id IN 
+        (
+            SELECT 
+                DISTINCT ON (hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument)
+                hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument
+            FROM
+                stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
 )
 ,
 -- remove duplicate documents with distinct first, then group them.
@@ -1188,6 +1540,50 @@ flattened_documents AS
             SELECT 
                 DISTINCT ON (eigentumsbeschraenkung.t_id)
                 eigentumsbeschraenkung.t_id
+            FROM
+                stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+    UNION ALL
+    
+    -- Hinzufügen der direkt verlinkten Dokumente.
+    SELECT 
+        dokument.t_id AS top_level_dokument,
+        dokument.t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM
+        stage.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                stage.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN stage.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        dokument.t_id IN 
+        (
+            SELECT 
+                DISTINCT ON (hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument)
+                hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument
             FROM
                 stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
                 RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
@@ -1335,6 +1731,50 @@ flattened_documents AS
                 RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
                 ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
         )
+    UNION ALL
+    
+    -- Hinzufügen der direkt verlinkten Dokumente.
+    SELECT 
+        dokument.t_id AS top_level_dokument,
+        dokument.t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM
+        live.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                live.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN live.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        dokument.t_id IN 
+        (
+            SELECT 
+                DISTINCT ON (hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument)
+                hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument
+            FROM
+                live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
 )
 ,
 -- remove duplicate documents with distinct first, then group them.
@@ -1469,6 +1909,50 @@ flattened_documents AS
             SELECT 
                 DISTINCT ON (eigentumsbeschraenkung.t_id)
                 eigentumsbeschraenkung.t_id
+            FROM
+                live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+    UNION ALL
+    
+    -- Hinzufügen der direkt verlinkten Dokumente.
+    SELECT 
+        dokument.t_id AS top_level_dokument,
+        dokument.t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM
+        live.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                live.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN live.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        dokument.t_id IN 
+        (
+            SELECT 
+                DISTINCT ON (hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument)
+                hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument
             FROM
                 live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
                 RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
@@ -1613,6 +2097,50 @@ flattened_documents AS
                 RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
                 ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
         )
+    UNION ALL
+    
+    -- Hinzufügen der direkt verlinkten Dokumente.
+    SELECT 
+        dokument.t_id AS top_level_dokument,
+        dokument.t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM
+        live.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                live.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN live.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        dokument.t_id IN 
+        (
+            SELECT 
+                DISTINCT ON (hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument)
+                hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument
+            FROM
+                live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
 )
 ,
 -- remove duplicate documents with distinct first, then group them.
@@ -1747,6 +2275,50 @@ flattened_documents AS
             SELECT 
                 DISTINCT ON (eigentumsbeschraenkung.t_id)
                 eigentumsbeschraenkung.t_id
+            FROM
+                live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+    UNION ALL
+    
+    -- Hinzufügen der direkt verlinkten Dokumente.
+    SELECT 
+        dokument.t_id AS top_level_dokument,
+        dokument.t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM
+        live.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                live.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN live.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        dokument.t_id IN 
+        (
+            SELECT 
+                DISTINCT ON (hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument)
+                hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument
             FROM
                 live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
                 RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
@@ -1891,6 +2463,50 @@ flattened_documents AS
                 RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
                 ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
         )
+    UNION ALL
+    
+    -- Hinzufügen der direkt verlinkten Dokumente.
+    SELECT 
+        dokument.t_id AS top_level_dokument,
+        dokument.t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM
+        live.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                live.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN live.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        dokument.t_id IN 
+        (
+            SELECT 
+                DISTINCT ON (hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument)
+                hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument
+            FROM
+                live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
 )
 ,
 -- remove duplicate documents with distinct first, then group them.
@@ -2025,6 +2641,50 @@ flattened_documents AS
             SELECT 
                 DISTINCT ON (eigentumsbeschraenkung.t_id)
                 eigentumsbeschraenkung.t_id
+            FROM
+                live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+    UNION ALL
+    
+    -- Hinzufügen der direkt verlinkten Dokumente.
+    SELECT 
+        dokument.t_id AS top_level_dokument,
+        dokument.t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM
+        live.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                live.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN live.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        dokument.t_id IN 
+        (
+            SELECT 
+                DISTINCT ON (hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument)
+                hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument
             FROM
                 live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
                 RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
@@ -2169,6 +2829,50 @@ flattened_documents AS
                 RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
                 ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
         )
+    UNION ALL
+    
+    -- Hinzufügen der direkt verlinkten Dokumente.
+    SELECT 
+        dokument.t_id AS top_level_dokument,
+        dokument.t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM
+        live.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                live.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN live.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        dokument.t_id IN 
+        (
+            SELECT 
+                DISTINCT ON (hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument)
+                hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument
+            FROM
+                live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
 )
 ,
 -- remove duplicate documents with distinct first, then group them.
@@ -2308,6 +3012,50 @@ flattened_documents AS
                 RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
                 ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
         )
+    UNION ALL
+    
+    -- Hinzufügen der direkt verlinkten Dokumente.
+    SELECT 
+        dokument.t_id AS top_level_dokument,
+        dokument.t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM
+        live.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                live.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN live.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        dokument.t_id IN 
+        (
+            SELECT 
+                DISTINCT ON (hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument)
+                hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument
+            FROM
+                live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
 )
 ,
 -- remove duplicate documents with distinct first, then group them.
@@ -2442,6 +3190,50 @@ flattened_documents AS
             SELECT 
                 DISTINCT ON (eigentumsbeschraenkung.t_id)
                 eigentumsbeschraenkung.t_id
+            FROM
+                live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+    UNION ALL
+    
+    -- Hinzufügen der direkt verlinkten Dokumente.
+    SELECT 
+        dokument.t_id AS top_level_dokument,
+        dokument.t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM
+        live.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                live.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN live.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        dokument.t_id IN 
+        (
+            SELECT 
+                DISTINCT ON (hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument)
+                hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument
             FROM
                 live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
                 RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
