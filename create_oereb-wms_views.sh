@@ -8,27 +8,27 @@ declare -a pg_schemas=("stage" "live")
 # see also https://stackoverflow.com/questions/6149679/multidimensional-associative-arrays-in-bash
 declare -A pg_views
 declare -A pg_view
-pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="NutzungsplanungGrundnutzung"; pg_view[geom]="flaeche"
+pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="ch.so.Nutzungsplanung.NutzungsplanungGrundnutzung"; pg_view[geom]="flaeche"
 string=$(declare -p pg_view)
 pg_views[nutzungsplanung_grundnutzung_flaeche]=${string}
 
-pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="NutzungsplanungUeberlagernd"; pg_view[geom]="flaeche"
+pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="ch.so.Nutzungsplanung.NutzungsplanungUeberlagernd"; pg_view[geom]="flaeche"
 string=$(declare -p pg_view)
 pg_views[nutzungsplanung_ueberlagernd_flaeche]=${string}
 
-pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="NutzungsplanungUeberlagernd"; pg_view[geom]="linie"
+pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="ch.so.Nutzungsplanung.NutzungsplanungUeberlagernd"; pg_view[geom]="linie"
 string=$(declare -p pg_view)
 pg_views[nutzungsplanung_ueberlagernd_linie]=${string}
 
-pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="NutzungsplanungUeberlagernd"; pg_view[geom]="punkt"
+pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="ch.so.Nutzungsplanung.NutzungsplanungUeberlagernd"; pg_view[geom]="punkt"
 string=$(declare -p pg_view)
 pg_views[nutzungsplanung_ueberlagernd_punkt]=${string}
 
-pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="NutzungsplanungSondernutzungsplaene"; pg_view[geom]="flaeche"
+pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="ch.so.Nutzungsplanung.NutzungsplanungSondernutzungsplaene"; pg_view[geom]="flaeche"
 string=$(declare -p pg_view)
 pg_views[nutzungsplanung_sondernutzungsplaene_flaeche]=${string}
 
-pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="Baulinien"; pg_view[geom]="linie"
+pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="ch.so.Nutzungsplanung.Baulinien"; pg_view[geom]="linie"
 string=$(declare -p pg_view)
 pg_views[nutzungsplanung_baulinien_linie]=${string}
 

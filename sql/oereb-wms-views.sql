@@ -3,7 +3,7 @@
 -- schema nr 1 is stage
 ---------------------------      
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_ueberlagernd_linie' with thema 'Nutzungsplanung', subthema 'NutzungsplanungUeberlagernd' and geometry 'linie'
+-- materialized view 'nutzungsplanung_ueberlagernd_linie' with thema 'Nutzungsplanung', subthema 'ch.so.Nutzungsplanung.NutzungsplanungUeberlagernd' and geometry 'linie'
 DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_linie;
 CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_linie AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
@@ -180,7 +180,7 @@ FROM
 WHERE
     eigentumsbeschraenkung.thema = 'Nutzungsplanung'
     AND
-    eigentumsbeschraenkung.subthema = 'NutzungsplanungUeberlagernd'
+    eigentumsbeschraenkung.subthema = 'ch.so.Nutzungsplanung.NutzungsplanungUeberlagernd'
     AND
     geometrie.linie_lv95 IS NOT NULL
 ;
@@ -576,7 +576,7 @@ CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_punkt_artcode
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_baulinien_linie' with thema 'Nutzungsplanung', subthema 'Baulinien' and geometry 'linie'
+-- materialized view 'nutzungsplanung_baulinien_linie' with thema 'Nutzungsplanung', subthema 'ch.so.Nutzungsplanung.Baulinien' and geometry 'linie'
 DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_baulinien_linie;
 CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_nutzungsplanung_baulinien_linie AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
@@ -753,7 +753,7 @@ FROM
 WHERE
     eigentumsbeschraenkung.thema = 'Nutzungsplanung'
     AND
-    eigentumsbeschraenkung.subthema = 'Baulinien'
+    eigentumsbeschraenkung.subthema = 'ch.so.Nutzungsplanung.Baulinien'
     AND
     geometrie.linie_lv95 IS NOT NULL
 ;
@@ -767,7 +767,7 @@ CREATE INDEX in_oerebwms_nutzungsplanung_baulinien_linie_artcode
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_sondernutzungsplaene_flaeche' with thema 'Nutzungsplanung', subthema 'NutzungsplanungSondernutzungsplaene' and geometry 'flaeche'
+-- materialized view 'nutzungsplanung_sondernutzungsplaene_flaeche' with thema 'Nutzungsplanung', subthema 'ch.so.Nutzungsplanung.NutzungsplanungSondernutzungsplaene' and geometry 'flaeche'
 DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche;
 CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
@@ -944,7 +944,7 @@ FROM
 WHERE
     eigentumsbeschraenkung.thema = 'Nutzungsplanung'
     AND
-    eigentumsbeschraenkung.subthema = 'NutzungsplanungSondernutzungsplaene'
+    eigentumsbeschraenkung.subthema = 'ch.so.Nutzungsplanung.NutzungsplanungSondernutzungsplaene'
     AND
     geometrie.flaeche_lv95 IS NOT NULL
 ;
@@ -1149,7 +1149,7 @@ CREATE INDEX in_oerebwms_waldgrenzen_linie_artcode
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_ueberlagernd_flaeche' with thema 'Nutzungsplanung', subthema 'NutzungsplanungUeberlagernd' and geometry 'flaeche'
+-- materialized view 'nutzungsplanung_ueberlagernd_flaeche' with thema 'Nutzungsplanung', subthema 'ch.so.Nutzungsplanung.NutzungsplanungUeberlagernd' and geometry 'flaeche'
 DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche;
 CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
@@ -1326,7 +1326,7 @@ FROM
 WHERE
     eigentumsbeschraenkung.thema = 'Nutzungsplanung'
     AND
-    eigentumsbeschraenkung.subthema = 'NutzungsplanungUeberlagernd'
+    eigentumsbeschraenkung.subthema = 'ch.so.Nutzungsplanung.NutzungsplanungUeberlagernd'
     AND
     geometrie.flaeche_lv95 IS NOT NULL
 ;
@@ -1340,7 +1340,7 @@ CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_flaeche_artcode
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_ueberlagernd_punkt' with thema 'Nutzungsplanung', subthema 'NutzungsplanungUeberlagernd' and geometry 'punkt'
+-- materialized view 'nutzungsplanung_ueberlagernd_punkt' with thema 'Nutzungsplanung', subthema 'ch.so.Nutzungsplanung.NutzungsplanungUeberlagernd' and geometry 'punkt'
 DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt;
 CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
@@ -1517,7 +1517,7 @@ FROM
 WHERE
     eigentumsbeschraenkung.thema = 'Nutzungsplanung'
     AND
-    eigentumsbeschraenkung.subthema = 'NutzungsplanungUeberlagernd'
+    eigentumsbeschraenkung.subthema = 'ch.so.Nutzungsplanung.NutzungsplanungUeberlagernd'
     AND
     geometrie.punkt_lv95 IS NOT NULL
 ;
@@ -1531,7 +1531,7 @@ CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_punkt_artcode
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_grundnutzung_flaeche' with thema 'Nutzungsplanung', subthema 'NutzungsplanungGrundnutzung' and geometry 'flaeche'
+-- materialized view 'nutzungsplanung_grundnutzung_flaeche' with thema 'Nutzungsplanung', subthema 'ch.so.Nutzungsplanung.NutzungsplanungGrundnutzung' and geometry 'flaeche'
 DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche;
 CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
@@ -1708,7 +1708,7 @@ FROM
 WHERE
     eigentumsbeschraenkung.thema = 'Nutzungsplanung'
     AND
-    eigentumsbeschraenkung.subthema = 'NutzungsplanungGrundnutzung'
+    eigentumsbeschraenkung.subthema = 'ch.so.Nutzungsplanung.NutzungsplanungGrundnutzung'
     AND
     geometrie.flaeche_lv95 IS NOT NULL
 ;
@@ -1725,7 +1725,7 @@ CREATE INDEX in_oerebwms_nutzungsplanung_grundnutzung_flaeche_artcode
 -- schema nr 2 is live
 ---------------------------      
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_ueberlagernd_linie' with thema 'Nutzungsplanung', subthema 'NutzungsplanungUeberlagernd' and geometry 'linie'
+-- materialized view 'nutzungsplanung_ueberlagernd_linie' with thema 'Nutzungsplanung', subthema 'ch.so.Nutzungsplanung.NutzungsplanungUeberlagernd' and geometry 'linie'
 DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_linie;
 CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_linie AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
@@ -1902,7 +1902,7 @@ FROM
 WHERE
     eigentumsbeschraenkung.thema = 'Nutzungsplanung'
     AND
-    eigentumsbeschraenkung.subthema = 'NutzungsplanungUeberlagernd'
+    eigentumsbeschraenkung.subthema = 'ch.so.Nutzungsplanung.NutzungsplanungUeberlagernd'
     AND
     geometrie.linie_lv95 IS NOT NULL
 ;
@@ -2298,7 +2298,7 @@ CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_punkt_artcode
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_baulinien_linie' with thema 'Nutzungsplanung', subthema 'Baulinien' and geometry 'linie'
+-- materialized view 'nutzungsplanung_baulinien_linie' with thema 'Nutzungsplanung', subthema 'ch.so.Nutzungsplanung.Baulinien' and geometry 'linie'
 DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_baulinien_linie;
 CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_nutzungsplanung_baulinien_linie AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
@@ -2475,7 +2475,7 @@ FROM
 WHERE
     eigentumsbeschraenkung.thema = 'Nutzungsplanung'
     AND
-    eigentumsbeschraenkung.subthema = 'Baulinien'
+    eigentumsbeschraenkung.subthema = 'ch.so.Nutzungsplanung.Baulinien'
     AND
     geometrie.linie_lv95 IS NOT NULL
 ;
@@ -2489,7 +2489,7 @@ CREATE INDEX in_oerebwms_nutzungsplanung_baulinien_linie_artcode
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_sondernutzungsplaene_flaeche' with thema 'Nutzungsplanung', subthema 'NutzungsplanungSondernutzungsplaene' and geometry 'flaeche'
+-- materialized view 'nutzungsplanung_sondernutzungsplaene_flaeche' with thema 'Nutzungsplanung', subthema 'ch.so.Nutzungsplanung.NutzungsplanungSondernutzungsplaene' and geometry 'flaeche'
 DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche;
 CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
@@ -2666,7 +2666,7 @@ FROM
 WHERE
     eigentumsbeschraenkung.thema = 'Nutzungsplanung'
     AND
-    eigentumsbeschraenkung.subthema = 'NutzungsplanungSondernutzungsplaene'
+    eigentumsbeschraenkung.subthema = 'ch.so.Nutzungsplanung.NutzungsplanungSondernutzungsplaene'
     AND
     geometrie.flaeche_lv95 IS NOT NULL
 ;
@@ -2871,7 +2871,7 @@ CREATE INDEX in_oerebwms_waldgrenzen_linie_artcode
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_ueberlagernd_flaeche' with thema 'Nutzungsplanung', subthema 'NutzungsplanungUeberlagernd' and geometry 'flaeche'
+-- materialized view 'nutzungsplanung_ueberlagernd_flaeche' with thema 'Nutzungsplanung', subthema 'ch.so.Nutzungsplanung.NutzungsplanungUeberlagernd' and geometry 'flaeche'
 DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche;
 CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
@@ -3048,7 +3048,7 @@ FROM
 WHERE
     eigentumsbeschraenkung.thema = 'Nutzungsplanung'
     AND
-    eigentumsbeschraenkung.subthema = 'NutzungsplanungUeberlagernd'
+    eigentumsbeschraenkung.subthema = 'ch.so.Nutzungsplanung.NutzungsplanungUeberlagernd'
     AND
     geometrie.flaeche_lv95 IS NOT NULL
 ;
@@ -3062,7 +3062,7 @@ CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_flaeche_artcode
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_ueberlagernd_punkt' with thema 'Nutzungsplanung', subthema 'NutzungsplanungUeberlagernd' and geometry 'punkt'
+-- materialized view 'nutzungsplanung_ueberlagernd_punkt' with thema 'Nutzungsplanung', subthema 'ch.so.Nutzungsplanung.NutzungsplanungUeberlagernd' and geometry 'punkt'
 DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt;
 CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
@@ -3239,7 +3239,7 @@ FROM
 WHERE
     eigentumsbeschraenkung.thema = 'Nutzungsplanung'
     AND
-    eigentumsbeschraenkung.subthema = 'NutzungsplanungUeberlagernd'
+    eigentumsbeschraenkung.subthema = 'ch.so.Nutzungsplanung.NutzungsplanungUeberlagernd'
     AND
     geometrie.punkt_lv95 IS NOT NULL
 ;
@@ -3253,7 +3253,7 @@ CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_punkt_artcode
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_grundnutzung_flaeche' with thema 'Nutzungsplanung', subthema 'NutzungsplanungGrundnutzung' and geometry 'flaeche'
+-- materialized view 'nutzungsplanung_grundnutzung_flaeche' with thema 'Nutzungsplanung', subthema 'ch.so.Nutzungsplanung.NutzungsplanungGrundnutzung' and geometry 'flaeche'
 DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche;
 CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
@@ -3430,7 +3430,7 @@ FROM
 WHERE
     eigentumsbeschraenkung.thema = 'Nutzungsplanung'
     AND
-    eigentumsbeschraenkung.subthema = 'NutzungsplanungGrundnutzung'
+    eigentumsbeschraenkung.subthema = 'ch.so.Nutzungsplanung.NutzungsplanungGrundnutzung'
     AND
     geometrie.flaeche_lv95 IS NOT NULL
 ;
