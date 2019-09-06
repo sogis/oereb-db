@@ -47,8 +47,9 @@ models=OeREBKRMtrsfr_V1_1
 for schemaname in "arp_npl_oereb"; do
   java -jar ${ILI2PG_PATH} \
   --dbschema ${schemaname} --models $models \
-  --strokeArcs --createFk --createFkIdx --createGeomIdx --createTidCol --createBasketCol --createTypeDiscriminator --createImportTabs --createMetaInfo --disableNameOptimization --defaultSrsCode 2056 --createNumChecks \
+  --strokeArcs --createFk --createFkIdx --createGeomIdx --createBasketCol --createImportTabs --createMetaInfo --defaultSrsCode 2056 --createNumChecks \
   --createUnique \
+  --createEnumTabs --beautifyEnumDispName --nameByTopic --createDatasetCol \
   --createscript "sql/transfer_${schemaname}_gdi.sql"
   echo "COMMENT ON SCHEMA ${schemaname} IS 'Schema für den Datenumbau ins OEREB-Transferschema';" >> "sql/transfer_${schemaname}_gdi.sql"
   echo "GRANT USAGE ON SCHEMA ${schemaname} TO :PG_WRITE_USER;" >> "sql/transfer_${schemaname}_gdi.sql"
