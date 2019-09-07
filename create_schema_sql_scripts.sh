@@ -46,6 +46,7 @@ sql/commit_transaction.sql \
 models=OeREBKRMtrsfr_V1_1
 for schemaname in "arp_npl_oereb"; do
   java -jar ${ILI2PG_PATH} \
+  --idSeqMin 1000000000000 \
   --dbschema ${schemaname} --models $models \
   --strokeArcs --createFk --createFkIdx --createGeomIdx --createBasketCol --createImportTabs --createMetaInfo --defaultSrsCode 2056 --createNumChecks \
   --createUnique \

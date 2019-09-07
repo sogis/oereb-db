@@ -44,6 +44,28 @@ CREATE TABLE stage.localisation_v1_multilingualmtext (
 )
 ;
 CREATE INDEX localisatn_v1_mltlnglmtext_t_basket_idx ON stage.localisation_v1_multilingualmtext ( t_basket );
+-- GeometryCHLV95_V1.SurfaceStructure
+CREATE TABLE stage.geometrychlv95_v1_surfacestructure (
+  T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
+  ,T_basket bigint NOT NULL
+  ,T_Type varchar(60) NOT NULL
+  ,T_Seq bigint NULL
+  ,surface geometry(POLYGON,2056) NULL
+  ,geomtrychlv1_mltsrface_surfaces bigint NULL
+)
+;
+CREATE INDEX geomtrychlv95_srfcstrcture_t_basket_idx ON stage.geometrychlv95_v1_surfacestructure ( t_basket );
+CREATE INDEX geomtrychlv95_srfcstrcture_surface_idx ON stage.geometrychlv95_v1_surfacestructure USING GIST ( surface );
+CREATE INDEX geomtrychlv95_srfcstrcture_geomtrychlv1_ltsrfc_srfces_idx ON stage.geometrychlv95_v1_surfacestructure ( geomtrychlv1_mltsrface_surfaces );
+-- GeometryCHLV95_V1.MultiSurface
+CREATE TABLE stage.geometrychlv95_v1_multisurface (
+  T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
+  ,T_basket bigint NOT NULL
+  ,T_Type varchar(60) NOT NULL
+  ,T_Seq bigint NULL
+)
+;
+CREATE INDEX geomtrychlv95_v1_mltsrface_t_basket_idx ON stage.geometrychlv95_v1_multisurface ( t_basket );
 -- OeREBKRM_V1_1.ArtikelNummer_
 CREATE TABLE stage.oerebkrm_v1_1_artikelnummer_ (
   T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
@@ -152,28 +174,94 @@ CREATE TABLE stage.oerebkrm_v1_1codelistentext_thematxt (
 ;
 CREATE INDEX oerbkrm_v1_1cstntxt_thmtxt_t_basket_idx ON stage.oerebkrm_v1_1codelistentext_thematxt ( t_basket );
 COMMENT ON TABLE stage.oerebkrm_v1_1codelistentext_thematxt IS 'Anzeigetexte für die Aufzählung Thema';
--- GeometryCHLV95_V1.SurfaceStructure
-CREATE TABLE stage.geometrychlv95_v1_surfacestructure (
+-- SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Grundbuchkreise.Grundbuchkreis
+CREATE TABLE stage.so_g_v_0180822grundbuchkreise_grundbuchkreis (
   T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
   ,T_basket bigint NOT NULL
   ,T_Type varchar(60) NOT NULL
-  ,T_Seq bigint NULL
-  ,surface geometry(POLYGON,2056) NULL
-  ,geomtrychlv1_mltsrface_surfaces bigint NULL
+  ,T_Ili_Tid uuid NULL DEFAULT uuid_generate_v4()
+  ,aname varchar(255) NOT NULL
+  ,art varchar(255) NOT NULL
+  ,nbident varchar(12) NOT NULL
+  ,grundbuchkreisnummer integer NULL
+  ,grundbuchkreis_bfsnr integer NOT NULL
+  ,bfsnr integer NOT NULL
+  ,perimeter geometry(MULTIPOLYGON,2056) NOT NULL
+  ,amtschreiberei varchar(255) NOT NULL
+  ,amt varchar(255) NULL
+  ,strasse varchar(255) NOT NULL
+  ,hausnummer varchar(255) NULL
+  ,plz integer NOT NULL
+  ,ortschaft varchar(255) NOT NULL
+  ,telefon varchar(255) NOT NULL
+  ,email varchar(255) NOT NULL
+  ,web varchar(1023) NOT NULL
+  ,auid varchar(15) NULL
 )
 ;
-CREATE INDEX geomtrychlv95_srfcstrcture_t_basket_idx ON stage.geometrychlv95_v1_surfacestructure ( t_basket );
-CREATE INDEX geomtrychlv95_srfcstrcture_surface_idx ON stage.geometrychlv95_v1_surfacestructure USING GIST ( surface );
-CREATE INDEX geomtrychlv95_srfcstrcture_geomtrychlv1_ltsrfc_srfces_idx ON stage.geometrychlv95_v1_surfacestructure ( geomtrychlv1_mltsrface_surfaces );
--- GeometryCHLV95_V1.MultiSurface
-CREATE TABLE stage.geometrychlv95_v1_multisurface (
+CREATE INDEX so_g_v_018082_grndbchkreis_t_basket_idx ON stage.so_g_v_0180822grundbuchkreise_grundbuchkreis ( t_basket );
+CREATE INDEX so_g_v_018082_grndbchkreis_perimeter_idx ON stage.so_g_v_0180822grundbuchkreise_grundbuchkreis USING GIST ( perimeter );
+COMMENT ON TABLE stage.so_g_v_0180822grundbuchkreise_grundbuchkreis IS 'Grundbuchkreisaufteilung inkl. Anschrift etc. der einzelnen Kreise';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.aname IS 'Name des Grundbuches';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.art IS 'Art des Grundbuches';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.nbident IS 'Nummerierungsbereich-Identifikator aus der amtlichen Vermessung';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.grundbuchkreisnummer IS 'Kantonale Nummer des Grundbuchkreises';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.grundbuchkreis_bfsnr IS 'Ehemalige Gemeindenummer des Grundbuches (z.B. vor Gemeindefusion).';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.bfsnr IS 'Perimeter des Grundbuchkreises';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.perimeter IS 'Perimeter des Grundbuchkreises';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.amtschreiberei IS 'Amtschreiberei';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.amt IS 'Amt der Amtschreiberei';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.strasse IS 'Strassenname';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.hausnummer IS 'Hausnummer';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.plz IS 'Postleitzahl';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.ortschaft IS 'Ortschaft';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.telefon IS 'Telefonnummer';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.email IS 'E-Mail-Adresse';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.web IS 'Internetadresse';
+COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.auid IS 'Unternehmens-Identifikationsnummer';
+-- SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Nachfuehrungskreise.Gemeinde
+CREATE TABLE stage.so_g_v_0180822nachfuehrngskrise_gemeinde (
   T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
   ,T_basket bigint NOT NULL
   ,T_Type varchar(60) NOT NULL
-  ,T_Seq bigint NULL
+  ,T_Ili_Tid uuid NULL DEFAULT uuid_generate_v4()
+  ,gemeindename varchar(255) NOT NULL
+  ,bfsnr integer NOT NULL
+  ,perimeter geometry(MULTIPOLYGON,2056) NOT NULL
+  ,nfg_name varchar(255) NOT NULL
+  ,nfg_vorname varchar(255) NOT NULL
+  ,nfg_titel varchar(255) NULL
+  ,firma varchar(255) NOT NULL
+  ,firma_zusatz varchar(255) NULL
+  ,strasse varchar(255) NOT NULL
+  ,hausnummer varchar(255) NULL
+  ,plz integer NOT NULL
+  ,ortschaft varchar(255) NOT NULL
+  ,telefon varchar(255) NOT NULL
+  ,web varchar(1023) NOT NULL
+  ,email varchar(255) NOT NULL
+  ,auid varchar(15) NULL
 )
 ;
-CREATE INDEX geomtrychlv95_v1_mltsrface_t_basket_idx ON stage.geometrychlv95_v1_multisurface ( t_basket );
+CREATE INDEX so_g_v_018082rngskrs_gmnde_t_basket_idx ON stage.so_g_v_0180822nachfuehrngskrise_gemeinde ( t_basket );
+CREATE INDEX so_g_v_018082rngskrs_gmnde_perimeter_idx ON stage.so_g_v_0180822nachfuehrngskrise_gemeinde USING GIST ( perimeter );
+COMMENT ON TABLE stage.so_g_v_0180822nachfuehrngskrise_gemeinde IS 'Gemeinde mit zuständigem Nachführungsgeometer und Anschrift der Firma etc.';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.gemeindename IS 'Name der politischen Gemeinde';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.bfsnr IS 'BFS-Nr. der politischen Gemeinde';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.perimeter IS 'Geometrie der politischen Gemeinde';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.nfg_name IS 'Nachname des Nachführungsgeometers';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.nfg_vorname IS 'Vorname des Nachführungsgeometers';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.nfg_titel IS 'Titel des Nachführungsgeometers (z.B. Dr.)';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.firma IS 'Name der Firma';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.firma_zusatz IS 'Zusatzname der Firma';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.strasse IS 'Strassenname';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.hausnummer IS 'Hausnummer';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.plz IS 'Postleitzahl';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.ortschaft IS 'Ortschaft';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.telefon IS 'Telefonnummer';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.web IS 'Internetadresse';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.email IS 'E-Mail-Adresse';
+COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.auid IS 'Unternehmer-Identifikationsnummer';
 -- OeREBKRMvs_V1_1.Vorschriften.Amt
 CREATE TABLE stage.oerbkrmvs_v1_1vorschriften_amt (
   T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
@@ -453,94 +541,6 @@ CREATE TABLE stage.oerb_xtnx_v1_0annex_basedata (
 )
 ;
 CREATE INDEX oerb_xtnx_v1_0annex_bsdata_t_basket_idx ON stage.oerb_xtnx_v1_0annex_basedata ( t_basket );
--- SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Grundbuchkreise.Grundbuchkreis
-CREATE TABLE stage.so_g_v_0180822grundbuchkreise_grundbuchkreis (
-  T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
-  ,T_basket bigint NOT NULL
-  ,T_Type varchar(60) NOT NULL
-  ,T_Ili_Tid uuid NULL DEFAULT uuid_generate_v4()
-  ,aname varchar(255) NOT NULL
-  ,art varchar(255) NOT NULL
-  ,nbident varchar(12) NOT NULL
-  ,grundbuchkreisnummer integer NULL
-  ,grundbuchkreis_bfsnr integer NOT NULL
-  ,bfsnr integer NOT NULL
-  ,perimeter geometry(MULTIPOLYGON,2056) NOT NULL
-  ,amtschreiberei varchar(255) NOT NULL
-  ,amt varchar(255) NULL
-  ,strasse varchar(255) NOT NULL
-  ,hausnummer varchar(255) NULL
-  ,plz integer NOT NULL
-  ,ortschaft varchar(255) NOT NULL
-  ,telefon varchar(255) NOT NULL
-  ,email varchar(255) NOT NULL
-  ,web varchar(1023) NOT NULL
-  ,auid varchar(15) NULL
-)
-;
-CREATE INDEX so_g_v_018082_grndbchkreis_t_basket_idx ON stage.so_g_v_0180822grundbuchkreise_grundbuchkreis ( t_basket );
-CREATE INDEX so_g_v_018082_grndbchkreis_perimeter_idx ON stage.so_g_v_0180822grundbuchkreise_grundbuchkreis USING GIST ( perimeter );
-COMMENT ON TABLE stage.so_g_v_0180822grundbuchkreise_grundbuchkreis IS 'Grundbuchkreisaufteilung inkl. Anschrift etc. der einzelnen Kreise';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.aname IS 'Name des Grundbuches';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.art IS 'Art des Grundbuches';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.nbident IS 'Nummerierungsbereich-Identifikator aus der amtlichen Vermessung';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.grundbuchkreisnummer IS 'Kantonale Nummer des Grundbuchkreises';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.grundbuchkreis_bfsnr IS 'Ehemalige Gemeindenummer des Grundbuches (z.B. vor Gemeindefusion).';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.bfsnr IS 'Perimeter des Grundbuchkreises';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.perimeter IS 'Perimeter des Grundbuchkreises';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.amtschreiberei IS 'Amtschreiberei';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.amt IS 'Amt der Amtschreiberei';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.strasse IS 'Strassenname';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.hausnummer IS 'Hausnummer';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.plz IS 'Postleitzahl';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.ortschaft IS 'Ortschaft';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.telefon IS 'Telefonnummer';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.email IS 'E-Mail-Adresse';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.web IS 'Internetadresse';
-COMMENT ON COLUMN stage.so_g_v_0180822grundbuchkreise_grundbuchkreis.auid IS 'Unternehmens-Identifikationsnummer';
--- SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Nachfuehrungskreise.Gemeinde
-CREATE TABLE stage.so_g_v_0180822nachfuehrngskrise_gemeinde (
-  T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
-  ,T_basket bigint NOT NULL
-  ,T_Type varchar(60) NOT NULL
-  ,T_Ili_Tid uuid NULL DEFAULT uuid_generate_v4()
-  ,gemeindename varchar(255) NOT NULL
-  ,bfsnr integer NOT NULL
-  ,perimeter geometry(MULTIPOLYGON,2056) NOT NULL
-  ,nfg_name varchar(255) NOT NULL
-  ,nfg_vorname varchar(255) NOT NULL
-  ,nfg_titel varchar(255) NULL
-  ,firma varchar(255) NOT NULL
-  ,firma_zusatz varchar(255) NULL
-  ,strasse varchar(255) NOT NULL
-  ,hausnummer varchar(255) NULL
-  ,plz integer NOT NULL
-  ,ortschaft varchar(255) NOT NULL
-  ,telefon varchar(255) NOT NULL
-  ,web varchar(1023) NOT NULL
-  ,email varchar(255) NOT NULL
-  ,auid varchar(15) NULL
-)
-;
-CREATE INDEX so_g_v_018082rngskrs_gmnde_t_basket_idx ON stage.so_g_v_0180822nachfuehrngskrise_gemeinde ( t_basket );
-CREATE INDEX so_g_v_018082rngskrs_gmnde_perimeter_idx ON stage.so_g_v_0180822nachfuehrngskrise_gemeinde USING GIST ( perimeter );
-COMMENT ON TABLE stage.so_g_v_0180822nachfuehrngskrise_gemeinde IS 'Gemeinde mit zuständigem Nachführungsgeometer und Anschrift der Firma etc.';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.gemeindename IS 'Name der politischen Gemeinde';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.bfsnr IS 'BFS-Nr. der politischen Gemeinde';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.perimeter IS 'Geometrie der politischen Gemeinde';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.nfg_name IS 'Nachname des Nachführungsgeometers';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.nfg_vorname IS 'Vorname des Nachführungsgeometers';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.nfg_titel IS 'Titel des Nachführungsgeometers (z.B. Dr.)';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.firma IS 'Name der Firma';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.firma_zusatz IS 'Zusatzname der Firma';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.strasse IS 'Strassenname';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.hausnummer IS 'Hausnummer';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.plz IS 'Postleitzahl';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.ortschaft IS 'Ortschaft';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.telefon IS 'Telefonnummer';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.web IS 'Internetadresse';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.email IS 'E-Mail-Adresse';
-COMMENT ON COLUMN stage.so_g_v_0180822nachfuehrngskrise_gemeinde.auid IS 'Unternehmer-Identifikationsnummer';
 -- OeREBKRMtrsfr_V1_1.Transferstruktur.Eigentumsbeschraenkung
 CREATE TABLE stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung (
   T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
@@ -709,16 +709,16 @@ CREATE TABLE stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift (
   ,T_Type varchar(60) NOT NULL
   ,T_Ili_Tid varchar(200) NULL
   ,eigentumsbeschraenkung bigint NOT NULL
-  ,vorschrift_oerbkrmvs_v1_1vorschriften_dokument bigint NULL
   ,vorschrift_oerbkrmvs_v1_1vorschriften_artikel bigint NULL
+  ,vorschrift_oerbkrmvs_v1_1vorschriften_dokument bigint NULL
 )
 ;
 CREATE INDEX oerbkrmfr_v1_hnwsvrschrift_t_basket_idx ON stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift ( t_basket );
 CREATE INDEX oerbkrmfr_v1_hnwsvrschrift_eigentumsbeschraenkung_idx ON stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift ( eigentumsbeschraenkung );
-CREATE INDEX oerbkrmfr_v1_hnwsvrschrift_vorschrft_rbkchrftn_dkment_idx ON stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift ( vorschrift_oerbkrmvs_v1_1vorschriften_dokument );
 CREATE INDEX oerbkrmfr_v1_hnwsvrschrift_vorschrft_rbkschrftn_rtkel_idx ON stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift ( vorschrift_oerbkrmvs_v1_1vorschriften_artikel );
-COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument IS 'Rechtsvorschrift der Eigentumsbeschränkung';
+CREATE INDEX oerbkrmfr_v1_hnwsvrschrift_vorschrft_rbkchrftn_dkment_idx ON stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift ( vorschrift_oerbkrmvs_v1_1vorschriften_dokument );
 COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_artikel IS 'Rechtsvorschrift der Eigentumsbeschränkung';
+COMMENT ON COLUMN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument IS 'Rechtsvorschrift der Eigentumsbeschränkung';
 CREATE TABLE IF NOT EXISTS stage.T_ILI2DB_BASKET (
   T_Id bigint PRIMARY KEY
   ,dataset bigint NULL
@@ -774,7 +774,7 @@ CREATE TABLE IF NOT EXISTS stage.T_ILI2DB_MODEL (
   ,modelName text NOT NULL
   ,content text NOT NULL
   ,importDate timestamp NOT NULL
-  ,PRIMARY KEY (iliversion,modelName)
+  ,PRIMARY KEY (modelName,iliversion)
 )
 ;
 CREATE TABLE IF NOT EXISTS stage.T_ILI2DB_CLASSNAME (
@@ -787,7 +787,7 @@ CREATE TABLE IF NOT EXISTS stage.T_ILI2DB_ATTRNAME (
   ,SqlName varchar(1024) NOT NULL
   ,ColOwner varchar(1024) NOT NULL
   ,Target varchar(1024) NULL
-  ,PRIMARY KEY (SqlName,ColOwner)
+  ,PRIMARY KEY (ColOwner,SqlName)
 )
 ;
 CREATE TABLE IF NOT EXISTS stage.T_ILI2DB_COLUMN_PROP (
@@ -816,6 +816,9 @@ ALTER TABLE stage.localisation_v1_localisedmtext ADD CONSTRAINT localisation_v1_
 ALTER TABLE stage.localisation_v1_localisedmtext ADD CONSTRAINT localisation_v1_lclsdmtext_loclstn_v1_lttxt_lclsdtext_fkey FOREIGN KEY ( loclstn_v1_ltlnglmtext_localisedtext ) REFERENCES stage.localisation_v1_multilingualmtext DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.localisation_v1_multilingualtext ADD CONSTRAINT localisatin_v1_mltlngltext_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.localisation_v1_multilingualmtext ADD CONSTRAINT localisatn_v1_mltlnglmtext_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.geometrychlv95_v1_surfacestructure ADD CONSTRAINT geomtrychlv95_srfcstrcture_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.geometrychlv95_v1_surfacestructure ADD CONSTRAINT geomtrychlv95_srfcstrcture_geomtrychlv1_ltsrfc_srfces_fkey FOREIGN KEY ( geomtrychlv1_mltsrface_surfaces ) REFERENCES stage.geometrychlv95_v1_multisurface DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.geometrychlv95_v1_multisurface ADD CONSTRAINT geomtrychlv95_v1_mltsrface_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.oerebkrm_v1_1_artikelnummer_ ADD CONSTRAINT oerebkrm_v1_1_artiklnmmer__T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.oerebkrm_v1_1_artikelnummer_ ADD CONSTRAINT oerebkrm_v1_1_artiklnmmer__oerbkrmvs_vwsrdkmnt_rtklnr_fkey FOREIGN KEY ( oerbkrmvs_vwswtrdkmnte_artikelnr ) REFERENCES stage.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.oerebkrm_v1_1_artikelnummer_ ADD CONSTRAINT oerebkrm_v1_1_artiklnmmer__oerbkrmfr_vwsschrft_rtklnr_fkey FOREIGN KEY ( oerbkrmfr_vwsvrschrift_artikelnr ) REFERENCES stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift DEFERRABLE INITIALLY DEFERRED;
@@ -829,9 +832,14 @@ ALTER TABLE stage.oerebkrm_v1_1_multilingualuri ADD CONSTRAINT oerebkrm_v1_1_mul
 ALTER TABLE stage.oerebkrm_v1_1_multilingualuri ADD CONSTRAINT oerebkrm_v1_1_multilngluri_oerbkrmvs_vrfdkmnt_txtmweb_fkey FOREIGN KEY ( oerbkrmvs_vrftn_dkment_textimweb ) REFERENCES stage.oerbkrmvs_v1_1vorschriften_dokument DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.oerebkrm_v1_1codelistentext_rechtsstatustxt ADD CONSTRAINT oerbkrm_v1_1c_rchtssttstxt_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.oerebkrm_v1_1codelistentext_thematxt ADD CONSTRAINT oerbkrm_v1_1cstntxt_thmtxt_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.geometrychlv95_v1_surfacestructure ADD CONSTRAINT geomtrychlv95_srfcstrcture_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.geometrychlv95_v1_surfacestructure ADD CONSTRAINT geomtrychlv95_srfcstrcture_geomtrychlv1_ltsrfc_srfces_fkey FOREIGN KEY ( geomtrychlv1_mltsrface_surfaces ) REFERENCES stage.geometrychlv95_v1_multisurface DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.geometrychlv95_v1_multisurface ADD CONSTRAINT geomtrychlv95_v1_mltsrface_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.so_g_v_0180822grundbuchkreise_grundbuchkreis ADD CONSTRAINT so_g_v_018082_grndbchkreis_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.so_g_v_0180822grundbuchkreise_grundbuchkreis ADD CONSTRAINT so_g_v_01808_grndbchkreis_grundbuchkreisnummer_check CHECK( grundbuchkreisnummer BETWEEN 1 AND 99);
+ALTER TABLE stage.so_g_v_0180822grundbuchkreise_grundbuchkreis ADD CONSTRAINT so_g_v_01808_grndbchkreis_grundbuchkreis_bfsnr_check CHECK( grundbuchkreis_bfsnr BETWEEN 1 AND 9999);
+ALTER TABLE stage.so_g_v_0180822grundbuchkreise_grundbuchkreis ADD CONSTRAINT so_g_v_01808_grndbchkreis_bfsnr_check CHECK( bfsnr BETWEEN 1 AND 9999);
+ALTER TABLE stage.so_g_v_0180822grundbuchkreise_grundbuchkreis ADD CONSTRAINT so_g_v_01808_grndbchkreis_plz_check CHECK( plz BETWEEN 1000 AND 9999);
+ALTER TABLE stage.so_g_v_0180822nachfuehrngskrise_gemeinde ADD CONSTRAINT so_g_v_018082rngskrs_gmnde_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.so_g_v_0180822nachfuehrngskrise_gemeinde ADD CONSTRAINT so_g_v_01808rngskrs_gmnde_bfsnr_check CHECK( bfsnr BETWEEN 1 AND 9999);
+ALTER TABLE stage.so_g_v_0180822nachfuehrngskrise_gemeinde ADD CONSTRAINT so_g_v_01808rngskrs_gmnde_plz_check CHECK( plz BETWEEN 1000 AND 9990);
 ALTER TABLE stage.oerbkrmvs_v1_1vorschriften_amt ADD CONSTRAINT oerbkrmvs_v1_vrschrftn_amt_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.oerbkrmvs_v1_1vorschriften_artikel ADD CONSTRAINT oerbkrmvs_v1_schrftn_rtkel_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.oerbkrmvs_v1_1vorschriften_artikel ADD CONSTRAINT oerbkrmvs_v1_schrftn_rtkel_dokument_fkey FOREIGN KEY ( dokument ) REFERENCES stage.oerbkrmvs_v1_1vorschriften_dokument DEFERRABLE INITIALLY DEFERRED;
@@ -855,14 +863,6 @@ ALTER TABLE stage.oerb_xtnx_v1_0annex_glossary ADD CONSTRAINT oerb_xtnx_v1_0annx
 ALTER TABLE stage.oerb_xtnx_v1_0annex_exclusionofliability ADD CONSTRAINT oerb_xtnx_v1__xclsnflblity_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.oerb_xtnx_v1_0annex_generalinformation ADD CONSTRAINT oerb_xtnx_v1__gnrlnfrmtion_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.oerb_xtnx_v1_0annex_basedata ADD CONSTRAINT oerb_xtnx_v1_0annex_bsdata_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.so_g_v_0180822grundbuchkreise_grundbuchkreis ADD CONSTRAINT so_g_v_018082_grndbchkreis_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.so_g_v_0180822grundbuchkreise_grundbuchkreis ADD CONSTRAINT so_g_v_01808_grndbchkreis_grundbuchkreisnummer_check CHECK( grundbuchkreisnummer BETWEEN 1 AND 99);
-ALTER TABLE stage.so_g_v_0180822grundbuchkreise_grundbuchkreis ADD CONSTRAINT so_g_v_01808_grndbchkreis_grundbuchkreis_bfsnr_check CHECK( grundbuchkreis_bfsnr BETWEEN 1 AND 9999);
-ALTER TABLE stage.so_g_v_0180822grundbuchkreise_grundbuchkreis ADD CONSTRAINT so_g_v_01808_grndbchkreis_bfsnr_check CHECK( bfsnr BETWEEN 1 AND 9999);
-ALTER TABLE stage.so_g_v_0180822grundbuchkreise_grundbuchkreis ADD CONSTRAINT so_g_v_01808_grndbchkreis_plz_check CHECK( plz BETWEEN 1000 AND 9999);
-ALTER TABLE stage.so_g_v_0180822nachfuehrngskrise_gemeinde ADD CONSTRAINT so_g_v_018082rngskrs_gmnde_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.so_g_v_0180822nachfuehrngskrise_gemeinde ADD CONSTRAINT so_g_v_01808rngskrs_gmnde_bfsnr_check CHECK( bfsnr BETWEEN 1 AND 9999);
-ALTER TABLE stage.so_g_v_0180822nachfuehrngskrise_gemeinde ADD CONSTRAINT so_g_v_01808rngskrs_gmnde_plz_check CHECK( plz BETWEEN 1000 AND 9990);
 ALTER TABLE stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung ADD CONSTRAINT oerbkrmfr_v1_tmsbschrnkung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung ADD CONSTRAINT oerbkrmfr_v1_tmsbschrnkung_darstellungsdienst_fkey FOREIGN KEY ( darstellungsdienst ) REFERENCES stage.oerbkrmfr_v1_1transferstruktur_darstellungsdienst DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung ADD CONSTRAINT oerbkrmfr_v1_tmsbschrnkung_zustaendigestelle_fkey FOREIGN KEY ( zustaendigestelle ) REFERENCES stage.oerbkrmvs_v1_1vorschriften_amt DEFERRABLE INITIALLY DEFERRED;
@@ -883,16 +883,16 @@ ALTER TABLE stage.oerbkrmfr_v1_1transferstruktur_hinweisdefinitiondokument ADD C
 ALTER TABLE stage.oerbkrmfr_v1_1transferstruktur_hinweisdefinitiondokument ADD CONSTRAINT oerbkrmfr_v1_wsdfntndkment_dokument_fkey FOREIGN KEY ( dokument ) REFERENCES stage.oerbkrmvs_v1_1vorschriften_dokument DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift ADD CONSTRAINT oerbkrmfr_v1_hnwsvrschrift_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift ADD CONSTRAINT oerbkrmfr_v1_hnwsvrschrift_eigentumsbeschraenkung_fkey FOREIGN KEY ( eigentumsbeschraenkung ) REFERENCES stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift ADD CONSTRAINT oerbkrmfr_v1_hnwsvrschrift_vorschrft_rbkchrftn_dkment_fkey FOREIGN KEY ( vorschrift_oerbkrmvs_v1_1vorschriften_dokument ) REFERENCES stage.oerbkrmvs_v1_1vorschriften_dokument DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift ADD CONSTRAINT oerbkrmfr_v1_hnwsvrschrift_vorschrft_rbkschrftn_rtkel_fkey FOREIGN KEY ( vorschrift_oerbkrmvs_v1_1vorschriften_artikel ) REFERENCES stage.oerbkrmvs_v1_1vorschriften_artikel DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift ADD CONSTRAINT oerbkrmfr_v1_hnwsvrschrift_vorschrft_rbkchrftn_dkment_fkey FOREIGN KEY ( vorschrift_oerbkrmvs_v1_1vorschriften_dokument ) REFERENCES stage.oerbkrmvs_v1_1vorschriften_dokument DEFERRABLE INITIALLY DEFERRED;
 -- ALTER TABLE stage.T_ILI2DB_BASKET ADD CONSTRAINT T_ILI2DB_BASKET_dataset_fkey FOREIGN KEY ( dataset ) REFERENCES stage.T_ILI2DB_DATASET DEFERRABLE INITIALLY DEFERRED;
 CREATE UNIQUE INDEX IF NOT EXISTS T_ILI2DB_DATASET_datasetName_key ON stage.T_ILI2DB_DATASET (datasetName)
 ;
 -- ALTER TABLE stage.T_ILI2DB_IMPORT_BASKET ADD CONSTRAINT T_ILI2DB_IMPORT_BASKET_importrun_fkey FOREIGN KEY ( importrun ) REFERENCES stage.T_ILI2DB_IMPORT DEFERRABLE INITIALLY DEFERRED;
 -- ALTER TABLE stage.T_ILI2DB_IMPORT_BASKET ADD CONSTRAINT T_ILI2DB_IMPORT_BASKET_basket_fkey FOREIGN KEY ( basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX IF NOT EXISTS T_ILI2DB_MODEL_iliversion_modelName_key ON stage.T_ILI2DB_MODEL (iliversion,modelName)
+CREATE UNIQUE INDEX IF NOT EXISTS T_ILI2DB_MODEL_modelName_iliversion_key ON stage.T_ILI2DB_MODEL (modelName,iliversion)
 ;
-CREATE UNIQUE INDEX IF NOT EXISTS T_ILI2DB_ATTRNAME_SqlName_ColOwner_key ON stage.T_ILI2DB_ATTRNAME (SqlName,ColOwner)
+CREATE UNIQUE INDEX IF NOT EXISTS T_ILI2DB_ATTRNAME_ColOwner_SqlName_key ON stage.T_ILI2DB_ATTRNAME (ColOwner,SqlName)
 ;
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('OeREBKRMvs_V1_1.Vorschriften.ZustaendigeStelleDokument','oerbkrmvs_v1_1vorschriften_zustaendigestelledokument');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.MunicipalityWithPLRC','oerb_xtnx_v1_0annex_municipalitywithplrc');
@@ -965,8 +965,8 @@ INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('O
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.Geometrie.Punkt_LV03','punkt_lv03','oerbkrmfr_v1_1transferstruktur_geometrie',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.HinweisDefinitionZustaendigeStelle.ZustaendigeStelle','zustaendigestelle','oerbkrmfr_v1_1transferstruktur_hinweisdefinition','oerbkrmvs_v1_1vorschriften_amt');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.Office.Number','anumber','oerb_xtnx_v1_0annex_office',NULL);
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Dokument.Abkuerzung','abkuerzung','oerbkrmvs_v1_1vorschriften_dokument',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Grundbuchkreise.Grundbuchkreis.Amt','amt','so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL);
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Dokument.Abkuerzung','abkuerzung','oerbkrmvs_v1_1vorschriften_dokument',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Nachfuehrungskreise.Gemeinde.Strasse','strasse','so_g_v_0180822nachfuehrngskrise_gemeinde',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRM_V1_1.CodelistenText.RechtsStatusTxt.Titel','titel','oerebkrm_v1_1codelistentext_rechtsstatustxt',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Nachfuehrungskreise.Gemeinde.NFG_Titel','nfg_titel','so_g_v_0180822nachfuehrngskrise_gemeinde',NULL);
@@ -1015,9 +1015,9 @@ INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('O
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.HinweisDefinitionDokument.Dokument','dokument','oerbkrmfr_v1_1transferstruktur_hinweisdefinitiondokument','oerbkrmvs_v1_1vorschriften_dokument');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.Eigentumsbeschraenkung.publiziertAb','publiziertab','oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMvs_V1_1.Vorschriften.ZustaendigeStelleDokument.ZustaendigeStelle','zustaendigestelle','oerbkrmvs_v1_1vorschriften_dokument','oerbkrmvs_v1_1vorschriften_amt');
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Grundbuchkreise.Grundbuchkreis.Web','web','so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.Logo.logo','logo','oerb_xtnx_v1_0annex_logo',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.MapLayering.layerIndex','layerindex','oerb_xtnx_v1_0annex_maplayering',NULL);
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Grundbuchkreise.Grundbuchkreis.Web','web','so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.LegendeEintrag.SubThema','subthema','oerbkrmfr_v1_1transferstruktur_legendeeintrag',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.Office.Name','aname','oerb_xtnx_v1_0annex_office',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRM_V1_1.ArtikelNummer_.value','avalue','oerebkrm_v1_1_artikelnummer_',NULL);
@@ -1065,8 +1065,8 @@ INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('O
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Grundbuchkreise.Grundbuchkreis.Telefon','telefon','so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.LegendeEintrag.LegendeText','legendetext','oerbkrmfr_v1_1transferstruktur_legendeeintrag',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.Office.PostalCode','postalcode','oerb_xtnx_v1_0annex_office',NULL);
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMvs_V1_1.Vorschriften.DokumentBasis.publiziertAb','publiziertab','oerbkrmvs_v1_1vorschriften_dokument',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Grundbuchkreise.Grundbuchkreis.Amtschreiberei','amtschreiberei','so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL);
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMvs_V1_1.Vorschriften.DokumentBasis.publiziertAb','publiziertab','oerbkrmvs_v1_1vorschriften_dokument',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.LegendeEintrag.ArtCodeliste','artcodeliste','oerbkrmfr_v1_1transferstruktur_legendeeintrag',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.MapLayering.webservice','webservice','oerb_xtnx_v1_0annex_maplayering',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Nachfuehrungskreise.Gemeinde.NFG_Name','nfg_name','so_g_v_0180822nachfuehrngskrise_gemeinde',NULL);
@@ -1075,8 +1075,8 @@ INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('O
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Grundbuchkreise.Grundbuchkreis.Grundbuchkreis_BFSNr','grundbuchkreis_bfsnr','so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.Geometrie.Linie_LV03','linie_lv03','oerbkrmfr_v1_1transferstruktur_geometrie',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.DarstellungsDienst.VerweisWMS','verweiswms','oerbkrmfr_v1_1transferstruktur_darstellungsdienst',NULL);
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.ExclusionOfLiability.Content','content','oerb_xtnx_v1_0annex_exclusionofliability',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Nachfuehrungskreise.Gemeinde.Web','web','so_g_v_0180822nachfuehrngskrise_gemeinde',NULL);
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.ExclusionOfLiability.Content','content','oerb_xtnx_v1_0annex_exclusionofliability',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('Localisation_V1.LocalisedMText.Text','atext','localisation_v1_localisedmtext',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.Eigentumsbeschraenkung.SubThema','subthema','oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Artikel.Text','atext','oerbkrmvs_v1_1vorschriften_artikel',NULL);
@@ -1155,8 +1155,8 @@ INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('LocalisationCH_V
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Dokument.OffiziellerTitel','ch.ehi.ili2db.multilingualTrafo','expand');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.HinweisDefinitionDokument','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('OeREBKRM_V1_1.CodelistenText.RechtsStatusTxt.Titel','ch.ehi.ili2db.multilingualTrafo','expand');
-INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Amt.Name','ch.ehi.ili2db.multilingualTrafo','expand');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Grundbuchkreise.Grundbuchkreis.Perimeter','ch.ehi.ili2db.multiSurfaceTrafo','coalesce');
+INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Amt.Name','ch.ehi.ili2db.multilingualTrafo','expand');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.Eigentumsbeschraenkung.Aussage','ch.ehi.ili2db.multilingualTrafo','expand');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('Localisation_V1.MultilingualMText','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('OeREBKRM_V1_1.Thema_','ch.ehi.ili2db.inheritance','newClass');
@@ -1165,187 +1165,187 @@ INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('OeREB_ExtractAnn
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Artikel.Text','ch.ehi.ili2db.multilingualTrafo','expand');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('GeometryCHLV95_V1.SurfaceStructure','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.HinweisVorschrift','ch.ehi.ili2db.inheritance','newClass');
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMvs_V1_1.Vorschriften.DokumentArtikel',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.Thema_',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.GrundlageVerfeinerung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.Eigentumsbeschraenkung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.LocalisedUri',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.ZustaendigeStelleGeometrie',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.MunicipalityWithPLRC',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('LocalisationCH_V1.MultilingualText','Localisation_V1.MultilingualText');
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Grundbuchkreise.Grundbuchkreis',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Nachfuehrungskreise.Gemeinde',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMvs_V1_1.Vorschriften.DokumentBasis',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('CatalogueObjects_V1.Catalogues.Item',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('LocalisationCH_V1.LocalisedText','Localisation_V1.LocalisedText');
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.HinweisDefinitionDokument',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.MultilingualUri',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.Datum_',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('GeometryCHLV95_V1.MultiSurface',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('LocalisationCH_V1.MultilingualMText','Localisation_V1.MultilingualMText');
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMvs_V1_1.Vorschriften.ZustaendigeStelleDokument',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.WebReferenz_',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Rechtsvorschrift','OeREBKRMvs_V1_1.Vorschriften.Dokument');
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('Localisation_V1.MultilingualText',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.Logo',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.GeometrieEigentumsbeschraenkung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.HinweisDefinitionZustaendigeStelle',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.CodelistenText.RechtsStatusTxt','CatalogueObjects_V1.Catalogues.Item');
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.DarstellungsDienst',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.Glossary',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.ArtikelInhaltMehrsprachig','LocalisationCH_V1.MultilingualMText');
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.MapLayering',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.CodelistenText.ThemaTxt','CatalogueObjects_V1.Catalogues.Item');
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.ExclusionOfLiability',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.DarstellungsDienstEigentumsbeschraenkung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('Localisation_V1.LocalisedMText',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.HinweisVorschrift',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Dokument','OeREBKRMvs_V1_1.Vorschriften.DokumentBasis');
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Artikel','OeREBKRMvs_V1_1.Vorschriften.DokumentBasis');
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Code_',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.ZustaendigeStelleEigentumsbeschraenkung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.Geometrie',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.Office',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('Localisation_V1.LocalisedText',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.BaseData',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Amt',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.GeneralInformation',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('GeometryCHLV95_V1.SurfaceStructure',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.LegendeEintrag',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.ArtikelNummer_',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.ThemaTxt','CatalogueObjects_V1.Catalogues.Item');
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('LocalisationCH_V1.LocalisedMText','Localisation_V1.LocalisedMText');
 INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('Localisation_V1.MultilingualMText',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.Logo',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('LocalisationCH_V1.MultilingualText','Localisation_V1.MultilingualText');
 INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMvs_V1_1.Vorschriften.HinweisWeitereDokumente',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.DarstellungsDienst',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('LocalisationCH_V1.LocalisedText','Localisation_V1.LocalisedText');
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.Office',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Dokument','OeREBKRMvs_V1_1.Vorschriften.DokumentBasis');
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.CodelistenText.ThemaTxt','CatalogueObjects_V1.Catalogues.Item');
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.HinweisDefinitionZustaendigeStelle',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.DarstellungsDienstEigentumsbeschraenkung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('CatalogueObjects_V1.Catalogues.Item',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMvs_V1_1.Vorschriften.DokumentBasis',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('LocalisationCH_V1.MultilingualMText','Localisation_V1.MultilingualMText');
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.ArtikelInhaltMehrsprachig','LocalisationCH_V1.MultilingualMText');
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('LocalisationCH_V1.LocalisedMText','Localisation_V1.LocalisedMText');
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.Glossary',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.LegendeEintrag',NULL);
 INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.HinweisDefinition',NULL);
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv03','ch.ehi.ili2db.c1Min','460000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_amt',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmvs_v1_1vorschriften_amt"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv95','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv03','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('localisation_v1_localisedmtext',NULL,'atext','ch.ehi.ili2db.textKind','MTEXT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung',NULL,'zustaendigestelle','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_amt');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('localisation_v1_localisedtext',NULL,'loclstn_v1_mltlngltext_localisedtext','ch.ehi.ili2db.foreignKey','localisation_v1_multilingualtext');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'surface','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'geomtrychlv1_mltsrface_surfaces','ch.ehi.ili2db.foreignKey','geometrychlv95_v1_multisurface');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv95','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv95','ch.ehi.ili2db.c2Min','1045000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1codelistentext_thematxt',NULL,'T_Type','ch.ehi.ili2db.types','["oerebkrm_v1_1codelistentext_thematxt"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1codelistentext_rechtsstatustxt',NULL,'T_Type','ch.ehi.ili2db.types','["oerebkrm_v1_1codelistentext_rechtsstatustxt"]');
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Rechtsvorschrift','OeREBKRMvs_V1_1.Vorschriften.Dokument');
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.MapLayering',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.Thema_',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.LocalisedUri',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Code_',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Artikel','OeREBKRMvs_V1_1.Vorschriften.DokumentBasis');
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.HinweisVorschrift',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.WebReferenz_',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.ThemaTxt','CatalogueObjects_V1.Catalogues.Item');
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('GeometryCHLV95_V1.SurfaceStructure',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Nachfuehrungskreise.Gemeinde',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.MultilingualUri',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.MunicipalityWithPLRC',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMvs_V1_1.Vorschriften.DokumentArtikel',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.Geometrie',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.CodelistenText.RechtsStatusTxt','CatalogueObjects_V1.Catalogues.Item');
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.GrundlageVerfeinerung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMvs_V1_1.Vorschriften.ZustaendigeStelleDokument',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.ArtikelNummer_',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.GeometrieEigentumsbeschraenkung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.Grundbuchkreise.Grundbuchkreis',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.ZustaendigeStelleEigentumsbeschraenkung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.BaseData',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.GeneralInformation',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('Localisation_V1.LocalisedMText',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRM_V1_1.Datum_',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.Eigentumsbeschraenkung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMvs_V1_1.Vorschriften.Amt',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('Localisation_V1.MultilingualText',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.ZustaendigeStelleGeometrie',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREB_ExtractAnnex_V1_0.Annex.ExclusionOfLiability',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('GeometryCHLV95_V1.MultiSurface',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('Localisation_V1.LocalisedText',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('OeREBKRMtrsfr_V1_1.Transferstruktur.HinweisDefinitionDokument',NULL);
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'eigentumsbeschraenkung','ch.ehi.ili2db.foreignKey','oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung',NULL,'darstellungsdienst','ch.ehi.ili2db.foreignKey','oerbkrmfr_v1_1transferstruktur_darstellungsdienst');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'T_Type','ch.ehi.ili2db.types','["geometrychlv95_v1_surfacestructure"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_thema_',NULL,'T_Type','ch.ehi.ili2db.types','["oerebkrm_v1_1_thema_"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv95','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv95','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv03','ch.ehi.ili2db.c2Min','45000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv03','ch.ehi.ili2db.c2Max','310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('localisation_v1_localisedmtext',NULL,'T_Type','ch.ehi.ili2db.types','["localisation_v1_localisedmtext","localisationch_v1_localisedmtext"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv03','ch.ehi.ili2db.srid','21781');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv95','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisvorschrift',NULL,'vorschrift_oerbkrmvs_v1_1vorschriften_dokument','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_dokument');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_grundlageverfeinerung',NULL,'grundlage','ch.ehi.ili2db.foreignKey','oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oereb_extractannex_v1_0_code_',NULL,'T_Type','ch.ehi.ili2db.types','["oereb_extractannex_v1_0_code_"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_logo',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_logo"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'perimeter','ch.ehi.ili2db.c1Max','2870000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisdefinition',NULL,'zustaendigestelle','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_amt');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'surface','ch.ehi.ili2db.c1Min','2460000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'zustaendigestelle','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_amt');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('localisation_v1_localisedtext',NULL,'T_Type','ch.ehi.ili2db.types','["localisation_v1_localisedtext","localisationch_v1_localisedtext"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv95','ch.ehi.ili2db.c1Max','2870000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisdefinitiondokument',NULL,'dokument','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_dokument');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'perimeter','ch.ehi.ili2db.c2Min','1045000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_municipalitywithplrc',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_municipalitywithplrc"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('localisation_v1_multilingualtext',NULL,'T_Type','ch.ehi.ili2db.types','["localisation_v1_multilingualtext","localisationch_v1_multilingualtext"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_thematxt',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_thematxt"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_multilingualuri',NULL,'oerbkrmvs_vhrftn_rtkel_textimweb','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_artikel');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_multilingualuri',NULL,'oerbkrmvs_vrftn_dkment_textimweb','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_dokument');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv03','ch.ehi.ili2db.c1Min','460000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente',NULL,'ursprung','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_dokument');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv03','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'perimeter','ch.ehi.ili2db.c1Max','2870000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv03','ch.ehi.ili2db.c1Max','870000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv03','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'perimeter','ch.ehi.ili2db.c1Min','2460000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv03','ch.ehi.ili2db.c2Max','310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_artikelnummer_',NULL,'oerbkrmvs_vwswtrdkmnte_artikelnr','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv03','ch.ehi.ili2db.c1Max','870000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'T_Type','ch.ehi.ili2db.types','["so_g_v_0180822nachfuehrngskrise_gemeinde"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'perimeter','ch.ehi.ili2db.c1Min','2460000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv03','ch.ehi.ili2db.c2Min','45000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_artikelnummer_',NULL,'T_Type','ch.ehi.ili2db.types','["oerebkrm_v1_1_artikelnummer_"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'T_Type','ch.ehi.ili2db.types','["so_g_v_0180822grundbuchkreise_grundbuchkreis"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv95','ch.ehi.ili2db.c1Min','2460000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_localiseduri',NULL,'oerbkrm_v1__mltlngluri_localisedtext','ch.ehi.ili2db.foreignKey','oerebkrm_v1_1_multilingualuri');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv03','ch.ehi.ili2db.geomType','LINESTRING');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_datum_',NULL,'T_Type','ch.ehi.ili2db.types','["oerebkrm_v1_1_datum_"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_maplayering',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_maplayering"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisvorschrift',NULL,'eigentumsbeschraenkung','ch.ehi.ili2db.foreignKey','oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv95','ch.ehi.ili2db.c1Min','2460000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'perimeter','ch.ehi.ili2db.geomType','MULTIPOLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'surface','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv03','ch.ehi.ili2db.c2Min','45000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisdefinitiondokument',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_hinweisdefinitiondokument"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'surface','ch.ehi.ili2db.c2Min','1045000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_localiseduri',NULL,'T_Type','ch.ehi.ili2db.types','["oerebkrm_v1_1_localiseduri"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_basedata',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_basedata"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'surface','ch.ehi.ili2db.c1Max','2870000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_exclusionofliability',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_exclusionofliability"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv95','ch.ehi.ili2db.c2Min','1045000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv95','ch.ehi.ili2db.c1Max','2870000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_dokument',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmvs_v1_1vorschriften_dokument","oerbkrmvs_v1_1vorschriften_rechtsvorschrift"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_artikel',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmvs_v1_1vorschriften_artikel"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv03','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_artikelnummer_',NULL,'oerbkrmfr_vwsvrschrift_artikelnr','ch.ehi.ili2db.foreignKey','oerbkrmfr_v1_1transferstruktur_hinweisvorschrift');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisdefinition',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_hinweisdefinition"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisdefinitiondokument',NULL,'hinweisdefinition','ch.ehi.ili2db.foreignKey','oerbkrmfr_v1_1transferstruktur_hinweisdefinition');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv95','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_glossary',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_glossary"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_legendeeintrag',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_legendeeintrag"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisvorschrift',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_hinweisvorschrift"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisvorschrift',NULL,'vorschrift_oerbkrmvs_v1_1vorschriften_artikel','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_artikel');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv03','ch.ehi.ili2db.c2Max','310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv95','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv03','ch.ehi.ili2db.c1Max','870000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv03','ch.ehi.ili2db.srid','21781');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv95','ch.ehi.ili2db.c1Min','2460000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv95','ch.ehi.ili2db.c1Max','2870000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_multisurface',NULL,'T_Type','ch.ehi.ili2db.types','["geometrychlv95_v1_multisurface"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_artikel',NULL,'dokument','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_dokument');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_grundlageverfeinerung',NULL,'verfeinerung','ch.ehi.ili2db.foreignKey','oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'perimeter','ch.ehi.ili2db.geomType','MULTIPOLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'perimeter','ch.ehi.ili2db.c2Min','1045000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'surface','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_legendeeintrag',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_legendeeintrag"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisvorschrift',NULL,'vorschrift_oerbkrmvs_v1_1vorschriften_dokument','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_dokument');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_webreferenz_',NULL,'T_Type','ch.ehi.ili2db.types','["oerebkrm_v1_1_webreferenz_"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('localisation_v1_multilingualmtext',NULL,'T_Type','ch.ehi.ili2db.types','["localisation_v1_multilingualmtext","localisationch_v1_multilingualmtext","oerebkrm_v1_1_artikelinhaltmehrsprachig"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente',NULL,'hinweis','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_dokument');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv95','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv95','ch.ehi.ili2db.geomType','LINESTRING');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('localisation_v1_localisedmtext',NULL,'loclstn_v1_ltlnglmtext_localisedtext','ch.ehi.ili2db.foreignKey','localisation_v1_multilingualmtext');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv95','ch.ehi.ili2db.coordDimension','2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_darstellungsdienst',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_darstellungsdienst"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'surface','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv95','ch.ehi.ili2db.geomType','POLYGON');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv03','ch.ehi.ili2db.c1Min','460000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv95','ch.ehi.ili2db.c2Max','1310000.000');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_geometrie"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_grundlageverfeinerung',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_grundlageverfeinerung"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv03','ch.ehi.ili2db.geomType','POINT');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_dokument',NULL,'zustaendigestelle','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_amt');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_generalinformation',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_generalinformation"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv95','ch.ehi.ili2db.c1Min','2460000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_dokument',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmvs_v1_1vorschriften_dokument","oerbkrmvs_v1_1vorschriften_rechtsvorschrift"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv95','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisvorschrift',NULL,'eigentumsbeschraenkung','ch.ehi.ili2db.foreignKey','oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv95','ch.ehi.ili2db.c2Min','1045000.000');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oereb_extractannex_v1_0_code_',NULL,'oerb_xtnx_vpltywthplrc_themes','ch.ehi.ili2db.foreignKey','oerb_xtnx_v1_0annex_municipalitywithplrc');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_office',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_office"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv03','ch.ehi.ili2db.srid','21781');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv95','ch.ehi.ili2db.c2Min','1045000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv03','ch.ehi.ili2db.srid','21781');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_geometrie"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv95','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv03','ch.ehi.ili2db.c1Min','460000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv03','ch.ehi.ili2db.c2Max','310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_grundlageverfeinerung',NULL,'verfeinerung','ch.ehi.ili2db.foreignKey','oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_legendeeintrag',NULL,'oerbkrmfr_vstllngsdnst_legende','ch.ehi.ili2db.foreignKey','oerbkrmfr_v1_1transferstruktur_darstellungsdienst');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'surface','ch.ehi.ili2db.c1Min','2460000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'perimeter','ch.ehi.ili2db.c1Min','2460000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_grundlageverfeinerung',NULL,'grundlage','ch.ehi.ili2db.foreignKey','oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv95','ch.ehi.ili2db.c1Max','2870000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisvorschrift',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_hinweisvorschrift"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv95','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv95','ch.ehi.ili2db.c1Max','2870000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisvorschrift',NULL,'vorschrift_oerbkrmvs_v1_1vorschriften_artikel','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_artikel');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('localisation_v1_multilingualtext',NULL,'T_Type','ch.ehi.ili2db.types','["localisation_v1_multilingualtext","localisationch_v1_multilingualtext"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv95','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_datum_',NULL,'T_Type','ch.ehi.ili2db.types','["oerebkrm_v1_1_datum_"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv03','ch.ehi.ili2db.c2Min','45000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'surface','ch.ehi.ili2db.c2Min','1045000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv03','ch.ehi.ili2db.c2Min','45000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'perimeter','ch.ehi.ili2db.c1Max','2870000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisdefinitiondokument',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_hinweisdefinitiondokument"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv03','ch.ehi.ili2db.c2Max','310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv03','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'zustaendigestelle','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_amt');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oereb_extractannex_v1_0_code_',NULL,'T_Type','ch.ehi.ili2db.types','["oereb_extractannex_v1_0_code_"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv03','ch.ehi.ili2db.c1Max','870000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_glossary',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_glossary"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'T_Type','ch.ehi.ili2db.types','["geometrychlv95_v1_surfacestructure"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv95','ch.ehi.ili2db.c2Min','1045000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_basedata',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_basedata"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'perimeter','ch.ehi.ili2db.geomType','MULTIPOLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('localisation_v1_localisedtext',NULL,'T_Type','ch.ehi.ili2db.types','["localisation_v1_localisedtext","localisationch_v1_localisedtext"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1codelistentext_rechtsstatustxt',NULL,'T_Type','ch.ehi.ili2db.types','["oerebkrm_v1_1codelistentext_rechtsstatustxt"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv95','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv03','ch.ehi.ili2db.c1Min','460000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv03','ch.ehi.ili2db.geomType','POINT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_darstellungsdienst',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_darstellungsdienst"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('localisation_v1_multilingualmtext',NULL,'T_Type','ch.ehi.ili2db.types','["localisation_v1_multilingualmtext","localisationch_v1_multilingualmtext","oerebkrm_v1_1_artikelinhaltmehrsprachig"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'perimeter','ch.ehi.ili2db.c2Min','1045000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_multisurface',NULL,'T_Type','ch.ehi.ili2db.types','["geometrychlv95_v1_multisurface"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_maplayering',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_maplayering"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv95','ch.ehi.ili2db.c1Max','2870000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv03','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_grundlageverfeinerung',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_grundlageverfeinerung"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'geomtrychlv1_mltsrface_surfaces','ch.ehi.ili2db.foreignKey','geometrychlv95_v1_multisurface');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisdefinitiondokument',NULL,'dokument','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_dokument');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_dokument',NULL,'zustaendigestelle','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_amt');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisdefinitiondokument',NULL,'hinweisdefinition','ch.ehi.ili2db.foreignKey','oerbkrmfr_v1_1transferstruktur_hinweisdefinition');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('localisation_v1_localisedtext',NULL,'loclstn_v1_mltlngltext_localisedtext','ch.ehi.ili2db.foreignKey','localisation_v1_multilingualtext');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv03','ch.ehi.ili2db.srid','21781');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'perimeter','ch.ehi.ili2db.c2Min','1045000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_multilingualuri',NULL,'oerbkrmvs_vrftn_dkment_textimweb','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_dokument');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv95','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv03','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'T_Type','ch.ehi.ili2db.types','["so_g_v_0180822nachfuehrngskrise_gemeinde"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_artikelnummer_',NULL,'T_Type','ch.ehi.ili2db.types','["oerebkrm_v1_1_artikelnummer_"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_office',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_office"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv95','ch.ehi.ili2db.geomType','LINESTRING');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_multilingualuri',NULL,'oerbkrmvs_vhrftn_rtkel_textimweb','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_artikel');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('localisation_v1_localisedmtext',NULL,'atext','ch.ehi.ili2db.textKind','MTEXT');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_artikel',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmvs_v1_1vorschriften_artikel"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv95','ch.ehi.ili2db.c1Min','2460000.000');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_multilingualuri',NULL,'T_Type','ch.ehi.ili2db.types','["oerebkrm_v1_1_multilingualuri"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_artikel',NULL,'dokument','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_dokument');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung',NULL,'darstellungsdienst','ch.ehi.ili2db.foreignKey','oerbkrmfr_v1_1transferstruktur_darstellungsdienst');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv95','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'surface','ch.ehi.ili2db.geomType','POLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv03','ch.ehi.ili2db.geomType','LINESTRING');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_municipalitywithplrc',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_municipalitywithplrc"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_amt',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmvs_v1_1vorschriften_amt"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente',NULL,'hinweis','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_dokument');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_thematxt',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_thematxt"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822nachfuehrngskrise_gemeinde',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'T_Type','ch.ehi.ili2db.types','["so_g_v_0180822grundbuchkreise_grundbuchkreis"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_localiseduri',NULL,'T_Type','ch.ehi.ili2db.types','["oerebkrm_v1_1_localiseduri"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv03','ch.ehi.ili2db.c1Max','870000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv03','ch.ehi.ili2db.c1Max','870000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv95','ch.ehi.ili2db.c1Min','2460000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_artikelnummer_',NULL,'oerbkrmvs_vwswtrdkmnte_artikelnr','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'surface','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_thema_',NULL,'T_Type','ch.ehi.ili2db.types','["oerebkrm_v1_1_thema_"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_exclusionofliability',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_exclusionofliability"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_localiseduri',NULL,'oerbkrm_v1__mltlngluri_localisedtext','ch.ehi.ili2db.foreignKey','oerebkrm_v1_1_multilingualuri');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_generalinformation',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_generalinformation"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv95','ch.ehi.ili2db.c2Min','1045000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv95','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv95','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv03','ch.ehi.ili2db.c2Max','310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1_artikelnummer_',NULL,'oerbkrmfr_vwsvrschrift_artikelnr','ch.ehi.ili2db.foreignKey','oerbkrmfr_v1_1transferstruktur_hinweisvorschrift');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung',NULL,'zustaendigestelle','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_amt');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente',NULL,'ursprung','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_dokument');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv03','ch.ehi.ili2db.c2Min','45000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv95','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'perimeter','ch.ehi.ili2db.geomType','MULTIPOLYGON');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerebkrm_v1_1codelistentext_thematxt',NULL,'T_Type','ch.ehi.ili2db.types','["oerebkrm_v1_1codelistentext_thematxt"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisdefinition',NULL,'zustaendigestelle','ch.ehi.ili2db.foreignKey','oerbkrmvs_v1_1vorschriften_amt');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'surface','ch.ehi.ili2db.c2Max','1310000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerb_xtnx_v1_0annex_logo',NULL,'T_Type','ch.ehi.ili2db.types','["oerb_xtnx_v1_0annex_logo"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'punkt_lv03','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv95','ch.ehi.ili2db.coordDimension','2');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('localisation_v1_localisedmtext',NULL,'T_Type','ch.ehi.ili2db.types','["localisation_v1_localisedmtext","localisationch_v1_localisedmtext"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure',NULL,'surface','ch.ehi.ili2db.c1Max','2870000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'linie_lv03','ch.ehi.ili2db.srid','21781');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'perimeter','ch.ehi.ili2db.c1Min','2460000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('localisation_v1_localisedmtext',NULL,'loclstn_v1_ltlnglmtext_localisedtext','ch.ehi.ili2db.foreignKey','localisation_v1_multilingualmtext');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('so_g_v_0180822grundbuchkreise_grundbuchkreis',NULL,'perimeter','ch.ehi.ili2db.c1Max','2870000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_geometrie',NULL,'flaeche_lv03','ch.ehi.ili2db.c1Min','460000.000');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisdefinition',NULL,'T_Type','ch.ehi.ili2db.types','["oerbkrmfr_v1_1transferstruktur_hinweisdefinition"]');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('localisation_v1_localisedtext','ch.ehi.ili2db.tableKind','STRUCTURE');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('oerebkrm_v1_1codelistentext_thematxt','ch.ehi.ili2db.tableKind','CATALOGUE');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('oerebkrm_v1_1_localiseduri','ch.ehi.ili2db.tableKind','STRUCTURE');
@@ -1354,709 +1354,19 @@ INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('oerbkrmfr
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('geometrychlv95_v1_multisurface','ch.ehi.ili2db.tableKind','STRUCTURE');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisdefinitiondokument','ch.ehi.ili2db.tableKind','ASSOCIATION');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('localisation_v1_localisedmtext','ch.ehi.ili2db.tableKind','STRUCTURE');
-INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('oerebkrm_v1_1_datum_','ch.ehi.ili2db.tableKind','STRUCTURE');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_legendeeintrag','ch.ehi.ili2db.tableKind','STRUCTURE');
+INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('oerebkrm_v1_1_datum_','ch.ehi.ili2db.tableKind','STRUCTURE');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('oerebkrm_v1_1_webreferenz_','ch.ehi.ili2db.tableKind','STRUCTURE');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('oerebkrm_v1_1_thema_','ch.ehi.ili2db.tableKind','STRUCTURE');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('oerbkrmfr_v1_1transferstruktur_hinweisvorschrift','ch.ehi.ili2db.tableKind','ASSOCIATION');
-INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('localisation_v1_multilingualtext','ch.ehi.ili2db.tableKind','STRUCTURE');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('oerb_xtnx_v1_0annex_thematxt','ch.ehi.ili2db.tableKind','CATALOGUE');
+INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('localisation_v1_multilingualtext','ch.ehi.ili2db.tableKind','STRUCTURE');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('geometrychlv95_v1_surfacestructure','ch.ehi.ili2db.tableKind','STRUCTURE');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('localisation_v1_multilingualmtext','ch.ehi.ili2db.tableKind','STRUCTURE');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('oereb_extractannex_v1_0_code_','ch.ehi.ili2db.tableKind','STRUCTURE');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente','ch.ehi.ili2db.tableKind','ASSOCIATION');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('oerebkrm_v1_1codelistentext_rechtsstatustxt','ch.ehi.ili2db.tableKind','CATALOGUE');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('oerebkrm_v1_1_artikelnummer_','ch.ehi.ili2db.tableKind','STRUCTURE');
-INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRM_V1_1.ili','2.3','OeREBKRM_V1_1{ InternationalCodes_V1 LocalisationCH_V1 CatalogueObjects_V1}','INTERLIS 2.3;
-
-/** Basisdefinitionen für das OEREB-Katasterrahmenmodell
- */
-!!@ furtherInformation=http://www.cadastre.ch/oereb-public
-!!@ technicalContact=mailto:infovd@swisstopo.ch
-MODEL OeREBKRM_V1_1 (de)
-AT "http://models.geo.admin.ch/V_D/OeREB/"
-VERSION "2016-08-15"  =
-  IMPORTS LocalisationCH_V1,InternationalCodes_V1,CatalogueObjects_V1;
-
-  DOMAIN
-
-    /** Themenspezifische, maschinen-lesbare Art der Eigentumsbeschränkung
-     */
-    ArtEigentumsbeschraenkung = TEXT*40;
-
-    /** Wertebereich für den Artikeltext einer Rechtsvorschrift oder einer gesetzlichen Grundlage.
-     */
-    ArtikelInhalt = MTEXT;
-
-    /** Nummer eines Artikels in einer Rechtsvorschrift oder gesetzlichen Grundlage.
-     */
-    ArtikelNummer = TEXT*20;
-
-    Datum = FORMAT INTERLIS.XMLDate "1848-1-1" .. "2100-12-31";
-
-    /** Wertebereich für Objektidentifikatoren. Der Wert soll mit einem gültigen Internet Domain-Name anfangen, z.B. "ch.admin.sr.720"
-     */
-    OEREBOID = OID TEXT;
-
-    /** Werteliste zur Unterscheidung ob eine Eigentumsbeschränkung in Kraft ist oder nicht.
-     */
-    RechtsStatus = (
-      /** Die Eigentumsbeschränkung ist in Kraft.
-       */
-      inKraft,
-      /** gem. OeREBKV Art. 12 Abs. 2
-       */
-      laufendeAenderung
-    );
-
-    SubThema = TEXT*60;
-
-    /** Liste der Geobasisdaten die ÖREB-Themen sind (Wird durch den Bundesrat definiert). Die Liste kann durch Kantone erweitert werden.
-     */
-    Thema = (
-      /** GeoIV Datensatz 73
-       */
-      Nutzungsplanung,
-      /** 87
-       */
-      ProjektierungszonenNationalstrassen,
-      /** 88
-       */
-      BaulinienNationalstrassen,
-      /** 96
-       */
-      ProjektierungszonenEisenbahnanlagen,
-      /** 97
-       */
-      BaulinienEisenbahnanlagen,
-      /** 103
-       */
-      ProjektierungszonenFlughafenanlagen,
-      /** 104
-       */
-      BaulinienFlughafenanlagen,
-      /** 108
-       */
-      SicherheitszonenplanFlughafen,
-      /** 116
-       */
-      BelasteteStandorte,
-      /** 117
-       */
-      BelasteteStandorteMilitaer,
-      /** 118
-       */
-      BelasteteStandorteZivileFlugplaetze,
-      /** 119
-       */
-      BelasteteStandorteOeffentlicherVerkehr,
-      /** 131
-       */
-      Grundwasserschutzzonen,
-      /** 132
-       */
-      Grundwasserschutzareale,
-      /** 145
-       */
-      Laermemfindlichkeitsstufen,
-      /** 157
-       */
-      Waldgrenzen,
-      /** 159
-       */
-      Waldabstandslinien,
-      /** Fuer weitere Themen
-       */
-      WeiteresThema
-    );
-
-    /** Unternehmensindentifikation (gemäss. Bundesgesetz über die Unternehmens-Identifikationsnummer SR 431.03) ohne Formatierung z.B. CHE116068369
-     */
-    UID = TEXT*12;
-
-    /** Verweis auf ein Dokument im Web (z.B. eine HTML Seite oder ein PDF-Dokument)
-     */
-    WebReferenz = URI;
-
-    /** z.B. kantonale Themen. Der Code wird nach folgendem Muster gebildet: ch.{canton}.{topic}
-     * fl.{topic}
-     * ch.{bfsnr}.{topic}
-     * Wobei {canton} das offizielle zwei-stellige Kürzel des Kantons ist, {to-pic} der Themenname und {bfsnr} die Gemeindenummer gem. BFS.
-     */
-    WeiteresThema = TEXT*120;
-  STRUCTURE ArtikelNummer_ = value : MANDATORY ArtikelNummer; END ArtikelNummer_;
-  STRUCTURE Datum_ = value : MANDATORY Datum; END Datum_;
-  STRUCTURE Thema_ = value : MANDATORY Thema; END Thema_;
-  STRUCTURE WebReferenz_ = value : MANDATORY WebReferenz; END WebReferenz_;
-
-  /** Wertebereich für den Artikeltext einer Rechtsvorschrift oder einer gesetzlichen Grundlage.
-   */
-  STRUCTURE ArtikelInhaltMehrsprachig
-  EXTENDS LocalisationCH_V1.MultilingualMText =
-  END ArtikelInhaltMehrsprachig;
-
-  STRUCTURE LocalisedUri =
-    Language : InternationalCodes_V1.LanguageCode_ISO639_1;
-    Text : MANDATORY URI;
-  END LocalisedUri;
-
-  STRUCTURE MultilingualUri =
-    LocalisedText : BAG {1..*} OF OeREBKRM_V1_1.LocalisedUri;
-    UNIQUE (LOCAL) LocalisedText:Language;
-  END MultilingualUri;
-
-  /** Anzeigetexte für Aufzählungen des Rahmenmodells
-   */
-  TOPIC CodelistenText =
-
-    /** Anzeigetexte für die Aufzählung RechtsStatus
-     */
-    CLASS RechtsStatusTxt
-    EXTENDS CatalogueObjects_V1.Catalogues.Item =
-      Code : MANDATORY OeREBKRM_V1_1.RechtsStatus;
-      Titel : MANDATORY LocalisationCH_V1.MultilingualText;
-      UNIQUE Code;
-    END RechtsStatusTxt;
-
-    /** Anzeigetexte für die Aufzählung Thema
-     */
-    CLASS ThemaTxt
-    EXTENDS CatalogueObjects_V1.Catalogues.Item =
-      Code : MANDATORY OeREBKRM_V1_1.Thema;
-      Titel : MANDATORY LocalisationCH_V1.MultilingualText;
-      UNIQUE Code;
-    END ThemaTxt;
-
-  END CodelistenText;
-
-END OeREBKRM_V1_1.
-','2019-09-06 14:42:03.894');
-INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREB_ExtractAnnex_V1_0.ili','2.3','OeREB_ExtractAnnex_V1_0{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1 CatalogueObjects_V1}','INTERLIS 2.3;
-
-/** Zusatzdaten für statischen OEREB-Auszug
- */
-MODEL OeREB_ExtractAnnex_V1_0 (de)
-AT "mailto:ce@eisenhutinformatik.ch"
-VERSION "2019-08-15"  =
-  IMPORTS OeREBKRM_V1_1,CHAdminCodes_V1,LocalisationCH_V1,CatalogueObjects_V1;
-
-    DOMAIN
-      Code = TEXT*60;
-      STRUCTURE Code_ = value : MANDATORY Code; END Code_;
-    TOPIC Annex =
-        
-        CLASS ThemaTxt
-        	EXTENDS CatalogueObjects_V1.Catalogues.Item =
-		  Code : MANDATORY OeREBKRM_V1_1.Thema;
-		  Titel : MANDATORY LocalisationCH_V1.MultilingualText;
-          /** 
-           * Kantonales Subthema zu einem Bundesthema:
-           *   Code=Nutzungsplanung
-           *   otherCode=ch.so.Nutzungsplanung.CantonalBuildingLines
-           *   In der Transferstruktur:
-           *     Eigentumsbeschraenkung/Thema=Nutzungsplanung
-           *     Eigentumsbeschraenkung/SubThema=CantonalBuildingLines
-           * Kantonales Thema (kein Subthema zu einem Bundesthema): 
-           *   Code=WeiteresThema
-           *   otherCode=ch.so.Einzelschutz
-           *   In der Transferstruktur:
-           *     Eigentumsbeschraenkung/Thema=WeiteresThema
-           *     Eigentumsbeschraenkung/SubThema=ch.so.Einzelschutz
-           */
-          otherCode : Code;
-          MANDATORY CONSTRAINT Code!=#WeiteresThema OR DEFINED(otherCode);
-          UNIQUE otherCode;
-        END ThemaTxt;
-        
-		CLASS Logo =
-		  /** ch.plr, ch, ch.so oder ch.bfsnr
-		   */
-		  code : MANDATORY Code;
-		  logo : MANDATORY BLACKBOX BINARY;
-		  UNIQUE code;
-		END Logo;
-		
-		CLASS MunicipalityWithPLRC =
-		  /** BFS-Nr.
-		   */
-		  municipality : MANDATORY CHAdminCodes_V1.CHMunicipalityCode;
-		  /** Thema / SubThema 
-		   */
-		  themes : BAG OF Code_;
-		  /** Stand der Grundlagedaten z.B. der AV
-		   */
-		  baseDataDate : INTERLIS.XMLDateTime;
-		  metadataOfGeographicalBaseData : URI;
-		  UNIQUE municipality;
-		END MunicipalityWithPLRC;
-
-		CLASS MapLayering =
-		  webservice : MANDATORY URI;
-          layerIndex : MANDATORY -1000 .. 1000;
-          layerOpacity : MANDATORY 0.000 .. 1.000;
-		END MapLayering;
-		
-		CLASS Office =
-		  Name : MANDATORY LocalisationCH_V1.MultilingualText;
-		  /** OfficeAtWeb wird für die Referenzierung verwendet!
-		   *  solange UID nicht generell zugeordnet.
-		   */
-		  OfficeAtWeb : MANDATORY OeREBKRM_V1_1.WebReferenz;
-		  UID : OeREBKRM_V1_1.UID;
-		  /** Falls im statischen Auszug mehr Informationen angezeigt 
-		   *  werden sollen als im Rahmenmodell möglich ist zu erfassen. 
-		   *  Im Rahmenmodell können nur die Attribute Name, AmtImWeb, UID erfasst werden.
-		  */
-		  Line1 : TEXT*80;
-		  Line2 : TEXT*80;
-		  Street : TEXT*100;
-		  Number : TEXT*7;
-		  PostalCode : TEXT*4;
-		  City : TEXT*60;
-		  UNIQUE UID;
-		  UNIQUE OfficeAtWeb;
-		END Office;
-
-    CLASS Glossary =
-	  /** Abkürzung
-	   */
-      Title : MANDATORY LocalisationCH_V1.MultilingualText;
-	  /** Beschreibung der Abkürzung
-	   */	  
-      Content : MANDATORY LocalisationCH_V1.MultilingualMText;
-    END Glossary;
-
-    CLASS ExclusionOfLiability =
-	  /** Haftungsausschuss
-	   */
-      Title : MANDATORY LocalisationCH_V1.MultilingualText;
-	  
-      Content : MANDATORY LocalisationCH_V1.MultilingualMText;
-    END ExclusionOfLiability;
-		
-    CLASS  GeneralInformation =
-	  /** Allgemeine Informationen
-	   */
-      Content : MANDATORY LocalisationCH_V1.MultilingualMText;
-    END GeneralInformation;
-
-    CLASS  BaseData =
-	 /** Grundlagedaten z.B. AV
-	  */
-      Content : MANDATORY LocalisationCH_V1.MultilingualMText;
-	END BaseData;		
-		
-	END Annex;
-    
-
-END OeREB_ExtractAnnex_V1_0.
-','2019-09-06 14:42:03.894');
-INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMtrsfr_V1_1.ili','2.3','OeREBKRMtrsfr_V1_1{ GeometryCHLV95_V1 CHAdminCodes_V1 LocalisationCH_V1 GeometryCHLV03_V1 OeREBKRM_V1_1 OeREBKRMvs_V1_1}','INTERLIS 2.3;
-
-/** Schnittstelle zwischen zuständiger Stelle für die Geobasisdaten und Katasterorganisation des Kantons.
- */
-!!@ furtherInformation=http://www.cadastre.ch/oereb-public
-!!@ technicalContact=mailto:infovd@swisstopo.ch
-MODEL OeREBKRMtrsfr_V1_1 (de)
-AT "http://models.geo.admin.ch/V_D/OeREB/"
-VERSION "2016-08-15"  =
-  IMPORTS OeREBKRM_V1_1,OeREBKRMvs_V1_1,CHAdminCodes_V1,LocalisationCH_V1,GeometryCHLV03_V1,GeometryCHLV95_V1;
-
-  /** Dieses Teilmodell definiert die Struktur der Daten, wie sie von der zuständigen Stelle für die Geobasisdaten an die Abgabestelle des ÖREB-Kataster-Auszugs geliefert werden müssen. Dieses Datenmodell definiert somit, welche Daten ein minimales Datenmodell enthalten muss, um als ÖREB-Kataster fähiges Datenmodell zu gelten.
-   */
-  TOPIC Transferstruktur
-  EXTENDS OeREBKRMvs_V1_1.Vorschriften =
-    DEPENDS ON OeREBKRMvs_V1_1.HinweiseGesetzlicheGrundlagen;
-
-    /** Wurzelelement für Informationen über eine Beschränkung des Grundeigentums, die rechtskräftig, z.B. auf Grund einer Genehmigung oder eines richterlichen Entscheids, zustande gekommen ist.
-     */
-    CLASS Eigentumsbeschraenkung =
-      /** Textliche Beschreibung der Beschränkung; z.B. "Wohnen W3"
-       */
-      Aussage : MANDATORY LocalisationCH_V1.MultilingualMText;
-      /** Einordnung der Eigentumsbeschränkung in ein ÖREBK-Thema
-       */
-      Thema : MANDATORY OeREBKRM_V1_1.Thema;
-      /** z.B. Planungszonen innerhalb Nutzungsplanung
-       */
-      SubThema : OeREBKRM_V1_1.SubThema;
-      /** z.B. kantonale Themen. Der Code wird nach folgendem Muster gebildet: ch.{canton}.{topic}
-       * fl.{topic}
-       * ch.{bfsnr}.{topic}
-       * Wobei {canton} das offizielle zwei-stellige Kürzel des Kantons ist, {to-pic} der Themenname und {bfsnr} die Gemeindenummer gem. BFS.
-       */
-      WeiteresThema : OeREBKRM_V1_1.WeiteresThema;
-      /** Themenspezifische, maschinen-lesbare Art gem. Originalmodell der Eigentumsbeschränkung
-       */
-      ArtCode : OeREBKRM_V1_1.ArtEigentumsbeschraenkung;
-      /** Identifikation der Codeliste bzw. des Wertebereichs für ArtCode
-       */
-      ArtCodeliste : URI;
-      /** Status, ob diese Eigentumsbeschränkung in Kraft ist
-       */
-      Rechtsstatus : MANDATORY OeREBKRM_V1_1.RechtsStatus;
-      /** Datum, ab dem diese Eigentumsbeschränkung in Auszügen erscheint
-       */
-      publiziertAb : MANDATORY OeREBKRM_V1_1.Datum;
-      MANDATORY CONSTRAINT Thema!=#WeiteresThema OR DEFINED(WeiteresThema);
-    END Eigentumsbeschraenkung;
-
-    /** Punkt-, linien-, oder flächenförmige Geometrie. Neu zu definierende Eigentumsbeschränkungen sollten i.d.R. flächenförmig sein.
-     */
-    CLASS Geometrie =
-      /** Punktgeometrie
-       */
-      Punkt_LV03 : GeometryCHLV03_V1.Coord2;
-      Punkt_LV95 : GeometryCHLV95_V1.Coord2;
-      /** Linienförmige Geometrie
-       */
-      Linie_LV03 : GeometryCHLV03_V1.Line;
-      Linie_LV95 : GeometryCHLV95_V1.Line;
-      /** Flächenförmige Geometrie
-       */
-      Flaeche_LV03 : GeometryCHLV03_V1.Surface;
-      Flaeche_LV95 : GeometryCHLV95_V1.Surface;
-      /** Status, ob diese Geometrie in Kraft ist
-       */
-      Rechtsstatus : MANDATORY OeREBKRM_V1_1.RechtsStatus;
-      /** Datum, ab dem diese Geometrie in Auszügen erscheint
-       */
-      publiziertAb : MANDATORY OeREBKRM_V1_1.Datum;
-      /** Verweis auf maschinenlesbare Metadaten (XML) der zugrundeliegenden Geobasisdaten. z.B. http://www.geocat.ch/geonetwork/srv/deu/gm03.xml?id=705
-       */
-      MetadatenGeobasisdaten : URI;
-      MANDATORY CONSTRAINT DEFINED(Punkt_LV03) OR DEFINED(Linie_LV03) OR DEFINED(Flaeche_LV03) OR DEFINED(Punkt_LV95) OR DEFINED(Linie_LV95) OR DEFINED(Flaeche_LV95);
-    END Geometrie;
-
-    /** Definition für Hinweise, die unabhängig von einer konkreten Eigentumsbeschränkung gelten (z.B. der Hinweis auf eine Systematische Rechtssammlung). Der Hinweis kann aber beschränkt werden auf eine bestimmtes ÖREB-Thema und/oder Kanton und/oder Gemeinde.
-     */
-    CLASS HinweisDefinition =
-      /** Thema falls der Hinweis für ein bestimmtes ÖREB-Thema gilt. Falls die Angabe fehlt, ist es ein Hinweis der für alle ÖREB-Themen gilt.
-       */
-      Thema : OeREBKRM_V1_1.Thema;
-      /** Kantonskürzel falls der Hinweis für ein Kantons-oder Gemeindegebiet gilt. Falls die Angabe fehlt, ist es ein Hinweis der für alle Kantone gilt. z.B. "BE".
-       */
-      Kanton : CHAdminCodes_V1.CHCantonCode;
-      /** BFSNr falls der Hinweis für ein Gemeindegebiet gilt. Falls die Angabe fehlt, ist es ein Hinweis der für den Kanton oder die Schweiz gilt. z.B. "942".
-       */
-      Gemeinde : CHAdminCodes_V1.CHMunicipalityCode;
-    END HinweisDefinition;
-
-    /** Ein Eintrag in der Planlegende.
-     */
-    STRUCTURE LegendeEintrag =
-      /** Grafischer Teil des Legendeneintrages für die Darstellung. Im PNG-Format mit 300dpi oder im SVG-Format
-       */
-      Symbol : MANDATORY BLACKBOX BINARY;
-      /** Text des Legendeneintrages
-       */
-      LegendeText : MANDATORY LocalisationCH_V1.MultilingualText;
-      /** Art der Eigentumsbeschränkung, die durch diesen Legendeneintrag dargestellt wird
-       */
-      ArtCode : MANDATORY OeREBKRM_V1_1.ArtEigentumsbeschraenkung;
-      /** Codeliste der Eigentumsbeschränkung, die durch diesen Legendeneintrag dargestellt wird
-       */
-      ArtCodeliste : MANDATORY URI;
-      /** Zu welchem ÖREB-Thema der Legendeneintrag gehört
-       */
-      Thema : MANDATORY OeREBKRM_V1_1.Thema;
-      /** z.B. Planungszonen innerhalb Nutzungsplanung
-       */
-      SubThema : OeREBKRM_V1_1.SubThema;
-      WeiteresThema : OeREBKRM_V1_1.WeiteresThema;
-      MANDATORY CONSTRAINT Thema!=#WeiteresThema OR DEFINED(WeiteresThema);
-    END LegendeEintrag;
-
-    /** Angaben zum Darstellungsdienst.
-     */
-    CLASS DarstellungsDienst =
-      /** WMS GetMap-Request (für Maschine-Maschine-Kommunikation) inkl. alle benötigten Parameter, z.B. "https://wms.geo.admin.ch/?SERVICE=WMS&REQUEST=GetMap&VERSION=1.1.1&STYLES=default&SRS=EPSG:21781&BBOX=475000,60000,845000,310000&WIDTH=740&HEIGHT=500&FORMAT=image/png&LAYERS=ch.bazl.kataster-belasteter-standorte-zivilflugplaetze.oereb"
-       */
-      VerweisWMS : MANDATORY URI;
-      /** Verweis auf ein Dokument das die Karte beschreibt; z.B. "https://wms.geo.admin.ch/?SERVICE=WMS&REQUEST=GetLegendGraphic&VERSION=1.1.1&FORMAT=image/png&LAYER=ch.bazl.kataster-belasteter-standorte-zivilflugplaetze.oereb"
-       */
-      LegendeImWeb : OeREBKRM_V1_1.WebReferenz;
-      Legende : BAG {0..*} OF LegendeEintrag;
-      MANDATORY CONSTRAINT DEFINED(LegendeImWeb) OR INTERLIS.elementCount(Legende)>0;
-    END DarstellungsDienst;
-
-    ASSOCIATION GeometrieEigentumsbeschraenkung =
-      /** Geometrie der Eigentumsbeschränkung, die Rechtswirkung hat (als Basis für den Verschnitt mit den Liegenschaften)
-       */
-      Geometrie -- {0..*} Geometrie;
-      Eigentumsbeschraenkung -<#> {1} Eigentumsbeschraenkung;
-    END GeometrieEigentumsbeschraenkung;
-
-    ASSOCIATION GrundlageVerfeinerung =
-      Grundlage (EXTERNAL) -- {0..*} Eigentumsbeschraenkung;
-      Verfeinerung -- {0..*} Eigentumsbeschraenkung;
-    END GrundlageVerfeinerung;
-
-    ASSOCIATION HinweisDefinitionDokument =
-      HinweisDefinition -- {0..*} HinweisDefinition;
-      Dokument -- {1..*} OeREBKRMvs_V1_1.Vorschriften.Dokument;
-    END HinweisDefinitionDokument;
-
-    ASSOCIATION HinweisDefinitionZustaendigeStelle =
-      HinweisDefinition -<> {0..*} HinweisDefinition;
-      ZustaendigeStelle -- {1} OeREBKRMvs_V1_1.Vorschriften.Amt;
-    END HinweisDefinitionZustaendigeStelle;
-
-    ASSOCIATION HinweisVorschrift =
-      Eigentumsbeschraenkung -- {0..*} Eigentumsbeschraenkung;
-      /** Rechtsvorschrift der Eigentumsbeschränkung
-       */
-      Vorschrift -- {1..*} OeREBKRMvs_V1_1.Vorschriften.DokumentBasis;
-      /** Hinweis auf spezifische Artikel.
-       */
-      ArtikelNr : BAG {0..*} OF OeREBKRM_V1_1.ArtikelNummer_;
-    END HinweisVorschrift;
-
-    ASSOCIATION ZustaendigeStelleEigentumsbeschraenkung =
-      /** Zuständige Stelle für die Geobasisdaten (Originaldaten) gem. GeoIG Art. 8 Abs. 1
-       */
-      ZustaendigeStelle -- {1} OeREBKRMvs_V1_1.Vorschriften.Amt;
-      Eigentumsbeschraenkung -<> {0..*} Eigentumsbeschraenkung;
-    END ZustaendigeStelleEigentumsbeschraenkung;
-
-    ASSOCIATION ZustaendigeStelleGeometrie =
-      ZustaendigeStelle -- {1} OeREBKRMvs_V1_1.Vorschriften.Amt;
-      Geometrie -<> {0..*} Geometrie;
-    END ZustaendigeStelleGeometrie;
-
-    ASSOCIATION DarstellungsDienstEigentumsbeschraenkung =
-      /** Darstellungsdienst, auf dem diese Eigentumsbeschränkung sichtbar, aber nicht hervorgehoben, ist.
-       */
-      DarstellungsDienst -- {0..1} DarstellungsDienst;
-      Eigentumsbeschraenkung -<> {1..*} Eigentumsbeschraenkung;
-    END DarstellungsDienstEigentumsbeschraenkung;
-
-  END Transferstruktur;
-
-END OeREBKRMtrsfr_V1_1.
-','2019-09-06 14:42:03.894');
-INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.ili','2.3','SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822{ GeometryCHLV95_V1 CHAdminCodes_V1}','INTERLIS 2.3;
-
-/** !!------------------------------------------------------------------------------
- * !! Version    | wer | Änderung
- * !!------------------------------------------------------------------------------
- * !! 2015-08-22 | SZ  | Initialversion
- */
-!!@ technicalContact=mailto:agi@bd.so.ch
-MODEL SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822 (de)
-AT "http://www.geo.so.ch/models/AGI"
-VERSION "2018-08-22"  =
-  IMPORTS GeometryCHLV95_V1,CHAdminCodes_V1;
-
-  TOPIC Grundbuchkreise =
-    OID AS INTERLIS.UUIDOID;
-
-    /** Grundbuchkreisaufteilung inkl. Anschrift etc. der einzelnen Kreise
-     */
-    CLASS Grundbuchkreis =
-      /** Name des Grundbuches
-       */
-      Name : MANDATORY TEXT*255;
-      /** Art des Grundbuches
-       */
-      Art : MANDATORY TEXT*255;
-      /** Nummerierungsbereich-Identifikator aus der amtlichen Vermessung
-       */
-      NBIdent : MANDATORY TEXT*12;
-      /** Kantonale Nummer des Grundbuchkreises
-       */
-      Grundbuchkreisnummer : 1 .. 99;
-      /** Ehemalige Gemeindenummer des Grundbuches (z.B. vor Gemeindefusion).
-       */
-      Grundbuchkreis_BFSNr : MANDATORY CHAdminCodes_V1.CHMunicipalityCode;
-      /** Perimeter des Grundbuchkreises
-       */
-      BFSNr : MANDATORY CHAdminCodes_V1.CHMunicipalityCode;
-      /** Perimeter des Grundbuchkreises
-       */
-      Perimeter : MANDATORY GeometryCHLV95_V1.MultiSurface;
-      /** Amtschreiberei
-       */
-      Amtschreiberei : MANDATORY TEXT*255;
-      /** Amt der Amtschreiberei
-       */
-      Amt : TEXT*255;
-      /** Strassenname
-       */
-      Strasse : MANDATORY TEXT*255;
-      /** Hausnummer
-       */
-      Hausnummer : TEXT*255;
-      /** Postleitzahl
-       */
-      PLZ : MANDATORY 1000 .. 9999;
-      /** Ortschaft
-       */
-      Ortschaft : MANDATORY TEXT*255;
-      /** Telefonnummer
-       */
-      Telefon : MANDATORY TEXT*255;
-      /** E-Mail-Adresse
-       */
-      Email : MANDATORY TEXT*255;
-      /** Internetadresse
-       */
-      Web : MANDATORY INTERLIS.URI;
-      /** Unternehmens-Identifikationsnummer
-       */
-      UID : TEXT*15;
-    END Grundbuchkreis;
-
-  END Grundbuchkreise;
-
-  TOPIC Nachfuehrungskreise =
-    OID AS INTERLIS.UUIDOID;
-
-    /** Gemeinde mit zuständigem Nachführungsgeometer und Anschrift der Firma etc.
-     */
-    CLASS Gemeinde =
-      /** Name der politischen Gemeinde
-       */
-      Gemeindename : MANDATORY TEXT*255;
-      /** BFS-Nr. der politischen Gemeinde
-       */
-      BFSNr : MANDATORY CHAdminCodes_V1.CHMunicipalityCode;
-      /** Geometrie der politischen Gemeinde
-       */
-      Perimeter : MANDATORY GeometryCHLV95_V1.MultiSurface;
-      /** Nachname des Nachführungsgeometers
-       */
-      NFG_Name : MANDATORY TEXT*255;
-      /** Vorname des Nachführungsgeometers
-       */
-      NFG_Vorname : MANDATORY TEXT*255;
-      /** Titel des Nachführungsgeometers (z.B. Dr.)
-       */
-      NFG_Titel : TEXT*255;
-      /** Name der Firma
-       */
-      Firma : MANDATORY TEXT*255;
-      /** Zusatzname der Firma
-       */
-      Firma_Zusatz : TEXT*255;
-      /** Strassenname
-       */
-      Strasse : MANDATORY TEXT*255;
-      /** Hausnummer
-       */
-      Hausnummer : TEXT*255;
-      /** Postleitzahl
-       */
-      PLZ : MANDATORY 1000 .. 9990;
-      /** Ortschaft
-       */
-      Ortschaft : MANDATORY TEXT*255;
-      /** Telefonnummer
-       */
-      Telefon : MANDATORY TEXT*255;
-      /** Internetadresse
-       */
-      Web : MANDATORY INTERLIS.URI;
-      /** E-Mail-Adresse
-       */
-      Email : MANDATORY TEXT*255;
-      /** Unternehmer-Identifikationsnummer
-       */
-      UID : TEXT*15;
-    END Gemeinde;
-
-  END Nachfuehrungskreise;
-
-END SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.
-','2019-09-06 14:42:03.894');
-INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part3_CATALOGUEOBJECTS_20110830.ili','2.3','CatalogueObjects_V1{ INTERLIS} CatalogueObjectTrees_V1{ INTERLIS CatalogueObjects_V1}','/* ########################################################################
-   CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
-   ======
-   BASISMODULE DES BUNDES           MODULES DE BASE DE LA CONFEDERATION
-   FÜR MINIMALE GEODATENMODELLE     POUR LES MODELES DE GEODONNEES MINIMAUX
-   
-   PROVIDER: GKG/KOGIS - GCS/COSIG             CONTACT: models@geo.admin.ch
-   PUBLISHED: 2011-08-30
-   ########################################################################
-*/
-
-INTERLIS 2.3;
-
-/* ########################################################################
-   ########################################################################
-   PART III -- CATALOGUE OBJECTS
-   - Package CatalogueObjects
-   - Package CatalogueObjectTrees
-*/
-
-!! ########################################################################
-!!@technicalContact=models@geo.admin.ch
-!!@furtherInformation=http://www.geo.admin.ch/internet/geoportal/de/home/topics/geobasedata/models.html
-MODEL CatalogueObjects_V1 (en)
-  AT "http://www.geo.admin.ch" VERSION "2011-08-30" =
-
-  IMPORTS UNQUALIFIED INTERLIS;
-
-  TOPIC Catalogues (ABSTRACT) =
-
-    CLASS Item (ABSTRACT) =
-    END Item;
-
-    STRUCTURE CatalogueReference (ABSTRACT) =
-      Reference: REFERENCE TO (EXTERNAL) Item;
-    END CatalogueReference;
- 
-    STRUCTURE MandatoryCatalogueReference (ABSTRACT) =
-      Reference: MANDATORY REFERENCE TO (EXTERNAL) Item;
-    END MandatoryCatalogueReference;
-
-  END Catalogues;
-
-END CatalogueObjects_V1.
-
-!! ########################################################################
-!!@technicalContact=models@geo.admin.ch
-!!@furtherInformation=http://www.geo.admin.ch/internet/geoportal/de/home/topics/geobasedata/models.html
-MODEL CatalogueObjectTrees_V1 (en)
-  AT "http://www.geo.admin.ch" VERSION "2011-08-30" =
-
-  IMPORTS UNQUALIFIED INTERLIS;
-  IMPORTS CatalogueObjects_V1;
-
-  TOPIC Catalogues (ABSTRACT) EXTENDS CatalogueObjects_V1.Catalogues =
-
-    CLASS Item (ABSTRACT,EXTENDED) = 
-      IsSuperItem: MANDATORY BOOLEAN;
-      IsUseable: MANDATORY BOOLEAN;
-    MANDATORY CONSTRAINT
-      IsSuperItem OR IsUseable;
-    END Item;
-
-    ASSOCIATION EntriesTree =
-      Parent -<#> Item;
-      Child -- Item;
-    MANDATORY CONSTRAINT
-      Parent->IsSuperItem;
-    END EntriesTree;
-
-    STRUCTURE CatalogueReference (ABSTRACT,EXTENDED) =
-      Reference(EXTENDED): REFERENCE TO (EXTERNAL) Item;
-    MANDATORY CONSTRAINT
-      Reference->IsUseable;
-    END CatalogueReference;
- 
-    STRUCTURE MandatoryCatalogueReference (ABSTRACT,EXTENDED) =
-      Reference(EXTENDED): MANDATORY REFERENCE TO (EXTERNAL) Item;
-    MANDATORY CONSTRAINT
-      Reference->IsUseable;
-    END MandatoryCatalogueReference;
-
-  END Catalogues;
-
-END CatalogueObjectTrees_V1.
-
-!! ########################################################################
-','2019-09-06 14:42:03.894');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part4_ADMINISTRATIVEUNITS_20110830.ili','2.3','CHAdminCodes_V1 AdministrativeUnits_V1{ CHAdminCodes_V1 InternationalCodes_V1 Dictionaries_V1 Localisation_V1 INTERLIS} AdministrativeUnitsCH_V1{ CHAdminCodes_V1 InternationalCodes_V1 LocalisationCH_V1 AdministrativeUnits_V1 INTERLIS}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -2276,7 +1586,215 @@ MODEL AdministrativeUnitsCH_V1 (en)
 END AdministrativeUnitsCH_V1.
 
 !! ########################################################################
-','2019-09-06 14:42:03.894');
+','2019-09-07 15:01:41.001');
+INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part3_CATALOGUEOBJECTS_20110830.ili','2.3','CatalogueObjects_V1{ INTERLIS} CatalogueObjectTrees_V1{ INTERLIS CatalogueObjects_V1}','/* ########################################################################
+   CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
+   ======
+   BASISMODULE DES BUNDES           MODULES DE BASE DE LA CONFEDERATION
+   FÜR MINIMALE GEODATENMODELLE     POUR LES MODELES DE GEODONNEES MINIMAUX
+   
+   PROVIDER: GKG/KOGIS - GCS/COSIG             CONTACT: models@geo.admin.ch
+   PUBLISHED: 2011-08-30
+   ########################################################################
+*/
+
+INTERLIS 2.3;
+
+/* ########################################################################
+   ########################################################################
+   PART III -- CATALOGUE OBJECTS
+   - Package CatalogueObjects
+   - Package CatalogueObjectTrees
+*/
+
+!! ########################################################################
+!!@technicalContact=models@geo.admin.ch
+!!@furtherInformation=http://www.geo.admin.ch/internet/geoportal/de/home/topics/geobasedata/models.html
+MODEL CatalogueObjects_V1 (en)
+  AT "http://www.geo.admin.ch" VERSION "2011-08-30" =
+
+  IMPORTS UNQUALIFIED INTERLIS;
+
+  TOPIC Catalogues (ABSTRACT) =
+
+    CLASS Item (ABSTRACT) =
+    END Item;
+
+    STRUCTURE CatalogueReference (ABSTRACT) =
+      Reference: REFERENCE TO (EXTERNAL) Item;
+    END CatalogueReference;
+ 
+    STRUCTURE MandatoryCatalogueReference (ABSTRACT) =
+      Reference: MANDATORY REFERENCE TO (EXTERNAL) Item;
+    END MandatoryCatalogueReference;
+
+  END Catalogues;
+
+END CatalogueObjects_V1.
+
+!! ########################################################################
+!!@technicalContact=models@geo.admin.ch
+!!@furtherInformation=http://www.geo.admin.ch/internet/geoportal/de/home/topics/geobasedata/models.html
+MODEL CatalogueObjectTrees_V1 (en)
+  AT "http://www.geo.admin.ch" VERSION "2011-08-30" =
+
+  IMPORTS UNQUALIFIED INTERLIS;
+  IMPORTS CatalogueObjects_V1;
+
+  TOPIC Catalogues (ABSTRACT) EXTENDS CatalogueObjects_V1.Catalogues =
+
+    CLASS Item (ABSTRACT,EXTENDED) = 
+      IsSuperItem: MANDATORY BOOLEAN;
+      IsUseable: MANDATORY BOOLEAN;
+    MANDATORY CONSTRAINT
+      IsSuperItem OR IsUseable;
+    END Item;
+
+    ASSOCIATION EntriesTree =
+      Parent -<#> Item;
+      Child -- Item;
+    MANDATORY CONSTRAINT
+      Parent->IsSuperItem;
+    END EntriesTree;
+
+    STRUCTURE CatalogueReference (ABSTRACT,EXTENDED) =
+      Reference(EXTENDED): REFERENCE TO (EXTERNAL) Item;
+    MANDATORY CONSTRAINT
+      Reference->IsUseable;
+    END CatalogueReference;
+ 
+    STRUCTURE MandatoryCatalogueReference (ABSTRACT,EXTENDED) =
+      Reference(EXTENDED): MANDATORY REFERENCE TO (EXTERNAL) Item;
+    MANDATORY CONSTRAINT
+      Reference->IsUseable;
+    END MandatoryCatalogueReference;
+
+  END Catalogues;
+
+END CatalogueObjectTrees_V1.
+
+!! ########################################################################
+','2019-09-07 15:01:41.001');
+INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREB_ExtractAnnex_V1_0.ili','2.3','OeREB_ExtractAnnex_V1_0{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1 CatalogueObjects_V1}','INTERLIS 2.3;
+
+/** Zusatzdaten für statischen OEREB-Auszug
+ */
+MODEL OeREB_ExtractAnnex_V1_0 (de)
+AT "mailto:ce@eisenhutinformatik.ch"
+VERSION "2019-08-15"  =
+  IMPORTS OeREBKRM_V1_1,CHAdminCodes_V1,LocalisationCH_V1,CatalogueObjects_V1;
+
+    DOMAIN
+      Code = TEXT*60;
+      STRUCTURE Code_ = value : MANDATORY Code; END Code_;
+    TOPIC Annex =
+        
+        CLASS ThemaTxt
+        	EXTENDS CatalogueObjects_V1.Catalogues.Item =
+		  Code : MANDATORY OeREBKRM_V1_1.Thema;
+		  Titel : MANDATORY LocalisationCH_V1.MultilingualText;
+          /** 
+           * Kantonales Subthema zu einem Bundesthema:
+           *   Code=Nutzungsplanung
+           *   otherCode=ch.so.Nutzungsplanung.CantonalBuildingLines
+           *   In der Transferstruktur:
+           *     Eigentumsbeschraenkung/Thema=Nutzungsplanung
+           *     Eigentumsbeschraenkung/SubThema=CantonalBuildingLines
+           * Kantonales Thema (kein Subthema zu einem Bundesthema): 
+           *   Code=WeiteresThema
+           *   otherCode=ch.so.Einzelschutz
+           *   In der Transferstruktur:
+           *     Eigentumsbeschraenkung/Thema=WeiteresThema
+           *     Eigentumsbeschraenkung/SubThema=ch.so.Einzelschutz
+           */
+          otherCode : Code;
+          MANDATORY CONSTRAINT Code!=#WeiteresThema OR DEFINED(otherCode);
+          UNIQUE otherCode;
+        END ThemaTxt;
+        
+		CLASS Logo =
+		  /** ch.plr, ch, ch.so oder ch.bfsnr
+		   */
+		  code : MANDATORY Code;
+		  logo : MANDATORY BLACKBOX BINARY;
+		  UNIQUE code;
+		END Logo;
+		
+		CLASS MunicipalityWithPLRC =
+		  /** BFS-Nr.
+		   */
+		  municipality : MANDATORY CHAdminCodes_V1.CHMunicipalityCode;
+		  /** Thema / SubThema 
+		   */
+		  themes : BAG OF Code_;
+		  /** Stand der Grundlagedaten z.B. der AV
+		   */
+		  baseDataDate : INTERLIS.XMLDateTime;
+		  metadataOfGeographicalBaseData : URI;
+		  UNIQUE municipality;
+		END MunicipalityWithPLRC;
+
+		CLASS MapLayering =
+		  webservice : MANDATORY URI;
+          layerIndex : MANDATORY -1000 .. 1000;
+          layerOpacity : MANDATORY 0.000 .. 1.000;
+		END MapLayering;
+		
+		CLASS Office =
+		  Name : MANDATORY LocalisationCH_V1.MultilingualText;
+		  /** OfficeAtWeb wird für die Referenzierung verwendet!
+		   *  solange UID nicht generell zugeordnet.
+		   */
+		  OfficeAtWeb : MANDATORY OeREBKRM_V1_1.WebReferenz;
+		  UID : OeREBKRM_V1_1.UID;
+		  /** Falls im statischen Auszug mehr Informationen angezeigt 
+		   *  werden sollen als im Rahmenmodell möglich ist zu erfassen. 
+		   *  Im Rahmenmodell können nur die Attribute Name, AmtImWeb, UID erfasst werden.
+		  */
+		  Line1 : TEXT*80;
+		  Line2 : TEXT*80;
+		  Street : TEXT*100;
+		  Number : TEXT*7;
+		  PostalCode : TEXT*4;
+		  City : TEXT*60;
+		  UNIQUE UID;
+		  UNIQUE OfficeAtWeb;
+		END Office;
+
+    CLASS Glossary =
+	  /** Abkürzung
+	   */
+      Title : MANDATORY LocalisationCH_V1.MultilingualText;
+	  /** Beschreibung der Abkürzung
+	   */	  
+      Content : MANDATORY LocalisationCH_V1.MultilingualMText;
+    END Glossary;
+
+    CLASS ExclusionOfLiability =
+	  /** Haftungsausschuss
+	   */
+      Title : MANDATORY LocalisationCH_V1.MultilingualText;
+	  
+      Content : MANDATORY LocalisationCH_V1.MultilingualMText;
+    END ExclusionOfLiability;
+		
+    CLASS  GeneralInformation =
+	  /** Allgemeine Informationen
+	   */
+      Content : MANDATORY LocalisationCH_V1.MultilingualMText;
+    END GeneralInformation;
+
+    CLASS  BaseData =
+	 /** Grundlagedaten z.B. AV
+	  */
+      Content : MANDATORY LocalisationCH_V1.MultilingualMText;
+	END BaseData;		
+		
+	END Annex;
+    
+
+END OeREB_ExtractAnnex_V1_0.
+','2019-09-07 15:01:41.001');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('Units-20120220.ili','2.3','Units','!! File Units.ili Release 2012-02-20
 
 INTERLIS 2.3;
@@ -2374,7 +1892,527 @@ CONTRACTED TYPE MODEL Units (en) AT "http://www.interlis.ch/models"
 
 END Units.
 
-','2019-09-06 14:42:03.894');
+','2019-09-07 15:01:41.001');
+INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMtrsfr_V1_1.ili','2.3','OeREBKRMtrsfr_V1_1{ GeometryCHLV95_V1 CHAdminCodes_V1 LocalisationCH_V1 GeometryCHLV03_V1 OeREBKRM_V1_1 OeREBKRMvs_V1_1}','INTERLIS 2.3;
+
+/** Schnittstelle zwischen zuständiger Stelle für die Geobasisdaten und Katasterorganisation des Kantons.
+ */
+!!@ furtherInformation=http://www.cadastre.ch/oereb-public
+!!@ technicalContact=mailto:infovd@swisstopo.ch
+MODEL OeREBKRMtrsfr_V1_1 (de)
+AT "http://models.geo.admin.ch/V_D/OeREB/"
+VERSION "2016-08-15"  =
+  IMPORTS OeREBKRM_V1_1,OeREBKRMvs_V1_1,CHAdminCodes_V1,LocalisationCH_V1,GeometryCHLV03_V1,GeometryCHLV95_V1;
+
+  /** Dieses Teilmodell definiert die Struktur der Daten, wie sie von der zuständigen Stelle für die Geobasisdaten an die Abgabestelle des ÖREB-Kataster-Auszugs geliefert werden müssen. Dieses Datenmodell definiert somit, welche Daten ein minimales Datenmodell enthalten muss, um als ÖREB-Kataster fähiges Datenmodell zu gelten.
+   */
+  TOPIC Transferstruktur
+  EXTENDS OeREBKRMvs_V1_1.Vorschriften =
+    DEPENDS ON OeREBKRMvs_V1_1.HinweiseGesetzlicheGrundlagen;
+
+    /** Wurzelelement für Informationen über eine Beschränkung des Grundeigentums, die rechtskräftig, z.B. auf Grund einer Genehmigung oder eines richterlichen Entscheids, zustande gekommen ist.
+     */
+    CLASS Eigentumsbeschraenkung =
+      /** Textliche Beschreibung der Beschränkung; z.B. "Wohnen W3"
+       */
+      Aussage : MANDATORY LocalisationCH_V1.MultilingualMText;
+      /** Einordnung der Eigentumsbeschränkung in ein ÖREBK-Thema
+       */
+      Thema : MANDATORY OeREBKRM_V1_1.Thema;
+      /** z.B. Planungszonen innerhalb Nutzungsplanung
+       */
+      SubThema : OeREBKRM_V1_1.SubThema;
+      /** z.B. kantonale Themen. Der Code wird nach folgendem Muster gebildet: ch.{canton}.{topic}
+       * fl.{topic}
+       * ch.{bfsnr}.{topic}
+       * Wobei {canton} das offizielle zwei-stellige Kürzel des Kantons ist, {to-pic} der Themenname und {bfsnr} die Gemeindenummer gem. BFS.
+       */
+      WeiteresThema : OeREBKRM_V1_1.WeiteresThema;
+      /** Themenspezifische, maschinen-lesbare Art gem. Originalmodell der Eigentumsbeschränkung
+       */
+      ArtCode : OeREBKRM_V1_1.ArtEigentumsbeschraenkung;
+      /** Identifikation der Codeliste bzw. des Wertebereichs für ArtCode
+       */
+      ArtCodeliste : URI;
+      /** Status, ob diese Eigentumsbeschränkung in Kraft ist
+       */
+      Rechtsstatus : MANDATORY OeREBKRM_V1_1.RechtsStatus;
+      /** Datum, ab dem diese Eigentumsbeschränkung in Auszügen erscheint
+       */
+      publiziertAb : MANDATORY OeREBKRM_V1_1.Datum;
+      MANDATORY CONSTRAINT Thema!=#WeiteresThema OR DEFINED(WeiteresThema);
+    END Eigentumsbeschraenkung;
+
+    /** Punkt-, linien-, oder flächenförmige Geometrie. Neu zu definierende Eigentumsbeschränkungen sollten i.d.R. flächenförmig sein.
+     */
+    CLASS Geometrie =
+      /** Punktgeometrie
+       */
+      Punkt_LV03 : GeometryCHLV03_V1.Coord2;
+      Punkt_LV95 : GeometryCHLV95_V1.Coord2;
+      /** Linienförmige Geometrie
+       */
+      Linie_LV03 : GeometryCHLV03_V1.Line;
+      Linie_LV95 : GeometryCHLV95_V1.Line;
+      /** Flächenförmige Geometrie
+       */
+      Flaeche_LV03 : GeometryCHLV03_V1.Surface;
+      Flaeche_LV95 : GeometryCHLV95_V1.Surface;
+      /** Status, ob diese Geometrie in Kraft ist
+       */
+      Rechtsstatus : MANDATORY OeREBKRM_V1_1.RechtsStatus;
+      /** Datum, ab dem diese Geometrie in Auszügen erscheint
+       */
+      publiziertAb : MANDATORY OeREBKRM_V1_1.Datum;
+      /** Verweis auf maschinenlesbare Metadaten (XML) der zugrundeliegenden Geobasisdaten. z.B. http://www.geocat.ch/geonetwork/srv/deu/gm03.xml?id=705
+       */
+      MetadatenGeobasisdaten : URI;
+      MANDATORY CONSTRAINT DEFINED(Punkt_LV03) OR DEFINED(Linie_LV03) OR DEFINED(Flaeche_LV03) OR DEFINED(Punkt_LV95) OR DEFINED(Linie_LV95) OR DEFINED(Flaeche_LV95);
+    END Geometrie;
+
+    /** Definition für Hinweise, die unabhängig von einer konkreten Eigentumsbeschränkung gelten (z.B. der Hinweis auf eine Systematische Rechtssammlung). Der Hinweis kann aber beschränkt werden auf eine bestimmtes ÖREB-Thema und/oder Kanton und/oder Gemeinde.
+     */
+    CLASS HinweisDefinition =
+      /** Thema falls der Hinweis für ein bestimmtes ÖREB-Thema gilt. Falls die Angabe fehlt, ist es ein Hinweis der für alle ÖREB-Themen gilt.
+       */
+      Thema : OeREBKRM_V1_1.Thema;
+      /** Kantonskürzel falls der Hinweis für ein Kantons-oder Gemeindegebiet gilt. Falls die Angabe fehlt, ist es ein Hinweis der für alle Kantone gilt. z.B. "BE".
+       */
+      Kanton : CHAdminCodes_V1.CHCantonCode;
+      /** BFSNr falls der Hinweis für ein Gemeindegebiet gilt. Falls die Angabe fehlt, ist es ein Hinweis der für den Kanton oder die Schweiz gilt. z.B. "942".
+       */
+      Gemeinde : CHAdminCodes_V1.CHMunicipalityCode;
+    END HinweisDefinition;
+
+    /** Ein Eintrag in der Planlegende.
+     */
+    STRUCTURE LegendeEintrag =
+      /** Grafischer Teil des Legendeneintrages für die Darstellung. Im PNG-Format mit 300dpi oder im SVG-Format
+       */
+      Symbol : MANDATORY BLACKBOX BINARY;
+      /** Text des Legendeneintrages
+       */
+      LegendeText : MANDATORY LocalisationCH_V1.MultilingualText;
+      /** Art der Eigentumsbeschränkung, die durch diesen Legendeneintrag dargestellt wird
+       */
+      ArtCode : MANDATORY OeREBKRM_V1_1.ArtEigentumsbeschraenkung;
+      /** Codeliste der Eigentumsbeschränkung, die durch diesen Legendeneintrag dargestellt wird
+       */
+      ArtCodeliste : MANDATORY URI;
+      /** Zu welchem ÖREB-Thema der Legendeneintrag gehört
+       */
+      Thema : MANDATORY OeREBKRM_V1_1.Thema;
+      /** z.B. Planungszonen innerhalb Nutzungsplanung
+       */
+      SubThema : OeREBKRM_V1_1.SubThema;
+      WeiteresThema : OeREBKRM_V1_1.WeiteresThema;
+      MANDATORY CONSTRAINT Thema!=#WeiteresThema OR DEFINED(WeiteresThema);
+    END LegendeEintrag;
+
+    /** Angaben zum Darstellungsdienst.
+     */
+    CLASS DarstellungsDienst =
+      /** WMS GetMap-Request (für Maschine-Maschine-Kommunikation) inkl. alle benötigten Parameter, z.B. "https://wms.geo.admin.ch/?SERVICE=WMS&REQUEST=GetMap&VERSION=1.1.1&STYLES=default&SRS=EPSG:21781&BBOX=475000,60000,845000,310000&WIDTH=740&HEIGHT=500&FORMAT=image/png&LAYERS=ch.bazl.kataster-belasteter-standorte-zivilflugplaetze.oereb"
+       */
+      VerweisWMS : MANDATORY URI;
+      /** Verweis auf ein Dokument das die Karte beschreibt; z.B. "https://wms.geo.admin.ch/?SERVICE=WMS&REQUEST=GetLegendGraphic&VERSION=1.1.1&FORMAT=image/png&LAYER=ch.bazl.kataster-belasteter-standorte-zivilflugplaetze.oereb"
+       */
+      LegendeImWeb : OeREBKRM_V1_1.WebReferenz;
+      Legende : BAG {0..*} OF LegendeEintrag;
+      MANDATORY CONSTRAINT DEFINED(LegendeImWeb) OR INTERLIS.elementCount(Legende)>0;
+    END DarstellungsDienst;
+
+    ASSOCIATION GeometrieEigentumsbeschraenkung =
+      /** Geometrie der Eigentumsbeschränkung, die Rechtswirkung hat (als Basis für den Verschnitt mit den Liegenschaften)
+       */
+      Geometrie -- {0..*} Geometrie;
+      Eigentumsbeschraenkung -<#> {1} Eigentumsbeschraenkung;
+    END GeometrieEigentumsbeschraenkung;
+
+    ASSOCIATION GrundlageVerfeinerung =
+      Grundlage (EXTERNAL) -- {0..*} Eigentumsbeschraenkung;
+      Verfeinerung -- {0..*} Eigentumsbeschraenkung;
+    END GrundlageVerfeinerung;
+
+    ASSOCIATION HinweisDefinitionDokument =
+      HinweisDefinition -- {0..*} HinweisDefinition;
+      Dokument -- {1..*} OeREBKRMvs_V1_1.Vorschriften.Dokument;
+    END HinweisDefinitionDokument;
+
+    ASSOCIATION HinweisDefinitionZustaendigeStelle =
+      HinweisDefinition -<> {0..*} HinweisDefinition;
+      ZustaendigeStelle -- {1} OeREBKRMvs_V1_1.Vorschriften.Amt;
+    END HinweisDefinitionZustaendigeStelle;
+
+    ASSOCIATION HinweisVorschrift =
+      Eigentumsbeschraenkung -- {0..*} Eigentumsbeschraenkung;
+      /** Rechtsvorschrift der Eigentumsbeschränkung
+       */
+      Vorschrift -- {1..*} OeREBKRMvs_V1_1.Vorschriften.DokumentBasis;
+      /** Hinweis auf spezifische Artikel.
+       */
+      ArtikelNr : BAG {0..*} OF OeREBKRM_V1_1.ArtikelNummer_;
+    END HinweisVorschrift;
+
+    ASSOCIATION ZustaendigeStelleEigentumsbeschraenkung =
+      /** Zuständige Stelle für die Geobasisdaten (Originaldaten) gem. GeoIG Art. 8 Abs. 1
+       */
+      ZustaendigeStelle -- {1} OeREBKRMvs_V1_1.Vorschriften.Amt;
+      Eigentumsbeschraenkung -<> {0..*} Eigentumsbeschraenkung;
+    END ZustaendigeStelleEigentumsbeschraenkung;
+
+    ASSOCIATION ZustaendigeStelleGeometrie =
+      ZustaendigeStelle -- {1} OeREBKRMvs_V1_1.Vorschriften.Amt;
+      Geometrie -<> {0..*} Geometrie;
+    END ZustaendigeStelleGeometrie;
+
+    ASSOCIATION DarstellungsDienstEigentumsbeschraenkung =
+      /** Darstellungsdienst, auf dem diese Eigentumsbeschränkung sichtbar, aber nicht hervorgehoben, ist.
+       */
+      DarstellungsDienst -- {0..1} DarstellungsDienst;
+      Eigentumsbeschraenkung -<> {1..*} Eigentumsbeschraenkung;
+    END DarstellungsDienstEigentumsbeschraenkung;
+
+  END Transferstruktur;
+
+END OeREBKRMtrsfr_V1_1.
+','2019-09-07 15:01:41.001');
+INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRM_V1_1.ili','2.3','OeREBKRM_V1_1{ InternationalCodes_V1 LocalisationCH_V1 CatalogueObjects_V1}','INTERLIS 2.3;
+
+/** Basisdefinitionen für das OEREB-Katasterrahmenmodell
+ */
+!!@ furtherInformation=http://www.cadastre.ch/oereb-public
+!!@ technicalContact=mailto:infovd@swisstopo.ch
+MODEL OeREBKRM_V1_1 (de)
+AT "http://models.geo.admin.ch/V_D/OeREB/"
+VERSION "2016-08-15"  =
+  IMPORTS LocalisationCH_V1,InternationalCodes_V1,CatalogueObjects_V1;
+
+  DOMAIN
+
+    /** Themenspezifische, maschinen-lesbare Art der Eigentumsbeschränkung
+     */
+    ArtEigentumsbeschraenkung = TEXT*40;
+
+    /** Wertebereich für den Artikeltext einer Rechtsvorschrift oder einer gesetzlichen Grundlage.
+     */
+    ArtikelInhalt = MTEXT;
+
+    /** Nummer eines Artikels in einer Rechtsvorschrift oder gesetzlichen Grundlage.
+     */
+    ArtikelNummer = TEXT*20;
+
+    Datum = FORMAT INTERLIS.XMLDate "1848-1-1" .. "2100-12-31";
+
+    /** Wertebereich für Objektidentifikatoren. Der Wert soll mit einem gültigen Internet Domain-Name anfangen, z.B. "ch.admin.sr.720"
+     */
+    OEREBOID = OID TEXT;
+
+    /** Werteliste zur Unterscheidung ob eine Eigentumsbeschränkung in Kraft ist oder nicht.
+     */
+    RechtsStatus = (
+      /** Die Eigentumsbeschränkung ist in Kraft.
+       */
+      inKraft,
+      /** gem. OeREBKV Art. 12 Abs. 2
+       */
+      laufendeAenderung
+    );
+
+    SubThema = TEXT*60;
+
+    /** Liste der Geobasisdaten die ÖREB-Themen sind (Wird durch den Bundesrat definiert). Die Liste kann durch Kantone erweitert werden.
+     */
+    Thema = (
+      /** GeoIV Datensatz 73
+       */
+      Nutzungsplanung,
+      /** 87
+       */
+      ProjektierungszonenNationalstrassen,
+      /** 88
+       */
+      BaulinienNationalstrassen,
+      /** 96
+       */
+      ProjektierungszonenEisenbahnanlagen,
+      /** 97
+       */
+      BaulinienEisenbahnanlagen,
+      /** 103
+       */
+      ProjektierungszonenFlughafenanlagen,
+      /** 104
+       */
+      BaulinienFlughafenanlagen,
+      /** 108
+       */
+      SicherheitszonenplanFlughafen,
+      /** 116
+       */
+      BelasteteStandorte,
+      /** 117
+       */
+      BelasteteStandorteMilitaer,
+      /** 118
+       */
+      BelasteteStandorteZivileFlugplaetze,
+      /** 119
+       */
+      BelasteteStandorteOeffentlicherVerkehr,
+      /** 131
+       */
+      Grundwasserschutzzonen,
+      /** 132
+       */
+      Grundwasserschutzareale,
+      /** 145
+       */
+      Laermemfindlichkeitsstufen,
+      /** 157
+       */
+      Waldgrenzen,
+      /** 159
+       */
+      Waldabstandslinien,
+      /** Fuer weitere Themen
+       */
+      WeiteresThema
+    );
+
+    /** Unternehmensindentifikation (gemäss. Bundesgesetz über die Unternehmens-Identifikationsnummer SR 431.03) ohne Formatierung z.B. CHE116068369
+     */
+    UID = TEXT*12;
+
+    /** Verweis auf ein Dokument im Web (z.B. eine HTML Seite oder ein PDF-Dokument)
+     */
+    WebReferenz = URI;
+
+    /** z.B. kantonale Themen. Der Code wird nach folgendem Muster gebildet: ch.{canton}.{topic}
+     * fl.{topic}
+     * ch.{bfsnr}.{topic}
+     * Wobei {canton} das offizielle zwei-stellige Kürzel des Kantons ist, {to-pic} der Themenname und {bfsnr} die Gemeindenummer gem. BFS.
+     */
+    WeiteresThema = TEXT*120;
+  STRUCTURE ArtikelNummer_ = value : MANDATORY ArtikelNummer; END ArtikelNummer_;
+  STRUCTURE Datum_ = value : MANDATORY Datum; END Datum_;
+  STRUCTURE Thema_ = value : MANDATORY Thema; END Thema_;
+  STRUCTURE WebReferenz_ = value : MANDATORY WebReferenz; END WebReferenz_;
+
+  /** Wertebereich für den Artikeltext einer Rechtsvorschrift oder einer gesetzlichen Grundlage.
+   */
+  STRUCTURE ArtikelInhaltMehrsprachig
+  EXTENDS LocalisationCH_V1.MultilingualMText =
+  END ArtikelInhaltMehrsprachig;
+
+  STRUCTURE LocalisedUri =
+    Language : InternationalCodes_V1.LanguageCode_ISO639_1;
+    Text : MANDATORY URI;
+  END LocalisedUri;
+
+  STRUCTURE MultilingualUri =
+    LocalisedText : BAG {1..*} OF OeREBKRM_V1_1.LocalisedUri;
+    UNIQUE (LOCAL) LocalisedText:Language;
+  END MultilingualUri;
+
+  /** Anzeigetexte für Aufzählungen des Rahmenmodells
+   */
+  TOPIC CodelistenText =
+
+    /** Anzeigetexte für die Aufzählung RechtsStatus
+     */
+    CLASS RechtsStatusTxt
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      Code : MANDATORY OeREBKRM_V1_1.RechtsStatus;
+      Titel : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE Code;
+    END RechtsStatusTxt;
+
+    /** Anzeigetexte für die Aufzählung Thema
+     */
+    CLASS ThemaTxt
+    EXTENDS CatalogueObjects_V1.Catalogues.Item =
+      Code : MANDATORY OeREBKRM_V1_1.Thema;
+      Titel : MANDATORY LocalisationCH_V1.MultilingualText;
+      UNIQUE Code;
+    END ThemaTxt;
+
+  END CodelistenText;
+
+END OeREBKRM_V1_1.
+','2019-09-07 15:01:41.001');
+INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part2_LOCALISATION_20110830.ili','2.3','InternationalCodes_V1 Localisation_V1{ InternationalCodes_V1} LocalisationCH_V1{ InternationalCodes_V1 Localisation_V1} Dictionaries_V1{ InternationalCodes_V1} DictionariesCH_V1{ InternationalCodes_V1 Dictionaries_V1}','/* ########################################################################
+   CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
+   ======
+   BASISMODULE DES BUNDES           MODULES DE BASE DE LA CONFEDERATION
+   FÜR MINIMALE GEODATENMODELLE     POUR LES MODELES DE GEODONNEES MINIMAUX
+   
+   PROVIDER: GKG/KOGIS - GCS/COSIG             CONTACT: models@geo.admin.ch
+   PUBLISHED: 2011-08-30
+   ########################################################################
+*/
+
+INTERLIS 2.3;
+
+/* ########################################################################
+   ########################################################################
+   PART II -- LOCALISATION
+   - Package InternationalCodes
+   - Packages Localisation, LocalisationCH
+   - Packages Dictionaries, DictionariesCH
+*/
+
+!! ########################################################################
+!!@technicalContact=models@geo.admin.ch
+!!@furtherInformation=http://www.geo.admin.ch/internet/geoportal/de/home/topics/geobasedata/models.html
+TYPE MODEL InternationalCodes_V1 (en)
+  AT "http://www.geo.admin.ch" VERSION "2011-08-30" =
+
+  DOMAIN
+    LanguageCode_ISO639_1 = (de,fr,it,rm,en,
+      aa,ab,af,am,ar,as,ay,az,ba,be,bg,bh,bi,bn,bo,br,ca,co,cs,cy,da,dz,el,
+      eo,es,et,eu,fa,fi,fj,fo,fy,ga,gd,gl,gn,gu,ha,he,hi,hr,hu,hy,ia,id,ie,
+      ik,is,iu,ja,jw,ka,kk,kl,km,kn,ko,ks,ku,ky,la,ln,lo,lt,lv,mg,mi,mk,ml,
+      mn,mo,mr,ms,mt,my,na,ne,nl,no,oc,om,or,pa,pl,ps,pt,qu,rn,ro,ru,rw,sa,
+      sd,sg,sh,si,sk,sl,sm,sn,so,sq,sr,ss,st,su,sv,sw,ta,te,tg,th,ti,tk,tl,
+      tn,to,tr,ts,tt,tw,ug,uk,ur,uz,vi,vo,wo,xh,yi,yo,za,zh,zu);
+
+    CountryCode_ISO3166_1 = (CHE,
+      ABW,AFG,AGO,AIA,ALA,ALB,AND_,ANT,ARE,ARG,ARM,ASM,ATA,ATF,ATG,AUS,
+      AUT,AZE,BDI,BEL,BEN,BFA,BGD,BGR,BHR,BHS,BIH,BLR,BLZ,BMU,BOL,BRA,
+      BRB,BRN,BTN,BVT,BWA,CAF,CAN,CCK,CHL,CHN,CIV,CMR,COD,COG,COK,COL,
+      COM,CPV,CRI,CUB,CXR,CYM,CYP,CZE,DEU,DJI,DMA,DNK,DOM,DZA,ECU,EGY,
+      ERI,ESH,ESP,EST,ETH,FIN,FJI,FLK,FRA,FRO,FSM,GAB,GBR,GEO,GGY,GHA,
+      GIB,GIN,GLP,GMB,GNB,GNQ,GRC,GRD,GRL,GTM,GUF,GUM,GUY,HKG,HMD,HND,
+      HRV,HTI,HUN,IDN,IMN,IND,IOT,IRL,IRN,IRQ,ISL,ISR,ITA,JAM,JEY,JOR,
+      JPN,KAZ,KEN,KGZ,KHM,KIR,KNA,KOR,KWT,LAO,LBN,LBR,LBY,LCA,LIE,LKA,
+      LSO,LTU,LUX,LVA,MAC,MAR,MCO,MDA,MDG,MDV,MEX,MHL,MKD,MLI,MLT,MMR,
+      MNE,MNG,MNP,MOZ,MRT,MSR,MTQ,MUS,MWI,MYS,MYT,NAM,NCL,NER,NFK,NGA,
+      NIC,NIU,NLD,NOR,NPL,NRU,NZL,OMN,PAK,PAN,PCN,PER,PHL,PLW,PNG,POL,
+      PRI,PRK,PRT,PRY,PSE,PYF,QAT,REU,ROU,RUS,RWA,SAU,SDN,SEN,SGP,SGS,
+      SHN,SJM,SLB,SLE,SLV,SMR,SOM,SPM,SRB,STP,SUR,SVK,SVN,SWE,SWZ,SYC,
+      SYR,TCA,TCD,TGO,THA,TJK,TKL,TKM,TLS,TON,TTO,TUN,TUR,TUV,TWN,TZA,
+      UGA,UKR,UMI,URY,USA,UZB,VAT,VCT,VEN,VGB,VIR,VNM,VUT,WLF,WSM,YEM,
+      ZAF,ZMB,ZWE);
+
+END InternationalCodes_V1.
+
+!! ########################################################################
+!!@technicalContact=models@geo.admin.ch
+!!@furtherInformation=http://www.geo.admin.ch/internet/geoportal/de/home/topics/geobasedata/models.html
+TYPE MODEL Localisation_V1 (en)
+  AT "http://www.geo.admin.ch" VERSION "2011-08-30" =
+
+  IMPORTS UNQUALIFIED InternationalCodes_V1;
+
+  STRUCTURE LocalisedText =
+    Language: LanguageCode_ISO639_1;
+    Text: MANDATORY TEXT;
+  END LocalisedText;
+  
+  STRUCTURE LocalisedMText =
+    Language: LanguageCode_ISO639_1;
+    Text: MANDATORY MTEXT;
+  END LocalisedMText;
+
+  STRUCTURE MultilingualText =
+    LocalisedText : BAG {1..*} OF LocalisedText;
+    UNIQUE (LOCAL) LocalisedText:Language;
+  END MultilingualText;  
+  
+  STRUCTURE MultilingualMText =
+    LocalisedText : BAG {1..*} OF LocalisedMText;
+    UNIQUE (LOCAL) LocalisedText:Language;
+  END MultilingualMText;
+
+END Localisation_V1.
+
+!! ########################################################################
+!!@technicalContact=models@geo.admin.ch
+!!@furtherInformation=http://www.geo.admin.ch/internet/geoportal/de/home/topics/geobasedata/models.html
+TYPE MODEL LocalisationCH_V1 (en)
+  AT "http://www.geo.admin.ch" VERSION "2011-08-30" =
+
+  IMPORTS UNQUALIFIED InternationalCodes_V1;
+  IMPORTS Localisation_V1;
+
+  STRUCTURE LocalisedText EXTENDS Localisation_V1.LocalisedText =
+  MANDATORY CONSTRAINT
+    Language == #de OR
+    Language == #fr OR
+    Language == #it OR
+    Language == #rm OR
+    Language == #en;
+  END LocalisedText;
+  
+  STRUCTURE LocalisedMText EXTENDS Localisation_V1.LocalisedMText =
+  MANDATORY CONSTRAINT
+    Language == #de OR
+    Language == #fr OR
+    Language == #it OR
+    Language == #rm OR
+    Language == #en;
+  END LocalisedMText;
+
+  STRUCTURE MultilingualText EXTENDS Localisation_V1.MultilingualText =
+    LocalisedText(EXTENDED) : BAG {1..*} OF LocalisedText;
+  END MultilingualText;  
+  
+  STRUCTURE MultilingualMText EXTENDS Localisation_V1.MultilingualMText =
+    LocalisedText(EXTENDED) : BAG {1..*} OF LocalisedMText;
+  END MultilingualMText;
+
+END LocalisationCH_V1.
+
+!! ########################################################################
+!!@technicalContact=models@geo.admin.ch
+!!@furtherInformation=http://www.geo.admin.ch/internet/geoportal/de/home/topics/geobasedata/models.html
+MODEL Dictionaries_V1 (en)
+  AT "http://www.geo.admin.ch" VERSION "2011-08-30" =
+
+  IMPORTS UNQUALIFIED InternationalCodes_V1;
+
+  TOPIC Dictionaries (ABSTRACT) =
+
+    STRUCTURE Entry (ABSTRACT) =
+      Text: MANDATORY TEXT;
+    END Entry;
+      
+    CLASS Dictionary =
+      Language: MANDATORY LanguageCode_ISO639_1;
+      Entries: LIST OF Entry;
+    END Dictionary;
+
+  END Dictionaries;
+
+END Dictionaries_V1.
+
+!! ########################################################################
+!!@technicalContact=models@geo.admin.ch
+!!@furtherInformation=http://www.geo.admin.ch/internet/geoportal/de/home/topics/geobasedata/models.html
+MODEL DictionariesCH_V1 (en)
+  AT "http://www.geo.admin.ch" VERSION "2011-08-30" =
+
+  IMPORTS UNQUALIFIED InternationalCodes_V1;
+  IMPORTS Dictionaries_V1;
+
+  TOPIC Dictionaries (ABSTRACT) EXTENDS Dictionaries_V1.Dictionaries =
+
+    CLASS Dictionary (EXTENDED) =
+    MANDATORY CONSTRAINT
+      Language == #de OR
+      Language == #fr OR
+      Language == #it OR
+      Language == #rm OR
+      Language == #en;
+    END Dictionary;
+
+  END Dictionaries;
+
+END DictionariesCH_V1.
+
+!! ########################################################################
+','2019-09-07 15:01:41.001');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CoordSys-20151124.ili','2.3','CoordSys','!! File CoordSys.ili Release 2015-11-24
 
 INTERLIS 2.3;
@@ -2589,179 +2627,263 @@ REFSYSTEM MODEL CoordSys (en) AT "http://www.interlis.ch/models"
 
 END CoordSys.
 
-','2019-09-06 14:42:03.894');
-INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part2_LOCALISATION_20110830.ili','2.3','InternationalCodes_V1 Localisation_V1{ InternationalCodes_V1} LocalisationCH_V1{ InternationalCodes_V1 Localisation_V1} Dictionaries_V1{ InternationalCodes_V1} DictionariesCH_V1{ InternationalCodes_V1 Dictionaries_V1}','/* ########################################################################
-   CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
-   ======
-   BASISMODULE DES BUNDES           MODULES DE BASE DE LA CONFEDERATION
-   FÜR MINIMALE GEODATENMODELLE     POUR LES MODELES DE GEODONNEES MINIMAUX
-   
-   PROVIDER: GKG/KOGIS - GCS/COSIG             CONTACT: models@geo.admin.ch
-   PUBLISHED: 2011-08-30
-   ########################################################################
-*/
+','2019-09-07 15:01:41.001');
+INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMvs_V1_1.ili','2.3','OeREBKRMvs_V1_1{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1}','INTERLIS 2.3;
 
-INTERLIS 2.3;
+/** Basisdefinition für Erlasse (Rechtsvorschriften, Hinweise auf Gesetzliche Grundlagen)
+ */
+!!@ furtherInformation=http://www.cadastre.ch/oereb-public
+!!@ technicalContact=mailto:infovd@swisstopo.ch
+MODEL OeREBKRMvs_V1_1 (de)
+AT "http://models.geo.admin.ch/V_D/OeREB/"
+VERSION "2016-08-15"  =
+  IMPORTS OeREBKRM_V1_1,CHAdminCodes_V1,LocalisationCH_V1;
 
-/* ########################################################################
-   ########################################################################
-   PART II -- LOCALISATION
-   - Package InternationalCodes
-   - Packages Localisation, LocalisationCH
-   - Packages Dictionaries, DictionariesCH
-*/
+  /** Dieses Teilmodell definiert die Struktur für die Erlasse im Allgemeinen.
+   * OID als URIs damit der Verweis auf Grundlagenerlasse (z.B. Kantonale Gesetze auf Bundesgesetze) in einem anderen Behälter (da durch eine andere Stelle erfasst/nachgeführt) verweisen können.
+   */
+  TOPIC Vorschriften =
+    OID AS OeREBKRM_V1_1.OEREBOID;
 
-!! ########################################################################
-!!@technicalContact=models@geo.admin.ch
-!!@furtherInformation=http://www.geo.admin.ch/internet/geoportal/de/home/topics/geobasedata/models.html
-TYPE MODEL InternationalCodes_V1 (en)
-  AT "http://www.geo.admin.ch" VERSION "2011-08-30" =
+    /** Eine organisatorische Einheit innerhalb der öffentlichen Verwaltung, z.B. eine für Geobasisdaten zuständige Stelle.
+     */
+    CLASS Amt =
+      /** Name des Amtes z.B. "Amt für Gemeinden und Raumordnung des Kantons Bern".
+       */
+      Name : MANDATORY LocalisationCH_V1.MultilingualText;
+      /** Verweis auf die Website des Amtes z.B. "http://www.jgk.be.ch/jgk/de/index/direktion/organisation/agr.html".
+       */
+      AmtImWeb : OeREBKRM_V1_1.WebReferenz;
+      /** UID der organisatorischen Einheit
+       */
+      UID : OeREBKRM_V1_1.UID;
+    END Amt;
 
-  DOMAIN
-    LanguageCode_ISO639_1 = (de,fr,it,rm,en,
-      aa,ab,af,am,ar,as,ay,az,ba,be,bg,bh,bi,bn,bo,br,ca,co,cs,cy,da,dz,el,
-      eo,es,et,eu,fa,fi,fj,fo,fy,ga,gd,gl,gn,gu,ha,he,hi,hr,hu,hy,ia,id,ie,
-      ik,is,iu,ja,jw,ka,kk,kl,km,kn,ko,ks,ku,ky,la,ln,lo,lt,lv,mg,mi,mk,ml,
-      mn,mo,mr,ms,mt,my,na,ne,nl,no,oc,om,or,pa,pl,ps,pt,qu,rn,ro,ru,rw,sa,
-      sd,sg,sh,si,sk,sl,sm,sn,so,sq,sr,ss,st,su,sv,sw,ta,te,tg,th,ti,tk,tl,
-      tn,to,tr,ts,tt,tw,ug,uk,ur,uz,vi,vo,wo,xh,yi,yo,za,zh,zu);
+    /** Vorschriften (Gesetze, Verordnungen, Rechtsvorschriften) oder einzelne Artikel davon.
+     */
+    CLASS DokumentBasis (ABSTRACT) =
+      /** Verweis auf das Element im Web; z.B. "http://www.admin.ch/ch/d/sr/700/a18.html"
+       */
+      TextImWeb : OeREBKRM_V1_1.MultilingualUri;
+      /** Status, ob dieses Element in Kraft ist
+       */
+      Rechtsstatus : MANDATORY OeREBKRM_V1_1.RechtsStatus;
+      /** Datum, ab dem dieses Element in Auszügen erscheint
+       */
+      publiziertAb : MANDATORY OeREBKRM_V1_1.Datum;
+    END DokumentBasis;
 
-    CountryCode_ISO3166_1 = (CHE,
-      ABW,AFG,AGO,AIA,ALA,ALB,AND_,ANT,ARE,ARG,ARM,ASM,ATA,ATF,ATG,AUS,
-      AUT,AZE,BDI,BEL,BEN,BFA,BGD,BGR,BHR,BHS,BIH,BLR,BLZ,BMU,BOL,BRA,
-      BRB,BRN,BTN,BVT,BWA,CAF,CAN,CCK,CHL,CHN,CIV,CMR,COD,COG,COK,COL,
-      COM,CPV,CRI,CUB,CXR,CYM,CYP,CZE,DEU,DJI,DMA,DNK,DOM,DZA,ECU,EGY,
-      ERI,ESH,ESP,EST,ETH,FIN,FJI,FLK,FRA,FRO,FSM,GAB,GBR,GEO,GGY,GHA,
-      GIB,GIN,GLP,GMB,GNB,GNQ,GRC,GRD,GRL,GTM,GUF,GUM,GUY,HKG,HMD,HND,
-      HRV,HTI,HUN,IDN,IMN,IND,IOT,IRL,IRN,IRQ,ISL,ISR,ITA,JAM,JEY,JOR,
-      JPN,KAZ,KEN,KGZ,KHM,KIR,KNA,KOR,KWT,LAO,LBN,LBR,LBY,LCA,LIE,LKA,
-      LSO,LTU,LUX,LVA,MAC,MAR,MCO,MDA,MDG,MDV,MEX,MHL,MKD,MLI,MLT,MMR,
-      MNE,MNG,MNP,MOZ,MRT,MSR,MTQ,MUS,MWI,MYS,MYT,NAM,NCL,NER,NFK,NGA,
-      NIC,NIU,NLD,NOR,NPL,NRU,NZL,OMN,PAK,PAN,PCN,PER,PHL,PLW,PNG,POL,
-      PRI,PRK,PRT,PRY,PSE,PYF,QAT,REU,ROU,RUS,RWA,SAU,SDN,SEN,SGP,SGS,
-      SHN,SJM,SLB,SLE,SLV,SMR,SOM,SPM,SRB,STP,SUR,SVK,SVN,SWE,SWZ,SYC,
-      SYR,TCA,TCD,TGO,THA,TJK,TKL,TKM,TLS,TON,TTO,TUN,TUR,TUV,TWN,TZA,
-      UGA,UKR,UMI,URY,USA,UZB,VAT,VCT,VEN,VGB,VIR,VNM,VUT,WLF,WSM,YEM,
-      ZAF,ZMB,ZWE);
+    /** Einzelner Artikel einer Rechtsvorschrift oder einer gesetzlichen Grundlage.
+     */
+    CLASS Artikel
+    EXTENDS DokumentBasis =
+      /** Nummer des Artikels innerhalb der gesetzlichen Grundlage oder der Rechtsvorschrift. z.B. "23"
+       */
+      Nr : MANDATORY OeREBKRM_V1_1.ArtikelNummer;
+      /** z.B. "Ausnahmen innerhalb der Bauzonen regelt das kantonale Recht."
+       */
+      Text : OeREBKRM_V1_1.ArtikelInhaltMehrsprachig;
+    END Artikel;
 
-END InternationalCodes_V1.
+    /** Dokumente im allgemeinen (Gesetze, Verordnungen, Rechtsvorschriften)
+     */
+    CLASS Dokument
+    EXTENDS DokumentBasis =
+      /** Titel (oder falls vorhanden Kurztitel) des Dokuments; z.B. "Raumplanungsgesetz"
+       */
+      Titel : MANDATORY LocalisationCH_V1.MultilingualText;
+      /** Offizieller Titel des Dokuments; z.B.  "Bundesgesetz über die Raumplanung"
+       */
+      OffiziellerTitel : LocalisationCH_V1.MultilingualText;
+      /** Abkürzung des Gesetzes; z.B. "RPG"
+       */
+      Abkuerzung : LocalisationCH_V1.MultilingualText;
+      /** Offizielle Nummer des Gesetzes; z.B. "SR 700"
+       */
+      OffizielleNr : TEXT*20;
+      /** Kantonskürzel falls Vorschrift des Kantons oder der Gemeinde. Falls die Angabe fehlt, ist es eine Vorschrift des Bundes. z.B. "BE"
+       */
+      Kanton : CHAdminCodes_V1.CHCantonCode;
+      /** Falls die Angabe fehlt, ist es ein Erlass des Kantons oder des Bundes. z.B. "942"
+       */
+      Gemeinde : CHAdminCodes_V1.CHMunicipalityCode;
+      /** Das Dokument als PDF-Datei
+       */
+      Dokument : BLACKBOX BINARY;
+    END Dokument;
 
-!! ########################################################################
-!!@technicalContact=models@geo.admin.ch
-!!@furtherInformation=http://www.geo.admin.ch/internet/geoportal/de/home/topics/geobasedata/models.html
-TYPE MODEL Localisation_V1 (en)
-  AT "http://www.geo.admin.ch" VERSION "2011-08-30" =
+    /** Reglemente, Vorschriften etc. die generell konkret sind (generell für die Person, die nicht bekannt ist, konkret für dass der Raumbezug mit Karte definiert ist), die zusammen mit der exakten geometrischen Definition als Einheit die Eigentumsbeschränkung unmittelbar beschreiben und innerhalb desselben Verfahrens verabschiedet worden sind.
+     */
+    CLASS Rechtsvorschrift
+    EXTENDS Dokument =
+    END Rechtsvorschrift;
 
-  IMPORTS UNQUALIFIED InternationalCodes_V1;
+    ASSOCIATION DokumentArtikel =
+      Dokument -<#> {1} Dokument;
+      /** OPTIONAL: Artikel zu diesem Dokument
+       */
+      Artikel -- {0..*} Artikel;
+    END DokumentArtikel;
 
-  STRUCTURE LocalisedText =
-    Language: LanguageCode_ISO639_1;
-    Text: MANDATORY TEXT;
-  END LocalisedText;
-  
-  STRUCTURE LocalisedMText =
-    Language: LanguageCode_ISO639_1;
-    Text: MANDATORY MTEXT;
-  END LocalisedMText;
+    ASSOCIATION HinweisWeitereDokumente =
+      Ursprung -- {0..*} Dokument;
+      Hinweis (EXTERNAL) -- {0..*} Dokument;
+      /** Hinweis auf spezifische Artikel.
+       */
+      ArtikelNr : BAG {0..*} OF OeREBKRM_V1_1.ArtikelNummer_;
+    END HinweisWeitereDokumente;
 
-  STRUCTURE MultilingualText =
-    LocalisedText : BAG {1..*} OF LocalisedText;
-    UNIQUE (LOCAL) LocalisedText:Language;
-  END MultilingualText;  
-  
-  STRUCTURE MultilingualMText =
-    LocalisedText : BAG {1..*} OF LocalisedMText;
-    UNIQUE (LOCAL) LocalisedText:Language;
-  END MultilingualMText;
+    ASSOCIATION ZustaendigeStelleDokument =
+      ZustaendigeStelle -- {1} Amt;
+      Dokument -<> {0..*} Dokument;
+    END ZustaendigeStelleDokument;
 
-END Localisation_V1.
+  END Vorschriften;
 
-!! ########################################################################
-!!@technicalContact=models@geo.admin.ch
-!!@furtherInformation=http://www.geo.admin.ch/internet/geoportal/de/home/topics/geobasedata/models.html
-TYPE MODEL LocalisationCH_V1 (en)
-  AT "http://www.geo.admin.ch" VERSION "2011-08-30" =
+  /** Dieses Teilmodell definiert die Struktur für die Hinweise auf die gesetzlichen Grundlagen, die als solche nicht Teil des ÖREB-Katasters sind, von diesem aber referenziert werden können.
+   * OID als URIs damit der Verweis auf Grundlagengesetze (z.B. Kantonale Gesetze auf Bundesgesetze) in einem anderen Behälter (da durch eine andere Stelle erfasst/nachgeführt) verweisen können.
+   */
+  TOPIC HinweiseGesetzlicheGrundlagen
+  EXTENDS OeREBKRMvs_V1_1.Vorschriften =
 
-  IMPORTS UNQUALIFIED InternationalCodes_V1;
-  IMPORTS Localisation_V1;
+  END HinweiseGesetzlicheGrundlagen;
 
-  STRUCTURE LocalisedText EXTENDS Localisation_V1.LocalisedText =
-  MANDATORY CONSTRAINT
-    Language == #de OR
-    Language == #fr OR
-    Language == #it OR
-    Language == #rm OR
-    Language == #en;
-  END LocalisedText;
-  
-  STRUCTURE LocalisedMText EXTENDS Localisation_V1.LocalisedMText =
-  MANDATORY CONSTRAINT
-    Language == #de OR
-    Language == #fr OR
-    Language == #it OR
-    Language == #rm OR
-    Language == #en;
-  END LocalisedMText;
+END OeREBKRMvs_V1_1.
+','2019-09-07 15:01:41.001');
+INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.ili','2.3','SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822{ GeometryCHLV95_V1 CHAdminCodes_V1}','INTERLIS 2.3;
 
-  STRUCTURE MultilingualText EXTENDS Localisation_V1.MultilingualText =
-    LocalisedText(EXTENDED) : BAG {1..*} OF LocalisedText;
-  END MultilingualText;  
-  
-  STRUCTURE MultilingualMText EXTENDS Localisation_V1.MultilingualMText =
-    LocalisedText(EXTENDED) : BAG {1..*} OF LocalisedMText;
-  END MultilingualMText;
+/** !!------------------------------------------------------------------------------
+ * !! Version    | wer | Änderung
+ * !!------------------------------------------------------------------------------
+ * !! 2015-08-22 | SZ  | Initialversion
+ */
+!!@ technicalContact=mailto:agi@bd.so.ch
+MODEL SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822 (de)
+AT "http://www.geo.so.ch/models/AGI"
+VERSION "2018-08-22"  =
+  IMPORTS GeometryCHLV95_V1,CHAdminCodes_V1;
 
-END LocalisationCH_V1.
+  TOPIC Grundbuchkreise =
+    OID AS INTERLIS.UUIDOID;
 
-!! ########################################################################
-!!@technicalContact=models@geo.admin.ch
-!!@furtherInformation=http://www.geo.admin.ch/internet/geoportal/de/home/topics/geobasedata/models.html
-MODEL Dictionaries_V1 (en)
-  AT "http://www.geo.admin.ch" VERSION "2011-08-30" =
+    /** Grundbuchkreisaufteilung inkl. Anschrift etc. der einzelnen Kreise
+     */
+    CLASS Grundbuchkreis =
+      /** Name des Grundbuches
+       */
+      Name : MANDATORY TEXT*255;
+      /** Art des Grundbuches
+       */
+      Art : MANDATORY TEXT*255;
+      /** Nummerierungsbereich-Identifikator aus der amtlichen Vermessung
+       */
+      NBIdent : MANDATORY TEXT*12;
+      /** Kantonale Nummer des Grundbuchkreises
+       */
+      Grundbuchkreisnummer : 1 .. 99;
+      /** Ehemalige Gemeindenummer des Grundbuches (z.B. vor Gemeindefusion).
+       */
+      Grundbuchkreis_BFSNr : MANDATORY CHAdminCodes_V1.CHMunicipalityCode;
+      /** Perimeter des Grundbuchkreises
+       */
+      BFSNr : MANDATORY CHAdminCodes_V1.CHMunicipalityCode;
+      /** Perimeter des Grundbuchkreises
+       */
+      Perimeter : MANDATORY GeometryCHLV95_V1.MultiSurface;
+      /** Amtschreiberei
+       */
+      Amtschreiberei : MANDATORY TEXT*255;
+      /** Amt der Amtschreiberei
+       */
+      Amt : TEXT*255;
+      /** Strassenname
+       */
+      Strasse : MANDATORY TEXT*255;
+      /** Hausnummer
+       */
+      Hausnummer : TEXT*255;
+      /** Postleitzahl
+       */
+      PLZ : MANDATORY 1000 .. 9999;
+      /** Ortschaft
+       */
+      Ortschaft : MANDATORY TEXT*255;
+      /** Telefonnummer
+       */
+      Telefon : MANDATORY TEXT*255;
+      /** E-Mail-Adresse
+       */
+      Email : MANDATORY TEXT*255;
+      /** Internetadresse
+       */
+      Web : MANDATORY INTERLIS.URI;
+      /** Unternehmens-Identifikationsnummer
+       */
+      UID : TEXT*15;
+    END Grundbuchkreis;
 
-  IMPORTS UNQUALIFIED InternationalCodes_V1;
+  END Grundbuchkreise;
 
-  TOPIC Dictionaries (ABSTRACT) =
+  TOPIC Nachfuehrungskreise =
+    OID AS INTERLIS.UUIDOID;
 
-    STRUCTURE Entry (ABSTRACT) =
-      Text: MANDATORY TEXT;
-    END Entry;
-      
-    CLASS Dictionary =
-      Language: MANDATORY LanguageCode_ISO639_1;
-      Entries: LIST OF Entry;
-    END Dictionary;
+    /** Gemeinde mit zuständigem Nachführungsgeometer und Anschrift der Firma etc.
+     */
+    CLASS Gemeinde =
+      /** Name der politischen Gemeinde
+       */
+      Gemeindename : MANDATORY TEXT*255;
+      /** BFS-Nr. der politischen Gemeinde
+       */
+      BFSNr : MANDATORY CHAdminCodes_V1.CHMunicipalityCode;
+      /** Geometrie der politischen Gemeinde
+       */
+      Perimeter : MANDATORY GeometryCHLV95_V1.MultiSurface;
+      /** Nachname des Nachführungsgeometers
+       */
+      NFG_Name : MANDATORY TEXT*255;
+      /** Vorname des Nachführungsgeometers
+       */
+      NFG_Vorname : MANDATORY TEXT*255;
+      /** Titel des Nachführungsgeometers (z.B. Dr.)
+       */
+      NFG_Titel : TEXT*255;
+      /** Name der Firma
+       */
+      Firma : MANDATORY TEXT*255;
+      /** Zusatzname der Firma
+       */
+      Firma_Zusatz : TEXT*255;
+      /** Strassenname
+       */
+      Strasse : MANDATORY TEXT*255;
+      /** Hausnummer
+       */
+      Hausnummer : TEXT*255;
+      /** Postleitzahl
+       */
+      PLZ : MANDATORY 1000 .. 9990;
+      /** Ortschaft
+       */
+      Ortschaft : MANDATORY TEXT*255;
+      /** Telefonnummer
+       */
+      Telefon : MANDATORY TEXT*255;
+      /** Internetadresse
+       */
+      Web : MANDATORY INTERLIS.URI;
+      /** E-Mail-Adresse
+       */
+      Email : MANDATORY TEXT*255;
+      /** Unternehmer-Identifikationsnummer
+       */
+      UID : TEXT*15;
+    END Gemeinde;
 
-  END Dictionaries;
+  END Nachfuehrungskreise;
 
-END Dictionaries_V1.
-
-!! ########################################################################
-!!@technicalContact=models@geo.admin.ch
-!!@furtherInformation=http://www.geo.admin.ch/internet/geoportal/de/home/topics/geobasedata/models.html
-MODEL DictionariesCH_V1 (en)
-  AT "http://www.geo.admin.ch" VERSION "2011-08-30" =
-
-  IMPORTS UNQUALIFIED InternationalCodes_V1;
-  IMPORTS Dictionaries_V1;
-
-  TOPIC Dictionaries (ABSTRACT) EXTENDS Dictionaries_V1.Dictionaries =
-
-    CLASS Dictionary (EXTENDED) =
-    MANDATORY CONSTRAINT
-      Language == #de OR
-      Language == #fr OR
-      Language == #it OR
-      Language == #rm OR
-      Language == #en;
-    END Dictionary;
-
-  END Dictionaries;
-
-END DictionariesCH_V1.
-
-!! ########################################################################
-','2019-09-06 14:42:03.894');
+END SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.
+','2019-09-07 15:01:41.001');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part1_GEOMETRY_20110830.ili','2.3','GeometryCHLV03_V1{ CoordSys Units INTERLIS} GeometryCHLV95_V1{ CoordSys Units INTERLIS}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -2939,129 +3061,7 @@ TYPE MODEL GeometryCHLV95_V1 (en)
 END GeometryCHLV95_V1.
 
 !! ########################################################################
-','2019-09-06 14:42:03.894');
-INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMvs_V1_1.ili','2.3','OeREBKRMvs_V1_1{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1}','INTERLIS 2.3;
-
-/** Basisdefinition für Erlasse (Rechtsvorschriften, Hinweise auf Gesetzliche Grundlagen)
- */
-!!@ furtherInformation=http://www.cadastre.ch/oereb-public
-!!@ technicalContact=mailto:infovd@swisstopo.ch
-MODEL OeREBKRMvs_V1_1 (de)
-AT "http://models.geo.admin.ch/V_D/OeREB/"
-VERSION "2016-08-15"  =
-  IMPORTS OeREBKRM_V1_1,CHAdminCodes_V1,LocalisationCH_V1;
-
-  /** Dieses Teilmodell definiert die Struktur für die Erlasse im Allgemeinen.
-   * OID als URIs damit der Verweis auf Grundlagenerlasse (z.B. Kantonale Gesetze auf Bundesgesetze) in einem anderen Behälter (da durch eine andere Stelle erfasst/nachgeführt) verweisen können.
-   */
-  TOPIC Vorschriften =
-    OID AS OeREBKRM_V1_1.OEREBOID;
-
-    /** Eine organisatorische Einheit innerhalb der öffentlichen Verwaltung, z.B. eine für Geobasisdaten zuständige Stelle.
-     */
-    CLASS Amt =
-      /** Name des Amtes z.B. "Amt für Gemeinden und Raumordnung des Kantons Bern".
-       */
-      Name : MANDATORY LocalisationCH_V1.MultilingualText;
-      /** Verweis auf die Website des Amtes z.B. "http://www.jgk.be.ch/jgk/de/index/direktion/organisation/agr.html".
-       */
-      AmtImWeb : OeREBKRM_V1_1.WebReferenz;
-      /** UID der organisatorischen Einheit
-       */
-      UID : OeREBKRM_V1_1.UID;
-    END Amt;
-
-    /** Vorschriften (Gesetze, Verordnungen, Rechtsvorschriften) oder einzelne Artikel davon.
-     */
-    CLASS DokumentBasis (ABSTRACT) =
-      /** Verweis auf das Element im Web; z.B. "http://www.admin.ch/ch/d/sr/700/a18.html"
-       */
-      TextImWeb : OeREBKRM_V1_1.MultilingualUri;
-      /** Status, ob dieses Element in Kraft ist
-       */
-      Rechtsstatus : MANDATORY OeREBKRM_V1_1.RechtsStatus;
-      /** Datum, ab dem dieses Element in Auszügen erscheint
-       */
-      publiziertAb : MANDATORY OeREBKRM_V1_1.Datum;
-    END DokumentBasis;
-
-    /** Einzelner Artikel einer Rechtsvorschrift oder einer gesetzlichen Grundlage.
-     */
-    CLASS Artikel
-    EXTENDS DokumentBasis =
-      /** Nummer des Artikels innerhalb der gesetzlichen Grundlage oder der Rechtsvorschrift. z.B. "23"
-       */
-      Nr : MANDATORY OeREBKRM_V1_1.ArtikelNummer;
-      /** z.B. "Ausnahmen innerhalb der Bauzonen regelt das kantonale Recht."
-       */
-      Text : OeREBKRM_V1_1.ArtikelInhaltMehrsprachig;
-    END Artikel;
-
-    /** Dokumente im allgemeinen (Gesetze, Verordnungen, Rechtsvorschriften)
-     */
-    CLASS Dokument
-    EXTENDS DokumentBasis =
-      /** Titel (oder falls vorhanden Kurztitel) des Dokuments; z.B. "Raumplanungsgesetz"
-       */
-      Titel : MANDATORY LocalisationCH_V1.MultilingualText;
-      /** Offizieller Titel des Dokuments; z.B.  "Bundesgesetz über die Raumplanung"
-       */
-      OffiziellerTitel : LocalisationCH_V1.MultilingualText;
-      /** Abkürzung des Gesetzes; z.B. "RPG"
-       */
-      Abkuerzung : LocalisationCH_V1.MultilingualText;
-      /** Offizielle Nummer des Gesetzes; z.B. "SR 700"
-       */
-      OffizielleNr : TEXT*20;
-      /** Kantonskürzel falls Vorschrift des Kantons oder der Gemeinde. Falls die Angabe fehlt, ist es eine Vorschrift des Bundes. z.B. "BE"
-       */
-      Kanton : CHAdminCodes_V1.CHCantonCode;
-      /** Falls die Angabe fehlt, ist es ein Erlass des Kantons oder des Bundes. z.B. "942"
-       */
-      Gemeinde : CHAdminCodes_V1.CHMunicipalityCode;
-      /** Das Dokument als PDF-Datei
-       */
-      Dokument : BLACKBOX BINARY;
-    END Dokument;
-
-    /** Reglemente, Vorschriften etc. die generell konkret sind (generell für die Person, die nicht bekannt ist, konkret für dass der Raumbezug mit Karte definiert ist), die zusammen mit der exakten geometrischen Definition als Einheit die Eigentumsbeschränkung unmittelbar beschreiben und innerhalb desselben Verfahrens verabschiedet worden sind.
-     */
-    CLASS Rechtsvorschrift
-    EXTENDS Dokument =
-    END Rechtsvorschrift;
-
-    ASSOCIATION DokumentArtikel =
-      Dokument -<#> {1} Dokument;
-      /** OPTIONAL: Artikel zu diesem Dokument
-       */
-      Artikel -- {0..*} Artikel;
-    END DokumentArtikel;
-
-    ASSOCIATION HinweisWeitereDokumente =
-      Ursprung -- {0..*} Dokument;
-      Hinweis (EXTERNAL) -- {0..*} Dokument;
-      /** Hinweis auf spezifische Artikel.
-       */
-      ArtikelNr : BAG {0..*} OF OeREBKRM_V1_1.ArtikelNummer_;
-    END HinweisWeitereDokumente;
-
-    ASSOCIATION ZustaendigeStelleDokument =
-      ZustaendigeStelle -- {1} Amt;
-      Dokument -<> {0..*} Dokument;
-    END ZustaendigeStelleDokument;
-
-  END Vorschriften;
-
-  /** Dieses Teilmodell definiert die Struktur für die Hinweise auf die gesetzlichen Grundlagen, die als solche nicht Teil des ÖREB-Katasters sind, von diesem aber referenziert werden können.
-   * OID als URIs damit der Verweis auf Grundlagengesetze (z.B. Kantonale Gesetze auf Bundesgesetze) in einem anderen Behälter (da durch eine andere Stelle erfasst/nachgeführt) verweisen können.
-   */
-  TOPIC HinweiseGesetzlicheGrundlagen
-  EXTENDS OeREBKRMvs_V1_1.Vorschriften =
-
-  END HinweiseGesetzlicheGrundlagen;
-
-END OeREBKRMvs_V1_1.
-','2019-09-06 14:42:03.894');
+','2019-09-07 15:01:41.001');
 -- INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createMetaInfo','True');
 -- INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.arrayTrafo','coalesce');
 -- INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.nameOptimization','disable');
@@ -3088,22 +3088,22 @@ END OeREBKRMvs_V1_1.
 -- INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.multiPointTrafo','coalesce');
 -- INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.multiSurfaceTrafo','coalesce');
 -- INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.multilingualTrafo','expand');
-INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('CatalogueObjects_V1','furtherInformation','http://www.geo.admin.ch/internet/geoportal/de/home/topics/geobasedata/models.html');
-INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('CatalogueObjects_V1','technicalContact','models@geo.admin.ch');
-INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('CatalogueObjectTrees_V1','furtherInformation','http://www.geo.admin.ch/internet/geoportal/de/home/topics/geobasedata/models.html');
-INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('CatalogueObjectTrees_V1','technicalContact','models@geo.admin.ch');
 INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('Dictionaries_V1','furtherInformation','http://www.geo.admin.ch/internet/geoportal/de/home/topics/geobasedata/models.html');
 INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('Dictionaries_V1','technicalContact','models@geo.admin.ch');
 INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('DictionariesCH_V1','furtherInformation','http://www.geo.admin.ch/internet/geoportal/de/home/topics/geobasedata/models.html');
 INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('DictionariesCH_V1','technicalContact','models@geo.admin.ch');
-INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('OeREBKRM_V1_1','furtherInformation','http://www.cadastre.ch/oereb-public');
-INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('OeREBKRM_V1_1','technicalContact','mailto:infovd@swisstopo.ch');
+INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('CatalogueObjects_V1','furtherInformation','http://www.geo.admin.ch/internet/geoportal/de/home/topics/geobasedata/models.html');
+INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('CatalogueObjects_V1','technicalContact','models@geo.admin.ch');
+INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('CatalogueObjectTrees_V1','furtherInformation','http://www.geo.admin.ch/internet/geoportal/de/home/topics/geobasedata/models.html');
+INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('CatalogueObjectTrees_V1','technicalContact','models@geo.admin.ch');
 INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('AdministrativeUnits_V1','furtherInformation','http://www.geo.admin.ch/internet/geoportal/de/home/topics/geobasedata/models.html');
 INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('AdministrativeUnits_V1','technicalContact','models@geo.admin.ch');
 INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('AdministrativeUnitsCH_V1','furtherInformation','http://www.geo.admin.ch/internet/geoportal/de/home/topics/geobasedata/models.html');
 INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('AdministrativeUnitsCH_V1','technicalContact','models@geo.admin.ch');
+INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('OeREBKRM_V1_1','furtherInformation','http://www.cadastre.ch/oereb-public');
+INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('OeREBKRM_V1_1','technicalContact','mailto:infovd@swisstopo.ch');
+INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822','technicalContact','mailto:agi@bd.so.ch');
 INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('OeREBKRMvs_V1_1','furtherInformation','http://www.cadastre.ch/oereb-public');
 INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('OeREBKRMvs_V1_1','technicalContact','mailto:infovd@swisstopo.ch');
-INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822','technicalContact','mailto:agi@bd.so.ch');
 INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('OeREBKRMtrsfr_V1_1','furtherInformation','http://www.cadastre.ch/oereb-public');
 INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES ('OeREBKRMtrsfr_V1_1','technicalContact','mailto:infovd@swisstopo.ch');
