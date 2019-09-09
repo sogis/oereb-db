@@ -8,6 +8,10 @@ declare -a pg_schemas=("stage" "live")
 # see also https://stackoverflow.com/questions/6149679/multidimensional-associative-arrays-in-bash
 declare -A pg_views
 declare -A pg_view
+pg_view[thema]="Laermempfindlichkeitsstufen"; pg_view[subthema]="ch.so.Laermemfindlichkeitsstufen"; pg_view[geom]="flaeche"
+string=$(declare -p pg_view)
+pg_views[laermempfindlichkeitsstufen_flaeche]=${string}
+
 pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="ch.so.Nutzungsplanung.NutzungsplanungGrundnutzung"; pg_view[geom]="flaeche"
 string=$(declare -p pg_view)
 pg_views[nutzungsplanung_grundnutzung_flaeche]=${string}
@@ -40,9 +44,13 @@ pg_view[thema]="WeiteresThema"; pg_view[subthema]="ch.so.Einzelschutz"; pg_view[
 string=$(declare -p pg_view)
 pg_views[weiteres_thema_einzelschutz_punkt]=${string}
 
-pg_view[thema]="Waldgrenzen"; pg_view[subthema]=""; pg_view[geom]="linie"
+pg_view[thema]="Waldgrenzen"; pg_view[subthema]="-"; pg_view[geom]="linie"
 string=$(declare -p pg_view)
 pg_views[waldgrenzen_linie]=${string}
+
+pg_view[thema]="Waldabstandslinien"; pg_view[subthema]="-"; pg_view[geom]="linie"
+string=$(declare -p pg_view)
+pg_views[waldabstandslinien_linie]=${string}
 
 declare -i ctr=1
 
@@ -210,8 +218,6 @@ grouped_json_documents AS
 SELECT
     geometrie.t_id AS t_id,
     geometrie.${pg_view[geom]}_lv95 AS geom,
-    --geometrie.rechtsstatus AS geometrie_rechtsstatus,
-    --geometrie.publiziertab AS geometrie_publiziertab,
     eigentumsbeschraenkung.aussage_de AS aussage,
     grouped_json_documents.dokumente AS dokumente,
     eigentumsbeschraenkung.thema,
@@ -233,9 +239,17 @@ FROM
     ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
 WHERE
     eigentumsbeschraenkung.thema = '${pg_view[thema]}'
-    AND
+EOM
+)
+      if [ ${pg_view[subthema]} != '-' ]; then
+        sql+=$(cat << EOM
+ AND
     eigentumsbeschraenkung.subthema = '${pg_view[subthema]}'
-    AND
+EOM
+)
+      fi
+      sql+=$(cat << EOM
+ AND
     geometrie.${pg_view[geom]}_lv95 IS NOT NULL
 ;
 -- spatial index
