@@ -51,7 +51,7 @@ ALTER TABLE stage.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche OWNER
 ALTER TABLE stage.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche OWNER TO :PG_WRITE_USER;
 ALTER TABLE stage.vw_oerebwms_nutzungsplanung_ueberlagernd_linie OWNER TO :PG_WRITE_USER;
 ALTER TABLE stage.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt OWNER TO :PG_WRITE_USER;
-ALTER TABLE live.vw_oerebwms_waldabstandslinien_linie OWNER TO :PG_WRITE_USER;
+ALTER TABLE stage.vw_oerebwms_waldabstandslinien_linie OWNER TO :PG_WRITE_USER;
 ALTER TABLE stage.vw_oerebwms_waldgrenzen_linie OWNER TO :PG_WRITE_USER;
 ALTER TABLE stage.vw_oerebwms_weiteres_thema_einzelschutz_flaeche OWNER TO :PG_WRITE_USER;
 ALTER TABLE stage.vw_oerebwms_weiteres_thema_einzelschutz_punkt OWNER TO :PG_WRITE_USER;
