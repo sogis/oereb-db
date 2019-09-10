@@ -938,7 +938,7 @@ CREATE INDEX in_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche_artcode
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'laermempfindlichkeitsstufen_flaeche' with thema 'Laermempfindlichkeitsstufen', subthema 'ch.so.Laermemfindlichkeitsstufen' and geometry 'flaeche'
+-- materialized view 'laermempfindlichkeitsstufen_flaeche' with thema 'Laermemfindlichkeitsstufen', subthema '-' and geometry 'flaeche'
 DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_laermempfindlichkeitsstufen_flaeche;
 CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_laermempfindlichkeitsstufen_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
@@ -1111,8 +1111,7 @@ FROM
     LEFT JOIN stage.oerbkrmvs_v1_1vorschriften_amt zustaendigestelle
     ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
 WHERE
-    eigentumsbeschraenkung.thema = 'Laermempfindlichkeitsstufen' AND
-    eigentumsbeschraenkung.subthema = 'ch.so.Laermemfindlichkeitsstufen' AND
+    eigentumsbeschraenkung.thema = 'Laermemfindlichkeitsstufen' AND
     geometrie.flaeche_lv95 IS NOT NULL
 ;
 -- spatial index
@@ -2996,7 +2995,7 @@ CREATE INDEX in_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche_artcode
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'laermempfindlichkeitsstufen_flaeche' with thema 'Laermempfindlichkeitsstufen', subthema 'ch.so.Laermemfindlichkeitsstufen' and geometry 'flaeche'
+-- materialized view 'laermempfindlichkeitsstufen_flaeche' with thema 'Laermemfindlichkeitsstufen', subthema '-' and geometry 'flaeche'
 DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_laermempfindlichkeitsstufen_flaeche;
 CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_laermempfindlichkeitsstufen_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
@@ -3169,8 +3168,7 @@ FROM
     LEFT JOIN live.oerbkrmvs_v1_1vorschriften_amt zustaendigestelle
     ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
 WHERE
-    eigentumsbeschraenkung.thema = 'Laermempfindlichkeitsstufen' AND
-    eigentumsbeschraenkung.subthema = 'ch.so.Laermemfindlichkeitsstufen' AND
+    eigentumsbeschraenkung.thema = 'Laermemfindlichkeitsstufen' AND
     geometrie.flaeche_lv95 IS NOT NULL
 ;
 -- spatial index

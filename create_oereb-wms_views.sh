@@ -6,9 +6,11 @@
 declare -a pg_schemas=("stage" "live")
 # bash 4 doesn't support nested associative arrays, so we need to fake them with string and eval
 # see also https://stackoverflow.com/questions/6149679/multidimensional-associative-arrays-in-bash
+
+# if subthema is empty, use "-"
 declare -A pg_views
 declare -A pg_view
-pg_view[thema]="Laermempfindlichkeitsstufen"; pg_view[subthema]="ch.so.Laermemfindlichkeitsstufen"; pg_view[geom]="flaeche"
+pg_view[thema]="Laermemfindlichkeitsstufen"; pg_view[subthema]="-"; pg_view[geom]="flaeche"
 string=$(declare -p pg_view)
 pg_views[laermempfindlichkeitsstufen_flaeche]=${string}
 
