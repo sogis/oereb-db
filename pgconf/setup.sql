@@ -7481,7 +7481,7 @@ CODE
   TID = ANY;
 END.
 
-','2019-09-10 15:22:22.366');
+','2019-09-11 15:38:26.616');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('PLZO-CH_LV95_1d_ili1.ili','1.0','PLZOCH1LV95D','
 TRANSFER INTERLIS1;
 
@@ -7704,7 +7704,7 @@ CODE
   TID = ANY;
 END.
 
-','2019-09-10 15:22:22.366');
+','2019-09-11 15:38:26.616');
 INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createMetaInfo','True');
 INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.arrayTrafo','coalesce');
 INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.nameOptimization','disable');
@@ -15156,7 +15156,7 @@ CODE
   TID = ANY;
 END.
 
-','2019-09-10 15:22:18.49');
+','2019-09-11 15:38:23.072');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('PLZO-CH_LV95_1d_ili1.ili','1.0','PLZOCH1LV95D','
 TRANSFER INTERLIS1;
 
@@ -15379,7 +15379,7 @@ CODE
   TID = ANY;
 END.
 
-','2019-09-10 15:22:18.49');
+','2019-09-11 15:38:23.072');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createMetaInfo','True');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.arrayTrafo','coalesce');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.nameOptimization','disable');
@@ -16957,7 +16957,7 @@ TYPE MODEL GeometryCHLV95_V1 (en)
 END GeometryCHLV95_V1.
 
 !! ########################################################################
-','2019-09-10 15:22:23.13');
+','2019-09-11 15:38:27.302');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREB_ExtractAnnex_V1_0.ili','2.3','OeREB_ExtractAnnex_V1_0{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1 CatalogueObjects_V1}','INTERLIS 2.3;
 
 /** Zusatzdaten für statischen OEREB-Auszug
@@ -17083,7 +17083,7 @@ VERSION "2019-09-02"  =
     
 
 END OeREB_ExtractAnnex_V1_0.
-','2019-09-10 15:22:23.13');
+','2019-09-11 15:38:27.302');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.ili','2.3','SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822{ GeometryCHLV95_V1 CHAdminCodes_V1}','INTERLIS 2.3;
 
 /** !!------------------------------------------------------------------------------
@@ -17217,7 +17217,7 @@ VERSION "2018-08-22"  =
   END Nachfuehrungskreise;
 
 END SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.
-','2019-09-10 15:22:23.13');
+','2019-09-11 15:38:27.302');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('Units-20120220.ili','2.3','Units','!! File Units.ili Release 2012-02-20
 
 INTERLIS 2.3;
@@ -17315,7 +17315,7 @@ CONTRACTED TYPE MODEL Units (en) AT "http://www.interlis.ch/models"
 
 END Units.
 
-','2019-09-10 15:22:23.13');
+','2019-09-11 15:38:27.302');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMvs_V1_1.ili','2.3','OeREBKRMvs_V1_1{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1}','INTERLIS 2.3;
 
 /** Basisdefinition für Erlasse (Rechtsvorschriften, Hinweise auf Gesetzliche Grundlagen)
@@ -17437,7 +17437,7 @@ VERSION "2016-08-15"  =
   END HinweiseGesetzlicheGrundlagen;
 
 END OeREBKRMvs_V1_1.
-','2019-09-10 15:22:23.13');
+','2019-09-11 15:38:27.302');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CoordSys-20151124.ili','2.3','CoordSys','!! File CoordSys.ili Release 2015-11-24
 
 INTERLIS 2.3;
@@ -17652,7 +17652,7 @@ REFSYSTEM MODEL CoordSys (en) AT "http://www.interlis.ch/models"
 
 END CoordSys.
 
-','2019-09-10 15:22:23.13');
+','2019-09-11 15:38:27.302');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMtrsfr_V1_1.ili','2.3','OeREBKRMtrsfr_V1_1{ GeometryCHLV95_V1 CHAdminCodes_V1 LocalisationCH_V1 GeometryCHLV03_V1 OeREBKRM_V1_1 OeREBKRMvs_V1_1}','INTERLIS 2.3;
 
 /** Schnittstelle zwischen zuständiger Stelle für die Geobasisdaten und Katasterorganisation des Kantons.
@@ -17836,7 +17836,7 @@ VERSION "2016-08-15"  =
   END Transferstruktur;
 
 END OeREBKRMtrsfr_V1_1.
-','2019-09-10 15:22:23.13');
+','2019-09-11 15:38:27.302');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part2_LOCALISATION_20110830.ili','2.3','InternationalCodes_V1 Localisation_V1{ InternationalCodes_V1} LocalisationCH_V1{ InternationalCodes_V1 Localisation_V1} Dictionaries_V1{ InternationalCodes_V1} DictionariesCH_V1{ InternationalCodes_V1 Dictionaries_V1}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -18008,7 +18008,7 @@ MODEL DictionariesCH_V1 (en)
 END DictionariesCH_V1.
 
 !! ########################################################################
-','2019-09-10 15:22:23.13');
+','2019-09-11 15:38:27.302');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRM_V1_1.ili','2.3','OeREBKRM_V1_1{ InternationalCodes_V1 LocalisationCH_V1 CatalogueObjects_V1}','INTERLIS 2.3;
 
 /** Basisdefinitionen für das OEREB-Katasterrahmenmodell
@@ -18172,7 +18172,7 @@ VERSION "2016-08-15"  =
   END CodelistenText;
 
 END OeREBKRM_V1_1.
-','2019-09-10 15:22:23.13');
+','2019-09-11 15:38:27.302');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part3_CATALOGUEOBJECTS_20110830.ili','2.3','CatalogueObjects_V1{ INTERLIS} CatalogueObjectTrees_V1{ INTERLIS CatalogueObjects_V1}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -18260,7 +18260,7 @@ MODEL CatalogueObjectTrees_V1 (en)
 END CatalogueObjectTrees_V1.
 
 !! ########################################################################
-','2019-09-10 15:22:23.13');
+','2019-09-11 15:38:27.302');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part4_ADMINISTRATIVEUNITS_20110830.ili','2.3','CHAdminCodes_V1 AdministrativeUnits_V1{ CHAdminCodes_V1 InternationalCodes_V1 Dictionaries_V1 Localisation_V1 INTERLIS} AdministrativeUnitsCH_V1{ CHAdminCodes_V1 InternationalCodes_V1 LocalisationCH_V1 AdministrativeUnits_V1 INTERLIS}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -18480,7 +18480,7 @@ MODEL AdministrativeUnitsCH_V1 (en)
 END AdministrativeUnitsCH_V1.
 
 !! ########################################################################
-','2019-09-10 15:22:23.13');
+','2019-09-11 15:38:27.302');
 -- INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createMetaInfo','True');
 -- INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.arrayTrafo','coalesce');
 -- INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.nameOptimization','disable');
@@ -20078,7 +20078,7 @@ TYPE MODEL GeometryCHLV95_V1 (en)
 END GeometryCHLV95_V1.
 
 !! ########################################################################
-','2019-09-10 15:22:21.591');
+','2019-09-11 15:38:25.964');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.ili','2.3','SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822{ GeometryCHLV95_V1 CHAdminCodes_V1}','INTERLIS 2.3;
 
 /** !!------------------------------------------------------------------------------
@@ -20212,7 +20212,7 @@ VERSION "2018-08-22"  =
   END Nachfuehrungskreise;
 
 END SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.
-','2019-09-10 15:22:21.591');
+','2019-09-11 15:38:25.964');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREB_ExtractAnnex_V1_0.ili','2.3','OeREB_ExtractAnnex_V1_0{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1 CatalogueObjects_V1}','INTERLIS 2.3;
 
 /** Zusatzdaten für statischen OEREB-Auszug
@@ -20338,7 +20338,7 @@ VERSION "2019-09-02"  =
     
 
 END OeREB_ExtractAnnex_V1_0.
-','2019-09-10 15:22:21.591');
+','2019-09-11 15:38:25.964');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('Units-20120220.ili','2.3','Units','!! File Units.ili Release 2012-02-20
 
 INTERLIS 2.3;
@@ -20436,7 +20436,7 @@ CONTRACTED TYPE MODEL Units (en) AT "http://www.interlis.ch/models"
 
 END Units.
 
-','2019-09-10 15:22:21.591');
+','2019-09-11 15:38:25.964');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMvs_V1_1.ili','2.3','OeREBKRMvs_V1_1{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1}','INTERLIS 2.3;
 
 /** Basisdefinition für Erlasse (Rechtsvorschriften, Hinweise auf Gesetzliche Grundlagen)
@@ -20558,7 +20558,7 @@ VERSION "2016-08-15"  =
   END HinweiseGesetzlicheGrundlagen;
 
 END OeREBKRMvs_V1_1.
-','2019-09-10 15:22:21.591');
+','2019-09-11 15:38:25.964');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CoordSys-20151124.ili','2.3','CoordSys','!! File CoordSys.ili Release 2015-11-24
 
 INTERLIS 2.3;
@@ -20773,7 +20773,7 @@ REFSYSTEM MODEL CoordSys (en) AT "http://www.interlis.ch/models"
 
 END CoordSys.
 
-','2019-09-10 15:22:21.591');
+','2019-09-11 15:38:25.964');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMtrsfr_V1_1.ili','2.3','OeREBKRMtrsfr_V1_1{ GeometryCHLV95_V1 CHAdminCodes_V1 LocalisationCH_V1 GeometryCHLV03_V1 OeREBKRM_V1_1 OeREBKRMvs_V1_1}','INTERLIS 2.3;
 
 /** Schnittstelle zwischen zuständiger Stelle für die Geobasisdaten und Katasterorganisation des Kantons.
@@ -20957,7 +20957,7 @@ VERSION "2016-08-15"  =
   END Transferstruktur;
 
 END OeREBKRMtrsfr_V1_1.
-','2019-09-10 15:22:21.591');
+','2019-09-11 15:38:25.964');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part2_LOCALISATION_20110830.ili','2.3','InternationalCodes_V1 Localisation_V1{ InternationalCodes_V1} LocalisationCH_V1{ InternationalCodes_V1 Localisation_V1} Dictionaries_V1{ InternationalCodes_V1} DictionariesCH_V1{ InternationalCodes_V1 Dictionaries_V1}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -21129,7 +21129,7 @@ MODEL DictionariesCH_V1 (en)
 END DictionariesCH_V1.
 
 !! ########################################################################
-','2019-09-10 15:22:21.591');
+','2019-09-11 15:38:25.964');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRM_V1_1.ili','2.3','OeREBKRM_V1_1{ InternationalCodes_V1 LocalisationCH_V1 CatalogueObjects_V1}','INTERLIS 2.3;
 
 /** Basisdefinitionen für das OEREB-Katasterrahmenmodell
@@ -21293,7 +21293,7 @@ VERSION "2016-08-15"  =
   END CodelistenText;
 
 END OeREBKRM_V1_1.
-','2019-09-10 15:22:21.591');
+','2019-09-11 15:38:25.964');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part3_CATALOGUEOBJECTS_20110830.ili','2.3','CatalogueObjects_V1{ INTERLIS} CatalogueObjectTrees_V1{ INTERLIS CatalogueObjects_V1}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -21381,7 +21381,7 @@ MODEL CatalogueObjectTrees_V1 (en)
 END CatalogueObjectTrees_V1.
 
 !! ########################################################################
-','2019-09-10 15:22:21.591');
+','2019-09-11 15:38:25.964');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part4_ADMINISTRATIVEUNITS_20110830.ili','2.3','CHAdminCodes_V1 AdministrativeUnits_V1{ CHAdminCodes_V1 InternationalCodes_V1 Dictionaries_V1 Localisation_V1 INTERLIS} AdministrativeUnitsCH_V1{ CHAdminCodes_V1 InternationalCodes_V1 LocalisationCH_V1 AdministrativeUnits_V1 INTERLIS}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -21601,7 +21601,7 @@ MODEL AdministrativeUnitsCH_V1 (en)
 END AdministrativeUnitsCH_V1.
 
 !! ########################################################################
-','2019-09-10 15:22:21.591');
+','2019-09-11 15:38:25.964');
 -- INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createMetaInfo','True');
 -- INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.arrayTrafo','coalesce');
 -- INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.nameOptimization','disable');
@@ -22210,6 +22210,378 @@ CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_punkt_geom
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_punkt_artcode
   ON stage.vw_oerebwms_weiteres_thema_einzelschutz_punkt
+  USING btree ( artcode );
+      
+-- -----------------------------------------------------------------------------
+-- materialized view 'grundwasserschutzzonen_flaeche' with thema 'Grundwasserschutzzonen', subthema '-' and geometry 'flaeche'
+DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_grundwasserschutzzonen_flaeche;
+CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_grundwasserschutzzonen_flaeche AS 
+WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
+(
+    SELECT 
+        ursprung, 
+        hinweis, 
+        ARRAY[ursprung] AS parents, 
+        ursprung AS last_ursprung, 
+        0 AS "depth" 
+    FROM 
+        stage.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente
+    WHERE
+        ursprung != hinweis
+
+    UNION ALL
+  
+    SELECT 
+        x.ursprung, 
+        x.hinweis, 
+        parents||t1.hinweis, 
+        t1.hinweis AS last_ursprung, 
+        x."depth" + 1
+    FROM 
+        x 
+        INNER JOIN stage.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente t1 
+        ON (last_ursprung = t1.ursprung)
+    WHERE 
+        t1.hinweis IS NOT NULL
+)
+,
+flattened_documents AS 
+(
+    SELECT 
+        DISTINCT ON (x.last_ursprung, x.ursprung)
+        x.ursprung AS top_level_dokument,
+        x.last_ursprung AS t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM 
+        x
+        LEFT JOIN stage.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        ON dokument.t_id = x.last_ursprung
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                stage.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN stage.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        last_ursprung NOT IN
+        (
+            SELECT 
+                DISTINCT ON (eigentumsbeschraenkung.t_id)
+                eigentumsbeschraenkung.t_id
+            FROM
+                stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+    UNION ALL
+    
+    -- Hinzufügen der direkt verlinkten Dokumente.
+    SELECT 
+        dokument.t_id AS top_level_dokument,
+        dokument.t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM
+        stage.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                stage.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN stage.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        dokument.t_id IN 
+        (
+            SELECT 
+                DISTINCT ON (hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument)
+                hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument
+            FROM
+                stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+)
+,
+-- remove duplicate documents with distinct first, then group them.
+json_documents AS 
+(
+    SELECT
+        DISTINCT ON (eigentumsbeschraenkung, flattened_documents.t_id)
+        hinweisvorschrift.eigentumsbeschraenkung,
+        json_strip_nulls(row_to_json(flattened_documents)) AS dokumente
+        
+    FROM  
+        flattened_documents
+        LEFT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+        ON hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument = flattened_documents.top_level_dokument
+    WHERE
+        eigentumsbeschraenkung IS NOT NULL
+)
+,
+grouped_json_documents AS
+(
+    SELECT
+        eigentumsbeschraenkung,
+        json_agg(dokumente) AS dokumente
+    FROM
+        json_documents
+    GROUP BY
+        eigentumsbeschraenkung
+)
+SELECT
+    geometrie.t_id AS t_id,
+    geometrie.flaeche_lv95 AS geom,
+    eigentumsbeschraenkung.aussage_de AS aussage,
+    grouped_json_documents.dokumente AS dokumente,
+    eigentumsbeschraenkung.thema,
+    eigentumsbeschraenkung.subthema AS sub_thema,
+    eigentumsbeschraenkung.weiteresthema AS weiteres_thema,
+    eigentumsbeschraenkung.rechtsstatus,
+    eigentumsbeschraenkung.publiziertab,
+    zustaendigestelle.aname_de AS zustaendige_stelle,
+    zustaendigestelle.amtimweb AS amt_im_web,
+    eigentumsbeschraenkung.artcode,
+    eigentumsbeschraenkung.artcodeliste AS artcode_liste
+FROM
+    stage.oerbkrmfr_v1_1transferstruktur_geometrie AS geometrie
+    LEFT JOIN stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+    ON eigentumsbeschraenkung.t_id = geometrie.eigentumsbeschraenkung
+    LEFT JOIN grouped_json_documents
+    ON grouped_json_documents.eigentumsbeschraenkung = eigentumsbeschraenkung.t_id
+    LEFT JOIN stage.oerbkrmvs_v1_1vorschriften_amt zustaendigestelle
+    ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
+WHERE
+    eigentumsbeschraenkung.thema = 'Grundwasserschutzzonen' AND
+    geometrie.flaeche_lv95 IS NOT NULL
+;
+-- spatial index
+CREATE INDEX in_oerebwms_grundwasserschutzzonen_flaeche_geom
+  ON stage.vw_oerebwms_grundwasserschutzzonen_flaeche
+  USING GIST ( geom );
+-- attribute index on artcode
+CREATE INDEX in_oerebwms_grundwasserschutzzonen_flaeche_artcode
+  ON stage.vw_oerebwms_grundwasserschutzzonen_flaeche
+  USING btree ( artcode );
+      
+-- -----------------------------------------------------------------------------
+-- materialized view 'belastete_standorte_flaeche' with thema 'Belastete Standorte', subthema '-' and geometry 'flaeche'
+DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_belastete_standorte_flaeche;
+CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_belastete_standorte_flaeche AS 
+WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
+(
+    SELECT 
+        ursprung, 
+        hinweis, 
+        ARRAY[ursprung] AS parents, 
+        ursprung AS last_ursprung, 
+        0 AS "depth" 
+    FROM 
+        stage.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente
+    WHERE
+        ursprung != hinweis
+
+    UNION ALL
+  
+    SELECT 
+        x.ursprung, 
+        x.hinweis, 
+        parents||t1.hinweis, 
+        t1.hinweis AS last_ursprung, 
+        x."depth" + 1
+    FROM 
+        x 
+        INNER JOIN stage.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente t1 
+        ON (last_ursprung = t1.ursprung)
+    WHERE 
+        t1.hinweis IS NOT NULL
+)
+,
+flattened_documents AS 
+(
+    SELECT 
+        DISTINCT ON (x.last_ursprung, x.ursprung)
+        x.ursprung AS top_level_dokument,
+        x.last_ursprung AS t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM 
+        x
+        LEFT JOIN stage.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        ON dokument.t_id = x.last_ursprung
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                stage.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN stage.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        last_ursprung NOT IN
+        (
+            SELECT 
+                DISTINCT ON (eigentumsbeschraenkung.t_id)
+                eigentumsbeschraenkung.t_id
+            FROM
+                stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+    UNION ALL
+    
+    -- Hinzufügen der direkt verlinkten Dokumente.
+    SELECT 
+        dokument.t_id AS top_level_dokument,
+        dokument.t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM
+        stage.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                stage.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN stage.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        dokument.t_id IN 
+        (
+            SELECT 
+                DISTINCT ON (hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument)
+                hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument
+            FROM
+                stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+)
+,
+-- remove duplicate documents with distinct first, then group them.
+json_documents AS 
+(
+    SELECT
+        DISTINCT ON (eigentumsbeschraenkung, flattened_documents.t_id)
+        hinweisvorschrift.eigentumsbeschraenkung,
+        json_strip_nulls(row_to_json(flattened_documents)) AS dokumente
+        
+    FROM  
+        flattened_documents
+        LEFT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+        ON hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument = flattened_documents.top_level_dokument
+    WHERE
+        eigentumsbeschraenkung IS NOT NULL
+)
+,
+grouped_json_documents AS
+(
+    SELECT
+        eigentumsbeschraenkung,
+        json_agg(dokumente) AS dokumente
+    FROM
+        json_documents
+    GROUP BY
+        eigentumsbeschraenkung
+)
+SELECT
+    geometrie.t_id AS t_id,
+    geometrie.flaeche_lv95 AS geom,
+    eigentumsbeschraenkung.aussage_de AS aussage,
+    grouped_json_documents.dokumente AS dokumente,
+    eigentumsbeschraenkung.thema,
+    eigentumsbeschraenkung.subthema AS sub_thema,
+    eigentumsbeschraenkung.weiteresthema AS weiteres_thema,
+    eigentumsbeschraenkung.rechtsstatus,
+    eigentumsbeschraenkung.publiziertab,
+    zustaendigestelle.aname_de AS zustaendige_stelle,
+    zustaendigestelle.amtimweb AS amt_im_web,
+    eigentumsbeschraenkung.artcode,
+    eigentumsbeschraenkung.artcodeliste AS artcode_liste
+FROM
+    stage.oerbkrmfr_v1_1transferstruktur_geometrie AS geometrie
+    LEFT JOIN stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+    ON eigentumsbeschraenkung.t_id = geometrie.eigentumsbeschraenkung
+    LEFT JOIN grouped_json_documents
+    ON grouped_json_documents.eigentumsbeschraenkung = eigentumsbeschraenkung.t_id
+    LEFT JOIN stage.oerbkrmvs_v1_1vorschriften_amt zustaendigestelle
+    ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
+WHERE
+    eigentumsbeschraenkung.thema = 'Belastete Standorte' AND
+    geometrie.flaeche_lv95 IS NOT NULL
+;
+-- spatial index
+CREATE INDEX in_oerebwms_belastete_standorte_flaeche_geom
+  ON stage.vw_oerebwms_belastete_standorte_flaeche
+  USING GIST ( geom );
+-- attribute index on artcode
+CREATE INDEX in_oerebwms_belastete_standorte_flaeche_artcode
+  ON stage.vw_oerebwms_belastete_standorte_flaeche
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
@@ -23704,6 +24076,192 @@ CREATE INDEX in_oerebwms_nutzungsplanung_grundnutzung_flaeche_geom
 CREATE INDEX in_oerebwms_nutzungsplanung_grundnutzung_flaeche_artcode
   ON stage.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche
   USING btree ( artcode );
+      
+-- -----------------------------------------------------------------------------
+-- materialized view 'grundwasserschutzareale_flaeche' with thema 'Grundwasserschutzareale', subthema '-' and geometry 'flaeche'
+DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_grundwasserschutzareale_flaeche;
+CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_grundwasserschutzareale_flaeche AS 
+WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
+(
+    SELECT 
+        ursprung, 
+        hinweis, 
+        ARRAY[ursprung] AS parents, 
+        ursprung AS last_ursprung, 
+        0 AS "depth" 
+    FROM 
+        stage.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente
+    WHERE
+        ursprung != hinweis
+
+    UNION ALL
+  
+    SELECT 
+        x.ursprung, 
+        x.hinweis, 
+        parents||t1.hinweis, 
+        t1.hinweis AS last_ursprung, 
+        x."depth" + 1
+    FROM 
+        x 
+        INNER JOIN stage.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente t1 
+        ON (last_ursprung = t1.ursprung)
+    WHERE 
+        t1.hinweis IS NOT NULL
+)
+,
+flattened_documents AS 
+(
+    SELECT 
+        DISTINCT ON (x.last_ursprung, x.ursprung)
+        x.ursprung AS top_level_dokument,
+        x.last_ursprung AS t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM 
+        x
+        LEFT JOIN stage.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        ON dokument.t_id = x.last_ursprung
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                stage.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN stage.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        last_ursprung NOT IN
+        (
+            SELECT 
+                DISTINCT ON (eigentumsbeschraenkung.t_id)
+                eigentumsbeschraenkung.t_id
+            FROM
+                stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+    UNION ALL
+    
+    -- Hinzufügen der direkt verlinkten Dokumente.
+    SELECT 
+        dokument.t_id AS top_level_dokument,
+        dokument.t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM
+        stage.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                stage.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN stage.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        dokument.t_id IN 
+        (
+            SELECT 
+                DISTINCT ON (hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument)
+                hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument
+            FROM
+                stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+)
+,
+-- remove duplicate documents with distinct first, then group them.
+json_documents AS 
+(
+    SELECT
+        DISTINCT ON (eigentumsbeschraenkung, flattened_documents.t_id)
+        hinweisvorschrift.eigentumsbeschraenkung,
+        json_strip_nulls(row_to_json(flattened_documents)) AS dokumente
+        
+    FROM  
+        flattened_documents
+        LEFT JOIN stage.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+        ON hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument = flattened_documents.top_level_dokument
+    WHERE
+        eigentumsbeschraenkung IS NOT NULL
+)
+,
+grouped_json_documents AS
+(
+    SELECT
+        eigentumsbeschraenkung,
+        json_agg(dokumente) AS dokumente
+    FROM
+        json_documents
+    GROUP BY
+        eigentumsbeschraenkung
+)
+SELECT
+    geometrie.t_id AS t_id,
+    geometrie.flaeche_lv95 AS geom,
+    eigentumsbeschraenkung.aussage_de AS aussage,
+    grouped_json_documents.dokumente AS dokumente,
+    eigentumsbeschraenkung.thema,
+    eigentumsbeschraenkung.subthema AS sub_thema,
+    eigentumsbeschraenkung.weiteresthema AS weiteres_thema,
+    eigentumsbeschraenkung.rechtsstatus,
+    eigentumsbeschraenkung.publiziertab,
+    zustaendigestelle.aname_de AS zustaendige_stelle,
+    zustaendigestelle.amtimweb AS amt_im_web,
+    eigentumsbeschraenkung.artcode,
+    eigentumsbeschraenkung.artcodeliste AS artcode_liste
+FROM
+    stage.oerbkrmfr_v1_1transferstruktur_geometrie AS geometrie
+    LEFT JOIN stage.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+    ON eigentumsbeschraenkung.t_id = geometrie.eigentumsbeschraenkung
+    LEFT JOIN grouped_json_documents
+    ON grouped_json_documents.eigentumsbeschraenkung = eigentumsbeschraenkung.t_id
+    LEFT JOIN stage.oerbkrmvs_v1_1vorschriften_amt zustaendigestelle
+    ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
+WHERE
+    eigentumsbeschraenkung.thema = 'Grundwasserschutzareale' AND
+    geometrie.flaeche_lv95 IS NOT NULL
+;
+-- spatial index
+CREATE INDEX in_oerebwms_grundwasserschutzareale_flaeche_geom
+  ON stage.vw_oerebwms_grundwasserschutzareale_flaeche
+  USING GIST ( geom );
+-- attribute index on artcode
+CREATE INDEX in_oerebwms_grundwasserschutzareale_flaeche_artcode
+  ON stage.vw_oerebwms_grundwasserschutzareale_flaeche
+  USING btree ( artcode );
 
 
 -- schema nr 2 is live
@@ -24267,6 +24825,378 @@ CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_punkt_geom
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_punkt_artcode
   ON live.vw_oerebwms_weiteres_thema_einzelschutz_punkt
+  USING btree ( artcode );
+      
+-- -----------------------------------------------------------------------------
+-- materialized view 'grundwasserschutzzonen_flaeche' with thema 'Grundwasserschutzzonen', subthema '-' and geometry 'flaeche'
+DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_grundwasserschutzzonen_flaeche;
+CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_grundwasserschutzzonen_flaeche AS 
+WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
+(
+    SELECT 
+        ursprung, 
+        hinweis, 
+        ARRAY[ursprung] AS parents, 
+        ursprung AS last_ursprung, 
+        0 AS "depth" 
+    FROM 
+        live.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente
+    WHERE
+        ursprung != hinweis
+
+    UNION ALL
+  
+    SELECT 
+        x.ursprung, 
+        x.hinweis, 
+        parents||t1.hinweis, 
+        t1.hinweis AS last_ursprung, 
+        x."depth" + 1
+    FROM 
+        x 
+        INNER JOIN live.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente t1 
+        ON (last_ursprung = t1.ursprung)
+    WHERE 
+        t1.hinweis IS NOT NULL
+)
+,
+flattened_documents AS 
+(
+    SELECT 
+        DISTINCT ON (x.last_ursprung, x.ursprung)
+        x.ursprung AS top_level_dokument,
+        x.last_ursprung AS t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM 
+        x
+        LEFT JOIN live.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        ON dokument.t_id = x.last_ursprung
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                live.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN live.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        last_ursprung NOT IN
+        (
+            SELECT 
+                DISTINCT ON (eigentumsbeschraenkung.t_id)
+                eigentumsbeschraenkung.t_id
+            FROM
+                live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+    UNION ALL
+    
+    -- Hinzufügen der direkt verlinkten Dokumente.
+    SELECT 
+        dokument.t_id AS top_level_dokument,
+        dokument.t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM
+        live.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                live.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN live.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        dokument.t_id IN 
+        (
+            SELECT 
+                DISTINCT ON (hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument)
+                hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument
+            FROM
+                live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+)
+,
+-- remove duplicate documents with distinct first, then group them.
+json_documents AS 
+(
+    SELECT
+        DISTINCT ON (eigentumsbeschraenkung, flattened_documents.t_id)
+        hinweisvorschrift.eigentumsbeschraenkung,
+        json_strip_nulls(row_to_json(flattened_documents)) AS dokumente
+        
+    FROM  
+        flattened_documents
+        LEFT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+        ON hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument = flattened_documents.top_level_dokument
+    WHERE
+        eigentumsbeschraenkung IS NOT NULL
+)
+,
+grouped_json_documents AS
+(
+    SELECT
+        eigentumsbeschraenkung,
+        json_agg(dokumente) AS dokumente
+    FROM
+        json_documents
+    GROUP BY
+        eigentumsbeschraenkung
+)
+SELECT
+    geometrie.t_id AS t_id,
+    geometrie.flaeche_lv95 AS geom,
+    eigentumsbeschraenkung.aussage_de AS aussage,
+    grouped_json_documents.dokumente AS dokumente,
+    eigentumsbeschraenkung.thema,
+    eigentumsbeschraenkung.subthema AS sub_thema,
+    eigentumsbeschraenkung.weiteresthema AS weiteres_thema,
+    eigentumsbeschraenkung.rechtsstatus,
+    eigentumsbeschraenkung.publiziertab,
+    zustaendigestelle.aname_de AS zustaendige_stelle,
+    zustaendigestelle.amtimweb AS amt_im_web,
+    eigentumsbeschraenkung.artcode,
+    eigentumsbeschraenkung.artcodeliste AS artcode_liste
+FROM
+    live.oerbkrmfr_v1_1transferstruktur_geometrie AS geometrie
+    LEFT JOIN live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+    ON eigentumsbeschraenkung.t_id = geometrie.eigentumsbeschraenkung
+    LEFT JOIN grouped_json_documents
+    ON grouped_json_documents.eigentumsbeschraenkung = eigentumsbeschraenkung.t_id
+    LEFT JOIN live.oerbkrmvs_v1_1vorschriften_amt zustaendigestelle
+    ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
+WHERE
+    eigentumsbeschraenkung.thema = 'Grundwasserschutzzonen' AND
+    geometrie.flaeche_lv95 IS NOT NULL
+;
+-- spatial index
+CREATE INDEX in_oerebwms_grundwasserschutzzonen_flaeche_geom
+  ON live.vw_oerebwms_grundwasserschutzzonen_flaeche
+  USING GIST ( geom );
+-- attribute index on artcode
+CREATE INDEX in_oerebwms_grundwasserschutzzonen_flaeche_artcode
+  ON live.vw_oerebwms_grundwasserschutzzonen_flaeche
+  USING btree ( artcode );
+      
+-- -----------------------------------------------------------------------------
+-- materialized view 'belastete_standorte_flaeche' with thema 'Belastete Standorte', subthema '-' and geometry 'flaeche'
+DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_belastete_standorte_flaeche;
+CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_belastete_standorte_flaeche AS 
+WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
+(
+    SELECT 
+        ursprung, 
+        hinweis, 
+        ARRAY[ursprung] AS parents, 
+        ursprung AS last_ursprung, 
+        0 AS "depth" 
+    FROM 
+        live.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente
+    WHERE
+        ursprung != hinweis
+
+    UNION ALL
+  
+    SELECT 
+        x.ursprung, 
+        x.hinweis, 
+        parents||t1.hinweis, 
+        t1.hinweis AS last_ursprung, 
+        x."depth" + 1
+    FROM 
+        x 
+        INNER JOIN live.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente t1 
+        ON (last_ursprung = t1.ursprung)
+    WHERE 
+        t1.hinweis IS NOT NULL
+)
+,
+flattened_documents AS 
+(
+    SELECT 
+        DISTINCT ON (x.last_ursprung, x.ursprung)
+        x.ursprung AS top_level_dokument,
+        x.last_ursprung AS t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM 
+        x
+        LEFT JOIN live.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        ON dokument.t_id = x.last_ursprung
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                live.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN live.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        last_ursprung NOT IN
+        (
+            SELECT 
+                DISTINCT ON (eigentumsbeschraenkung.t_id)
+                eigentumsbeschraenkung.t_id
+            FROM
+                live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+    UNION ALL
+    
+    -- Hinzufügen der direkt verlinkten Dokumente.
+    SELECT 
+        dokument.t_id AS top_level_dokument,
+        dokument.t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM
+        live.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                live.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN live.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        dokument.t_id IN 
+        (
+            SELECT 
+                DISTINCT ON (hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument)
+                hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument
+            FROM
+                live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+)
+,
+-- remove duplicate documents with distinct first, then group them.
+json_documents AS 
+(
+    SELECT
+        DISTINCT ON (eigentumsbeschraenkung, flattened_documents.t_id)
+        hinweisvorschrift.eigentumsbeschraenkung,
+        json_strip_nulls(row_to_json(flattened_documents)) AS dokumente
+        
+    FROM  
+        flattened_documents
+        LEFT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+        ON hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument = flattened_documents.top_level_dokument
+    WHERE
+        eigentumsbeschraenkung IS NOT NULL
+)
+,
+grouped_json_documents AS
+(
+    SELECT
+        eigentumsbeschraenkung,
+        json_agg(dokumente) AS dokumente
+    FROM
+        json_documents
+    GROUP BY
+        eigentumsbeschraenkung
+)
+SELECT
+    geometrie.t_id AS t_id,
+    geometrie.flaeche_lv95 AS geom,
+    eigentumsbeschraenkung.aussage_de AS aussage,
+    grouped_json_documents.dokumente AS dokumente,
+    eigentumsbeschraenkung.thema,
+    eigentumsbeschraenkung.subthema AS sub_thema,
+    eigentumsbeschraenkung.weiteresthema AS weiteres_thema,
+    eigentumsbeschraenkung.rechtsstatus,
+    eigentumsbeschraenkung.publiziertab,
+    zustaendigestelle.aname_de AS zustaendige_stelle,
+    zustaendigestelle.amtimweb AS amt_im_web,
+    eigentumsbeschraenkung.artcode,
+    eigentumsbeschraenkung.artcodeliste AS artcode_liste
+FROM
+    live.oerbkrmfr_v1_1transferstruktur_geometrie AS geometrie
+    LEFT JOIN live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+    ON eigentumsbeschraenkung.t_id = geometrie.eigentumsbeschraenkung
+    LEFT JOIN grouped_json_documents
+    ON grouped_json_documents.eigentumsbeschraenkung = eigentumsbeschraenkung.t_id
+    LEFT JOIN live.oerbkrmvs_v1_1vorschriften_amt zustaendigestelle
+    ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
+WHERE
+    eigentumsbeschraenkung.thema = 'Belastete Standorte' AND
+    geometrie.flaeche_lv95 IS NOT NULL
+;
+-- spatial index
+CREATE INDEX in_oerebwms_belastete_standorte_flaeche_geom
+  ON live.vw_oerebwms_belastete_standorte_flaeche
+  USING GIST ( geom );
+-- attribute index on artcode
+CREATE INDEX in_oerebwms_belastete_standorte_flaeche_artcode
+  ON live.vw_oerebwms_belastete_standorte_flaeche
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
@@ -25760,5 +26690,191 @@ CREATE INDEX in_oerebwms_nutzungsplanung_grundnutzung_flaeche_geom
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_nutzungsplanung_grundnutzung_flaeche_artcode
   ON live.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche
+  USING btree ( artcode );
+      
+-- -----------------------------------------------------------------------------
+-- materialized view 'grundwasserschutzareale_flaeche' with thema 'Grundwasserschutzareale', subthema '-' and geometry 'flaeche'
+DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_grundwasserschutzareale_flaeche;
+CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_grundwasserschutzareale_flaeche AS 
+WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
+(
+    SELECT 
+        ursprung, 
+        hinweis, 
+        ARRAY[ursprung] AS parents, 
+        ursprung AS last_ursprung, 
+        0 AS "depth" 
+    FROM 
+        live.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente
+    WHERE
+        ursprung != hinweis
+
+    UNION ALL
+  
+    SELECT 
+        x.ursprung, 
+        x.hinweis, 
+        parents||t1.hinweis, 
+        t1.hinweis AS last_ursprung, 
+        x."depth" + 1
+    FROM 
+        x 
+        INNER JOIN live.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente t1 
+        ON (last_ursprung = t1.ursprung)
+    WHERE 
+        t1.hinweis IS NOT NULL
+)
+,
+flattened_documents AS 
+(
+    SELECT 
+        DISTINCT ON (x.last_ursprung, x.ursprung)
+        x.ursprung AS top_level_dokument,
+        x.last_ursprung AS t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM 
+        x
+        LEFT JOIN live.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        ON dokument.t_id = x.last_ursprung
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                live.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN live.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        last_ursprung NOT IN
+        (
+            SELECT 
+                DISTINCT ON (eigentumsbeschraenkung.t_id)
+                eigentumsbeschraenkung.t_id
+            FROM
+                live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+    UNION ALL
+    
+    -- Hinzufügen der direkt verlinkten Dokumente.
+    SELECT 
+        dokument.t_id AS top_level_dokument,
+        dokument.t_id,
+        dokument.t_ili_tid AS t_ili_tid,  
+        dokument.t_type AS t_type,
+        dokument.titel_de AS titel,
+        dokument.offiziellertitel_de AS offiziellertitel,
+        dokument.abkuerzung_de AS abkuerzung,
+        dokument.offiziellenr AS offiziellenr,
+        dokument.kanton AS kanton,
+        dokument.gemeinde AS gemeinde,
+        dokument.rechtsstatus AS rechtsstatus,
+        dokument.publiziertab AS publiziertab,
+        url.textimweb AS textimweb
+    FROM
+        live.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        LEFT JOIN 
+        (
+            SELECT
+                atext AS textimweb,
+                oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
+                
+            FROM
+                live.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN live.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
+            WHERE
+                localiseduri.alanguage = 'de'
+        ) AS url
+        ON url.dokument_t_id = dokument.t_id
+    WHERE
+        dokument.t_id IN 
+        (
+            SELECT 
+                DISTINCT ON (hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument)
+                hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument
+            FROM
+                live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
+        )
+)
+,
+-- remove duplicate documents with distinct first, then group them.
+json_documents AS 
+(
+    SELECT
+        DISTINCT ON (eigentumsbeschraenkung, flattened_documents.t_id)
+        hinweisvorschrift.eigentumsbeschraenkung,
+        json_strip_nulls(row_to_json(flattened_documents)) AS dokumente
+        
+    FROM  
+        flattened_documents
+        LEFT JOIN live.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+        ON hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument = flattened_documents.top_level_dokument
+    WHERE
+        eigentumsbeschraenkung IS NOT NULL
+)
+,
+grouped_json_documents AS
+(
+    SELECT
+        eigentumsbeschraenkung,
+        json_agg(dokumente) AS dokumente
+    FROM
+        json_documents
+    GROUP BY
+        eigentumsbeschraenkung
+)
+SELECT
+    geometrie.t_id AS t_id,
+    geometrie.flaeche_lv95 AS geom,
+    eigentumsbeschraenkung.aussage_de AS aussage,
+    grouped_json_documents.dokumente AS dokumente,
+    eigentumsbeschraenkung.thema,
+    eigentumsbeschraenkung.subthema AS sub_thema,
+    eigentumsbeschraenkung.weiteresthema AS weiteres_thema,
+    eigentumsbeschraenkung.rechtsstatus,
+    eigentumsbeschraenkung.publiziertab,
+    zustaendigestelle.aname_de AS zustaendige_stelle,
+    zustaendigestelle.amtimweb AS amt_im_web,
+    eigentumsbeschraenkung.artcode,
+    eigentumsbeschraenkung.artcodeliste AS artcode_liste
+FROM
+    live.oerbkrmfr_v1_1transferstruktur_geometrie AS geometrie
+    LEFT JOIN live.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+    ON eigentumsbeschraenkung.t_id = geometrie.eigentumsbeschraenkung
+    LEFT JOIN grouped_json_documents
+    ON grouped_json_documents.eigentumsbeschraenkung = eigentumsbeschraenkung.t_id
+    LEFT JOIN live.oerbkrmvs_v1_1vorschriften_amt zustaendigestelle
+    ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
+WHERE
+    eigentumsbeschraenkung.thema = 'Grundwasserschutzareale' AND
+    geometrie.flaeche_lv95 IS NOT NULL
+;
+-- spatial index
+CREATE INDEX in_oerebwms_grundwasserschutzareale_flaeche_geom
+  ON live.vw_oerebwms_grundwasserschutzareale_flaeche
+  USING GIST ( geom );
+-- attribute index on artcode
+CREATE INDEX in_oerebwms_grundwasserschutzareale_flaeche_artcode
+  ON live.vw_oerebwms_grundwasserschutzareale_flaeche
   USING btree ( artcode );
 COMMIT;

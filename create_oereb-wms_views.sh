@@ -10,6 +10,18 @@ declare -a pg_schemas=("stage" "live")
 # if subthema is empty, use "-"
 declare -A pg_views
 declare -A pg_view
+pg_view[thema]="Belastete Standorte"; pg_view[subthema]="-"; pg_view[geom]="flaeche"
+string=$(declare -p pg_view)
+pg_views[belastete_standorte_flaeche]=${string}
+
+pg_view[thema]="Grundwasserschutzareale"; pg_view[subthema]="-"; pg_view[geom]="flaeche"
+string=$(declare -p pg_view)
+pg_views[grundwasserschutzareale_flaeche]=${string}
+
+pg_view[thema]="Grundwasserschutzzonen"; pg_view[subthema]="-"; pg_view[geom]="flaeche"
+string=$(declare -p pg_view)
+pg_views[grundwasserschutzzonen_flaeche]=${string}
+
 pg_view[thema]="Laermemfindlichkeitsstufen"; pg_view[subthema]="-"; pg_view[geom]="flaeche"
 string=$(declare -p pg_view)
 pg_views[laermempfindlichkeitsstufen_flaeche]=${string}
