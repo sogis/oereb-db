@@ -7424,7 +7424,7 @@ CODE
   TID = ANY;
 END.
 
-','2019-09-11 15:38:23.072');
+','2019-09-13 08:45:00.972');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('PLZO-CH_LV95_1d_ili1.ili','1.0','PLZOCH1LV95D','
 TRANSFER INTERLIS1;
 
@@ -7647,7 +7647,7 @@ CODE
   TID = ANY;
 END.
 
-','2019-09-11 15:38:23.072');
+','2019-09-13 08:45:00.972');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createMetaInfo','True');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.arrayTrafo','coalesce');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.nameOptimization','disable');

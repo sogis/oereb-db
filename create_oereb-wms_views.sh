@@ -26,35 +26,35 @@ pg_view[thema]="Laermemfindlichkeitsstufen"; pg_view[subthema]="-"; pg_view[geom
 string=$(declare -p pg_view)
 pg_views[laermempfindlichkeitsstufen_flaeche]=${string}
 
-pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="ch.so.Nutzungsplanung.NutzungsplanungGrundnutzung"; pg_view[geom]="flaeche"
-string=$(declare -p pg_view)
-pg_views[nutzungsplanung_grundnutzung_flaeche]=${string}
-
-pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="ch.so.Nutzungsplanung.NutzungsplanungUeberlagernd"; pg_view[geom]="flaeche"
-string=$(declare -p pg_view)
-pg_views[nutzungsplanung_ueberlagernd_flaeche]=${string}
-
-pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="ch.so.Nutzungsplanung.NutzungsplanungUeberlagernd"; pg_view[geom]="linie"
-string=$(declare -p pg_view)
-pg_views[nutzungsplanung_ueberlagernd_linie]=${string}
-
-pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="ch.so.Nutzungsplanung.NutzungsplanungUeberlagernd"; pg_view[geom]="punkt"
-string=$(declare -p pg_view)
-pg_views[nutzungsplanung_ueberlagernd_punkt]=${string}
-
-pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="ch.so.Nutzungsplanung.NutzungsplanungSondernutzungsplaene"; pg_view[geom]="flaeche"
-string=$(declare -p pg_view)
-pg_views[nutzungsplanung_sondernutzungsplaene_flaeche]=${string}
-
-pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="ch.so.Nutzungsplanung.Baulinien"; pg_view[geom]="linie"
+pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="ch.SO.Baulinien"; pg_view[geom]="linie"
 string=$(declare -p pg_view)
 pg_views[nutzungsplanung_baulinien_linie]=${string}
 
-pg_view[thema]="WeiteresThema"; pg_view[subthema]="ch.so.Einzelschutz"; pg_view[geom]="flaeche"
+pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="ch.SO.NutzungsplanungGrundnutzung"; pg_view[geom]="flaeche"
+string=$(declare -p pg_view)
+pg_views[nutzungsplanung_grundnutzung_flaeche]=${string}
+
+pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="ch.SO.NutzungsplanungSondernutzungsplaene"; pg_view[geom]="flaeche"
+string=$(declare -p pg_view)
+pg_views[nutzungsplanung_sondernutzungsplaene_flaeche]=${string}
+
+pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="ch.SO.NutzungsplanungUeberlagernd"; pg_view[geom]="flaeche"
+string=$(declare -p pg_view)
+pg_views[nutzungsplanung_ueberlagernd_flaeche]=${string}
+
+pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="ch.SO.NutzungsplanungUeberlagernd"; pg_view[geom]="linie"
+string=$(declare -p pg_view)
+pg_views[nutzungsplanung_ueberlagernd_linie]=${string}
+
+pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="ch.SO.NutzungsplanungUeberlagernd"; pg_view[geom]="punkt"
+string=$(declare -p pg_view)
+pg_views[nutzungsplanung_ueberlagernd_punkt]=${string}
+
+pg_view[thema]="WeiteresThema"; pg_view[subthema]="ch.SO.Einzelschutz"; pg_view[geom]="flaeche"
 string=$(declare -p pg_view)
 pg_views[weiteres_thema_einzelschutz_flaeche]=${string}
 
-pg_view[thema]="WeiteresThema"; pg_view[subthema]="ch.so.Einzelschutz"; pg_view[geom]="punkt"
+pg_view[thema]="WeiteresThema"; pg_view[subthema]="ch.SO.Einzelschutz"; pg_view[geom]="punkt"
 string=$(declare -p pg_view)
 pg_views[weiteres_thema_einzelschutz_punkt]=${string}
 

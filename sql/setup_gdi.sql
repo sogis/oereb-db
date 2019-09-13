@@ -7427,7 +7427,7 @@ CODE
   TID = ANY;
 END.
 
-','2019-09-11 15:38:26.616');
+','2019-09-13 08:45:04.777');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('PLZO-CH_LV95_1d_ili1.ili','1.0','PLZOCH1LV95D','
 TRANSFER INTERLIS1;
 
@@ -7650,7 +7650,7 @@ CODE
   TID = ANY;
 END.
 
-','2019-09-11 15:38:26.616');
+','2019-09-13 08:45:04.777');
 INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createMetaInfo','True');
 INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.arrayTrafo','coalesce');
 INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.nameOptimization','disable');
@@ -15102,7 +15102,7 @@ CODE
   TID = ANY;
 END.
 
-','2019-09-11 15:38:23.072');
+','2019-09-13 08:45:00.972');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('PLZO-CH_LV95_1d_ili1.ili','1.0','PLZOCH1LV95D','
 TRANSFER INTERLIS1;
 
@@ -15325,7 +15325,7 @@ CODE
   TID = ANY;
 END.
 
-','2019-09-11 15:38:23.072');
+','2019-09-13 08:45:00.972');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createMetaInfo','True');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.arrayTrafo','coalesce');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.nameOptimization','disable');
@@ -16903,7 +16903,7 @@ TYPE MODEL GeometryCHLV95_V1 (en)
 END GeometryCHLV95_V1.
 
 !! ########################################################################
-','2019-09-11 15:38:27.302');
+','2019-09-13 08:45:06.202');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREB_ExtractAnnex_V1_0.ili','2.3','OeREB_ExtractAnnex_V1_0{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1 CatalogueObjects_V1}','INTERLIS 2.3;
 
 /** Zusatzdaten für statischen OEREB-Auszug
@@ -17029,7 +17029,7 @@ VERSION "2019-09-02"  =
     
 
 END OeREB_ExtractAnnex_V1_0.
-','2019-09-11 15:38:27.302');
+','2019-09-13 08:45:06.202');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.ili','2.3','SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822{ GeometryCHLV95_V1 CHAdminCodes_V1}','INTERLIS 2.3;
 
 /** !!------------------------------------------------------------------------------
@@ -17163,7 +17163,7 @@ VERSION "2018-08-22"  =
   END Nachfuehrungskreise;
 
 END SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.
-','2019-09-11 15:38:27.302');
+','2019-09-13 08:45:06.202');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('Units-20120220.ili','2.3','Units','!! File Units.ili Release 2012-02-20
 
 INTERLIS 2.3;
@@ -17261,7 +17261,7 @@ CONTRACTED TYPE MODEL Units (en) AT "http://www.interlis.ch/models"
 
 END Units.
 
-','2019-09-11 15:38:27.302');
+','2019-09-13 08:45:06.202');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMvs_V1_1.ili','2.3','OeREBKRMvs_V1_1{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1}','INTERLIS 2.3;
 
 /** Basisdefinition für Erlasse (Rechtsvorschriften, Hinweise auf Gesetzliche Grundlagen)
@@ -17383,7 +17383,7 @@ VERSION "2016-08-15"  =
   END HinweiseGesetzlicheGrundlagen;
 
 END OeREBKRMvs_V1_1.
-','2019-09-11 15:38:27.302');
+','2019-09-13 08:45:06.202');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CoordSys-20151124.ili','2.3','CoordSys','!! File CoordSys.ili Release 2015-11-24
 
 INTERLIS 2.3;
@@ -17598,7 +17598,7 @@ REFSYSTEM MODEL CoordSys (en) AT "http://www.interlis.ch/models"
 
 END CoordSys.
 
-','2019-09-11 15:38:27.302');
+','2019-09-13 08:45:06.202');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMtrsfr_V1_1.ili','2.3','OeREBKRMtrsfr_V1_1{ GeometryCHLV95_V1 CHAdminCodes_V1 LocalisationCH_V1 GeometryCHLV03_V1 OeREBKRM_V1_1 OeREBKRMvs_V1_1}','INTERLIS 2.3;
 
 /** Schnittstelle zwischen zuständiger Stelle für die Geobasisdaten und Katasterorganisation des Kantons.
@@ -17782,7 +17782,7 @@ VERSION "2016-08-15"  =
   END Transferstruktur;
 
 END OeREBKRMtrsfr_V1_1.
-','2019-09-11 15:38:27.302');
+','2019-09-13 08:45:06.202');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part2_LOCALISATION_20110830.ili','2.3','InternationalCodes_V1 Localisation_V1{ InternationalCodes_V1} LocalisationCH_V1{ InternationalCodes_V1 Localisation_V1} Dictionaries_V1{ InternationalCodes_V1} DictionariesCH_V1{ InternationalCodes_V1 Dictionaries_V1}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -17954,7 +17954,7 @@ MODEL DictionariesCH_V1 (en)
 END DictionariesCH_V1.
 
 !! ########################################################################
-','2019-09-11 15:38:27.302');
+','2019-09-13 08:45:06.202');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRM_V1_1.ili','2.3','OeREBKRM_V1_1{ InternationalCodes_V1 LocalisationCH_V1 CatalogueObjects_V1}','INTERLIS 2.3;
 
 /** Basisdefinitionen für das OEREB-Katasterrahmenmodell
@@ -18118,7 +18118,7 @@ VERSION "2016-08-15"  =
   END CodelistenText;
 
 END OeREBKRM_V1_1.
-','2019-09-11 15:38:27.302');
+','2019-09-13 08:45:06.202');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part3_CATALOGUEOBJECTS_20110830.ili','2.3','CatalogueObjects_V1{ INTERLIS} CatalogueObjectTrees_V1{ INTERLIS CatalogueObjects_V1}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -18206,7 +18206,7 @@ MODEL CatalogueObjectTrees_V1 (en)
 END CatalogueObjectTrees_V1.
 
 !! ########################################################################
-','2019-09-11 15:38:27.302');
+','2019-09-13 08:45:06.202');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part4_ADMINISTRATIVEUNITS_20110830.ili','2.3','CHAdminCodes_V1 AdministrativeUnits_V1{ CHAdminCodes_V1 InternationalCodes_V1 Dictionaries_V1 Localisation_V1 INTERLIS} AdministrativeUnitsCH_V1{ CHAdminCodes_V1 InternationalCodes_V1 LocalisationCH_V1 AdministrativeUnits_V1 INTERLIS}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -18426,7 +18426,7 @@ MODEL AdministrativeUnitsCH_V1 (en)
 END AdministrativeUnitsCH_V1.
 
 !! ########################################################################
-','2019-09-11 15:38:27.302');
+','2019-09-13 08:45:06.202');
 -- INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createMetaInfo','True');
 -- INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.arrayTrafo','coalesce');
 -- INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.nameOptimization','disable');
@@ -20024,7 +20024,7 @@ TYPE MODEL GeometryCHLV95_V1 (en)
 END GeometryCHLV95_V1.
 
 !! ########################################################################
-','2019-09-11 15:38:25.964');
+','2019-09-13 08:45:03.971');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.ili','2.3','SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822{ GeometryCHLV95_V1 CHAdminCodes_V1}','INTERLIS 2.3;
 
 /** !!------------------------------------------------------------------------------
@@ -20158,7 +20158,7 @@ VERSION "2018-08-22"  =
   END Nachfuehrungskreise;
 
 END SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.
-','2019-09-11 15:38:25.964');
+','2019-09-13 08:45:03.971');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREB_ExtractAnnex_V1_0.ili','2.3','OeREB_ExtractAnnex_V1_0{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1 CatalogueObjects_V1}','INTERLIS 2.3;
 
 /** Zusatzdaten für statischen OEREB-Auszug
@@ -20284,7 +20284,7 @@ VERSION "2019-09-02"  =
     
 
 END OeREB_ExtractAnnex_V1_0.
-','2019-09-11 15:38:25.964');
+','2019-09-13 08:45:03.971');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('Units-20120220.ili','2.3','Units','!! File Units.ili Release 2012-02-20
 
 INTERLIS 2.3;
@@ -20382,7 +20382,7 @@ CONTRACTED TYPE MODEL Units (en) AT "http://www.interlis.ch/models"
 
 END Units.
 
-','2019-09-11 15:38:25.964');
+','2019-09-13 08:45:03.971');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMvs_V1_1.ili','2.3','OeREBKRMvs_V1_1{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1}','INTERLIS 2.3;
 
 /** Basisdefinition für Erlasse (Rechtsvorschriften, Hinweise auf Gesetzliche Grundlagen)
@@ -20504,7 +20504,7 @@ VERSION "2016-08-15"  =
   END HinweiseGesetzlicheGrundlagen;
 
 END OeREBKRMvs_V1_1.
-','2019-09-11 15:38:25.964');
+','2019-09-13 08:45:03.971');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CoordSys-20151124.ili','2.3','CoordSys','!! File CoordSys.ili Release 2015-11-24
 
 INTERLIS 2.3;
@@ -20719,7 +20719,7 @@ REFSYSTEM MODEL CoordSys (en) AT "http://www.interlis.ch/models"
 
 END CoordSys.
 
-','2019-09-11 15:38:25.964');
+','2019-09-13 08:45:03.971');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMtrsfr_V1_1.ili','2.3','OeREBKRMtrsfr_V1_1{ GeometryCHLV95_V1 CHAdminCodes_V1 LocalisationCH_V1 GeometryCHLV03_V1 OeREBKRM_V1_1 OeREBKRMvs_V1_1}','INTERLIS 2.3;
 
 /** Schnittstelle zwischen zuständiger Stelle für die Geobasisdaten und Katasterorganisation des Kantons.
@@ -20903,7 +20903,7 @@ VERSION "2016-08-15"  =
   END Transferstruktur;
 
 END OeREBKRMtrsfr_V1_1.
-','2019-09-11 15:38:25.964');
+','2019-09-13 08:45:03.971');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part2_LOCALISATION_20110830.ili','2.3','InternationalCodes_V1 Localisation_V1{ InternationalCodes_V1} LocalisationCH_V1{ InternationalCodes_V1 Localisation_V1} Dictionaries_V1{ InternationalCodes_V1} DictionariesCH_V1{ InternationalCodes_V1 Dictionaries_V1}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -21075,7 +21075,7 @@ MODEL DictionariesCH_V1 (en)
 END DictionariesCH_V1.
 
 !! ########################################################################
-','2019-09-11 15:38:25.964');
+','2019-09-13 08:45:03.971');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRM_V1_1.ili','2.3','OeREBKRM_V1_1{ InternationalCodes_V1 LocalisationCH_V1 CatalogueObjects_V1}','INTERLIS 2.3;
 
 /** Basisdefinitionen für das OEREB-Katasterrahmenmodell
@@ -21239,7 +21239,7 @@ VERSION "2016-08-15"  =
   END CodelistenText;
 
 END OeREBKRM_V1_1.
-','2019-09-11 15:38:25.964');
+','2019-09-13 08:45:03.971');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part3_CATALOGUEOBJECTS_20110830.ili','2.3','CatalogueObjects_V1{ INTERLIS} CatalogueObjectTrees_V1{ INTERLIS CatalogueObjects_V1}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -21327,7 +21327,7 @@ MODEL CatalogueObjectTrees_V1 (en)
 END CatalogueObjectTrees_V1.
 
 !! ########################################################################
-','2019-09-11 15:38:25.964');
+','2019-09-13 08:45:03.971');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part4_ADMINISTRATIVEUNITS_20110830.ili','2.3','CHAdminCodes_V1 AdministrativeUnits_V1{ CHAdminCodes_V1 InternationalCodes_V1 Dictionaries_V1 Localisation_V1 INTERLIS} AdministrativeUnitsCH_V1{ CHAdminCodes_V1 InternationalCodes_V1 LocalisationCH_V1 AdministrativeUnits_V1 INTERLIS}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -21547,7 +21547,7 @@ MODEL AdministrativeUnitsCH_V1 (en)
 END AdministrativeUnitsCH_V1.
 
 !! ########################################################################
-','2019-09-11 15:38:25.964');
+','2019-09-13 08:45:03.971');
 -- INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createMetaInfo','True');
 -- INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.arrayTrafo','coalesce');
 -- INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.nameOptimization','disable');
@@ -21598,7 +21598,7 @@ INSERT INTO stage.T_ILI2DB_META_ATTRS (ilielement,attr_name,attr_value) VALUES (
 -- schema nr 1 is stage
 ---------------------------      
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_ueberlagernd_linie' with thema 'Nutzungsplanung', subthema 'ch.so.Nutzungsplanung.NutzungsplanungUeberlagernd' and geometry 'linie'
+-- materialized view 'nutzungsplanung_ueberlagernd_linie' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungUeberlagernd' and geometry 'linie'
 DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_linie;
 CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_linie AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
@@ -21772,7 +21772,7 @@ FROM
     ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
 WHERE
     eigentumsbeschraenkung.thema = 'Nutzungsplanung' AND
-    eigentumsbeschraenkung.subthema = 'ch.so.Nutzungsplanung.NutzungsplanungUeberlagernd' AND
+    eigentumsbeschraenkung.subthema = 'ch.SO.NutzungsplanungUeberlagernd' AND
     geometrie.linie_lv95 IS NOT NULL
 ;
 -- spatial index
@@ -21785,7 +21785,7 @@ CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_linie_artcode
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'weiteres_thema_einzelschutz_flaeche' with thema 'WeiteresThema', subthema 'ch.so.Einzelschutz' and geometry 'flaeche'
+-- materialized view 'weiteres_thema_einzelschutz_flaeche' with thema 'WeiteresThema', subthema 'ch.SO.Einzelschutz' and geometry 'flaeche'
 DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_weiteres_thema_einzelschutz_flaeche;
 CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_weiteres_thema_einzelschutz_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
@@ -21959,7 +21959,7 @@ FROM
     ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
 WHERE
     eigentumsbeschraenkung.thema = 'WeiteresThema' AND
-    eigentumsbeschraenkung.subthema = 'ch.so.Einzelschutz' AND
+    eigentumsbeschraenkung.subthema = 'ch.SO.Einzelschutz' AND
     geometrie.flaeche_lv95 IS NOT NULL
 ;
 -- spatial index
@@ -21972,7 +21972,7 @@ CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_flaeche_artcode
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'weiteres_thema_einzelschutz_punkt' with thema 'WeiteresThema', subthema 'ch.so.Einzelschutz' and geometry 'punkt'
+-- materialized view 'weiteres_thema_einzelschutz_punkt' with thema 'WeiteresThema', subthema 'ch.SO.Einzelschutz' and geometry 'punkt'
 DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_weiteres_thema_einzelschutz_punkt;
 CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_weiteres_thema_einzelschutz_punkt AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
@@ -22146,7 +22146,7 @@ FROM
     ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
 WHERE
     eigentumsbeschraenkung.thema = 'WeiteresThema' AND
-    eigentumsbeschraenkung.subthema = 'ch.so.Einzelschutz' AND
+    eigentumsbeschraenkung.subthema = 'ch.SO.Einzelschutz' AND
     geometrie.punkt_lv95 IS NOT NULL
 ;
 -- spatial index
@@ -22531,7 +22531,7 @@ CREATE INDEX in_oerebwms_belastete_standorte_flaeche_artcode
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_baulinien_linie' with thema 'Nutzungsplanung', subthema 'ch.so.Nutzungsplanung.Baulinien' and geometry 'linie'
+-- materialized view 'nutzungsplanung_baulinien_linie' with thema 'Nutzungsplanung', subthema 'ch.SO.Baulinien' and geometry 'linie'
 DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_baulinien_linie;
 CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_nutzungsplanung_baulinien_linie AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
@@ -22705,7 +22705,7 @@ FROM
     ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
 WHERE
     eigentumsbeschraenkung.thema = 'Nutzungsplanung' AND
-    eigentumsbeschraenkung.subthema = 'ch.so.Nutzungsplanung.Baulinien' AND
+    eigentumsbeschraenkung.subthema = 'ch.SO.Baulinien' AND
     geometrie.linie_lv95 IS NOT NULL
 ;
 -- spatial index
@@ -22718,7 +22718,7 @@ CREATE INDEX in_oerebwms_nutzungsplanung_baulinien_linie_artcode
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_sondernutzungsplaene_flaeche' with thema 'Nutzungsplanung', subthema 'ch.so.Nutzungsplanung.NutzungsplanungSondernutzungsplaene' and geometry 'flaeche'
+-- materialized view 'nutzungsplanung_sondernutzungsplaene_flaeche' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungSondernutzungsplaene' and geometry 'flaeche'
 DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche;
 CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
@@ -22892,7 +22892,7 @@ FROM
     ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
 WHERE
     eigentumsbeschraenkung.thema = 'Nutzungsplanung' AND
-    eigentumsbeschraenkung.subthema = 'ch.so.Nutzungsplanung.NutzungsplanungSondernutzungsplaene' AND
+    eigentumsbeschraenkung.subthema = 'ch.SO.NutzungsplanungSondernutzungsplaene' AND
     geometrie.flaeche_lv95 IS NOT NULL
 ;
 -- spatial index
@@ -23463,7 +23463,7 @@ CREATE INDEX in_oerebwms_waldgrenzen_linie_artcode
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_ueberlagernd_flaeche' with thema 'Nutzungsplanung', subthema 'ch.so.Nutzungsplanung.NutzungsplanungUeberlagernd' and geometry 'flaeche'
+-- materialized view 'nutzungsplanung_ueberlagernd_flaeche' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungUeberlagernd' and geometry 'flaeche'
 DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche;
 CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
@@ -23637,7 +23637,7 @@ FROM
     ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
 WHERE
     eigentumsbeschraenkung.thema = 'Nutzungsplanung' AND
-    eigentumsbeschraenkung.subthema = 'ch.so.Nutzungsplanung.NutzungsplanungUeberlagernd' AND
+    eigentumsbeschraenkung.subthema = 'ch.SO.NutzungsplanungUeberlagernd' AND
     geometrie.flaeche_lv95 IS NOT NULL
 ;
 -- spatial index
@@ -23650,7 +23650,7 @@ CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_flaeche_artcode
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_ueberlagernd_punkt' with thema 'Nutzungsplanung', subthema 'ch.so.Nutzungsplanung.NutzungsplanungUeberlagernd' and geometry 'punkt'
+-- materialized view 'nutzungsplanung_ueberlagernd_punkt' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungUeberlagernd' and geometry 'punkt'
 DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt;
 CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
@@ -23824,7 +23824,7 @@ FROM
     ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
 WHERE
     eigentumsbeschraenkung.thema = 'Nutzungsplanung' AND
-    eigentumsbeschraenkung.subthema = 'ch.so.Nutzungsplanung.NutzungsplanungUeberlagernd' AND
+    eigentumsbeschraenkung.subthema = 'ch.SO.NutzungsplanungUeberlagernd' AND
     geometrie.punkt_lv95 IS NOT NULL
 ;
 -- spatial index
@@ -23837,7 +23837,7 @@ CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_punkt_artcode
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_grundnutzung_flaeche' with thema 'Nutzungsplanung', subthema 'ch.so.Nutzungsplanung.NutzungsplanungGrundnutzung' and geometry 'flaeche'
+-- materialized view 'nutzungsplanung_grundnutzung_flaeche' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungGrundnutzung' and geometry 'flaeche'
 DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche;
 CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
@@ -24011,7 +24011,7 @@ FROM
     ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
 WHERE
     eigentumsbeschraenkung.thema = 'Nutzungsplanung' AND
-    eigentumsbeschraenkung.subthema = 'ch.so.Nutzungsplanung.NutzungsplanungGrundnutzung' AND
+    eigentumsbeschraenkung.subthema = 'ch.SO.NutzungsplanungGrundnutzung' AND
     geometrie.flaeche_lv95 IS NOT NULL
 ;
 -- spatial index
@@ -24213,7 +24213,7 @@ CREATE INDEX in_oerebwms_grundwasserschutzareale_flaeche_artcode
 -- schema nr 2 is live
 ---------------------------      
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_ueberlagernd_linie' with thema 'Nutzungsplanung', subthema 'ch.so.Nutzungsplanung.NutzungsplanungUeberlagernd' and geometry 'linie'
+-- materialized view 'nutzungsplanung_ueberlagernd_linie' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungUeberlagernd' and geometry 'linie'
 DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_linie;
 CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_linie AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
@@ -24387,7 +24387,7 @@ FROM
     ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
 WHERE
     eigentumsbeschraenkung.thema = 'Nutzungsplanung' AND
-    eigentumsbeschraenkung.subthema = 'ch.so.Nutzungsplanung.NutzungsplanungUeberlagernd' AND
+    eigentumsbeschraenkung.subthema = 'ch.SO.NutzungsplanungUeberlagernd' AND
     geometrie.linie_lv95 IS NOT NULL
 ;
 -- spatial index
@@ -24400,7 +24400,7 @@ CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_linie_artcode
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'weiteres_thema_einzelschutz_flaeche' with thema 'WeiteresThema', subthema 'ch.so.Einzelschutz' and geometry 'flaeche'
+-- materialized view 'weiteres_thema_einzelschutz_flaeche' with thema 'WeiteresThema', subthema 'ch.SO.Einzelschutz' and geometry 'flaeche'
 DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_weiteres_thema_einzelschutz_flaeche;
 CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_weiteres_thema_einzelschutz_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
@@ -24574,7 +24574,7 @@ FROM
     ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
 WHERE
     eigentumsbeschraenkung.thema = 'WeiteresThema' AND
-    eigentumsbeschraenkung.subthema = 'ch.so.Einzelschutz' AND
+    eigentumsbeschraenkung.subthema = 'ch.SO.Einzelschutz' AND
     geometrie.flaeche_lv95 IS NOT NULL
 ;
 -- spatial index
@@ -24587,7 +24587,7 @@ CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_flaeche_artcode
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'weiteres_thema_einzelschutz_punkt' with thema 'WeiteresThema', subthema 'ch.so.Einzelschutz' and geometry 'punkt'
+-- materialized view 'weiteres_thema_einzelschutz_punkt' with thema 'WeiteresThema', subthema 'ch.SO.Einzelschutz' and geometry 'punkt'
 DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_weiteres_thema_einzelschutz_punkt;
 CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_weiteres_thema_einzelschutz_punkt AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
@@ -24761,7 +24761,7 @@ FROM
     ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
 WHERE
     eigentumsbeschraenkung.thema = 'WeiteresThema' AND
-    eigentumsbeschraenkung.subthema = 'ch.so.Einzelschutz' AND
+    eigentumsbeschraenkung.subthema = 'ch.SO.Einzelschutz' AND
     geometrie.punkt_lv95 IS NOT NULL
 ;
 -- spatial index
@@ -25146,7 +25146,7 @@ CREATE INDEX in_oerebwms_belastete_standorte_flaeche_artcode
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_baulinien_linie' with thema 'Nutzungsplanung', subthema 'ch.so.Nutzungsplanung.Baulinien' and geometry 'linie'
+-- materialized view 'nutzungsplanung_baulinien_linie' with thema 'Nutzungsplanung', subthema 'ch.SO.Baulinien' and geometry 'linie'
 DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_baulinien_linie;
 CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_nutzungsplanung_baulinien_linie AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
@@ -25320,7 +25320,7 @@ FROM
     ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
 WHERE
     eigentumsbeschraenkung.thema = 'Nutzungsplanung' AND
-    eigentumsbeschraenkung.subthema = 'ch.so.Nutzungsplanung.Baulinien' AND
+    eigentumsbeschraenkung.subthema = 'ch.SO.Baulinien' AND
     geometrie.linie_lv95 IS NOT NULL
 ;
 -- spatial index
@@ -25333,7 +25333,7 @@ CREATE INDEX in_oerebwms_nutzungsplanung_baulinien_linie_artcode
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_sondernutzungsplaene_flaeche' with thema 'Nutzungsplanung', subthema 'ch.so.Nutzungsplanung.NutzungsplanungSondernutzungsplaene' and geometry 'flaeche'
+-- materialized view 'nutzungsplanung_sondernutzungsplaene_flaeche' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungSondernutzungsplaene' and geometry 'flaeche'
 DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche;
 CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
@@ -25507,7 +25507,7 @@ FROM
     ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
 WHERE
     eigentumsbeschraenkung.thema = 'Nutzungsplanung' AND
-    eigentumsbeschraenkung.subthema = 'ch.so.Nutzungsplanung.NutzungsplanungSondernutzungsplaene' AND
+    eigentumsbeschraenkung.subthema = 'ch.SO.NutzungsplanungSondernutzungsplaene' AND
     geometrie.flaeche_lv95 IS NOT NULL
 ;
 -- spatial index
@@ -26078,7 +26078,7 @@ CREATE INDEX in_oerebwms_waldgrenzen_linie_artcode
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_ueberlagernd_flaeche' with thema 'Nutzungsplanung', subthema 'ch.so.Nutzungsplanung.NutzungsplanungUeberlagernd' and geometry 'flaeche'
+-- materialized view 'nutzungsplanung_ueberlagernd_flaeche' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungUeberlagernd' and geometry 'flaeche'
 DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche;
 CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
@@ -26252,7 +26252,7 @@ FROM
     ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
 WHERE
     eigentumsbeschraenkung.thema = 'Nutzungsplanung' AND
-    eigentumsbeschraenkung.subthema = 'ch.so.Nutzungsplanung.NutzungsplanungUeberlagernd' AND
+    eigentumsbeschraenkung.subthema = 'ch.SO.NutzungsplanungUeberlagernd' AND
     geometrie.flaeche_lv95 IS NOT NULL
 ;
 -- spatial index
@@ -26265,7 +26265,7 @@ CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_flaeche_artcode
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_ueberlagernd_punkt' with thema 'Nutzungsplanung', subthema 'ch.so.Nutzungsplanung.NutzungsplanungUeberlagernd' and geometry 'punkt'
+-- materialized view 'nutzungsplanung_ueberlagernd_punkt' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungUeberlagernd' and geometry 'punkt'
 DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt;
 CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
@@ -26439,7 +26439,7 @@ FROM
     ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
 WHERE
     eigentumsbeschraenkung.thema = 'Nutzungsplanung' AND
-    eigentumsbeschraenkung.subthema = 'ch.so.Nutzungsplanung.NutzungsplanungUeberlagernd' AND
+    eigentumsbeschraenkung.subthema = 'ch.SO.NutzungsplanungUeberlagernd' AND
     geometrie.punkt_lv95 IS NOT NULL
 ;
 -- spatial index
@@ -26452,7 +26452,7 @@ CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_punkt_artcode
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_grundnutzung_flaeche' with thema 'Nutzungsplanung', subthema 'ch.so.Nutzungsplanung.NutzungsplanungGrundnutzung' and geometry 'flaeche'
+-- materialized view 'nutzungsplanung_grundnutzung_flaeche' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungGrundnutzung' and geometry 'flaeche'
 DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche;
 CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
@@ -26626,7 +26626,7 @@ FROM
     ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
 WHERE
     eigentumsbeschraenkung.thema = 'Nutzungsplanung' AND
-    eigentumsbeschraenkung.subthema = 'ch.so.Nutzungsplanung.NutzungsplanungGrundnutzung' AND
+    eigentumsbeschraenkung.subthema = 'ch.SO.NutzungsplanungGrundnutzung' AND
     geometrie.flaeche_lv95 IS NOT NULL
 ;
 -- spatial index
