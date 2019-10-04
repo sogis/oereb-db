@@ -5228,3 +5228,65 @@ CREATE INDEX in_oerebwms_grundwasserschutzareale_flaeche_geom
 CREATE INDEX in_oerebwms_grundwasserschutzareale_flaeche_artcode
   ON live.vw_oerebwms_grundwasserschutzareale_flaeche
   USING btree ( artcode );
+
+
+-- schema nr 3 is stage
+---------------------------      
+-- -----------------------------------------------------------------------------
+-- materialized view municipality_with_plrc
+DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_municipality_with_plrc;
+CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_municipality_with_plrc AS 
+SELECT
+    DISTINCT ON (gemeindegrenze.bfsnr)
+    municipality.t_id,
+    gemeindegrenze.bfsnr,
+    gemeindegrenze.geometrie
+FROM
+    live.oerb_xtnx_v1_0annex_municipalitywithplrc AS municipality
+    LEFT JOIN live.oereb_extractannex_v1_0_code_ AS acode
+    ON acode.oerb_xtnx_vpltywthplrc_themes = municipality.t_id
+    LEFT JOIN (
+        SELECT
+            gemeinde.aname,
+            bfsnr,
+            ST_Multi(ST_Union(geometrie)) AS geometrie
+        FROM
+            live.dm01vch24lv95dgemeindegrenzen_gemeindegrenze AS gemeindegrenze
+            LEFT JOIN live.dm01vch24lv95dgemeindegrenzen_gemeinde AS gemeinde
+            ON gemeinde.t_id = gemeindegrenze.gemeindegrenze_von
+        GROUP BY
+            bfsnr, aname
+    ) AS gemeindegrenze
+    ON gemeindegrenze.bfsnr = municipality.municipality
+;
+
+
+-- schema nr 4 is live
+---------------------------      
+-- -----------------------------------------------------------------------------
+-- materialized view municipality_with_plrc
+DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_municipality_with_plrc;
+CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_municipality_with_plrc AS 
+SELECT
+    DISTINCT ON (gemeindegrenze.bfsnr)
+    municipality.t_id,
+    gemeindegrenze.bfsnr,
+    gemeindegrenze.geometrie
+FROM
+    live.oerb_xtnx_v1_0annex_municipalitywithplrc AS municipality
+    LEFT JOIN live.oereb_extractannex_v1_0_code_ AS acode
+    ON acode.oerb_xtnx_vpltywthplrc_themes = municipality.t_id
+    LEFT JOIN (
+        SELECT
+            gemeinde.aname,
+            bfsnr,
+            ST_Multi(ST_Union(geometrie)) AS geometrie
+        FROM
+            live.dm01vch24lv95dgemeindegrenzen_gemeindegrenze AS gemeindegrenze
+            LEFT JOIN live.dm01vch24lv95dgemeindegrenzen_gemeinde AS gemeinde
+            ON gemeinde.t_id = gemeindegrenze.gemeindegrenze_von
+        GROUP BY
+            bfsnr, aname
+    ) AS gemeindegrenze
+    ON gemeindegrenze.bfsnr = municipality.municipality
+;
