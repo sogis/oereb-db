@@ -287,7 +287,7 @@ for schema in "${pg_schemas[@]}"
     sql=$(cat << EOM
       
 -- -----------------------------------------------------------------------------
--- materialized view municipality_with_plrc
+--  view municipality_with_plrc
 DROP VIEW IF EXISTS $schema.vw_oerebwms_municipality_with_plrc;
 CREATE VIEW IF NOT EXISTS $schema.vw_oerebwms_municipality_with_plrc AS 
 SELECT
