@@ -5234,8 +5234,8 @@ CREATE INDEX in_oerebwms_grundwasserschutzareale_flaeche_artcode
 ---------------------------      
 -- -----------------------------------------------------------------------------
 -- materialized view municipality_with_plrc
-DROP VIEW IF EXISTS stage.vw_oerebwms_municipality_with_plrc;
-CREATE VIEW IF NOT EXISTS stage.vw_oerebwms_municipality_with_plrc AS 
+DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_municipality_with_plrc;
+CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_municipality_with_plrc AS 
 SELECT
     DISTINCT ON (municipality_with_plrc.municipality)
     municipality_with_plrc.t_id,
@@ -5254,8 +5254,8 @@ FROM
             municipality.*,
             acode.avalue
         FROM
-            stage.oerb_xtnx_v1_0annex_municipalitywithplrc AS municipality
-            LEFT JOIN stage.oereb_extractannex_v1_0_code_ AS acode
+            live.oerb_xtnx_v1_0annex_municipalitywithplrc AS municipality
+            LEFT JOIN live.oereb_extractannex_v1_0_code_ AS acode
             ON acode.oerb_xtnx_vpltywthplrc_themes = municipality.t_id
     ) AS municipality_with_plrc
     LEFT JOIN (
@@ -5264,8 +5264,8 @@ FROM
             bfsnr,
             ST_Multi(ST_Union(geometrie)) AS geometrie
         FROM
-            stage.dm01vch24lv95dgemeindegrenzen_gemeindegrenze AS gemeindegrenze
-            LEFT JOIN stage.dm01vch24lv95dgemeindegrenzen_gemeinde AS gemeinde
+            live.dm01vch24lv95dgemeindegrenzen_gemeindegrenze AS gemeindegrenze
+            LEFT JOIN live.dm01vch24lv95dgemeindegrenzen_gemeinde AS gemeinde
             ON gemeinde.t_id = gemeindegrenze.gemeindegrenze_von
         GROUP BY
             bfsnr, aname
@@ -5278,8 +5278,8 @@ FROM
 ---------------------------      
 -- -----------------------------------------------------------------------------
 -- materialized view municipality_with_plrc
-DROP VIEW IF EXISTS live.vw_oerebwms_municipality_with_plrc;
-CREATE VIEW IF NOT EXISTS live.vw_oerebwms_municipality_with_plrc AS 
+DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_municipality_with_plrc;
+CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_municipality_with_plrc AS 
 SELECT
     DISTINCT ON (municipality_with_plrc.municipality)
     municipality_with_plrc.t_id,
