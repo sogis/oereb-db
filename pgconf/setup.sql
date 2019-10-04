@@ -7481,7 +7481,7 @@ CODE
   TID = ANY;
 END.
 
-','2019-10-04 14:54:54.961');
+','2019-10-04 14:28:05.408');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('PLZO-CH_LV95_1d_ili1.ili','1.0','PLZOCH1LV95D','
 TRANSFER INTERLIS1;
 
@@ -7704,7 +7704,7 @@ CODE
   TID = ANY;
 END.
 
-','2019-10-04 14:54:54.961');
+','2019-10-04 14:28:05.408');
 INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createMetaInfo','True');
 INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.arrayTrafo','coalesce');
 INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.nameOptimization','disable');
@@ -15156,7 +15156,7 @@ CODE
   TID = ANY;
 END.
 
-','2019-10-04 14:54:53.199');
+','2019-10-04 14:28:02.92');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('PLZO-CH_LV95_1d_ili1.ili','1.0','PLZOCH1LV95D','
 TRANSFER INTERLIS1;
 
@@ -15379,7 +15379,7 @@ CODE
   TID = ANY;
 END.
 
-','2019-10-04 14:54:53.199');
+','2019-10-04 14:28:02.92');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createMetaInfo','True');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.arrayTrafo','coalesce');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.nameOptimization','disable');
@@ -16999,7 +16999,7 @@ MODEL AdministrativeUnitsCH_V1 (en)
 END AdministrativeUnitsCH_V1.
 
 !! ########################################################################
-','2019-10-04 14:54:55.81');
+','2019-10-04 14:28:06.691');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part3_CATALOGUEOBJECTS_20110830.ili','2.3','CatalogueObjects_V1{ INTERLIS} CatalogueObjectTrees_V1{ INTERLIS CatalogueObjects_V1}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -17087,7 +17087,7 @@ MODEL CatalogueObjectTrees_V1 (en)
 END CatalogueObjectTrees_V1.
 
 !! ########################################################################
-','2019-10-04 14:54:55.81');
+','2019-10-04 14:28:06.691');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREB_ExtractAnnex_V1_0.ili','2.3','OeREB_ExtractAnnex_V1_0{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1 CatalogueObjects_V1}','INTERLIS 2.3;
 
 /** Zusatzdaten für statischen OEREB-Auszug
@@ -17213,7 +17213,7 @@ VERSION "2019-09-02"  =
     
 
 END OeREB_ExtractAnnex_V1_0.
-','2019-10-04 14:54:55.81');
+','2019-10-04 14:28:06.691');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('Units-20120220.ili','2.3','Units','!! File Units.ili Release 2012-02-20
 
 INTERLIS 2.3;
@@ -17311,7 +17311,7 @@ CONTRACTED TYPE MODEL Units (en) AT "http://www.interlis.ch/models"
 
 END Units.
 
-','2019-10-04 14:54:55.81');
+','2019-10-04 14:28:06.691');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMtrsfr_V1_1.ili','2.3','OeREBKRMtrsfr_V1_1{ GeometryCHLV95_V1 CHAdminCodes_V1 LocalisationCH_V1 GeometryCHLV03_V1 OeREBKRM_V1_1 OeREBKRMvs_V1_1}','INTERLIS 2.3;
 
 /** Schnittstelle zwischen zuständiger Stelle für die Geobasisdaten und Katasterorganisation des Kantons.
@@ -17495,7 +17495,7 @@ VERSION "2016-08-15"  =
   END Transferstruktur;
 
 END OeREBKRMtrsfr_V1_1.
-','2019-10-04 14:54:55.81');
+','2019-10-04 14:28:06.691');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRM_V1_1.ili','2.3','OeREBKRM_V1_1{ InternationalCodes_V1 LocalisationCH_V1 CatalogueObjects_V1}','INTERLIS 2.3;
 
 /** Basisdefinitionen für das OEREB-Katasterrahmenmodell
@@ -17659,7 +17659,7 @@ VERSION "2016-08-15"  =
   END CodelistenText;
 
 END OeREBKRM_V1_1.
-','2019-10-04 14:54:55.81');
+','2019-10-04 14:28:06.691');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part2_LOCALISATION_20110830.ili','2.3','InternationalCodes_V1 Localisation_V1{ InternationalCodes_V1} LocalisationCH_V1{ InternationalCodes_V1 Localisation_V1} Dictionaries_V1{ InternationalCodes_V1} DictionariesCH_V1{ InternationalCodes_V1 Dictionaries_V1}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -17831,7 +17831,7 @@ MODEL DictionariesCH_V1 (en)
 END DictionariesCH_V1.
 
 !! ########################################################################
-','2019-10-04 14:54:55.81');
+','2019-10-04 14:28:06.691');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CoordSys-20151124.ili','2.3','CoordSys','!! File CoordSys.ili Release 2015-11-24
 
 INTERLIS 2.3;
@@ -18046,7 +18046,7 @@ REFSYSTEM MODEL CoordSys (en) AT "http://www.interlis.ch/models"
 
 END CoordSys.
 
-','2019-10-04 14:54:55.81');
+','2019-10-04 14:28:06.691');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMvs_V1_1.ili','2.3','OeREBKRMvs_V1_1{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1}','INTERLIS 2.3;
 
 /** Basisdefinition für Erlasse (Rechtsvorschriften, Hinweise auf Gesetzliche Grundlagen)
@@ -18168,7 +18168,7 @@ VERSION "2016-08-15"  =
   END HinweiseGesetzlicheGrundlagen;
 
 END OeREBKRMvs_V1_1.
-','2019-10-04 14:54:55.81');
+','2019-10-04 14:28:06.691');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.ili','2.3','SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822{ GeometryCHLV95_V1 CHAdminCodes_V1}','INTERLIS 2.3;
 
 /** !!------------------------------------------------------------------------------
@@ -18302,7 +18302,7 @@ VERSION "2018-08-22"  =
   END Nachfuehrungskreise;
 
 END SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.
-','2019-10-04 14:54:55.81');
+','2019-10-04 14:28:06.691');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part1_GEOMETRY_20110830.ili','2.3','GeometryCHLV03_V1{ CoordSys Units INTERLIS} GeometryCHLV95_V1{ CoordSys Units INTERLIS}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -18480,7 +18480,7 @@ TYPE MODEL GeometryCHLV95_V1 (en)
 END GeometryCHLV95_V1.
 
 !! ########################################################################
-','2019-10-04 14:54:55.81');
+','2019-10-04 14:28:06.691');
 -- INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createMetaInfo','True');
 -- INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.arrayTrafo','coalesce');
 -- INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.nameOptimization','disable');
@@ -20120,7 +20120,7 @@ MODEL AdministrativeUnitsCH_V1 (en)
 END AdministrativeUnitsCH_V1.
 
 !! ########################################################################
-','2019-10-04 14:54:54.07');
+','2019-10-04 14:28:04.167');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part3_CATALOGUEOBJECTS_20110830.ili','2.3','CatalogueObjects_V1{ INTERLIS} CatalogueObjectTrees_V1{ INTERLIS CatalogueObjects_V1}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -20208,7 +20208,7 @@ MODEL CatalogueObjectTrees_V1 (en)
 END CatalogueObjectTrees_V1.
 
 !! ########################################################################
-','2019-10-04 14:54:54.07');
+','2019-10-04 14:28:04.167');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREB_ExtractAnnex_V1_0.ili','2.3','OeREB_ExtractAnnex_V1_0{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1 CatalogueObjects_V1}','INTERLIS 2.3;
 
 /** Zusatzdaten für statischen OEREB-Auszug
@@ -20334,7 +20334,7 @@ VERSION "2019-09-02"  =
     
 
 END OeREB_ExtractAnnex_V1_0.
-','2019-10-04 14:54:54.07');
+','2019-10-04 14:28:04.167');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('Units-20120220.ili','2.3','Units','!! File Units.ili Release 2012-02-20
 
 INTERLIS 2.3;
@@ -20432,7 +20432,7 @@ CONTRACTED TYPE MODEL Units (en) AT "http://www.interlis.ch/models"
 
 END Units.
 
-','2019-10-04 14:54:54.07');
+','2019-10-04 14:28:04.167');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMtrsfr_V1_1.ili','2.3','OeREBKRMtrsfr_V1_1{ GeometryCHLV95_V1 CHAdminCodes_V1 LocalisationCH_V1 GeometryCHLV03_V1 OeREBKRM_V1_1 OeREBKRMvs_V1_1}','INTERLIS 2.3;
 
 /** Schnittstelle zwischen zuständiger Stelle für die Geobasisdaten und Katasterorganisation des Kantons.
@@ -20616,7 +20616,7 @@ VERSION "2016-08-15"  =
   END Transferstruktur;
 
 END OeREBKRMtrsfr_V1_1.
-','2019-10-04 14:54:54.07');
+','2019-10-04 14:28:04.167');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRM_V1_1.ili','2.3','OeREBKRM_V1_1{ InternationalCodes_V1 LocalisationCH_V1 CatalogueObjects_V1}','INTERLIS 2.3;
 
 /** Basisdefinitionen für das OEREB-Katasterrahmenmodell
@@ -20780,7 +20780,7 @@ VERSION "2016-08-15"  =
   END CodelistenText;
 
 END OeREBKRM_V1_1.
-','2019-10-04 14:54:54.07');
+','2019-10-04 14:28:04.167');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part2_LOCALISATION_20110830.ili','2.3','InternationalCodes_V1 Localisation_V1{ InternationalCodes_V1} LocalisationCH_V1{ InternationalCodes_V1 Localisation_V1} Dictionaries_V1{ InternationalCodes_V1} DictionariesCH_V1{ InternationalCodes_V1 Dictionaries_V1}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -20952,7 +20952,7 @@ MODEL DictionariesCH_V1 (en)
 END DictionariesCH_V1.
 
 !! ########################################################################
-','2019-10-04 14:54:54.07');
+','2019-10-04 14:28:04.167');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CoordSys-20151124.ili','2.3','CoordSys','!! File CoordSys.ili Release 2015-11-24
 
 INTERLIS 2.3;
@@ -21167,7 +21167,7 @@ REFSYSTEM MODEL CoordSys (en) AT "http://www.interlis.ch/models"
 
 END CoordSys.
 
-','2019-10-04 14:54:54.07');
+','2019-10-04 14:28:04.167');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMvs_V1_1.ili','2.3','OeREBKRMvs_V1_1{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1}','INTERLIS 2.3;
 
 /** Basisdefinition für Erlasse (Rechtsvorschriften, Hinweise auf Gesetzliche Grundlagen)
@@ -21289,7 +21289,7 @@ VERSION "2016-08-15"  =
   END HinweiseGesetzlicheGrundlagen;
 
 END OeREBKRMvs_V1_1.
-','2019-10-04 14:54:54.07');
+','2019-10-04 14:28:04.167');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.ili','2.3','SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822{ GeometryCHLV95_V1 CHAdminCodes_V1}','INTERLIS 2.3;
 
 /** !!------------------------------------------------------------------------------
@@ -21423,7 +21423,7 @@ VERSION "2018-08-22"  =
   END Nachfuehrungskreise;
 
 END SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.
-','2019-10-04 14:54:54.07');
+','2019-10-04 14:28:04.167');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part1_GEOMETRY_20110830.ili','2.3','GeometryCHLV03_V1{ CoordSys Units INTERLIS} GeometryCHLV95_V1{ CoordSys Units INTERLIS}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -21601,7 +21601,7 @@ TYPE MODEL GeometryCHLV95_V1 (en)
 END GeometryCHLV95_V1.
 
 !! ########################################################################
-','2019-10-04 14:54:54.07');
+','2019-10-04 14:28:04.167');
 -- INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createMetaInfo','True');
 -- INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.arrayTrafo','coalesce');
 -- INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.nameOptimization','disable');
@@ -26886,40 +26886,32 @@ CREATE INDEX in_oerebwms_grundwasserschutzareale_flaeche_artcode
 DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_municipality_with_plrc;
 CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_municipality_with_plrc AS 
 SELECT
-    DISTINCT ON (municipality_with_plrc.municipality)
-    municipality_with_plrc.t_id,
-    municipality_with_plrc.municipality,
+    DISTINCT ON (gemeindegrenze.bfsnr)
+    municipality.t_id,
     gemeindegrenze.aname,
     gemeindegrenze.bfsnr,
     CASE 
-        WHEN municipality_with_plrc.avalue IS NULL THEN CAST('false' AS BOOLEAN)
+        WHEN acode.avalue IS NULL THEN CAST('false' AS BOOLEAN)
         ELSE CAST('true' AS BOOLEAN) 
     END AS available,
     gemeindegrenze.geometrie
 FROM
-    (
-        SELECT
-            DISTINCT ON (municipality.t_id)
-            municipality.*,
-            acode.avalue
-        FROM
-            live.oerb_xtnx_v1_0annex_municipalitywithplrc AS municipality
-            LEFT JOIN live.oereb_extractannex_v1_0_code_ AS acode
-            ON acode.oerb_xtnx_vpltywthplrc_themes = municipality.t_id
-    ) AS municipality_with_plrc
+    stage.oerb_xtnx_v1_0annex_municipalitywithplrc AS municipality
+    LEFT JOIN stage.oereb_extractannex_v1_0_code_ AS acode
+    ON acode.oerb_xtnx_vpltywthplrc_themes = municipality.t_id
     LEFT JOIN (
         SELECT
             gemeinde.aname,
             bfsnr,
             ST_Multi(ST_Union(geometrie)) AS geometrie
         FROM
-            live.dm01vch24lv95dgemeindegrenzen_gemeindegrenze AS gemeindegrenze
-            LEFT JOIN live.dm01vch24lv95dgemeindegrenzen_gemeinde AS gemeinde
+            stage.dm01vch24lv95dgemeindegrenzen_gemeindegrenze AS gemeindegrenze
+            LEFT JOIN stage.dm01vch24lv95dgemeindegrenzen_gemeinde AS gemeinde
             ON gemeinde.t_id = gemeindegrenze.gemeindegrenze_von
         GROUP BY
             bfsnr, aname
     ) AS gemeindegrenze
-    ON gemeindegrenze.bfsnr = municipality_with_plrc.municipality
+    ON gemeindegrenze.bfsnr = municipality.municipality
 ;
 
 
@@ -26930,27 +26922,19 @@ FROM
 DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_municipality_with_plrc;
 CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_municipality_with_plrc AS 
 SELECT
-    DISTINCT ON (municipality_with_plrc.municipality)
-    municipality_with_plrc.t_id,
-    municipality_with_plrc.municipality,
+    DISTINCT ON (gemeindegrenze.bfsnr)
+    municipality.t_id,
     gemeindegrenze.aname,
     gemeindegrenze.bfsnr,
     CASE 
-        WHEN municipality_with_plrc.avalue IS NULL THEN CAST('false' AS BOOLEAN)
+        WHEN acode.avalue IS NULL THEN CAST('false' AS BOOLEAN)
         ELSE CAST('true' AS BOOLEAN) 
     END AS available,
     gemeindegrenze.geometrie
 FROM
-    (
-        SELECT
-            DISTINCT ON (municipality.t_id)
-            municipality.*,
-            acode.avalue
-        FROM
-            live.oerb_xtnx_v1_0annex_municipalitywithplrc AS municipality
-            LEFT JOIN live.oereb_extractannex_v1_0_code_ AS acode
-            ON acode.oerb_xtnx_vpltywthplrc_themes = municipality.t_id
-    ) AS municipality_with_plrc
+    live.oerb_xtnx_v1_0annex_municipalitywithplrc AS municipality
+    LEFT JOIN live.oereb_extractannex_v1_0_code_ AS acode
+    ON acode.oerb_xtnx_vpltywthplrc_themes = municipality.t_id
     LEFT JOIN (
         SELECT
             gemeinde.aname,
@@ -26963,6 +26947,6 @@ FROM
         GROUP BY
             bfsnr, aname
     ) AS gemeindegrenze
-    ON gemeindegrenze.bfsnr = municipality_with_plrc.municipality
+    ON gemeindegrenze.bfsnr = municipality.municipality
 ;
 COMMIT;

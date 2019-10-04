@@ -5237,40 +5237,32 @@ CREATE INDEX in_oerebwms_grundwasserschutzareale_flaeche_artcode
 DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_municipality_with_plrc;
 CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_municipality_with_plrc AS 
 SELECT
-    DISTINCT ON (municipality_with_plrc.municipality)
-    municipality_with_plrc.t_id,
-    municipality_with_plrc.municipality,
+    DISTINCT ON (gemeindegrenze.bfsnr)
+    municipality.t_id,
     gemeindegrenze.aname,
     gemeindegrenze.bfsnr,
     CASE 
-        WHEN municipality_with_plrc.avalue IS NULL THEN CAST('false' AS BOOLEAN)
+        WHEN acode.avalue IS NULL THEN CAST('false' AS BOOLEAN)
         ELSE CAST('true' AS BOOLEAN) 
     END AS available,
     gemeindegrenze.geometrie
 FROM
-    (
-        SELECT
-            DISTINCT ON (municipality.t_id)
-            municipality.*,
-            acode.avalue
-        FROM
-            live.oerb_xtnx_v1_0annex_municipalitywithplrc AS municipality
-            LEFT JOIN live.oereb_extractannex_v1_0_code_ AS acode
-            ON acode.oerb_xtnx_vpltywthplrc_themes = municipality.t_id
-    ) AS municipality_with_plrc
+    stage.oerb_xtnx_v1_0annex_municipalitywithplrc AS municipality
+    LEFT JOIN stage.oereb_extractannex_v1_0_code_ AS acode
+    ON acode.oerb_xtnx_vpltywthplrc_themes = municipality.t_id
     LEFT JOIN (
         SELECT
             gemeinde.aname,
             bfsnr,
             ST_Multi(ST_Union(geometrie)) AS geometrie
         FROM
-            live.dm01vch24lv95dgemeindegrenzen_gemeindegrenze AS gemeindegrenze
-            LEFT JOIN live.dm01vch24lv95dgemeindegrenzen_gemeinde AS gemeinde
+            stage.dm01vch24lv95dgemeindegrenzen_gemeindegrenze AS gemeindegrenze
+            LEFT JOIN stage.dm01vch24lv95dgemeindegrenzen_gemeinde AS gemeinde
             ON gemeinde.t_id = gemeindegrenze.gemeindegrenze_von
         GROUP BY
             bfsnr, aname
     ) AS gemeindegrenze
-    ON gemeindegrenze.bfsnr = municipality_with_plrc.municipality
+    ON gemeindegrenze.bfsnr = municipality.municipality
 ;
 
 
@@ -5281,27 +5273,19 @@ FROM
 DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_municipality_with_plrc;
 CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_municipality_with_plrc AS 
 SELECT
-    DISTINCT ON (municipality_with_plrc.municipality)
-    municipality_with_plrc.t_id,
-    municipality_with_plrc.municipality,
+    DISTINCT ON (gemeindegrenze.bfsnr)
+    municipality.t_id,
     gemeindegrenze.aname,
     gemeindegrenze.bfsnr,
     CASE 
-        WHEN municipality_with_plrc.avalue IS NULL THEN CAST('false' AS BOOLEAN)
+        WHEN acode.avalue IS NULL THEN CAST('false' AS BOOLEAN)
         ELSE CAST('true' AS BOOLEAN) 
     END AS available,
     gemeindegrenze.geometrie
 FROM
-    (
-        SELECT
-            DISTINCT ON (municipality.t_id)
-            municipality.*,
-            acode.avalue
-        FROM
-            live.oerb_xtnx_v1_0annex_municipalitywithplrc AS municipality
-            LEFT JOIN live.oereb_extractannex_v1_0_code_ AS acode
-            ON acode.oerb_xtnx_vpltywthplrc_themes = municipality.t_id
-    ) AS municipality_with_plrc
+    live.oerb_xtnx_v1_0annex_municipalitywithplrc AS municipality
+    LEFT JOIN live.oereb_extractannex_v1_0_code_ AS acode
+    ON acode.oerb_xtnx_vpltywthplrc_themes = municipality.t_id
     LEFT JOIN (
         SELECT
             gemeinde.aname,
@@ -5314,5 +5298,5 @@ FROM
         GROUP BY
             bfsnr, aname
     ) AS gemeindegrenze
-    ON gemeindegrenze.bfsnr = municipality_with_plrc.municipality
+    ON gemeindegrenze.bfsnr = municipality.municipality
 ;
