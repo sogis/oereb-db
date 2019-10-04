@@ -291,32 +291,40 @@ for schema in "${pg_schemas[@]}"
 DROP MATERIALIZED VIEW IF EXISTS $schema.vw_oerebwms_municipality_with_plrc;
 CREATE MATERIALIZED VIEW IF NOT EXISTS $schema.vw_oerebwms_municipality_with_plrc AS 
 SELECT
-    DISTINCT ON (gemeindegrenze.bfsnr)
-    municipality.t_id,
+    DISTINCT ON (municipality_with_plrc.municipality)
+    municipality_with_plrc.t_id,
+    municipality_with_plrc.municipality,
     gemeindegrenze.aname,
     gemeindegrenze.bfsnr,
     CASE 
-        WHEN acode.avalue IS NULL THEN CAST('false' AS BOOLEAN)
+        WHEN municipality_with_plrc.avalue IS NULL THEN CAST('false' AS BOOLEAN)
         ELSE CAST('true' AS BOOLEAN) 
     END AS available,
     gemeindegrenze.geometrie
 FROM
-    $schema.oerb_xtnx_v1_0annex_municipalitywithplrc AS municipality
-    LEFT JOIN $schema.oereb_extractannex_v1_0_code_ AS acode
-    ON acode.oerb_xtnx_vpltywthplrc_themes = municipality.t_id
+    (
+        SELECT
+            DISTINCT ON (municipality.t_id)
+            municipality.*,
+            acode.avalue
+        FROM
+            live.oerb_xtnx_v1_0annex_municipalitywithplrc AS municipality
+            LEFT JOIN live.oereb_extractannex_v1_0_code_ AS acode
+            ON acode.oerb_xtnx_vpltywthplrc_themes = municipality.t_id
+    ) AS municipality_with_plrc
     LEFT JOIN (
         SELECT
             gemeinde.aname,
             bfsnr,
             ST_Multi(ST_Union(geometrie)) AS geometrie
         FROM
-            $schema.dm01vch24lv95dgemeindegrenzen_gemeindegrenze AS gemeindegrenze
-            LEFT JOIN $schema.dm01vch24lv95dgemeindegrenzen_gemeinde AS gemeinde
+            live.dm01vch24lv95dgemeindegrenzen_gemeindegrenze AS gemeindegrenze
+            LEFT JOIN live.dm01vch24lv95dgemeindegrenzen_gemeinde AS gemeinde
             ON gemeinde.t_id = gemeindegrenze.gemeindegrenze_von
         GROUP BY
             bfsnr, aname
     ) AS gemeindegrenze
-    ON gemeindegrenze.bfsnr = municipality.municipality
+    ON gemeindegrenze.bfsnr = municipality_with_plrc.municipality
 ;
 EOM
 )
