@@ -288,8 +288,8 @@ for schema in "${pg_schemas[@]}"
       
 -- -----------------------------------------------------------------------------
 -- materialized view municipality_with_plrc
-DROP MATERIALIZED VIEW IF EXISTS $schema.vw_oerebwms_municipality_with_plrc;
-CREATE MATERIALIZED VIEW IF NOT EXISTS $schema.vw_oerebwms_municipality_with_plrc AS 
+DROP VIEW IF EXISTS $schema.vw_oerebwms_municipality_with_plrc;
+CREATE VIEW IF NOT EXISTS $schema.vw_oerebwms_municipality_with_plrc AS 
 SELECT
     DISTINCT ON (municipality_with_plrc.municipality)
     municipality_with_plrc.t_id,
