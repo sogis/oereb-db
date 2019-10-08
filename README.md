@@ -103,7 +103,7 @@ psql -h DB_HOST_NAME -d OEREB_DB_NAME -v PG_USER=ADMIN_USER -f sql/setup_gdi.sql
 
 Grant privileges:
 ```
-psql -h DB_HOST_NAME -d OEREB_DB_NAME -v PG_WRITE_USER=GRETL_USER -v PG_READ_USER='WMS_USER,OEREB_SERVICE_USER' -c "SET ROLE ADMIN_USER" -f sql/grants_gdi.sql
+psql -h DB_HOST_NAME -d OEREB_DB_NAME -v PG_WRITE_USER=GRETL_USER -v PG_READ_USER='WMS_USER,OEREB_SERVICE_USER' -c "SET ROLE SUPERUSER_USER" -f sql/grants_gdi.sql
 ```
 
 # Setting up the DB schemas used for transforming data into the OeREBKRMtrsfr_V1_1 model in the edit DB of the AGI GDI
