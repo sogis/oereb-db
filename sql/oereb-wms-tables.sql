@@ -3,9 +3,9 @@
 -- schema nr 1 is stage
 ---------------------------      
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_ueberlagernd_linie' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungUeberlagernd' and geometry 'linie'
-DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_linie;
-CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_linie AS 
+-- table 'nutzungsplanung_ueberlagernd_linie' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungUeberlagernd' and geometry 'linie'
+DROP TABLE IF EXISTS stage.oerebwms_nutzungsplanung_ueberlagernd_linie;
+CREATE TABLE IF NOT EXISTS stage.oerebwms_nutzungsplanung_ueberlagernd_linie AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
 (
     SELECT 
@@ -182,17 +182,17 @@ WHERE
 ;
 -- spatial index
 CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_linie_geom
-  ON stage.vw_oerebwms_nutzungsplanung_ueberlagernd_linie
+  ON stage.oerebwms_nutzungsplanung_ueberlagernd_linie
   USING GIST ( geom );
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_linie_artcode
-  ON stage.vw_oerebwms_nutzungsplanung_ueberlagernd_linie
+  ON stage.oerebwms_nutzungsplanung_ueberlagernd_linie
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'weiteres_thema_einzelschutz_flaeche' with thema 'WeiteresThema', subthema 'ch.SO.Einzelschutz' and geometry 'flaeche'
-DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_weiteres_thema_einzelschutz_flaeche;
-CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_weiteres_thema_einzelschutz_flaeche AS 
+-- table 'weiteres_thema_einzelschutz_flaeche' with thema 'WeiteresThema', subthema 'ch.SO.Einzelschutz' and geometry 'flaeche'
+DROP TABLE IF EXISTS stage.oerebwms_weiteres_thema_einzelschutz_flaeche;
+CREATE TABLE IF NOT EXISTS stage.oerebwms_weiteres_thema_einzelschutz_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
 (
     SELECT 
@@ -369,17 +369,17 @@ WHERE
 ;
 -- spatial index
 CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_flaeche_geom
-  ON stage.vw_oerebwms_weiteres_thema_einzelschutz_flaeche
+  ON stage.oerebwms_weiteres_thema_einzelschutz_flaeche
   USING GIST ( geom );
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_flaeche_artcode
-  ON stage.vw_oerebwms_weiteres_thema_einzelschutz_flaeche
+  ON stage.oerebwms_weiteres_thema_einzelschutz_flaeche
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'weiteres_thema_einzelschutz_punkt' with thema 'WeiteresThema', subthema 'ch.SO.Einzelschutz' and geometry 'punkt'
-DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_weiteres_thema_einzelschutz_punkt;
-CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_weiteres_thema_einzelschutz_punkt AS 
+-- table 'weiteres_thema_einzelschutz_punkt' with thema 'WeiteresThema', subthema 'ch.SO.Einzelschutz' and geometry 'punkt'
+DROP TABLE IF EXISTS stage.oerebwms_weiteres_thema_einzelschutz_punkt;
+CREATE TABLE IF NOT EXISTS stage.oerebwms_weiteres_thema_einzelschutz_punkt AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
 (
     SELECT 
@@ -556,17 +556,17 @@ WHERE
 ;
 -- spatial index
 CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_punkt_geom
-  ON stage.vw_oerebwms_weiteres_thema_einzelschutz_punkt
+  ON stage.oerebwms_weiteres_thema_einzelschutz_punkt
   USING GIST ( geom );
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_punkt_artcode
-  ON stage.vw_oerebwms_weiteres_thema_einzelschutz_punkt
+  ON stage.oerebwms_weiteres_thema_einzelschutz_punkt
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'grundwasserschutzzonen_flaeche' with thema 'Grundwasserschutzzonen', subthema '-' and geometry 'flaeche'
-DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_grundwasserschutzzonen_flaeche;
-CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_grundwasserschutzzonen_flaeche AS 
+-- table 'grundwasserschutzzonen_flaeche' with thema 'Grundwasserschutzzonen', subthema '-' and geometry 'flaeche'
+DROP TABLE IF EXISTS stage.oerebwms_grundwasserschutzzonen_flaeche;
+CREATE TABLE IF NOT EXISTS stage.oerebwms_grundwasserschutzzonen_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
 (
     SELECT 
@@ -742,17 +742,17 @@ WHERE
 ;
 -- spatial index
 CREATE INDEX in_oerebwms_grundwasserschutzzonen_flaeche_geom
-  ON stage.vw_oerebwms_grundwasserschutzzonen_flaeche
+  ON stage.oerebwms_grundwasserschutzzonen_flaeche
   USING GIST ( geom );
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_grundwasserschutzzonen_flaeche_artcode
-  ON stage.vw_oerebwms_grundwasserschutzzonen_flaeche
+  ON stage.oerebwms_grundwasserschutzzonen_flaeche
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'belastete_standorte_flaeche' with thema 'Belastete Standorte', subthema '-' and geometry 'flaeche'
-DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_belastete_standorte_flaeche;
-CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_belastete_standorte_flaeche AS 
+-- table 'belastete_standorte_flaeche' with thema 'Belastete Standorte', subthema '-' and geometry 'flaeche'
+DROP TABLE IF EXISTS stage.oerebwms_belastete_standorte_flaeche;
+CREATE TABLE IF NOT EXISTS stage.oerebwms_belastete_standorte_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
 (
     SELECT 
@@ -928,17 +928,17 @@ WHERE
 ;
 -- spatial index
 CREATE INDEX in_oerebwms_belastete_standorte_flaeche_geom
-  ON stage.vw_oerebwms_belastete_standorte_flaeche
+  ON stage.oerebwms_belastete_standorte_flaeche
   USING GIST ( geom );
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_belastete_standorte_flaeche_artcode
-  ON stage.vw_oerebwms_belastete_standorte_flaeche
+  ON stage.oerebwms_belastete_standorte_flaeche
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_baulinien_linie' with thema 'Nutzungsplanung', subthema 'ch.SO.Baulinien' and geometry 'linie'
-DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_baulinien_linie;
-CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_nutzungsplanung_baulinien_linie AS 
+-- table 'nutzungsplanung_baulinien_linie' with thema 'Nutzungsplanung', subthema 'ch.SO.Baulinien' and geometry 'linie'
+DROP TABLE IF EXISTS stage.oerebwms_nutzungsplanung_baulinien_linie;
+CREATE TABLE IF NOT EXISTS stage.oerebwms_nutzungsplanung_baulinien_linie AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
 (
     SELECT 
@@ -1115,17 +1115,17 @@ WHERE
 ;
 -- spatial index
 CREATE INDEX in_oerebwms_nutzungsplanung_baulinien_linie_geom
-  ON stage.vw_oerebwms_nutzungsplanung_baulinien_linie
+  ON stage.oerebwms_nutzungsplanung_baulinien_linie
   USING GIST ( geom );
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_nutzungsplanung_baulinien_linie_artcode
-  ON stage.vw_oerebwms_nutzungsplanung_baulinien_linie
+  ON stage.oerebwms_nutzungsplanung_baulinien_linie
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_sondernutzungsplaene_flaeche' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungSondernutzungsplaene' and geometry 'flaeche'
-DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche;
-CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche AS 
+-- table 'nutzungsplanung_sondernutzungsplaene_flaeche' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungSondernutzungsplaene' and geometry 'flaeche'
+DROP TABLE IF EXISTS stage.oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche;
+CREATE TABLE IF NOT EXISTS stage.oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
 (
     SELECT 
@@ -1302,17 +1302,17 @@ WHERE
 ;
 -- spatial index
 CREATE INDEX in_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche_geom
-  ON stage.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche
+  ON stage.oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche
   USING GIST ( geom );
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche_artcode
-  ON stage.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche
+  ON stage.oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'laermempfindlichkeitsstufen_flaeche' with thema 'Laermemfindlichkeitsstufen', subthema '-' and geometry 'flaeche'
-DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_laermempfindlichkeitsstufen_flaeche;
-CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_laermempfindlichkeitsstufen_flaeche AS 
+-- table 'laermempfindlichkeitsstufen_flaeche' with thema 'Laermemfindlichkeitsstufen', subthema '-' and geometry 'flaeche'
+DROP TABLE IF EXISTS stage.oerebwms_laermempfindlichkeitsstufen_flaeche;
+CREATE TABLE IF NOT EXISTS stage.oerebwms_laermempfindlichkeitsstufen_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
 (
     SELECT 
@@ -1488,17 +1488,17 @@ WHERE
 ;
 -- spatial index
 CREATE INDEX in_oerebwms_laermempfindlichkeitsstufen_flaeche_geom
-  ON stage.vw_oerebwms_laermempfindlichkeitsstufen_flaeche
+  ON stage.oerebwms_laermempfindlichkeitsstufen_flaeche
   USING GIST ( geom );
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_laermempfindlichkeitsstufen_flaeche_artcode
-  ON stage.vw_oerebwms_laermempfindlichkeitsstufen_flaeche
+  ON stage.oerebwms_laermempfindlichkeitsstufen_flaeche
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'waldabstandslinien_linie' with thema 'Waldabstandslinien', subthema '-' and geometry 'linie'
-DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_waldabstandslinien_linie;
-CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_waldabstandslinien_linie AS 
+-- table 'waldabstandslinien_linie' with thema 'Waldabstandslinien', subthema '-' and geometry 'linie'
+DROP TABLE IF EXISTS stage.oerebwms_waldabstandslinien_linie;
+CREATE TABLE IF NOT EXISTS stage.oerebwms_waldabstandslinien_linie AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
 (
     SELECT 
@@ -1674,17 +1674,17 @@ WHERE
 ;
 -- spatial index
 CREATE INDEX in_oerebwms_waldabstandslinien_linie_geom
-  ON stage.vw_oerebwms_waldabstandslinien_linie
+  ON stage.oerebwms_waldabstandslinien_linie
   USING GIST ( geom );
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_waldabstandslinien_linie_artcode
-  ON stage.vw_oerebwms_waldabstandslinien_linie
+  ON stage.oerebwms_waldabstandslinien_linie
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'waldgrenzen_linie' with thema 'Waldgrenzen', subthema '-' and geometry 'linie'
-DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_waldgrenzen_linie;
-CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_waldgrenzen_linie AS 
+-- table 'waldgrenzen_linie' with thema 'Waldgrenzen', subthema '-' and geometry 'linie'
+DROP TABLE IF EXISTS stage.oerebwms_waldgrenzen_linie;
+CREATE TABLE IF NOT EXISTS stage.oerebwms_waldgrenzen_linie AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
 (
     SELECT 
@@ -1860,17 +1860,17 @@ WHERE
 ;
 -- spatial index
 CREATE INDEX in_oerebwms_waldgrenzen_linie_geom
-  ON stage.vw_oerebwms_waldgrenzen_linie
+  ON stage.oerebwms_waldgrenzen_linie
   USING GIST ( geom );
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_waldgrenzen_linie_artcode
-  ON stage.vw_oerebwms_waldgrenzen_linie
+  ON stage.oerebwms_waldgrenzen_linie
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_ueberlagernd_flaeche' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungUeberlagernd' and geometry 'flaeche'
-DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche;
-CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche AS 
+-- table 'nutzungsplanung_ueberlagernd_flaeche' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungUeberlagernd' and geometry 'flaeche'
+DROP TABLE IF EXISTS stage.oerebwms_nutzungsplanung_ueberlagernd_flaeche;
+CREATE TABLE IF NOT EXISTS stage.oerebwms_nutzungsplanung_ueberlagernd_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
 (
     SELECT 
@@ -2047,17 +2047,17 @@ WHERE
 ;
 -- spatial index
 CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_flaeche_geom
-  ON stage.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche
+  ON stage.oerebwms_nutzungsplanung_ueberlagernd_flaeche
   USING GIST ( geom );
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_flaeche_artcode
-  ON stage.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche
+  ON stage.oerebwms_nutzungsplanung_ueberlagernd_flaeche
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_ueberlagernd_punkt' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungUeberlagernd' and geometry 'punkt'
-DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt;
-CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt AS 
+-- table 'nutzungsplanung_ueberlagernd_punkt' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungUeberlagernd' and geometry 'punkt'
+DROP TABLE IF EXISTS stage.oerebwms_nutzungsplanung_ueberlagernd_punkt;
+CREATE TABLE IF NOT EXISTS stage.oerebwms_nutzungsplanung_ueberlagernd_punkt AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
 (
     SELECT 
@@ -2234,17 +2234,17 @@ WHERE
 ;
 -- spatial index
 CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_punkt_geom
-  ON stage.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt
+  ON stage.oerebwms_nutzungsplanung_ueberlagernd_punkt
   USING GIST ( geom );
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_punkt_artcode
-  ON stage.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt
+  ON stage.oerebwms_nutzungsplanung_ueberlagernd_punkt
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_grundnutzung_flaeche' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungGrundnutzung' and geometry 'flaeche'
-DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche;
-CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche AS 
+-- table 'nutzungsplanung_grundnutzung_flaeche' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungGrundnutzung' and geometry 'flaeche'
+DROP TABLE IF EXISTS stage.oerebwms_nutzungsplanung_grundnutzung_flaeche;
+CREATE TABLE IF NOT EXISTS stage.oerebwms_nutzungsplanung_grundnutzung_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
 (
     SELECT 
@@ -2421,17 +2421,17 @@ WHERE
 ;
 -- spatial index
 CREATE INDEX in_oerebwms_nutzungsplanung_grundnutzung_flaeche_geom
-  ON stage.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche
+  ON stage.oerebwms_nutzungsplanung_grundnutzung_flaeche
   USING GIST ( geom );
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_nutzungsplanung_grundnutzung_flaeche_artcode
-  ON stage.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche
+  ON stage.oerebwms_nutzungsplanung_grundnutzung_flaeche
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'grundwasserschutzareale_flaeche' with thema 'Grundwasserschutzareale', subthema '-' and geometry 'flaeche'
-DROP MATERIALIZED VIEW IF EXISTS stage.vw_oerebwms_grundwasserschutzareale_flaeche;
-CREATE MATERIALIZED VIEW IF NOT EXISTS stage.vw_oerebwms_grundwasserschutzareale_flaeche AS 
+-- table 'grundwasserschutzareale_flaeche' with thema 'Grundwasserschutzareale', subthema '-' and geometry 'flaeche'
+DROP TABLE IF EXISTS stage.oerebwms_grundwasserschutzareale_flaeche;
+CREATE TABLE IF NOT EXISTS stage.oerebwms_grundwasserschutzareale_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
 (
     SELECT 
@@ -2607,20 +2607,20 @@ WHERE
 ;
 -- spatial index
 CREATE INDEX in_oerebwms_grundwasserschutzareale_flaeche_geom
-  ON stage.vw_oerebwms_grundwasserschutzareale_flaeche
+  ON stage.oerebwms_grundwasserschutzareale_flaeche
   USING GIST ( geom );
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_grundwasserschutzareale_flaeche_artcode
-  ON stage.vw_oerebwms_grundwasserschutzareale_flaeche
+  ON stage.oerebwms_grundwasserschutzareale_flaeche
   USING btree ( artcode );
 
 
 -- schema nr 2 is live
 ---------------------------      
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_ueberlagernd_linie' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungUeberlagernd' and geometry 'linie'
-DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_linie;
-CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_linie AS 
+-- table 'nutzungsplanung_ueberlagernd_linie' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungUeberlagernd' and geometry 'linie'
+DROP TABLE IF EXISTS live.oerebwms_nutzungsplanung_ueberlagernd_linie;
+CREATE TABLE IF NOT EXISTS live.oerebwms_nutzungsplanung_ueberlagernd_linie AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
 (
     SELECT 
@@ -2797,17 +2797,17 @@ WHERE
 ;
 -- spatial index
 CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_linie_geom
-  ON live.vw_oerebwms_nutzungsplanung_ueberlagernd_linie
+  ON live.oerebwms_nutzungsplanung_ueberlagernd_linie
   USING GIST ( geom );
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_linie_artcode
-  ON live.vw_oerebwms_nutzungsplanung_ueberlagernd_linie
+  ON live.oerebwms_nutzungsplanung_ueberlagernd_linie
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'weiteres_thema_einzelschutz_flaeche' with thema 'WeiteresThema', subthema 'ch.SO.Einzelschutz' and geometry 'flaeche'
-DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_weiteres_thema_einzelschutz_flaeche;
-CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_weiteres_thema_einzelschutz_flaeche AS 
+-- table 'weiteres_thema_einzelschutz_flaeche' with thema 'WeiteresThema', subthema 'ch.SO.Einzelschutz' and geometry 'flaeche'
+DROP TABLE IF EXISTS live.oerebwms_weiteres_thema_einzelschutz_flaeche;
+CREATE TABLE IF NOT EXISTS live.oerebwms_weiteres_thema_einzelschutz_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
 (
     SELECT 
@@ -2984,17 +2984,17 @@ WHERE
 ;
 -- spatial index
 CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_flaeche_geom
-  ON live.vw_oerebwms_weiteres_thema_einzelschutz_flaeche
+  ON live.oerebwms_weiteres_thema_einzelschutz_flaeche
   USING GIST ( geom );
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_flaeche_artcode
-  ON live.vw_oerebwms_weiteres_thema_einzelschutz_flaeche
+  ON live.oerebwms_weiteres_thema_einzelschutz_flaeche
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'weiteres_thema_einzelschutz_punkt' with thema 'WeiteresThema', subthema 'ch.SO.Einzelschutz' and geometry 'punkt'
-DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_weiteres_thema_einzelschutz_punkt;
-CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_weiteres_thema_einzelschutz_punkt AS 
+-- table 'weiteres_thema_einzelschutz_punkt' with thema 'WeiteresThema', subthema 'ch.SO.Einzelschutz' and geometry 'punkt'
+DROP TABLE IF EXISTS live.oerebwms_weiteres_thema_einzelschutz_punkt;
+CREATE TABLE IF NOT EXISTS live.oerebwms_weiteres_thema_einzelschutz_punkt AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
 (
     SELECT 
@@ -3171,17 +3171,17 @@ WHERE
 ;
 -- spatial index
 CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_punkt_geom
-  ON live.vw_oerebwms_weiteres_thema_einzelschutz_punkt
+  ON live.oerebwms_weiteres_thema_einzelschutz_punkt
   USING GIST ( geom );
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_punkt_artcode
-  ON live.vw_oerebwms_weiteres_thema_einzelschutz_punkt
+  ON live.oerebwms_weiteres_thema_einzelschutz_punkt
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'grundwasserschutzzonen_flaeche' with thema 'Grundwasserschutzzonen', subthema '-' and geometry 'flaeche'
-DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_grundwasserschutzzonen_flaeche;
-CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_grundwasserschutzzonen_flaeche AS 
+-- table 'grundwasserschutzzonen_flaeche' with thema 'Grundwasserschutzzonen', subthema '-' and geometry 'flaeche'
+DROP TABLE IF EXISTS live.oerebwms_grundwasserschutzzonen_flaeche;
+CREATE TABLE IF NOT EXISTS live.oerebwms_grundwasserschutzzonen_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
 (
     SELECT 
@@ -3357,17 +3357,17 @@ WHERE
 ;
 -- spatial index
 CREATE INDEX in_oerebwms_grundwasserschutzzonen_flaeche_geom
-  ON live.vw_oerebwms_grundwasserschutzzonen_flaeche
+  ON live.oerebwms_grundwasserschutzzonen_flaeche
   USING GIST ( geom );
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_grundwasserschutzzonen_flaeche_artcode
-  ON live.vw_oerebwms_grundwasserschutzzonen_flaeche
+  ON live.oerebwms_grundwasserschutzzonen_flaeche
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'belastete_standorte_flaeche' with thema 'Belastete Standorte', subthema '-' and geometry 'flaeche'
-DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_belastete_standorte_flaeche;
-CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_belastete_standorte_flaeche AS 
+-- table 'belastete_standorte_flaeche' with thema 'Belastete Standorte', subthema '-' and geometry 'flaeche'
+DROP TABLE IF EXISTS live.oerebwms_belastete_standorte_flaeche;
+CREATE TABLE IF NOT EXISTS live.oerebwms_belastete_standorte_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
 (
     SELECT 
@@ -3543,17 +3543,17 @@ WHERE
 ;
 -- spatial index
 CREATE INDEX in_oerebwms_belastete_standorte_flaeche_geom
-  ON live.vw_oerebwms_belastete_standorte_flaeche
+  ON live.oerebwms_belastete_standorte_flaeche
   USING GIST ( geom );
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_belastete_standorte_flaeche_artcode
-  ON live.vw_oerebwms_belastete_standorte_flaeche
+  ON live.oerebwms_belastete_standorte_flaeche
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_baulinien_linie' with thema 'Nutzungsplanung', subthema 'ch.SO.Baulinien' and geometry 'linie'
-DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_baulinien_linie;
-CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_nutzungsplanung_baulinien_linie AS 
+-- table 'nutzungsplanung_baulinien_linie' with thema 'Nutzungsplanung', subthema 'ch.SO.Baulinien' and geometry 'linie'
+DROP TABLE IF EXISTS live.oerebwms_nutzungsplanung_baulinien_linie;
+CREATE TABLE IF NOT EXISTS live.oerebwms_nutzungsplanung_baulinien_linie AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
 (
     SELECT 
@@ -3730,17 +3730,17 @@ WHERE
 ;
 -- spatial index
 CREATE INDEX in_oerebwms_nutzungsplanung_baulinien_linie_geom
-  ON live.vw_oerebwms_nutzungsplanung_baulinien_linie
+  ON live.oerebwms_nutzungsplanung_baulinien_linie
   USING GIST ( geom );
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_nutzungsplanung_baulinien_linie_artcode
-  ON live.vw_oerebwms_nutzungsplanung_baulinien_linie
+  ON live.oerebwms_nutzungsplanung_baulinien_linie
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_sondernutzungsplaene_flaeche' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungSondernutzungsplaene' and geometry 'flaeche'
-DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche;
-CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche AS 
+-- table 'nutzungsplanung_sondernutzungsplaene_flaeche' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungSondernutzungsplaene' and geometry 'flaeche'
+DROP TABLE IF EXISTS live.oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche;
+CREATE TABLE IF NOT EXISTS live.oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
 (
     SELECT 
@@ -3917,17 +3917,17 @@ WHERE
 ;
 -- spatial index
 CREATE INDEX in_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche_geom
-  ON live.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche
+  ON live.oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche
   USING GIST ( geom );
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche_artcode
-  ON live.vw_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche
+  ON live.oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'laermempfindlichkeitsstufen_flaeche' with thema 'Laermemfindlichkeitsstufen', subthema '-' and geometry 'flaeche'
-DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_laermempfindlichkeitsstufen_flaeche;
-CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_laermempfindlichkeitsstufen_flaeche AS 
+-- table 'laermempfindlichkeitsstufen_flaeche' with thema 'Laermemfindlichkeitsstufen', subthema '-' and geometry 'flaeche'
+DROP TABLE IF EXISTS live.oerebwms_laermempfindlichkeitsstufen_flaeche;
+CREATE TABLE IF NOT EXISTS live.oerebwms_laermempfindlichkeitsstufen_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
 (
     SELECT 
@@ -4103,17 +4103,17 @@ WHERE
 ;
 -- spatial index
 CREATE INDEX in_oerebwms_laermempfindlichkeitsstufen_flaeche_geom
-  ON live.vw_oerebwms_laermempfindlichkeitsstufen_flaeche
+  ON live.oerebwms_laermempfindlichkeitsstufen_flaeche
   USING GIST ( geom );
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_laermempfindlichkeitsstufen_flaeche_artcode
-  ON live.vw_oerebwms_laermempfindlichkeitsstufen_flaeche
+  ON live.oerebwms_laermempfindlichkeitsstufen_flaeche
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'waldabstandslinien_linie' with thema 'Waldabstandslinien', subthema '-' and geometry 'linie'
-DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_waldabstandslinien_linie;
-CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_waldabstandslinien_linie AS 
+-- table 'waldabstandslinien_linie' with thema 'Waldabstandslinien', subthema '-' and geometry 'linie'
+DROP TABLE IF EXISTS live.oerebwms_waldabstandslinien_linie;
+CREATE TABLE IF NOT EXISTS live.oerebwms_waldabstandslinien_linie AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
 (
     SELECT 
@@ -4289,17 +4289,17 @@ WHERE
 ;
 -- spatial index
 CREATE INDEX in_oerebwms_waldabstandslinien_linie_geom
-  ON live.vw_oerebwms_waldabstandslinien_linie
+  ON live.oerebwms_waldabstandslinien_linie
   USING GIST ( geom );
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_waldabstandslinien_linie_artcode
-  ON live.vw_oerebwms_waldabstandslinien_linie
+  ON live.oerebwms_waldabstandslinien_linie
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'waldgrenzen_linie' with thema 'Waldgrenzen', subthema '-' and geometry 'linie'
-DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_waldgrenzen_linie;
-CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_waldgrenzen_linie AS 
+-- table 'waldgrenzen_linie' with thema 'Waldgrenzen', subthema '-' and geometry 'linie'
+DROP TABLE IF EXISTS live.oerebwms_waldgrenzen_linie;
+CREATE TABLE IF NOT EXISTS live.oerebwms_waldgrenzen_linie AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
 (
     SELECT 
@@ -4475,17 +4475,17 @@ WHERE
 ;
 -- spatial index
 CREATE INDEX in_oerebwms_waldgrenzen_linie_geom
-  ON live.vw_oerebwms_waldgrenzen_linie
+  ON live.oerebwms_waldgrenzen_linie
   USING GIST ( geom );
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_waldgrenzen_linie_artcode
-  ON live.vw_oerebwms_waldgrenzen_linie
+  ON live.oerebwms_waldgrenzen_linie
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_ueberlagernd_flaeche' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungUeberlagernd' and geometry 'flaeche'
-DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche;
-CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche AS 
+-- table 'nutzungsplanung_ueberlagernd_flaeche' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungUeberlagernd' and geometry 'flaeche'
+DROP TABLE IF EXISTS live.oerebwms_nutzungsplanung_ueberlagernd_flaeche;
+CREATE TABLE IF NOT EXISTS live.oerebwms_nutzungsplanung_ueberlagernd_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
 (
     SELECT 
@@ -4662,17 +4662,17 @@ WHERE
 ;
 -- spatial index
 CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_flaeche_geom
-  ON live.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche
+  ON live.oerebwms_nutzungsplanung_ueberlagernd_flaeche
   USING GIST ( geom );
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_flaeche_artcode
-  ON live.vw_oerebwms_nutzungsplanung_ueberlagernd_flaeche
+  ON live.oerebwms_nutzungsplanung_ueberlagernd_flaeche
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_ueberlagernd_punkt' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungUeberlagernd' and geometry 'punkt'
-DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt;
-CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt AS 
+-- table 'nutzungsplanung_ueberlagernd_punkt' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungUeberlagernd' and geometry 'punkt'
+DROP TABLE IF EXISTS live.oerebwms_nutzungsplanung_ueberlagernd_punkt;
+CREATE TABLE IF NOT EXISTS live.oerebwms_nutzungsplanung_ueberlagernd_punkt AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
 (
     SELECT 
@@ -4849,17 +4849,17 @@ WHERE
 ;
 -- spatial index
 CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_punkt_geom
-  ON live.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt
+  ON live.oerebwms_nutzungsplanung_ueberlagernd_punkt
   USING GIST ( geom );
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_punkt_artcode
-  ON live.vw_oerebwms_nutzungsplanung_ueberlagernd_punkt
+  ON live.oerebwms_nutzungsplanung_ueberlagernd_punkt
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'nutzungsplanung_grundnutzung_flaeche' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungGrundnutzung' and geometry 'flaeche'
-DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche;
-CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche AS 
+-- table 'nutzungsplanung_grundnutzung_flaeche' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungGrundnutzung' and geometry 'flaeche'
+DROP TABLE IF EXISTS live.oerebwms_nutzungsplanung_grundnutzung_flaeche;
+CREATE TABLE IF NOT EXISTS live.oerebwms_nutzungsplanung_grundnutzung_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
 (
     SELECT 
@@ -5036,17 +5036,17 @@ WHERE
 ;
 -- spatial index
 CREATE INDEX in_oerebwms_nutzungsplanung_grundnutzung_flaeche_geom
-  ON live.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche
+  ON live.oerebwms_nutzungsplanung_grundnutzung_flaeche
   USING GIST ( geom );
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_nutzungsplanung_grundnutzung_flaeche_artcode
-  ON live.vw_oerebwms_nutzungsplanung_grundnutzung_flaeche
+  ON live.oerebwms_nutzungsplanung_grundnutzung_flaeche
   USING btree ( artcode );
       
 -- -----------------------------------------------------------------------------
--- materialized view 'grundwasserschutzareale_flaeche' with thema 'Grundwasserschutzareale', subthema '-' and geometry 'flaeche'
-DROP MATERIALIZED VIEW IF EXISTS live.vw_oerebwms_grundwasserschutzareale_flaeche;
-CREATE MATERIALIZED VIEW IF NOT EXISTS live.vw_oerebwms_grundwasserschutzareale_flaeche AS 
+-- table 'grundwasserschutzareale_flaeche' with thema 'Grundwasserschutzareale', subthema '-' and geometry 'flaeche'
+DROP TABLE IF EXISTS live.oerebwms_grundwasserschutzareale_flaeche;
+CREATE TABLE IF NOT EXISTS live.oerebwms_grundwasserschutzareale_flaeche AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
 (
     SELECT 
@@ -5222,9 +5222,9 @@ WHERE
 ;
 -- spatial index
 CREATE INDEX in_oerebwms_grundwasserschutzareale_flaeche_geom
-  ON live.vw_oerebwms_grundwasserschutzareale_flaeche
+  ON live.oerebwms_grundwasserschutzareale_flaeche
   USING GIST ( geom );
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_grundwasserschutzareale_flaeche_artcode
-  ON live.vw_oerebwms_grundwasserschutzareale_flaeche
+  ON live.oerebwms_grundwasserschutzareale_flaeche
   USING btree ( artcode );
