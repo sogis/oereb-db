@@ -25,19 +25,19 @@ sed -i .bak -E -e 's/(CREATE.*INDEX) (T_ILI2DB)/\1 IF NOT EXISTS \2/' sql/*_ili2
 sed -i .bak -E -e 's/(ALTER TABLE .*T_ILI2DB.* ADD CONSTRAINT .* FOREIGN KEY)/-- \1/' sql/*_ili2.sql
 sed -i .bak -E -e 's/(INSERT INTO .*T_ILI2DB_SETTINGS)/-- \1/' sql/*_ili2.sql
 
-# create temporary SQL file for oereb-wms views
-./create_oereb-wms_views.sh > sql/oereb-wms-views.sql
+# create temporary SQL file for oereb-wms tables
+./create_oereb-wms_tables.sh > sql/oereb-wms-tables.sql
 
 # Append all SQL scripts to one single setup script
 cat sql/setup_original.sql sql/set_role.sql sql/begin_transaction.sql \
 sql/*_ili1.sql sql/*_ili2.sql \
-sql/oereb-wms-views.sql \
+sql/oereb-wms-tables.sql \
 sql/commit_transaction.sql > pgconf/setup.sql
 
 # Create a separate single setup script for use in the AGI GDI
 cat sql/set_role.sql sql/begin_transaction.sql \
 sql/*_ili1.sql sql/*_ili2.sql \
-sql/oereb-wms-views.sql \
+sql/oereb-wms-tables.sql \
 sql/commit_transaction.sql \
 | sed -e 's/PG_USER/:PG_USER/g' > sql/setup_gdi.sql
 

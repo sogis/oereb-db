@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#script for the creation of view for each combination of oereb subthema and geometry types
+#script for the creation of tables for each combination of oereb subthema and geometry types
 #to be used by QGIS server
 
 # Create Arrays for all OEREB topics and their corresponding geometry types
@@ -8,63 +8,63 @@ declare -a pg_schemas=("stage" "live")
 # see also https://stackoverflow.com/questions/6149679/multidimensional-associative-arrays-in-bash
 
 # if subthema is empty, use "-"
-declare -A pg_views
-declare -A pg_view
-pg_view[thema]="Belastete Standorte"; pg_view[subthema]="-"; pg_view[geom]="flaeche"
-string=$(declare -p pg_view)
-pg_views[belastete_standorte_flaeche]=${string}
+declare -A pg_tables
+declare -A pg_table
+pg_table[thema]="Belastete Standorte"; pg_table[subthema]="-"; pg_table[geom]="flaeche"
+string=$(declare -p pg_table)
+pg_tables[belastete_standorte_flaeche]=${string}
 
-pg_view[thema]="Grundwasserschutzareale"; pg_view[subthema]="-"; pg_view[geom]="flaeche"
-string=$(declare -p pg_view)
-pg_views[grundwasserschutzareale_flaeche]=${string}
+pg_table[thema]="Grundwasserschutzareale"; pg_table[subthema]="-"; pg_table[geom]="flaeche"
+string=$(declare -p pg_table)
+pg_tables[grundwasserschutzareale_flaeche]=${string}
 
-pg_view[thema]="Grundwasserschutzzonen"; pg_view[subthema]="-"; pg_view[geom]="flaeche"
-string=$(declare -p pg_view)
-pg_views[grundwasserschutzzonen_flaeche]=${string}
+pg_table[thema]="Grundwasserschutzzonen"; pg_table[subthema]="-"; pg_table[geom]="flaeche"
+string=$(declare -p pg_table)
+pg_tables[grundwasserschutzzonen_flaeche]=${string}
 
-pg_view[thema]="Laermemfindlichkeitsstufen"; pg_view[subthema]="-"; pg_view[geom]="flaeche"
-string=$(declare -p pg_view)
-pg_views[laermempfindlichkeitsstufen_flaeche]=${string}
+pg_table[thema]="Laermemfindlichkeitsstufen"; pg_table[subthema]="-"; pg_table[geom]="flaeche"
+string=$(declare -p pg_table)
+pg_tables[laermempfindlichkeitsstufen_flaeche]=${string}
 
-pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="ch.SO.Baulinien"; pg_view[geom]="linie"
-string=$(declare -p pg_view)
-pg_views[nutzungsplanung_baulinien_linie]=${string}
+pg_table[thema]="Nutzungsplanung"; pg_table[subthema]="ch.SO.Baulinien"; pg_table[geom]="linie"
+string=$(declare -p pg_table)
+pg_tables[nutzungsplanung_baulinien_linie]=${string}
 
-pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="ch.SO.NutzungsplanungGrundnutzung"; pg_view[geom]="flaeche"
-string=$(declare -p pg_view)
-pg_views[nutzungsplanung_grundnutzung_flaeche]=${string}
+pg_table[thema]="Nutzungsplanung"; pg_table[subthema]="ch.SO.NutzungsplanungGrundnutzung"; pg_table[geom]="flaeche"
+string=$(declare -p pg_table)
+pg_tables[nutzungsplanung_grundnutzung_flaeche]=${string}
 
-pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="ch.SO.NutzungsplanungSondernutzungsplaene"; pg_view[geom]="flaeche"
-string=$(declare -p pg_view)
-pg_views[nutzungsplanung_sondernutzungsplaene_flaeche]=${string}
+pg_table[thema]="Nutzungsplanung"; pg_table[subthema]="ch.SO.NutzungsplanungSondernutzungsplaene"; pg_table[geom]="flaeche"
+string=$(declare -p pg_table)
+pg_tables[nutzungsplanung_sondernutzungsplaene_flaeche]=${string}
 
-pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="ch.SO.NutzungsplanungUeberlagernd"; pg_view[geom]="flaeche"
-string=$(declare -p pg_view)
-pg_views[nutzungsplanung_ueberlagernd_flaeche]=${string}
+pg_table[thema]="Nutzungsplanung"; pg_table[subthema]="ch.SO.NutzungsplanungUeberlagernd"; pg_table[geom]="flaeche"
+string=$(declare -p pg_table)
+pg_tables[nutzungsplanung_ueberlagernd_flaeche]=${string}
 
-pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="ch.SO.NutzungsplanungUeberlagernd"; pg_view[geom]="linie"
-string=$(declare -p pg_view)
-pg_views[nutzungsplanung_ueberlagernd_linie]=${string}
+pg_table[thema]="Nutzungsplanung"; pg_table[subthema]="ch.SO.NutzungsplanungUeberlagernd"; pg_table[geom]="linie"
+string=$(declare -p pg_table)
+pg_tables[nutzungsplanung_ueberlagernd_linie]=${string}
 
-pg_view[thema]="Nutzungsplanung"; pg_view[subthema]="ch.SO.NutzungsplanungUeberlagernd"; pg_view[geom]="punkt"
-string=$(declare -p pg_view)
-pg_views[nutzungsplanung_ueberlagernd_punkt]=${string}
+pg_table[thema]="Nutzungsplanung"; pg_table[subthema]="ch.SO.NutzungsplanungUeberlagernd"; pg_table[geom]="punkt"
+string=$(declare -p pg_table)
+pg_tables[nutzungsplanung_ueberlagernd_punkt]=${string}
 
-pg_view[thema]="WeiteresThema"; pg_view[subthema]="ch.SO.Einzelschutz"; pg_view[geom]="flaeche"
-string=$(declare -p pg_view)
-pg_views[weiteres_thema_einzelschutz_flaeche]=${string}
+pg_table[thema]="WeiteresThema"; pg_table[subthema]="ch.SO.Einzelschutz"; pg_table[geom]="flaeche"
+string=$(declare -p pg_table)
+pg_tables[weiteres_thema_einzelschutz_flaeche]=${string}
 
-pg_view[thema]="WeiteresThema"; pg_view[subthema]="ch.SO.Einzelschutz"; pg_view[geom]="punkt"
-string=$(declare -p pg_view)
-pg_views[weiteres_thema_einzelschutz_punkt]=${string}
+pg_table[thema]="WeiteresThema"; pg_table[subthema]="ch.SO.Einzelschutz"; pg_table[geom]="punkt"
+string=$(declare -p pg_table)
+pg_tables[weiteres_thema_einzelschutz_punkt]=${string}
 
-pg_view[thema]="Waldgrenzen"; pg_view[subthema]="-"; pg_view[geom]="linie"
-string=$(declare -p pg_view)
-pg_views[waldgrenzen_linie]=${string}
+pg_table[thema]="Waldgrenzen"; pg_table[subthema]="-"; pg_table[geom]="linie"
+string=$(declare -p pg_table)
+pg_tables[waldgrenzen_linie]=${string}
 
-pg_view[thema]="Waldabstandslinien"; pg_view[subthema]="-"; pg_view[geom]="linie"
-string=$(declare -p pg_view)
-pg_views[waldabstandslinien_linie]=${string}
+pg_table[thema]="Waldabstandslinien"; pg_table[subthema]="-"; pg_table[geom]="linie"
+string=$(declare -p pg_table)
+pg_tables[waldabstandslinien_linie]=${string}
 
 declare -i ctr=1
 
@@ -72,16 +72,16 @@ declare -i ctr=1
 for schema in "${pg_schemas[@]}"
   do
   printf "\n\n-- schema nr $ctr is $schema\n---------------------------" 
-  for view_name in "${!pg_views[@]}"
+  for table_name in "${!pg_tables[@]}"
     do
-      eval "${pg_views[$view_name]}"
-      #printf "view '$view_name' with thema '${pg_view[thema]}', subthema '${pg_view[subthema]}' and geometry '${pg_view[geom]}'\n"
+      eval "${pg_tables[$table_name]}"
+      #printf "table '$table_name' with thema '${pg_table[thema]}', subthema '${pg_table[subthema]}' and geometry '${pg_table[geom]}'\n"
       sql=$(cat << EOM
       
 -- -----------------------------------------------------------------------------
--- materialized view '$view_name' with thema '${pg_view[thema]}', subthema '${pg_view[subthema]}' and geometry '${pg_view[geom]}'
-DROP MATERIALIZED VIEW IF EXISTS $schema.vw_oerebwms_$view_name;
-CREATE MATERIALIZED VIEW IF NOT EXISTS $schema.vw_oerebwms_$view_name AS 
+-- table '$table_name' with thema '${pg_table[thema]}', subthema '${pg_table[subthema]}' and geometry '${pg_table[geom]}'
+DROP TABLE IF EXISTS $schema.oerebwms_$table_name;
+CREATE TABLE IF NOT EXISTS $schema.oerebwms_$table_name AS 
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
 (
     SELECT 
@@ -231,7 +231,7 @@ grouped_json_documents AS
 )
 SELECT
     geometrie.t_id AS t_id,
-    geometrie.${pg_view[geom]}_lv95 AS geom,
+    geometrie.${pg_table[geom]}_lv95 AS geom,
     eigentumsbeschraenkung.aussage_de AS aussage,
     grouped_json_documents.dokumente AS dokumente,
     eigentumsbeschraenkung.thema,
@@ -252,27 +252,27 @@ FROM
     LEFT JOIN $schema.oerbkrmvs_v1_1vorschriften_amt zustaendigestelle
     ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
 WHERE
-    eigentumsbeschraenkung.thema = '${pg_view[thema]}'
+    eigentumsbeschraenkung.thema = '${pg_table[thema]}'
 EOM
 )
-      if [ ${pg_view[subthema]} != '-' ]; then
+      if [ ${pg_table[subthema]} != '-' ]; then
         sql+=$(cat << EOM
  AND
-    eigentumsbeschraenkung.subthema = '${pg_view[subthema]}'
+    eigentumsbeschraenkung.subthema = '${pg_table[subthema]}'
 EOM
 )
       fi
       sql+=$(cat << EOM
  AND
-    geometrie.${pg_view[geom]}_lv95 IS NOT NULL
+    geometrie.${pg_table[geom]}_lv95 IS NOT NULL
 ;
 -- spatial index
-CREATE INDEX in_oerebwms_${view_name}_geom
-  ON $schema.vw_oerebwms_$view_name
+CREATE INDEX in_oerebwms_${table_name}_geom
+  ON $schema.oerebwms_$table_name
   USING GIST ( geom );
 -- attribute index on artcode
-CREATE INDEX in_oerebwms_${view_name}_artcode
-  ON $schema.vw_oerebwms_$view_name
+CREATE INDEX in_oerebwms_${table_name}_artcode
+  ON $schema.oerebwms_$table_name
   USING btree ( artcode );
 EOM
 )
