@@ -2,6 +2,32 @@
 #script for the creation of tables for each combination of oereb subthema and geometry types
 #to be used by QGIS server
 
+UPDATE=false
+
+usage() {                                      # Function: Print a help message.
+  echo "Usage: $0 [ -u] [>filename.sql]" 1>&2
+  echo "  optional argument -u creates UPDATE script for oereb-gretljobs" 1>&2
+  echo "  you can specify a filename '>filename.sql' to write output to file" 1>&2
+  echo "   instead of standard output" 1>&2
+}
+
+exit_abnormal() {                              # Function: Exit with error.
+  usage
+  exit 1
+}
+
+# check optional arguments
+while getopts ":u" options; do
+  case "${options}" in                         # 
+    u)                                         # If the option is n,
+      UPDATE=true                           # set $NAME to specified value.
+      ;;
+    *)                                         # If unknown (any other) option:
+      exit_abnormal                            # Exit abnormally.
+      ;;
+  esac
+done
+
 # Create Arrays for all OEREB topics and their corresponding geometry types
 declare -a pg_schemas=("stage" "live")
 # bash 4 doesn't support nested associative arrays, so we need to fake them with string and eval
@@ -10,9 +36,21 @@ declare -a pg_schemas=("stage" "live")
 # if subthema is empty, use "-"
 declare -A pg_tables
 declare -A pg_table
-pg_table[thema]="Belastete Standorte"; pg_table[subthema]="-"; pg_table[geom]="flaeche"
+pg_table[thema]="BelasteteStandorte"; pg_table[subthema]="-"; pg_table[geom]="flaeche"
 string=$(declare -p pg_table)
 pg_tables[belastete_standorte_flaeche]=${string}
+
+pg_table[thema]="BelasteteStandorteMilitaer"; pg_table[subthema]="-"; pg_table[geom]="flaeche"
+string=$(declare -p pg_table)
+pg_tables[belastete_standorte_militaer_flaeche]=${string}
+
+pg_table[thema]="BelasteteStandorteOeffentlicherVerkehr"; pg_table[subthema]="-"; pg_table[geom]="flaeche"
+string=$(declare -p pg_table)
+pg_tables[belastete_standorte_oev_flaeche]=${string}
+
+pg_table[thema]="BelasteteStandorteZivileFlugplaetze"; pg_table[subthema]="-"; pg_table[geom]="flaeche"
+string=$(declare -p pg_table)
+pg_tables[belastete_standorte_zivile_flugplaetze_flaeche]=${string}
 
 pg_table[thema]="Grundwasserschutzareale"; pg_table[subthema]="-"; pg_table[geom]="flaeche"
 string=$(declare -p pg_table)
@@ -66,22 +104,17 @@ pg_table[thema]="Waldabstandslinien"; pg_table[subthema]="-"; pg_table[geom]="li
 string=$(declare -p pg_table)
 pg_tables[waldabstandslinien_linie]=${string}
 
-declare -i ctr=1
+if [ "$UPDATE" = "true" ]; then #handle case of table delete/insert (flag "-u")
 
-#loop over each pg_schema
-for schema in "${pg_schemas[@]}"
-  do
-  printf "\n\n-- schema nr $ctr is $schema\n---------------------------" 
   for table_name in "${!pg_tables[@]}"
     do
       eval "${pg_tables[$table_name]}"
-      #printf "table '$table_name' with thema '${pg_table[thema]}', subthema '${pg_table[subthema]}' and geometry '${pg_table[geom]}'\n"
-      sql=$(cat << EOM
-      
+      sql=$(cat << EOF
+
 -- -----------------------------------------------------------------------------
 -- table '$table_name' with thema '${pg_table[thema]}', subthema '${pg_table[subthema]}' and geometry '${pg_table[geom]}'
-DROP TABLE IF EXISTS $schema.oerebwms_$table_name;
-CREATE TABLE IF NOT EXISTS $schema.oerebwms_$table_name AS 
+DELETE FROM \${dbSchema}.oerebwms_$table_name;
+INSERT INTO \${dbSchema}.oerebwms_$table_name
 WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS 
 (
     SELECT 
@@ -91,7 +124,7 @@ WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS
         ursprung AS last_ursprung, 
         0 AS "depth" 
     FROM 
-        $schema.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente
+        \${dbSchema}.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente
     WHERE
         ursprung != hinweis
 
@@ -105,7 +138,7 @@ WITH RECURSIVE x(ursprung, hinweis, parents, last_ursprung, depth) AS
         x."depth" + 1
     FROM 
         x 
-        INNER JOIN $schema.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente t1 
+        INNER JOIN \${dbSchema}.oerbkrmvs_v1_1vorschriften_hinweisweiteredokumente t1 
         ON (last_ursprung = t1.ursprung)
     WHERE 
         t1.hinweis IS NOT NULL
@@ -130,7 +163,7 @@ flattened_documents AS
         url.textimweb AS textimweb
     FROM 
         x
-        LEFT JOIN $schema.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        LEFT JOIN \${dbSchema}.oerbkrmvs_v1_1vorschriften_dokument AS dokument
         ON dokument.t_id = x.last_ursprung
         LEFT JOIN 
         (
@@ -139,8 +172,8 @@ flattened_documents AS
                 oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
                 
             FROM
-                $schema.oerebkrm_v1_1_localiseduri AS localiseduri
-                LEFT JOIN $schema.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                \${dbSchema}.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN \${dbSchema}.oerebkrm_v1_1_multilingualuri AS multilingualuri
                 ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
             WHERE
                 localiseduri.alanguage = 'de'
@@ -153,8 +186,8 @@ flattened_documents AS
                 DISTINCT ON (eigentumsbeschraenkung.t_id)
                 eigentumsbeschraenkung.t_id
             FROM
-                $schema.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
-                RIGHT JOIN $schema.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                \${dbSchema}.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN \${dbSchema}.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
                 ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
         )
     UNION ALL
@@ -175,7 +208,7 @@ flattened_documents AS
         dokument.publiziertab AS publiziertab,
         url.textimweb AS textimweb
     FROM
-        $schema.oerbkrmvs_v1_1vorschriften_dokument AS dokument
+        \${dbSchema}.oerbkrmvs_v1_1vorschriften_dokument AS dokument
         LEFT JOIN 
         (
             SELECT
@@ -183,8 +216,8 @@ flattened_documents AS
                 oerbkrmvs_vrftn_dkment_textimweb AS dokument_t_id
                 
             FROM
-                $schema.oerebkrm_v1_1_localiseduri AS localiseduri
-                LEFT JOIN $schema.oerebkrm_v1_1_multilingualuri AS multilingualuri
+                \${dbSchema}.oerebkrm_v1_1_localiseduri AS localiseduri
+                LEFT JOIN \${dbSchema}.oerebkrm_v1_1_multilingualuri AS multilingualuri
                 ON localiseduri.oerbkrm_v1__mltlngluri_localisedtext = multilingualuri.t_id
             WHERE
                 localiseduri.alanguage = 'de'
@@ -197,8 +230,8 @@ flattened_documents AS
                 DISTINCT ON (hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument)
                 hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument
             FROM
-                $schema.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
-                RIGHT JOIN $schema.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+                \${dbSchema}.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+                RIGHT JOIN \${dbSchema}.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
                 ON eigentumsbeschraenkung.t_id = hinweisvorschrift.eigentumsbeschraenkung
         )
 )
@@ -213,7 +246,7 @@ json_documents AS
         
     FROM  
         flattened_documents
-        LEFT JOIN $schema.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
+        LEFT JOIN \${dbSchema}.oerbkrmfr_v1_1transferstruktur_hinweisvorschrift AS hinweisvorschrift
         ON hinweisvorschrift.vorschrift_oerbkrmvs_v1_1vorschriften_dokument = flattened_documents.top_level_dokument
     WHERE
         eigentumsbeschraenkung IS NOT NULL
@@ -244,28 +277,75 @@ SELECT
     eigentumsbeschraenkung.artcode,
     eigentumsbeschraenkung.artcodeliste AS artcode_liste
 FROM
-    $schema.oerbkrmfr_v1_1transferstruktur_geometrie AS geometrie
-    LEFT JOIN $schema.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
+    \${dbSchema}.oerbkrmfr_v1_1transferstruktur_geometrie AS geometrie
+    LEFT JOIN \${dbSchema}.oerbkrmfr_v1_1transferstruktur_eigentumsbeschraenkung AS eigentumsbeschraenkung
     ON eigentumsbeschraenkung.t_id = geometrie.eigentumsbeschraenkung
     LEFT JOIN grouped_json_documents
     ON grouped_json_documents.eigentumsbeschraenkung = eigentumsbeschraenkung.t_id
-    LEFT JOIN $schema.oerbkrmvs_v1_1vorschriften_amt zustaendigestelle
+    LEFT JOIN \${dbSchema}.oerbkrmvs_v1_1vorschriften_amt zustaendigestelle
     ON eigentumsbeschraenkung.zustaendigestelle = zustaendigestelle.t_id
 WHERE
     eigentumsbeschraenkung.thema = '${pg_table[thema]}'
-EOM
-)
+EOF
+)        
       if [ ${pg_table[subthema]} != '-' ]; then
-        sql+=$(cat << EOM
+        sql+=$(cat << EOF
  AND
     eigentumsbeschraenkung.subthema = '${pg_table[subthema]}'
-EOM
+EOF
 )
       fi
-      sql+=$(cat << EOM
+      sql+=$(cat << EOF
  AND
     geometrie.${pg_table[geom]}_lv95 IS NOT NULL
 ;
+EOF
+)
+      printf "%s\n" "$sql"
+    done
+
+else #handle case of table creation (default)
+
+  declare -i ctr=1
+
+  #loop over each pg_schema
+  for schema in "${pg_schemas[@]}"
+    do
+      printf "\n\n-- schema nr $ctr is $schema\n---------------------------" 
+      for table_name in "${!pg_tables[@]}"
+        do
+          eval "${pg_tables[$table_name]}"
+          #printf "table '$table_name' with thema '${pg_table[thema]}', subthema '${pg_table[subthema]}' and geometry '${pg_table[geom]}'\n"
+          
+          geom_type=""
+          case ${pg_table[geom]} in
+            "flaeche") geom_type="POLYGON";;
+            "linie") geom_type="LINESTRING";;
+            "punkt") geom_type="POINT";;
+          esac
+          
+          sql=$(cat << EOF
+      
+-- -----------------------------------------------------------------------------
+-- table '$table_name' with thema '${pg_table[thema]}', subthema '${pg_table[subthema]}' and geometry '${pg_table[geom]}'
+DROP TABLE IF EXISTS $schema.oerebwms_$table_name;
+CREATE TABLE IF NOT EXISTS $schema.oerebwms_$table_name (
+	t_id int8,
+	geom geometry($geom_type, 2056),
+	aussage text,
+	dokumente json,
+	thema varchar(255),
+	sub_thema varchar(60),
+	weiteres_thema varchar(120),
+	rechtsstatus varchar(255),
+	publiziertab date,
+	zustaendige_stelle text,
+	amt_im_web varchar(1023),
+	artcode varchar(40),
+	artcode_liste varchar(1023),
+	CONSTRAINT pk_${schema}_${table_name}_t_id PRIMARY KEY (t_id)
+);
+
 -- spatial index
 CREATE INDEX in_oerebwms_${table_name}_geom
   ON $schema.oerebwms_$table_name
@@ -274,9 +354,10 @@ CREATE INDEX in_oerebwms_${table_name}_geom
 CREATE INDEX in_oerebwms_${table_name}_artcode
   ON $schema.oerebwms_$table_name
   USING btree ( artcode );
-EOM
+EOF
 )
-      printf "%s\n" "$sql"
+          printf "%s\n" "$sql"
+        done
+      let "ctr++"
     done
-  let "ctr++"
-  done
+fi
