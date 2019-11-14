@@ -344,16 +344,39 @@ CREATE TABLE IF NOT EXISTS $schema.oerebwms_$table_name (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_${schema}_${table_name}_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_${table_name}_geom
   ON $schema.oerebwms_$table_name
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_${table_name}_artcode
   ON $schema.oerebwms_$table_name
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW $schema.oerebwms_vw_$table_name AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM $schema.oerebwms_$table_name
+;
+
 EOF
 )
           printf "%s\n" "$sql"

@@ -7572,7 +7572,7 @@ CODE
   TID = ANY;
 END.
 
-','2019-10-23 14:34:02.697');
+','2019-11-14 17:33:55.373');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('PLZO-CH_LV95_1d_ili1.ili','1.0','PLZOCH1LV95D','
 TRANSFER INTERLIS1;
 
@@ -7795,7 +7795,7 @@ CODE
   TID = ANY;
 END.
 
-','2019-10-23 14:34:02.697');
+','2019-11-14 17:33:55.373');
 INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createMetaInfo','True');
 INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.arrayTrafo','coalesce');
 INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.nameOptimization','disable');
@@ -15393,7 +15393,7 @@ CODE
   TID = ANY;
 END.
 
-','2019-10-23 14:33:59.091');
+','2019-11-14 17:33:51.069');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('PLZO-CH_LV95_1d_ili1.ili','1.0','PLZOCH1LV95D','
 TRANSFER INTERLIS1;
 
@@ -15616,7 +15616,7 @@ CODE
   TID = ANY;
 END.
 
-','2019-10-23 14:33:59.091');
+','2019-11-14 17:33:51.069');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createMetaInfo','True');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.arrayTrafo','coalesce');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.nameOptimization','disable');
@@ -17212,7 +17212,7 @@ TYPE MODEL GeometryCHLV95_V1 (en)
 END GeometryCHLV95_V1.
 
 !! ########################################################################
-','2019-10-23 14:34:03.465');
+','2019-11-14 17:33:56.076');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.ili','2.3','SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822{ GeometryCHLV95_V1 CHAdminCodes_V1}','INTERLIS 2.3;
 
 /** !!------------------------------------------------------------------------------
@@ -17346,7 +17346,7 @@ VERSION "2018-08-22"  =
   END Nachfuehrungskreise;
 
 END SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.
-','2019-10-23 14:34:03.465');
+','2019-11-14 17:33:56.076');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREB_ExtractAnnex_V1_0.ili','2.3','OeREB_ExtractAnnex_V1_0{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1 CatalogueObjects_V1}','INTERLIS 2.3;
 
 /** Zusatzdaten für statischen OEREB-Auszug
@@ -17472,7 +17472,7 @@ VERSION "2019-09-02"  =
     
 
 END OeREB_ExtractAnnex_V1_0.
-','2019-10-23 14:34:03.465');
+','2019-11-14 17:33:56.076');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('Units-20120220.ili','2.3','Units','!! File Units.ili Release 2012-02-20
 
 INTERLIS 2.3;
@@ -17570,7 +17570,7 @@ CONTRACTED TYPE MODEL Units (en) AT "http://www.interlis.ch/models"
 
 END Units.
 
-','2019-10-23 14:34:03.465');
+','2019-11-14 17:33:56.076');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMvs_V1_1.ili','2.3','OeREBKRMvs_V1_1{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1}','INTERLIS 2.3;
 
 /** Basisdefinition für Erlasse (Rechtsvorschriften, Hinweise auf Gesetzliche Grundlagen)
@@ -17692,7 +17692,7 @@ VERSION "2016-08-15"  =
   END HinweiseGesetzlicheGrundlagen;
 
 END OeREBKRMvs_V1_1.
-','2019-10-23 14:34:03.465');
+','2019-11-14 17:33:56.076');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CoordSys-20151124.ili','2.3','CoordSys','!! File CoordSys.ili Release 2015-11-24
 
 INTERLIS 2.3;
@@ -17907,7 +17907,7 @@ REFSYSTEM MODEL CoordSys (en) AT "http://www.interlis.ch/models"
 
 END CoordSys.
 
-','2019-10-23 14:34:03.465');
+','2019-11-14 17:33:56.076');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMtrsfr_V1_1.ili','2.3','OeREBKRMtrsfr_V1_1{ GeometryCHLV95_V1 CHAdminCodes_V1 LocalisationCH_V1 GeometryCHLV03_V1 OeREBKRM_V1_1 OeREBKRMvs_V1_1}','INTERLIS 2.3;
 
 /** Schnittstelle zwischen zuständiger Stelle für die Geobasisdaten und Katasterorganisation des Kantons.
@@ -18091,7 +18091,7 @@ VERSION "2016-08-15"  =
   END Transferstruktur;
 
 END OeREBKRMtrsfr_V1_1.
-','2019-10-23 14:34:03.465');
+','2019-11-14 17:33:56.076');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part2_LOCALISATION_20110830.ili','2.3','InternationalCodes_V1 Localisation_V1{ InternationalCodes_V1} LocalisationCH_V1{ InternationalCodes_V1 Localisation_V1} Dictionaries_V1{ InternationalCodes_V1} DictionariesCH_V1{ InternationalCodes_V1 Dictionaries_V1}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -18263,7 +18263,7 @@ MODEL DictionariesCH_V1 (en)
 END DictionariesCH_V1.
 
 !! ########################################################################
-','2019-10-23 14:34:03.465');
+','2019-11-14 17:33:56.076');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRM_V1_1.ili','2.3','OeREBKRM_V1_1{ InternationalCodes_V1 LocalisationCH_V1 CatalogueObjects_V1}','INTERLIS 2.3;
 
 /** Basisdefinitionen für das OEREB-Katasterrahmenmodell
@@ -18427,7 +18427,7 @@ VERSION "2016-08-15"  =
   END CodelistenText;
 
 END OeREBKRM_V1_1.
-','2019-10-23 14:34:03.465');
+','2019-11-14 17:33:56.076');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part3_CATALOGUEOBJECTS_20110830.ili','2.3','CatalogueObjects_V1{ INTERLIS} CatalogueObjectTrees_V1{ INTERLIS CatalogueObjects_V1}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -18515,7 +18515,7 @@ MODEL CatalogueObjectTrees_V1 (en)
 END CatalogueObjectTrees_V1.
 
 !! ########################################################################
-','2019-10-23 14:34:03.465');
+','2019-11-14 17:33:56.076');
 INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part4_ADMINISTRATIVEUNITS_20110830.ili','2.3','CHAdminCodes_V1 AdministrativeUnits_V1{ CHAdminCodes_V1 InternationalCodes_V1 Dictionaries_V1 Localisation_V1 INTERLIS} AdministrativeUnitsCH_V1{ CHAdminCodes_V1 InternationalCodes_V1 LocalisationCH_V1 AdministrativeUnits_V1 INTERLIS}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -18735,7 +18735,7 @@ MODEL AdministrativeUnitsCH_V1 (en)
 END AdministrativeUnitsCH_V1.
 
 !! ########################################################################
-','2019-10-23 14:34:03.465');
+','2019-11-14 17:33:56.076');
 -- INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createMetaInfo','True');
 -- INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.arrayTrafo','coalesce');
 -- INSERT INTO live.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.nameOptimization','disable');
@@ -20351,7 +20351,7 @@ TYPE MODEL GeometryCHLV95_V1 (en)
 END GeometryCHLV95_V1.
 
 !! ########################################################################
-','2019-10-23 14:34:01.882');
+','2019-11-14 17:33:54.651');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREB_ExtractAnnex_V1_0.ili','2.3','OeREB_ExtractAnnex_V1_0{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1 CatalogueObjects_V1}','INTERLIS 2.3;
 
 /** Zusatzdaten für statischen OEREB-Auszug
@@ -20477,7 +20477,7 @@ VERSION "2019-09-02"  =
     
 
 END OeREB_ExtractAnnex_V1_0.
-','2019-10-23 14:34:01.882');
+','2019-11-14 17:33:54.651');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.ili','2.3','SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822{ GeometryCHLV95_V1 CHAdminCodes_V1}','INTERLIS 2.3;
 
 /** !!------------------------------------------------------------------------------
@@ -20611,7 +20611,7 @@ VERSION "2018-08-22"  =
   END Nachfuehrungskreise;
 
 END SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822.
-','2019-10-23 14:34:01.882');
+','2019-11-14 17:33:54.651');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('Units-20120220.ili','2.3','Units','!! File Units.ili Release 2012-02-20
 
 INTERLIS 2.3;
@@ -20709,7 +20709,7 @@ CONTRACTED TYPE MODEL Units (en) AT "http://www.interlis.ch/models"
 
 END Units.
 
-','2019-10-23 14:34:01.882');
+','2019-11-14 17:33:54.651');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMvs_V1_1.ili','2.3','OeREBKRMvs_V1_1{ CHAdminCodes_V1 LocalisationCH_V1 OeREBKRM_V1_1}','INTERLIS 2.3;
 
 /** Basisdefinition für Erlasse (Rechtsvorschriften, Hinweise auf Gesetzliche Grundlagen)
@@ -20831,7 +20831,7 @@ VERSION "2016-08-15"  =
   END HinweiseGesetzlicheGrundlagen;
 
 END OeREBKRMvs_V1_1.
-','2019-10-23 14:34:01.882');
+','2019-11-14 17:33:54.651');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CoordSys-20151124.ili','2.3','CoordSys','!! File CoordSys.ili Release 2015-11-24
 
 INTERLIS 2.3;
@@ -21046,7 +21046,7 @@ REFSYSTEM MODEL CoordSys (en) AT "http://www.interlis.ch/models"
 
 END CoordSys.
 
-','2019-10-23 14:34:01.882');
+','2019-11-14 17:33:54.651');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRMtrsfr_V1_1.ili','2.3','OeREBKRMtrsfr_V1_1{ GeometryCHLV95_V1 CHAdminCodes_V1 LocalisationCH_V1 GeometryCHLV03_V1 OeREBKRM_V1_1 OeREBKRMvs_V1_1}','INTERLIS 2.3;
 
 /** Schnittstelle zwischen zuständiger Stelle für die Geobasisdaten und Katasterorganisation des Kantons.
@@ -21230,7 +21230,7 @@ VERSION "2016-08-15"  =
   END Transferstruktur;
 
 END OeREBKRMtrsfr_V1_1.
-','2019-10-23 14:34:01.882');
+','2019-11-14 17:33:54.651');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part2_LOCALISATION_20110830.ili','2.3','InternationalCodes_V1 Localisation_V1{ InternationalCodes_V1} LocalisationCH_V1{ InternationalCodes_V1 Localisation_V1} Dictionaries_V1{ InternationalCodes_V1} DictionariesCH_V1{ InternationalCodes_V1 Dictionaries_V1}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -21402,7 +21402,7 @@ MODEL DictionariesCH_V1 (en)
 END DictionariesCH_V1.
 
 !! ########################################################################
-','2019-10-23 14:34:01.882');
+','2019-11-14 17:33:54.651');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('OeREBKRM_V1_1.ili','2.3','OeREBKRM_V1_1{ InternationalCodes_V1 LocalisationCH_V1 CatalogueObjects_V1}','INTERLIS 2.3;
 
 /** Basisdefinitionen für das OEREB-Katasterrahmenmodell
@@ -21566,7 +21566,7 @@ VERSION "2016-08-15"  =
   END CodelistenText;
 
 END OeREBKRM_V1_1.
-','2019-10-23 14:34:01.882');
+','2019-11-14 17:33:54.651');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part3_CATALOGUEOBJECTS_20110830.ili','2.3','CatalogueObjects_V1{ INTERLIS} CatalogueObjectTrees_V1{ INTERLIS CatalogueObjects_V1}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -21654,7 +21654,7 @@ MODEL CatalogueObjectTrees_V1 (en)
 END CatalogueObjectTrees_V1.
 
 !! ########################################################################
-','2019-10-23 14:34:01.882');
+','2019-11-14 17:33:54.651');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part4_ADMINISTRATIVEUNITS_20110830.ili','2.3','CHAdminCodes_V1 AdministrativeUnits_V1{ CHAdminCodes_V1 InternationalCodes_V1 Dictionaries_V1 Localisation_V1 INTERLIS} AdministrativeUnitsCH_V1{ CHAdminCodes_V1 InternationalCodes_V1 LocalisationCH_V1 AdministrativeUnits_V1 INTERLIS}','/* ########################################################################
    CHBASE - BASE MODULES OF THE SWISS FEDERATION FOR MINIMAL GEODATA MODELS
    ======
@@ -21874,7 +21874,7 @@ MODEL AdministrativeUnitsCH_V1 (en)
 END AdministrativeUnitsCH_V1.
 
 !! ########################################################################
-','2019-10-23 14:34:01.882');
+','2019-11-14 17:33:54.651');
 -- INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createMetaInfo','True');
 -- INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.arrayTrafo','coalesce');
 -- INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.nameOptimization','disable');
@@ -21943,16 +21943,38 @@ CREATE TABLE IF NOT EXISTS stage.oerebwms_nutzungsplanung_ueberlagernd_linie (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_stage_nutzungsplanung_ueberlagernd_linie_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_linie_geom
   ON stage.oerebwms_nutzungsplanung_ueberlagernd_linie
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_linie_artcode
   ON stage.oerebwms_nutzungsplanung_ueberlagernd_linie
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW stage.oerebwms_vw_nutzungsplanung_ueberlagernd_linie AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM stage.oerebwms_nutzungsplanung_ueberlagernd_linie
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'weiteres_thema_einzelschutz_flaeche' with thema 'WeiteresThema', subthema 'ch.SO.Einzelschutz' and geometry 'flaeche'
@@ -21972,16 +21994,38 @@ CREATE TABLE IF NOT EXISTS stage.oerebwms_weiteres_thema_einzelschutz_flaeche (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_stage_weiteres_thema_einzelschutz_flaeche_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_flaeche_geom
   ON stage.oerebwms_weiteres_thema_einzelschutz_flaeche
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_flaeche_artcode
   ON stage.oerebwms_weiteres_thema_einzelschutz_flaeche
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW stage.oerebwms_vw_weiteres_thema_einzelschutz_flaeche AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM stage.oerebwms_weiteres_thema_einzelschutz_flaeche
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'weiteres_thema_einzelschutz_punkt' with thema 'WeiteresThema', subthema 'ch.SO.Einzelschutz' and geometry 'punkt'
@@ -22001,16 +22045,38 @@ CREATE TABLE IF NOT EXISTS stage.oerebwms_weiteres_thema_einzelschutz_punkt (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_stage_weiteres_thema_einzelschutz_punkt_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_punkt_geom
   ON stage.oerebwms_weiteres_thema_einzelschutz_punkt
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_punkt_artcode
   ON stage.oerebwms_weiteres_thema_einzelschutz_punkt
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW stage.oerebwms_vw_weiteres_thema_einzelschutz_punkt AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM stage.oerebwms_weiteres_thema_einzelschutz_punkt
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'grundwasserschutzzonen_flaeche' with thema 'Grundwasserschutzzonen', subthema '-' and geometry 'flaeche'
@@ -22030,16 +22096,38 @@ CREATE TABLE IF NOT EXISTS stage.oerebwms_grundwasserschutzzonen_flaeche (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_stage_grundwasserschutzzonen_flaeche_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_grundwasserschutzzonen_flaeche_geom
   ON stage.oerebwms_grundwasserschutzzonen_flaeche
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_grundwasserschutzzonen_flaeche_artcode
   ON stage.oerebwms_grundwasserschutzzonen_flaeche
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW stage.oerebwms_vw_grundwasserschutzzonen_flaeche AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM stage.oerebwms_grundwasserschutzzonen_flaeche
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'belastete_standorte_flaeche' with thema 'BelasteteStandorte', subthema '-' and geometry 'flaeche'
@@ -22059,16 +22147,38 @@ CREATE TABLE IF NOT EXISTS stage.oerebwms_belastete_standorte_flaeche (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_stage_belastete_standorte_flaeche_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_belastete_standorte_flaeche_geom
   ON stage.oerebwms_belastete_standorte_flaeche
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_belastete_standorte_flaeche_artcode
   ON stage.oerebwms_belastete_standorte_flaeche
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW stage.oerebwms_vw_belastete_standorte_flaeche AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM stage.oerebwms_belastete_standorte_flaeche
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'belastete_standorte_militaer_flaeche' with thema 'BelasteteStandorteMilitaer', subthema '-' and geometry 'flaeche'
@@ -22088,16 +22198,38 @@ CREATE TABLE IF NOT EXISTS stage.oerebwms_belastete_standorte_militaer_flaeche (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_stage_belastete_standorte_militaer_flaeche_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_belastete_standorte_militaer_flaeche_geom
   ON stage.oerebwms_belastete_standorte_militaer_flaeche
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_belastete_standorte_militaer_flaeche_artcode
   ON stage.oerebwms_belastete_standorte_militaer_flaeche
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW stage.oerebwms_vw_belastete_standorte_militaer_flaeche AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM stage.oerebwms_belastete_standorte_militaer_flaeche
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'nutzungsplanung_baulinien_linie' with thema 'Nutzungsplanung', subthema 'ch.SO.Baulinien' and geometry 'linie'
@@ -22117,16 +22249,38 @@ CREATE TABLE IF NOT EXISTS stage.oerebwms_nutzungsplanung_baulinien_linie (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_stage_nutzungsplanung_baulinien_linie_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_nutzungsplanung_baulinien_linie_geom
   ON stage.oerebwms_nutzungsplanung_baulinien_linie
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_nutzungsplanung_baulinien_linie_artcode
   ON stage.oerebwms_nutzungsplanung_baulinien_linie
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW stage.oerebwms_vw_nutzungsplanung_baulinien_linie AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM stage.oerebwms_nutzungsplanung_baulinien_linie
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'nutzungsplanung_sondernutzungsplaene_flaeche' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungSondernutzungsplaene' and geometry 'flaeche'
@@ -22146,16 +22300,38 @@ CREATE TABLE IF NOT EXISTS stage.oerebwms_nutzungsplanung_sondernutzungsplaene_f
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_stage_nutzungsplanung_sondernutzungsplaene_flaeche_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche_geom
   ON stage.oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche_artcode
   ON stage.oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW stage.oerebwms_vw_nutzungsplanung_sondernutzungsplaene_flaeche AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM stage.oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'laermempfindlichkeitsstufen_flaeche' with thema 'Laermemfindlichkeitsstufen', subthema '-' and geometry 'flaeche'
@@ -22175,16 +22351,38 @@ CREATE TABLE IF NOT EXISTS stage.oerebwms_laermempfindlichkeitsstufen_flaeche (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_stage_laermempfindlichkeitsstufen_flaeche_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_laermempfindlichkeitsstufen_flaeche_geom
   ON stage.oerebwms_laermempfindlichkeitsstufen_flaeche
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_laermempfindlichkeitsstufen_flaeche_artcode
   ON stage.oerebwms_laermempfindlichkeitsstufen_flaeche
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW stage.oerebwms_vw_laermempfindlichkeitsstufen_flaeche AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM stage.oerebwms_laermempfindlichkeitsstufen_flaeche
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'waldabstandslinien_linie' with thema 'Waldabstandslinien', subthema '-' and geometry 'linie'
@@ -22204,16 +22402,38 @@ CREATE TABLE IF NOT EXISTS stage.oerebwms_waldabstandslinien_linie (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_stage_waldabstandslinien_linie_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_waldabstandslinien_linie_geom
   ON stage.oerebwms_waldabstandslinien_linie
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_waldabstandslinien_linie_artcode
   ON stage.oerebwms_waldabstandslinien_linie
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW stage.oerebwms_vw_waldabstandslinien_linie AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM stage.oerebwms_waldabstandslinien_linie
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'waldgrenzen_linie' with thema 'Waldgrenzen', subthema '-' and geometry 'linie'
@@ -22233,16 +22453,38 @@ CREATE TABLE IF NOT EXISTS stage.oerebwms_waldgrenzen_linie (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_stage_waldgrenzen_linie_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_waldgrenzen_linie_geom
   ON stage.oerebwms_waldgrenzen_linie
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_waldgrenzen_linie_artcode
   ON stage.oerebwms_waldgrenzen_linie
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW stage.oerebwms_vw_waldgrenzen_linie AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM stage.oerebwms_waldgrenzen_linie
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'nutzungsplanung_ueberlagernd_flaeche' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungUeberlagernd' and geometry 'flaeche'
@@ -22262,16 +22504,38 @@ CREATE TABLE IF NOT EXISTS stage.oerebwms_nutzungsplanung_ueberlagernd_flaeche (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_stage_nutzungsplanung_ueberlagernd_flaeche_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_flaeche_geom
   ON stage.oerebwms_nutzungsplanung_ueberlagernd_flaeche
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_flaeche_artcode
   ON stage.oerebwms_nutzungsplanung_ueberlagernd_flaeche
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW stage.oerebwms_vw_nutzungsplanung_ueberlagernd_flaeche AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM stage.oerebwms_nutzungsplanung_ueberlagernd_flaeche
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'belastete_standorte_oev_flaeche' with thema 'BelasteteStandorteOeffentlicherVerkehr', subthema '-' and geometry 'flaeche'
@@ -22291,16 +22555,38 @@ CREATE TABLE IF NOT EXISTS stage.oerebwms_belastete_standorte_oev_flaeche (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_stage_belastete_standorte_oev_flaeche_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_belastete_standorte_oev_flaeche_geom
   ON stage.oerebwms_belastete_standorte_oev_flaeche
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_belastete_standorte_oev_flaeche_artcode
   ON stage.oerebwms_belastete_standorte_oev_flaeche
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW stage.oerebwms_vw_belastete_standorte_oev_flaeche AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM stage.oerebwms_belastete_standorte_oev_flaeche
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'nutzungsplanung_ueberlagernd_punkt' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungUeberlagernd' and geometry 'punkt'
@@ -22320,16 +22606,38 @@ CREATE TABLE IF NOT EXISTS stage.oerebwms_nutzungsplanung_ueberlagernd_punkt (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_stage_nutzungsplanung_ueberlagernd_punkt_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_punkt_geom
   ON stage.oerebwms_nutzungsplanung_ueberlagernd_punkt
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_punkt_artcode
   ON stage.oerebwms_nutzungsplanung_ueberlagernd_punkt
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW stage.oerebwms_vw_nutzungsplanung_ueberlagernd_punkt AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM stage.oerebwms_nutzungsplanung_ueberlagernd_punkt
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'belastete_standorte_zivile_flugplaetze_flaeche' with thema 'BelasteteStandorteZivileFlugplaetze', subthema '-' and geometry 'flaeche'
@@ -22349,16 +22657,38 @@ CREATE TABLE IF NOT EXISTS stage.oerebwms_belastete_standorte_zivile_flugplaetze
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_stage_belastete_standorte_zivile_flugplaetze_flaeche_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_belastete_standorte_zivile_flugplaetze_flaeche_geom
   ON stage.oerebwms_belastete_standorte_zivile_flugplaetze_flaeche
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_belastete_standorte_zivile_flugplaetze_flaeche_artcode
   ON stage.oerebwms_belastete_standorte_zivile_flugplaetze_flaeche
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW stage.oerebwms_vw_belastete_standorte_zivile_flugplaetze_flaeche AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM stage.oerebwms_belastete_standorte_zivile_flugplaetze_flaeche
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'nutzungsplanung_grundnutzung_flaeche' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungGrundnutzung' and geometry 'flaeche'
@@ -22378,16 +22708,38 @@ CREATE TABLE IF NOT EXISTS stage.oerebwms_nutzungsplanung_grundnutzung_flaeche (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_stage_nutzungsplanung_grundnutzung_flaeche_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_nutzungsplanung_grundnutzung_flaeche_geom
   ON stage.oerebwms_nutzungsplanung_grundnutzung_flaeche
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_nutzungsplanung_grundnutzung_flaeche_artcode
   ON stage.oerebwms_nutzungsplanung_grundnutzung_flaeche
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW stage.oerebwms_vw_nutzungsplanung_grundnutzung_flaeche AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM stage.oerebwms_nutzungsplanung_grundnutzung_flaeche
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'grundwasserschutzareale_flaeche' with thema 'Grundwasserschutzareale', subthema '-' and geometry 'flaeche'
@@ -22407,16 +22759,38 @@ CREATE TABLE IF NOT EXISTS stage.oerebwms_grundwasserschutzareale_flaeche (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_stage_grundwasserschutzareale_flaeche_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_grundwasserschutzareale_flaeche_geom
   ON stage.oerebwms_grundwasserschutzareale_flaeche
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_grundwasserschutzareale_flaeche_artcode
   ON stage.oerebwms_grundwasserschutzareale_flaeche
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW stage.oerebwms_vw_grundwasserschutzareale_flaeche AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM stage.oerebwms_grundwasserschutzareale_flaeche
+;
 
 
 -- schema nr 2 is live
@@ -22439,16 +22813,38 @@ CREATE TABLE IF NOT EXISTS live.oerebwms_nutzungsplanung_ueberlagernd_linie (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_live_nutzungsplanung_ueberlagernd_linie_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_linie_geom
   ON live.oerebwms_nutzungsplanung_ueberlagernd_linie
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_linie_artcode
   ON live.oerebwms_nutzungsplanung_ueberlagernd_linie
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW live.oerebwms_vw_nutzungsplanung_ueberlagernd_linie AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM live.oerebwms_nutzungsplanung_ueberlagernd_linie
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'weiteres_thema_einzelschutz_flaeche' with thema 'WeiteresThema', subthema 'ch.SO.Einzelschutz' and geometry 'flaeche'
@@ -22468,16 +22864,38 @@ CREATE TABLE IF NOT EXISTS live.oerebwms_weiteres_thema_einzelschutz_flaeche (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_live_weiteres_thema_einzelschutz_flaeche_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_flaeche_geom
   ON live.oerebwms_weiteres_thema_einzelschutz_flaeche
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_flaeche_artcode
   ON live.oerebwms_weiteres_thema_einzelschutz_flaeche
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW live.oerebwms_vw_weiteres_thema_einzelschutz_flaeche AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM live.oerebwms_weiteres_thema_einzelschutz_flaeche
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'weiteres_thema_einzelschutz_punkt' with thema 'WeiteresThema', subthema 'ch.SO.Einzelschutz' and geometry 'punkt'
@@ -22497,16 +22915,38 @@ CREATE TABLE IF NOT EXISTS live.oerebwms_weiteres_thema_einzelschutz_punkt (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_live_weiteres_thema_einzelschutz_punkt_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_punkt_geom
   ON live.oerebwms_weiteres_thema_einzelschutz_punkt
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_punkt_artcode
   ON live.oerebwms_weiteres_thema_einzelschutz_punkt
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW live.oerebwms_vw_weiteres_thema_einzelschutz_punkt AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM live.oerebwms_weiteres_thema_einzelschutz_punkt
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'grundwasserschutzzonen_flaeche' with thema 'Grundwasserschutzzonen', subthema '-' and geometry 'flaeche'
@@ -22526,16 +22966,38 @@ CREATE TABLE IF NOT EXISTS live.oerebwms_grundwasserschutzzonen_flaeche (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_live_grundwasserschutzzonen_flaeche_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_grundwasserschutzzonen_flaeche_geom
   ON live.oerebwms_grundwasserschutzzonen_flaeche
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_grundwasserschutzzonen_flaeche_artcode
   ON live.oerebwms_grundwasserschutzzonen_flaeche
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW live.oerebwms_vw_grundwasserschutzzonen_flaeche AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM live.oerebwms_grundwasserschutzzonen_flaeche
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'belastete_standorte_flaeche' with thema 'BelasteteStandorte', subthema '-' and geometry 'flaeche'
@@ -22555,16 +23017,38 @@ CREATE TABLE IF NOT EXISTS live.oerebwms_belastete_standorte_flaeche (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_live_belastete_standorte_flaeche_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_belastete_standorte_flaeche_geom
   ON live.oerebwms_belastete_standorte_flaeche
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_belastete_standorte_flaeche_artcode
   ON live.oerebwms_belastete_standorte_flaeche
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW live.oerebwms_vw_belastete_standorte_flaeche AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM live.oerebwms_belastete_standorte_flaeche
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'belastete_standorte_militaer_flaeche' with thema 'BelasteteStandorteMilitaer', subthema '-' and geometry 'flaeche'
@@ -22584,16 +23068,38 @@ CREATE TABLE IF NOT EXISTS live.oerebwms_belastete_standorte_militaer_flaeche (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_live_belastete_standorte_militaer_flaeche_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_belastete_standorte_militaer_flaeche_geom
   ON live.oerebwms_belastete_standorte_militaer_flaeche
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_belastete_standorte_militaer_flaeche_artcode
   ON live.oerebwms_belastete_standorte_militaer_flaeche
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW live.oerebwms_vw_belastete_standorte_militaer_flaeche AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM live.oerebwms_belastete_standorte_militaer_flaeche
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'nutzungsplanung_baulinien_linie' with thema 'Nutzungsplanung', subthema 'ch.SO.Baulinien' and geometry 'linie'
@@ -22613,16 +23119,38 @@ CREATE TABLE IF NOT EXISTS live.oerebwms_nutzungsplanung_baulinien_linie (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_live_nutzungsplanung_baulinien_linie_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_nutzungsplanung_baulinien_linie_geom
   ON live.oerebwms_nutzungsplanung_baulinien_linie
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_nutzungsplanung_baulinien_linie_artcode
   ON live.oerebwms_nutzungsplanung_baulinien_linie
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW live.oerebwms_vw_nutzungsplanung_baulinien_linie AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM live.oerebwms_nutzungsplanung_baulinien_linie
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'nutzungsplanung_sondernutzungsplaene_flaeche' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungSondernutzungsplaene' and geometry 'flaeche'
@@ -22642,16 +23170,38 @@ CREATE TABLE IF NOT EXISTS live.oerebwms_nutzungsplanung_sondernutzungsplaene_fl
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_live_nutzungsplanung_sondernutzungsplaene_flaeche_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche_geom
   ON live.oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche_artcode
   ON live.oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW live.oerebwms_vw_nutzungsplanung_sondernutzungsplaene_flaeche AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM live.oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'laermempfindlichkeitsstufen_flaeche' with thema 'Laermemfindlichkeitsstufen', subthema '-' and geometry 'flaeche'
@@ -22671,16 +23221,38 @@ CREATE TABLE IF NOT EXISTS live.oerebwms_laermempfindlichkeitsstufen_flaeche (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_live_laermempfindlichkeitsstufen_flaeche_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_laermempfindlichkeitsstufen_flaeche_geom
   ON live.oerebwms_laermempfindlichkeitsstufen_flaeche
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_laermempfindlichkeitsstufen_flaeche_artcode
   ON live.oerebwms_laermempfindlichkeitsstufen_flaeche
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW live.oerebwms_vw_laermempfindlichkeitsstufen_flaeche AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM live.oerebwms_laermempfindlichkeitsstufen_flaeche
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'waldabstandslinien_linie' with thema 'Waldabstandslinien', subthema '-' and geometry 'linie'
@@ -22700,16 +23272,38 @@ CREATE TABLE IF NOT EXISTS live.oerebwms_waldabstandslinien_linie (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_live_waldabstandslinien_linie_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_waldabstandslinien_linie_geom
   ON live.oerebwms_waldabstandslinien_linie
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_waldabstandslinien_linie_artcode
   ON live.oerebwms_waldabstandslinien_linie
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW live.oerebwms_vw_waldabstandslinien_linie AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM live.oerebwms_waldabstandslinien_linie
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'waldgrenzen_linie' with thema 'Waldgrenzen', subthema '-' and geometry 'linie'
@@ -22729,16 +23323,38 @@ CREATE TABLE IF NOT EXISTS live.oerebwms_waldgrenzen_linie (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_live_waldgrenzen_linie_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_waldgrenzen_linie_geom
   ON live.oerebwms_waldgrenzen_linie
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_waldgrenzen_linie_artcode
   ON live.oerebwms_waldgrenzen_linie
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW live.oerebwms_vw_waldgrenzen_linie AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM live.oerebwms_waldgrenzen_linie
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'nutzungsplanung_ueberlagernd_flaeche' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungUeberlagernd' and geometry 'flaeche'
@@ -22758,16 +23374,38 @@ CREATE TABLE IF NOT EXISTS live.oerebwms_nutzungsplanung_ueberlagernd_flaeche (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_live_nutzungsplanung_ueberlagernd_flaeche_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_flaeche_geom
   ON live.oerebwms_nutzungsplanung_ueberlagernd_flaeche
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_flaeche_artcode
   ON live.oerebwms_nutzungsplanung_ueberlagernd_flaeche
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW live.oerebwms_vw_nutzungsplanung_ueberlagernd_flaeche AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM live.oerebwms_nutzungsplanung_ueberlagernd_flaeche
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'belastete_standorte_oev_flaeche' with thema 'BelasteteStandorteOeffentlicherVerkehr', subthema '-' and geometry 'flaeche'
@@ -22787,16 +23425,38 @@ CREATE TABLE IF NOT EXISTS live.oerebwms_belastete_standorte_oev_flaeche (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_live_belastete_standorte_oev_flaeche_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_belastete_standorte_oev_flaeche_geom
   ON live.oerebwms_belastete_standorte_oev_flaeche
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_belastete_standorte_oev_flaeche_artcode
   ON live.oerebwms_belastete_standorte_oev_flaeche
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW live.oerebwms_vw_belastete_standorte_oev_flaeche AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM live.oerebwms_belastete_standorte_oev_flaeche
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'nutzungsplanung_ueberlagernd_punkt' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungUeberlagernd' and geometry 'punkt'
@@ -22816,16 +23476,38 @@ CREATE TABLE IF NOT EXISTS live.oerebwms_nutzungsplanung_ueberlagernd_punkt (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_live_nutzungsplanung_ueberlagernd_punkt_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_punkt_geom
   ON live.oerebwms_nutzungsplanung_ueberlagernd_punkt
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_punkt_artcode
   ON live.oerebwms_nutzungsplanung_ueberlagernd_punkt
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW live.oerebwms_vw_nutzungsplanung_ueberlagernd_punkt AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM live.oerebwms_nutzungsplanung_ueberlagernd_punkt
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'belastete_standorte_zivile_flugplaetze_flaeche' with thema 'BelasteteStandorteZivileFlugplaetze', subthema '-' and geometry 'flaeche'
@@ -22845,16 +23527,38 @@ CREATE TABLE IF NOT EXISTS live.oerebwms_belastete_standorte_zivile_flugplaetze_
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_live_belastete_standorte_zivile_flugplaetze_flaeche_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_belastete_standorte_zivile_flugplaetze_flaeche_geom
   ON live.oerebwms_belastete_standorte_zivile_flugplaetze_flaeche
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_belastete_standorte_zivile_flugplaetze_flaeche_artcode
   ON live.oerebwms_belastete_standorte_zivile_flugplaetze_flaeche
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW live.oerebwms_vw_belastete_standorte_zivile_flugplaetze_flaeche AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM live.oerebwms_belastete_standorte_zivile_flugplaetze_flaeche
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'nutzungsplanung_grundnutzung_flaeche' with thema 'Nutzungsplanung', subthema 'ch.SO.NutzungsplanungGrundnutzung' and geometry 'flaeche'
@@ -22874,16 +23578,38 @@ CREATE TABLE IF NOT EXISTS live.oerebwms_nutzungsplanung_grundnutzung_flaeche (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_live_nutzungsplanung_grundnutzung_flaeche_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_nutzungsplanung_grundnutzung_flaeche_geom
   ON live.oerebwms_nutzungsplanung_grundnutzung_flaeche
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_nutzungsplanung_grundnutzung_flaeche_artcode
   ON live.oerebwms_nutzungsplanung_grundnutzung_flaeche
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW live.oerebwms_vw_nutzungsplanung_grundnutzung_flaeche AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM live.oerebwms_nutzungsplanung_grundnutzung_flaeche
+;
       
 -- -----------------------------------------------------------------------------
 -- table 'grundwasserschutzareale_flaeche' with thema 'Grundwasserschutzareale', subthema '-' and geometry 'flaeche'
@@ -22903,14 +23629,36 @@ CREATE TABLE IF NOT EXISTS live.oerebwms_grundwasserschutzareale_flaeche (
 	artcode varchar(40),
 	artcode_liste varchar(1023),
 	CONSTRAINT pk_live_grundwasserschutzareale_flaeche_t_id PRIMARY KEY (t_id)
-);
+)
+;
 
 -- spatial index
 CREATE INDEX in_oerebwms_grundwasserschutzareale_flaeche_geom
   ON live.oerebwms_grundwasserschutzareale_flaeche
-  USING GIST ( geom );
+  USING GIST ( geom )
+;
 -- attribute index on artcode
 CREATE INDEX in_oerebwms_grundwasserschutzareale_flaeche_artcode
   ON live.oerebwms_grundwasserschutzareale_flaeche
-  USING btree ( artcode );
+  USING btree ( artcode )
+;
+
+-- view for json as text (old QGIS server)
+CREATE OR REPLACE VIEW live.oerebwms_vw_grundwasserschutzareale_flaeche AS
+SELECT
+  t_id,
+  geom,
+  aussage,
+  dokumente::text AS dokumente,
+  thema,
+  sub_thema,
+  weiteres_thema,
+  rechtsstatus,
+  publiziertab,
+  zustaendige_stelle,
+  amt_im_web,
+  artcode,
+  artcode_liste
+FROM live.oerebwms_grundwasserschutzareale_flaeche
+;
 COMMIT;
