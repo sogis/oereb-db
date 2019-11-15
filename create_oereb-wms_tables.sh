@@ -359,7 +359,7 @@ CREATE INDEX in_oerebwms_${table_name}_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW $schema.oerebwms_vw_$table_name AS
+CREATE OR REPLACE VIEW $schema.oerebwms_${table_name}_v AS
 SELECT
   t_id,
   geom,

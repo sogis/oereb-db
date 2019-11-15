@@ -35,7 +35,7 @@ CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_linie_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW stage.oerebwms_vw_nutzungsplanung_ueberlagernd_linie AS
+CREATE OR REPLACE VIEW stage.oerebwms_nutzungsplanung_ueberlagernd_linie_v AS
 SELECT
   t_id,
   geom,
@@ -86,7 +86,7 @@ CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_flaeche_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW stage.oerebwms_vw_weiteres_thema_einzelschutz_flaeche AS
+CREATE OR REPLACE VIEW stage.oerebwms_weiteres_thema_einzelschutz_flaeche_v AS
 SELECT
   t_id,
   geom,
@@ -137,7 +137,7 @@ CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_punkt_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW stage.oerebwms_vw_weiteres_thema_einzelschutz_punkt AS
+CREATE OR REPLACE VIEW stage.oerebwms_weiteres_thema_einzelschutz_punkt_v AS
 SELECT
   t_id,
   geom,
@@ -188,7 +188,7 @@ CREATE INDEX in_oerebwms_grundwasserschutzzonen_flaeche_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW stage.oerebwms_vw_grundwasserschutzzonen_flaeche AS
+CREATE OR REPLACE VIEW stage.oerebwms_grundwasserschutzzonen_flaeche_v AS
 SELECT
   t_id,
   geom,
@@ -239,7 +239,7 @@ CREATE INDEX in_oerebwms_belastete_standorte_flaeche_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW stage.oerebwms_vw_belastete_standorte_flaeche AS
+CREATE OR REPLACE VIEW stage.oerebwms_belastete_standorte_flaeche_v AS
 SELECT
   t_id,
   geom,
@@ -290,7 +290,7 @@ CREATE INDEX in_oerebwms_belastete_standorte_militaer_flaeche_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW stage.oerebwms_vw_belastete_standorte_militaer_flaeche AS
+CREATE OR REPLACE VIEW stage.oerebwms_belastete_standorte_militaer_flaeche_v AS
 SELECT
   t_id,
   geom,
@@ -341,7 +341,7 @@ CREATE INDEX in_oerebwms_nutzungsplanung_baulinien_linie_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW stage.oerebwms_vw_nutzungsplanung_baulinien_linie AS
+CREATE OR REPLACE VIEW stage.oerebwms_nutzungsplanung_baulinien_linie_v AS
 SELECT
   t_id,
   geom,
@@ -392,7 +392,7 @@ CREATE INDEX in_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW stage.oerebwms_vw_nutzungsplanung_sondernutzungsplaene_flaeche AS
+CREATE OR REPLACE VIEW stage.oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche_v AS
 SELECT
   t_id,
   geom,
@@ -443,7 +443,7 @@ CREATE INDEX in_oerebwms_laermempfindlichkeitsstufen_flaeche_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW stage.oerebwms_vw_laermempfindlichkeitsstufen_flaeche AS
+CREATE OR REPLACE VIEW stage.oerebwms_laermempfindlichkeitsstufen_flaeche_v AS
 SELECT
   t_id,
   geom,
@@ -494,7 +494,7 @@ CREATE INDEX in_oerebwms_waldabstandslinien_linie_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW stage.oerebwms_vw_waldabstandslinien_linie AS
+CREATE OR REPLACE VIEW stage.oerebwms_waldabstandslinien_linie_v AS
 SELECT
   t_id,
   geom,
@@ -545,7 +545,7 @@ CREATE INDEX in_oerebwms_waldgrenzen_linie_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW stage.oerebwms_vw_waldgrenzen_linie AS
+CREATE OR REPLACE VIEW stage.oerebwms_waldgrenzen_linie_v AS
 SELECT
   t_id,
   geom,
@@ -596,7 +596,7 @@ CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_flaeche_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW stage.oerebwms_vw_nutzungsplanung_ueberlagernd_flaeche AS
+CREATE OR REPLACE VIEW stage.oerebwms_nutzungsplanung_ueberlagernd_flaeche_v AS
 SELECT
   t_id,
   geom,
@@ -647,7 +647,7 @@ CREATE INDEX in_oerebwms_belastete_standorte_oev_flaeche_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW stage.oerebwms_vw_belastete_standorte_oev_flaeche AS
+CREATE OR REPLACE VIEW stage.oerebwms_belastete_standorte_oev_flaeche_v AS
 SELECT
   t_id,
   geom,
@@ -698,7 +698,7 @@ CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_punkt_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW stage.oerebwms_vw_nutzungsplanung_ueberlagernd_punkt AS
+CREATE OR REPLACE VIEW stage.oerebwms_nutzungsplanung_ueberlagernd_punkt_v AS
 SELECT
   t_id,
   geom,
@@ -749,7 +749,7 @@ CREATE INDEX in_oerebwms_belastete_standorte_zivile_flugplaetze_flaeche_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW stage.oerebwms_vw_belastete_standorte_zivile_flugplaetze_flaeche AS
+CREATE OR REPLACE VIEW stage.oerebwms_belastete_standorte_zivile_flugplaetze_flaeche_v AS
 SELECT
   t_id,
   geom,
@@ -800,7 +800,7 @@ CREATE INDEX in_oerebwms_nutzungsplanung_grundnutzung_flaeche_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW stage.oerebwms_vw_nutzungsplanung_grundnutzung_flaeche AS
+CREATE OR REPLACE VIEW stage.oerebwms_nutzungsplanung_grundnutzung_flaeche_v AS
 SELECT
   t_id,
   geom,
@@ -851,7 +851,7 @@ CREATE INDEX in_oerebwms_grundwasserschutzareale_flaeche_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW stage.oerebwms_vw_grundwasserschutzareale_flaeche AS
+CREATE OR REPLACE VIEW stage.oerebwms_grundwasserschutzareale_flaeche_v AS
 SELECT
   t_id,
   geom,
@@ -905,7 +905,7 @@ CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_linie_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW live.oerebwms_vw_nutzungsplanung_ueberlagernd_linie AS
+CREATE OR REPLACE VIEW live.oerebwms_nutzungsplanung_ueberlagernd_linie_v AS
 SELECT
   t_id,
   geom,
@@ -956,7 +956,7 @@ CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_flaeche_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW live.oerebwms_vw_weiteres_thema_einzelschutz_flaeche AS
+CREATE OR REPLACE VIEW live.oerebwms_weiteres_thema_einzelschutz_flaeche_v AS
 SELECT
   t_id,
   geom,
@@ -1007,7 +1007,7 @@ CREATE INDEX in_oerebwms_weiteres_thema_einzelschutz_punkt_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW live.oerebwms_vw_weiteres_thema_einzelschutz_punkt AS
+CREATE OR REPLACE VIEW live.oerebwms_weiteres_thema_einzelschutz_punkt_v AS
 SELECT
   t_id,
   geom,
@@ -1058,7 +1058,7 @@ CREATE INDEX in_oerebwms_grundwasserschutzzonen_flaeche_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW live.oerebwms_vw_grundwasserschutzzonen_flaeche AS
+CREATE OR REPLACE VIEW live.oerebwms_grundwasserschutzzonen_flaeche_v AS
 SELECT
   t_id,
   geom,
@@ -1109,7 +1109,7 @@ CREATE INDEX in_oerebwms_belastete_standorte_flaeche_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW live.oerebwms_vw_belastete_standorte_flaeche AS
+CREATE OR REPLACE VIEW live.oerebwms_belastete_standorte_flaeche_v AS
 SELECT
   t_id,
   geom,
@@ -1160,7 +1160,7 @@ CREATE INDEX in_oerebwms_belastete_standorte_militaer_flaeche_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW live.oerebwms_vw_belastete_standorte_militaer_flaeche AS
+CREATE OR REPLACE VIEW live.oerebwms_belastete_standorte_militaer_flaeche_v AS
 SELECT
   t_id,
   geom,
@@ -1211,7 +1211,7 @@ CREATE INDEX in_oerebwms_nutzungsplanung_baulinien_linie_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW live.oerebwms_vw_nutzungsplanung_baulinien_linie AS
+CREATE OR REPLACE VIEW live.oerebwms_nutzungsplanung_baulinien_linie_v AS
 SELECT
   t_id,
   geom,
@@ -1262,7 +1262,7 @@ CREATE INDEX in_oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW live.oerebwms_vw_nutzungsplanung_sondernutzungsplaene_flaeche AS
+CREATE OR REPLACE VIEW live.oerebwms_nutzungsplanung_sondernutzungsplaene_flaeche_v AS
 SELECT
   t_id,
   geom,
@@ -1313,7 +1313,7 @@ CREATE INDEX in_oerebwms_laermempfindlichkeitsstufen_flaeche_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW live.oerebwms_vw_laermempfindlichkeitsstufen_flaeche AS
+CREATE OR REPLACE VIEW live.oerebwms_laermempfindlichkeitsstufen_flaeche_v AS
 SELECT
   t_id,
   geom,
@@ -1364,7 +1364,7 @@ CREATE INDEX in_oerebwms_waldabstandslinien_linie_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW live.oerebwms_vw_waldabstandslinien_linie AS
+CREATE OR REPLACE VIEW live.oerebwms_waldabstandslinien_linie_v AS
 SELECT
   t_id,
   geom,
@@ -1415,7 +1415,7 @@ CREATE INDEX in_oerebwms_waldgrenzen_linie_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW live.oerebwms_vw_waldgrenzen_linie AS
+CREATE OR REPLACE VIEW live.oerebwms_waldgrenzen_linie_v AS
 SELECT
   t_id,
   geom,
@@ -1466,7 +1466,7 @@ CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_flaeche_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW live.oerebwms_vw_nutzungsplanung_ueberlagernd_flaeche AS
+CREATE OR REPLACE VIEW live.oerebwms_nutzungsplanung_ueberlagernd_flaeche_v AS
 SELECT
   t_id,
   geom,
@@ -1517,7 +1517,7 @@ CREATE INDEX in_oerebwms_belastete_standorte_oev_flaeche_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW live.oerebwms_vw_belastete_standorte_oev_flaeche AS
+CREATE OR REPLACE VIEW live.oerebwms_belastete_standorte_oev_flaeche_v AS
 SELECT
   t_id,
   geom,
@@ -1568,7 +1568,7 @@ CREATE INDEX in_oerebwms_nutzungsplanung_ueberlagernd_punkt_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW live.oerebwms_vw_nutzungsplanung_ueberlagernd_punkt AS
+CREATE OR REPLACE VIEW live.oerebwms_nutzungsplanung_ueberlagernd_punkt_v AS
 SELECT
   t_id,
   geom,
@@ -1619,7 +1619,7 @@ CREATE INDEX in_oerebwms_belastete_standorte_zivile_flugplaetze_flaeche_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW live.oerebwms_vw_belastete_standorte_zivile_flugplaetze_flaeche AS
+CREATE OR REPLACE VIEW live.oerebwms_belastete_standorte_zivile_flugplaetze_flaeche_v AS
 SELECT
   t_id,
   geom,
@@ -1670,7 +1670,7 @@ CREATE INDEX in_oerebwms_nutzungsplanung_grundnutzung_flaeche_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW live.oerebwms_vw_nutzungsplanung_grundnutzung_flaeche AS
+CREATE OR REPLACE VIEW live.oerebwms_nutzungsplanung_grundnutzung_flaeche_v AS
 SELECT
   t_id,
   geom,
@@ -1721,7 +1721,7 @@ CREATE INDEX in_oerebwms_grundwasserschutzareale_flaeche_artcode
 ;
 
 -- view for json as text (old QGIS server)
-CREATE OR REPLACE VIEW live.oerebwms_vw_grundwasserschutzareale_flaeche AS
+CREATE OR REPLACE VIEW live.oerebwms_grundwasserschutzareale_flaeche_v AS
 SELECT
   t_id,
   geom,
