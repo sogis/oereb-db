@@ -72,7 +72,10 @@ psql -h localhost -p 54321 -d oereb -U ogc_server
 
 ## Creating or updating the SQL scripts that populate the database
 
-Run `ILI2PG_PATH=/opt/ili2pg-4.1.0/ili2pg-4.1.0.jar ./create_schema_sql_scripts.sh` for generating the SQL script that creates the DB schemas and tables. (Set `ILI2PG_PATH` according to your installation.) After updating the SQL script, remember to commit the changes to the repository.
+Run `ILI2PG_PATH=/opt/ili2pg-4.3.1/ili2pg-4.3.1.jar ./create_schema_sql_scripts.sh`
+for generating the SQL scripts that create the DB schemas and tables.
+(Set `ILI2PG_PATH` according to your installation.)
+After updating the SQL scripts, remember to commit the changes to the repository.
 
 ## Commands for importing data manually (example)
 
