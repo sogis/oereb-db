@@ -44,7 +44,7 @@ sql/commit_transaction.sql \
 # Create SQL scripts that create DB schemas used for transforming data into the OeREBKRMtrsfr_V1_1 model (so called "transfer schemas")
 # The java command here is the same as the second one above; please keep them in sync
 models=OeREBKRMtrsfr_V1_1
-for schemaname in "arp_npl_oereb" "afu_grundwasserschutz_oereb"; do
+for schemaname in "arp_npl_oereb" "afu_grundwasserschutz_oereb" "awjf_statische_waldgrenzen_oereb"; do
   java -jar ${ILI2PG_PATH} \
   --idSeqMin 1000000000000 \
   --dbschema ${schemaname} --models $models \
