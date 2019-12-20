@@ -1,6 +1,4 @@
-FROM alpine:latest
-
-RUN apk add --no-cache gradle postgresql-client
+FROM sogis/gretl-runtime:latest
 
 WORKDIR /tmp
 
@@ -11,4 +9,6 @@ COPY tests/*.itf /tmp/
 
 USER 1001
 
-CMD ["/bin/sh", "-c", "/tmp/testscript.sh"]
+ENTRYPOINT ["/bin/sh"]
+
+CMD ["-c", "/tmp/testscript.sh"]

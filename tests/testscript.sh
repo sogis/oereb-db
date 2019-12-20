@@ -8,7 +8,7 @@ export PGPASSWORD=ogc_server
 
 echo "Waiting for PostgreSQL to start.."
 while true; do
-    pg_isready --timeout=2
+    /usr/pgsql-10/bin/pg_isready --timeout=2
     if [ $? -eq 0 ]; then
         echo "The database is ready."
         break
@@ -20,5 +20,4 @@ done
 sleep 3
 
 # Run the tests
-
-gradle --no-daemon
+gretl
