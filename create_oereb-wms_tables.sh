@@ -20,7 +20,7 @@ exit_abnormal() {                              # Function: Exit with error.
 while getopts ":u" options; do
   case "${options}" in                         # 
     u)                                         # If the option is n,
-      UPDATE=true                           # set $NAME to specified value.
+      UPDATE=true                              # set $NAME to specified value.
       ;;
     *)                                         # If unknown (any other) option:
       exit_abnormal                            # Exit abnormally.
@@ -39,18 +39,6 @@ declare -A pg_table
 pg_table[thema]="BelasteteStandorte"; pg_table[subthema]="-"; pg_table[geom]="flaeche"
 string=$(declare -p pg_table)
 pg_tables[belastete_standorte_flaeche]=${string}
-
-pg_table[thema]="BelasteteStandorteMilitaer"; pg_table[subthema]="-"; pg_table[geom]="flaeche"
-string=$(declare -p pg_table)
-pg_tables[belastete_standorte_militaer_flaeche]=${string}
-
-pg_table[thema]="BelasteteStandorteOeffentlicherVerkehr"; pg_table[subthema]="-"; pg_table[geom]="flaeche"
-string=$(declare -p pg_table)
-pg_tables[belastete_standorte_oev_flaeche]=${string}
-
-pg_table[thema]="BelasteteStandorteZivileFlugplaetze"; pg_table[subthema]="-"; pg_table[geom]="flaeche"
-string=$(declare -p pg_table)
-pg_tables[belastete_standorte_zivile_flugplaetze_flaeche]=${string}
 
 pg_table[thema]="Grundwasserschutzareale"; pg_table[subthema]="-"; pg_table[geom]="flaeche"
 string=$(declare -p pg_table)
