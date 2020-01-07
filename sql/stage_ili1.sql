@@ -1,171 +1,5 @@
 CREATE SCHEMA IF NOT EXISTS stage;
 CREATE SEQUENCE stage.t_ili2db_seq;;
--- PLZOCH1LV95D.Nummerierungsbereiche.Nummerierungsbereich
-CREATE TABLE stage.plzoch1lv95dnummerierngsbrche_nummerierungsbereich (
-  T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
-  ,T_basket bigint NOT NULL
-  ,T_Type varchar(60) NOT NULL
-  ,T_Ili_Tid varchar(200) NULL
-  ,kt varchar(255) NOT NULL
-  ,nbnummer varchar(10) NOT NULL
-  ,techdossier varchar(12) NOT NULL
-  ,gueltigereintrag date NULL
-)
-;
-CREATE INDEX plzch1lv95dnmnmmrrngsbrich_t_basket_idx ON stage.plzoch1lv95dnummerierngsbrche_nummerierungsbereich ( t_basket );
--- PLZOCH1LV95D.Nummerierungsbereiche.NBGeometrie
-CREATE TABLE stage.plzoch1lv95dnummerierngsbrche_nbgeometrie (
-  T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
-  ,T_basket bigint NOT NULL
-  ,T_Type varchar(60) NOT NULL
-  ,T_Ili_Tid varchar(200) NULL
-  ,geometrie geometry(POLYGON,2056) NOT NULL
-  ,nbgeometrie_von bigint NOT NULL
-)
-;
-CREATE INDEX plzch1lv95dnmbrch_nbgmtrie_t_basket_idx ON stage.plzoch1lv95dnummerierngsbrche_nbgeometrie ( t_basket );
-CREATE INDEX plzch1lv95dnmbrch_nbgmtrie_geometrie_idx ON stage.plzoch1lv95dnummerierngsbrche_nbgeometrie USING GIST ( geometrie );
-CREATE INDEX plzch1lv95dnmbrch_nbgmtrie_nbgeometrie_von_idx ON stage.plzoch1lv95dnummerierngsbrche_nbgeometrie ( nbgeometrie_von );
--- PLZOCH1LV95D.Nummerierungsbereiche.NummerierungsbereichPos
-CREATE TABLE stage.plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos (
-  T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
-  ,T_basket bigint NOT NULL
-  ,T_Type varchar(60) NOT NULL
-  ,T_Ili_Tid varchar(200) NULL
-  ,pos geometry(POINT,2056) NOT NULL
-  ,ori decimal(4,1) NULL
-  ,hali varchar(255) NULL
-  ,vali varchar(255) NULL
-  ,groesse varchar(255) NULL
-  ,nummerierungsbereichpos_von bigint NOT NULL
-)
-;
-CREATE INDEX plzch1lv95dnmmrrngsbrchpos_t_basket_idx ON stage.plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos ( t_basket );
-CREATE INDEX plzch1lv95dnmmrrngsbrchpos_pos_idx ON stage.plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos USING GIST ( pos );
-CREATE INDEX plzch1lv95dnmmrrngsbrchpos_nummerierungsbereichps_von_idx ON stage.plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos ( nummerierungsbereichpos_von );
--- PLZOCH1LV95D.PLZOrtschaft.OSNachfuehrung
-CREATE TABLE stage.plzoch1lv95dplzortschaft_osnachfuehrung (
-  T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
-  ,T_basket bigint NOT NULL
-  ,T_Type varchar(60) NOT NULL
-  ,T_Ili_Tid varchar(200) NULL
-  ,nbident varchar(12) NOT NULL
-  ,identifikator varchar(12) NOT NULL
-  ,beschreibung varchar(30) NOT NULL
-  ,perimeter geometry(POLYGON,2056) NULL
-  ,gueltigkeit varchar(255) NOT NULL
-  ,gueltigereintrag date NOT NULL
-)
-;
-CREATE INDEX plzch1lv95dplft_snchfhrung_t_basket_idx ON stage.plzoch1lv95dplzortschaft_osnachfuehrung ( t_basket );
-CREATE INDEX plzch1lv95dplft_snchfhrung_perimeter_idx ON stage.plzoch1lv95dplzortschaft_osnachfuehrung USING GIST ( perimeter );
--- PLZOCH1LV95D.PLZOrtschaft.OrtschaftsVerbund
-CREATE TABLE stage.plzoch1lv95dplzortschaft_ortschaftsverbund (
-  T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
-  ,T_basket bigint NOT NULL
-  ,T_Type varchar(60) NOT NULL
-  ,T_Ili_Tid varchar(200) NULL
-  ,leer varchar(1) NULL
-)
-;
-CREATE INDEX plzch1lv95dpltschftsvrbund_t_basket_idx ON stage.plzoch1lv95dplzortschaft_ortschaftsverbund ( t_basket );
--- PLZOCH1LV95D.PLZOrtschaft.OrtschaftsVerbundText
-CREATE TABLE stage.plzoch1lv95dplzortschaft_ortschaftsverbundtext (
-  T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
-  ,T_basket bigint NOT NULL
-  ,T_Type varchar(60) NOT NULL
-  ,T_Ili_Tid varchar(200) NULL
-  ,atext varchar(200) NOT NULL
-  ,sprache varchar(255) NOT NULL
-  ,ortschaftsverbundtext_von bigint NOT NULL
-)
-;
-CREATE INDEX plzch1lv95dplhftsvrbndtext_t_basket_idx ON stage.plzoch1lv95dplzortschaft_ortschaftsverbundtext ( t_basket );
-CREATE INDEX plzch1lv95dplhftsvrbndtext_ortschaftsverbundtext_von_idx ON stage.plzoch1lv95dplzortschaft_ortschaftsverbundtext ( ortschaftsverbundtext_von );
--- PLZOCH1LV95D.PLZOrtschaft.Ortschaft
-CREATE TABLE stage.plzoch1lv95dplzortschaft_ortschaft (
-  T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
-  ,T_basket bigint NOT NULL
-  ,T_Type varchar(60) NOT NULL
-  ,T_Ili_Tid varchar(200) NULL
-  ,astatus varchar(255) NOT NULL
-  ,inaenderung varchar(255) NOT NULL
-  ,flaeche geometry(POLYGON,2056) NOT NULL
-  ,entstehung bigint NOT NULL
-  ,ortschaft_von bigint NULL
-)
-;
-CREATE INDEX plzch1lv95dplchft_rtschaft_t_basket_idx ON stage.plzoch1lv95dplzortschaft_ortschaft ( t_basket );
-CREATE INDEX plzch1lv95dplchft_rtschaft_flaeche_idx ON stage.plzoch1lv95dplzortschaft_ortschaft USING GIST ( flaeche );
-CREATE INDEX plzch1lv95dplchft_rtschaft_entstehung_idx ON stage.plzoch1lv95dplzortschaft_ortschaft ( entstehung );
-CREATE INDEX plzch1lv95dplchft_rtschaft_ortschaft_von_idx ON stage.plzoch1lv95dplzortschaft_ortschaft ( ortschaft_von );
--- PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName
-CREATE TABLE stage.plzoch1lv95dplzortschaft_ortschaftsname (
-  T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
-  ,T_basket bigint NOT NULL
-  ,T_Type varchar(60) NOT NULL
-  ,T_Ili_Tid varchar(200) NULL
-  ,atext varchar(40) NOT NULL
-  ,kurztext varchar(18) NULL
-  ,indextext varchar(16) NULL
-  ,sprache varchar(255) NOT NULL
-  ,ortschaftsname_von bigint NOT NULL
-)
-;
-CREATE INDEX plzch1lv95dpl_rtschftsname_t_basket_idx ON stage.plzoch1lv95dplzortschaft_ortschaftsname ( t_basket );
-CREATE INDEX plzch1lv95dpl_rtschftsname_ortschaftsname_von_idx ON stage.plzoch1lv95dplzortschaft_ortschaftsname ( ortschaftsname_von );
--- PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName_Pos
-CREATE TABLE stage.plzoch1lv95dplzortschaft_ortschaftsname_pos (
-  T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
-  ,T_basket bigint NOT NULL
-  ,T_Type varchar(60) NOT NULL
-  ,T_Ili_Tid varchar(200) NULL
-  ,pos geometry(POINT,2056) NOT NULL
-  ,ori decimal(4,1) NULL
-  ,hali varchar(255) NULL
-  ,vali varchar(255) NULL
-  ,groesse varchar(255) NULL
-  ,ortschaftsname_pos_von bigint NOT NULL
-)
-;
-CREATE INDEX plzch1lv95dpltschftsnm_pos_t_basket_idx ON stage.plzoch1lv95dplzortschaft_ortschaftsname_pos ( t_basket );
-CREATE INDEX plzch1lv95dpltschftsnm_pos_pos_idx ON stage.plzoch1lv95dplzortschaft_ortschaftsname_pos USING GIST ( pos );
-CREATE INDEX plzch1lv95dpltschftsnm_pos_ortschaftsname_pos_von_idx ON stage.plzoch1lv95dplzortschaft_ortschaftsname_pos ( ortschaftsname_pos_von );
--- PLZOCH1LV95D.PLZOrtschaft.PLZ6Nachfuehrung
-CREATE TABLE stage.plzoch1lv95dplzortschaft_plz6nachfuehrung (
-  T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
-  ,T_basket bigint NOT NULL
-  ,T_Type varchar(60) NOT NULL
-  ,T_Ili_Tid varchar(200) NULL
-  ,nbident varchar(12) NOT NULL
-  ,identifikator varchar(12) NOT NULL
-  ,beschreibung varchar(30) NOT NULL
-  ,perimeter geometry(POLYGON,2056) NULL
-  ,gueltigkeit varchar(255) NOT NULL
-  ,gueltigereintrag date NOT NULL
-)
-;
-CREATE INDEX plzch1lv95dplplz6nchfhrung_t_basket_idx ON stage.plzoch1lv95dplzortschaft_plz6nachfuehrung ( t_basket );
-CREATE INDEX plzch1lv95dplplz6nchfhrung_perimeter_idx ON stage.plzoch1lv95dplzortschaft_plz6nachfuehrung USING GIST ( perimeter );
--- PLZOCH1LV95D.PLZOrtschaft.PLZ6
-CREATE TABLE stage.plzoch1lv95dplzortschaft_plz6 (
-  T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
-  ,T_basket bigint NOT NULL
-  ,T_Type varchar(60) NOT NULL
-  ,T_Ili_Tid varchar(200) NULL
-  ,flaeche geometry(POLYGON,2056) NULL
-  ,astatus varchar(255) NOT NULL
-  ,inaenderung varchar(255) NOT NULL
-  ,plz integer NOT NULL
-  ,zusatzziffern integer NOT NULL
-  ,entstehung bigint NOT NULL
-  ,plz6_von bigint NOT NULL
-)
-;
-CREATE INDEX plzch1lv95dplzrtschft_plz6_t_basket_idx ON stage.plzoch1lv95dplzortschaft_plz6 ( t_basket );
-CREATE INDEX plzch1lv95dplzrtschft_plz6_flaeche_idx ON stage.plzoch1lv95dplzortschaft_plz6 USING GIST ( flaeche );
-CREATE INDEX plzch1lv95dplzrtschft_plz6_entstehung_idx ON stage.plzoch1lv95dplzortschaft_plz6 ( entstehung );
-CREATE INDEX plzch1lv95dplzrtschft_plz6_plz6_von_idx ON stage.plzoch1lv95dplzortschaft_plz6 ( plz6_von );
 -- DM01AVCH24LV95D.FixpunkteKategorie1.LFP1Nachfuehrung
 CREATE TABLE stage.dm01vch24lv95dfixpunktekatgrie1_lfp1nachfuehrung (
   T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
@@ -2269,6 +2103,172 @@ CREATE TABLE stage.dm01vch24lv95dplanrahmen_netzkreuz (
 CREATE INDEX dm01vch24lv95rhmn_ntzkreuz_t_basket_idx ON stage.dm01vch24lv95dplanrahmen_netzkreuz ( t_basket );
 CREATE INDEX dm01vch24lv95rhmn_ntzkreuz_pos_idx ON stage.dm01vch24lv95dplanrahmen_netzkreuz USING GIST ( pos );
 CREATE INDEX dm01vch24lv95rhmn_ntzkreuz_netzkreuz_von_idx ON stage.dm01vch24lv95dplanrahmen_netzkreuz ( netzkreuz_von );
+-- PLZOCH1LV95D.Nummerierungsbereiche.Nummerierungsbereich
+CREATE TABLE stage.plzoch1lv95dnummerierngsbrche_nummerierungsbereich (
+  T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
+  ,T_basket bigint NOT NULL
+  ,T_Type varchar(60) NOT NULL
+  ,T_Ili_Tid varchar(200) NULL
+  ,kt varchar(255) NOT NULL
+  ,nbnummer varchar(10) NOT NULL
+  ,techdossier varchar(12) NOT NULL
+  ,gueltigereintrag date NULL
+)
+;
+CREATE INDEX plzch1lv95dnmnmmrrngsbrich_t_basket_idx ON stage.plzoch1lv95dnummerierngsbrche_nummerierungsbereich ( t_basket );
+-- PLZOCH1LV95D.Nummerierungsbereiche.NBGeometrie
+CREATE TABLE stage.plzoch1lv95dnummerierngsbrche_nbgeometrie (
+  T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
+  ,T_basket bigint NOT NULL
+  ,T_Type varchar(60) NOT NULL
+  ,T_Ili_Tid varchar(200) NULL
+  ,geometrie geometry(POLYGON,2056) NOT NULL
+  ,nbgeometrie_von bigint NOT NULL
+)
+;
+CREATE INDEX plzch1lv95dnmbrch_nbgmtrie_t_basket_idx ON stage.plzoch1lv95dnummerierngsbrche_nbgeometrie ( t_basket );
+CREATE INDEX plzch1lv95dnmbrch_nbgmtrie_geometrie_idx ON stage.plzoch1lv95dnummerierngsbrche_nbgeometrie USING GIST ( geometrie );
+CREATE INDEX plzch1lv95dnmbrch_nbgmtrie_nbgeometrie_von_idx ON stage.plzoch1lv95dnummerierngsbrche_nbgeometrie ( nbgeometrie_von );
+-- PLZOCH1LV95D.Nummerierungsbereiche.NummerierungsbereichPos
+CREATE TABLE stage.plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos (
+  T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
+  ,T_basket bigint NOT NULL
+  ,T_Type varchar(60) NOT NULL
+  ,T_Ili_Tid varchar(200) NULL
+  ,pos geometry(POINT,2056) NOT NULL
+  ,ori decimal(4,1) NULL
+  ,hali varchar(255) NULL
+  ,vali varchar(255) NULL
+  ,groesse varchar(255) NULL
+  ,nummerierungsbereichpos_von bigint NOT NULL
+)
+;
+CREATE INDEX plzch1lv95dnmmrrngsbrchpos_t_basket_idx ON stage.plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos ( t_basket );
+CREATE INDEX plzch1lv95dnmmrrngsbrchpos_pos_idx ON stage.plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos USING GIST ( pos );
+CREATE INDEX plzch1lv95dnmmrrngsbrchpos_nummerierungsbereichps_von_idx ON stage.plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos ( nummerierungsbereichpos_von );
+-- PLZOCH1LV95D.PLZOrtschaft.OSNachfuehrung
+CREATE TABLE stage.plzoch1lv95dplzortschaft_osnachfuehrung (
+  T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
+  ,T_basket bigint NOT NULL
+  ,T_Type varchar(60) NOT NULL
+  ,T_Ili_Tid varchar(200) NULL
+  ,nbident varchar(12) NOT NULL
+  ,identifikator varchar(12) NOT NULL
+  ,beschreibung varchar(30) NOT NULL
+  ,perimeter geometry(POLYGON,2056) NULL
+  ,gueltigkeit varchar(255) NOT NULL
+  ,gueltigereintrag date NOT NULL
+)
+;
+CREATE INDEX plzch1lv95dplft_snchfhrung_t_basket_idx ON stage.plzoch1lv95dplzortschaft_osnachfuehrung ( t_basket );
+CREATE INDEX plzch1lv95dplft_snchfhrung_perimeter_idx ON stage.plzoch1lv95dplzortschaft_osnachfuehrung USING GIST ( perimeter );
+-- PLZOCH1LV95D.PLZOrtschaft.OrtschaftsVerbund
+CREATE TABLE stage.plzoch1lv95dplzortschaft_ortschaftsverbund (
+  T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
+  ,T_basket bigint NOT NULL
+  ,T_Type varchar(60) NOT NULL
+  ,T_Ili_Tid varchar(200) NULL
+  ,leer varchar(1) NULL
+)
+;
+CREATE INDEX plzch1lv95dpltschftsvrbund_t_basket_idx ON stage.plzoch1lv95dplzortschaft_ortschaftsverbund ( t_basket );
+-- PLZOCH1LV95D.PLZOrtschaft.OrtschaftsVerbundText
+CREATE TABLE stage.plzoch1lv95dplzortschaft_ortschaftsverbundtext (
+  T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
+  ,T_basket bigint NOT NULL
+  ,T_Type varchar(60) NOT NULL
+  ,T_Ili_Tid varchar(200) NULL
+  ,atext varchar(200) NOT NULL
+  ,sprache varchar(255) NOT NULL
+  ,ortschaftsverbundtext_von bigint NOT NULL
+)
+;
+CREATE INDEX plzch1lv95dplhftsvrbndtext_t_basket_idx ON stage.plzoch1lv95dplzortschaft_ortschaftsverbundtext ( t_basket );
+CREATE INDEX plzch1lv95dplhftsvrbndtext_ortschaftsverbundtext_von_idx ON stage.plzoch1lv95dplzortschaft_ortschaftsverbundtext ( ortschaftsverbundtext_von );
+-- PLZOCH1LV95D.PLZOrtschaft.Ortschaft
+CREATE TABLE stage.plzoch1lv95dplzortschaft_ortschaft (
+  T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
+  ,T_basket bigint NOT NULL
+  ,T_Type varchar(60) NOT NULL
+  ,T_Ili_Tid varchar(200) NULL
+  ,astatus varchar(255) NOT NULL
+  ,inaenderung varchar(255) NOT NULL
+  ,flaeche geometry(POLYGON,2056) NOT NULL
+  ,entstehung bigint NOT NULL
+  ,ortschaft_von bigint NULL
+)
+;
+CREATE INDEX plzch1lv95dplchft_rtschaft_t_basket_idx ON stage.plzoch1lv95dplzortschaft_ortschaft ( t_basket );
+CREATE INDEX plzch1lv95dplchft_rtschaft_flaeche_idx ON stage.plzoch1lv95dplzortschaft_ortschaft USING GIST ( flaeche );
+CREATE INDEX plzch1lv95dplchft_rtschaft_entstehung_idx ON stage.plzoch1lv95dplzortschaft_ortschaft ( entstehung );
+CREATE INDEX plzch1lv95dplchft_rtschaft_ortschaft_von_idx ON stage.plzoch1lv95dplzortschaft_ortschaft ( ortschaft_von );
+-- PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName
+CREATE TABLE stage.plzoch1lv95dplzortschaft_ortschaftsname (
+  T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
+  ,T_basket bigint NOT NULL
+  ,T_Type varchar(60) NOT NULL
+  ,T_Ili_Tid varchar(200) NULL
+  ,atext varchar(40) NOT NULL
+  ,kurztext varchar(18) NULL
+  ,indextext varchar(16) NULL
+  ,sprache varchar(255) NOT NULL
+  ,ortschaftsname_von bigint NOT NULL
+)
+;
+CREATE INDEX plzch1lv95dpl_rtschftsname_t_basket_idx ON stage.plzoch1lv95dplzortschaft_ortschaftsname ( t_basket );
+CREATE INDEX plzch1lv95dpl_rtschftsname_ortschaftsname_von_idx ON stage.plzoch1lv95dplzortschaft_ortschaftsname ( ortschaftsname_von );
+-- PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName_Pos
+CREATE TABLE stage.plzoch1lv95dplzortschaft_ortschaftsname_pos (
+  T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
+  ,T_basket bigint NOT NULL
+  ,T_Type varchar(60) NOT NULL
+  ,T_Ili_Tid varchar(200) NULL
+  ,pos geometry(POINT,2056) NOT NULL
+  ,ori decimal(4,1) NULL
+  ,hali varchar(255) NULL
+  ,vali varchar(255) NULL
+  ,groesse varchar(255) NULL
+  ,ortschaftsname_pos_von bigint NOT NULL
+)
+;
+CREATE INDEX plzch1lv95dpltschftsnm_pos_t_basket_idx ON stage.plzoch1lv95dplzortschaft_ortschaftsname_pos ( t_basket );
+CREATE INDEX plzch1lv95dpltschftsnm_pos_pos_idx ON stage.plzoch1lv95dplzortschaft_ortschaftsname_pos USING GIST ( pos );
+CREATE INDEX plzch1lv95dpltschftsnm_pos_ortschaftsname_pos_von_idx ON stage.plzoch1lv95dplzortschaft_ortschaftsname_pos ( ortschaftsname_pos_von );
+-- PLZOCH1LV95D.PLZOrtschaft.PLZ6Nachfuehrung
+CREATE TABLE stage.plzoch1lv95dplzortschaft_plz6nachfuehrung (
+  T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
+  ,T_basket bigint NOT NULL
+  ,T_Type varchar(60) NOT NULL
+  ,T_Ili_Tid varchar(200) NULL
+  ,nbident varchar(12) NOT NULL
+  ,identifikator varchar(12) NOT NULL
+  ,beschreibung varchar(30) NOT NULL
+  ,perimeter geometry(POLYGON,2056) NULL
+  ,gueltigkeit varchar(255) NOT NULL
+  ,gueltigereintrag date NOT NULL
+)
+;
+CREATE INDEX plzch1lv95dplplz6nchfhrung_t_basket_idx ON stage.plzoch1lv95dplzortschaft_plz6nachfuehrung ( t_basket );
+CREATE INDEX plzch1lv95dplplz6nchfhrung_perimeter_idx ON stage.plzoch1lv95dplzortschaft_plz6nachfuehrung USING GIST ( perimeter );
+-- PLZOCH1LV95D.PLZOrtschaft.PLZ6
+CREATE TABLE stage.plzoch1lv95dplzortschaft_plz6 (
+  T_Id bigint PRIMARY KEY DEFAULT nextval('stage.t_ili2db_seq')
+  ,T_basket bigint NOT NULL
+  ,T_Type varchar(60) NOT NULL
+  ,T_Ili_Tid varchar(200) NULL
+  ,flaeche geometry(POLYGON,2056) NULL
+  ,astatus varchar(255) NOT NULL
+  ,inaenderung varchar(255) NOT NULL
+  ,plz integer NOT NULL
+  ,zusatzziffern integer NOT NULL
+  ,entstehung bigint NOT NULL
+  ,plz6_von bigint NOT NULL
+)
+;
+CREATE INDEX plzch1lv95dplzrtschft_plz6_t_basket_idx ON stage.plzoch1lv95dplzortschaft_plz6 ( t_basket );
+CREATE INDEX plzch1lv95dplzrtschft_plz6_flaeche_idx ON stage.plzoch1lv95dplzortschaft_plz6 USING GIST ( flaeche );
+CREATE INDEX plzch1lv95dplzrtschft_plz6_entstehung_idx ON stage.plzoch1lv95dplzortschaft_plz6 ( entstehung );
+CREATE INDEX plzch1lv95dplzrtschft_plz6_plz6_von_idx ON stage.plzoch1lv95dplzortschaft_plz6 ( plz6_von );
 CREATE TABLE stage.T_ILI2DB_BASKET (
   T_Id bigint PRIMARY KEY
   ,dataset bigint NULL
@@ -2337,7 +2337,7 @@ CREATE TABLE stage.T_ILI2DB_ATTRNAME (
   ,SqlName varchar(1024) NOT NULL
   ,ColOwner varchar(1024) NOT NULL
   ,Target varchar(1024) NULL
-  ,PRIMARY KEY (SqlName,ColOwner)
+  ,PRIMARY KEY (ColOwner,SqlName)
 )
 ;
 CREATE TABLE stage.T_ILI2DB_COLUMN_PROP (
@@ -2360,30 +2360,6 @@ CREATE TABLE stage.T_ILI2DB_META_ATTRS (
   ,attr_value varchar(1024) NOT NULL
 )
 ;
-ALTER TABLE stage.plzoch1lv95dnummerierngsbrche_nummerierungsbereich ADD CONSTRAINT plzch1lv95dnmnmmrrngsbrich_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.plzoch1lv95dnummerierngsbrche_nbgeometrie ADD CONSTRAINT plzch1lv95dnmbrch_nbgmtrie_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.plzoch1lv95dnummerierngsbrche_nbgeometrie ADD CONSTRAINT plzch1lv95dnmbrch_nbgmtrie_nbgeometrie_von_fkey FOREIGN KEY ( nbgeometrie_von ) REFERENCES stage.plzoch1lv95dnummerierngsbrche_nummerierungsbereich DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos ADD CONSTRAINT plzch1lv95dnmmrrngsbrchpos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos ADD CONSTRAINT plzch1lv95dnmrrngsbrchpos_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
-ALTER TABLE stage.plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos ADD CONSTRAINT plzch1lv95dnmmrrngsbrchpos_nummerierungsbereichps_von_fkey FOREIGN KEY ( nummerierungsbereichpos_von ) REFERENCES stage.plzoch1lv95dnummerierngsbrche_nummerierungsbereich DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.plzoch1lv95dplzortschaft_osnachfuehrung ADD CONSTRAINT plzch1lv95dplft_snchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.plzoch1lv95dplzortschaft_ortschaftsverbund ADD CONSTRAINT plzch1lv95dpltschftsvrbund_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.plzoch1lv95dplzortschaft_ortschaftsverbundtext ADD CONSTRAINT plzch1lv95dplhftsvrbndtext_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.plzoch1lv95dplzortschaft_ortschaftsverbundtext ADD CONSTRAINT plzch1lv95dplhftsvrbndtext_ortschaftsverbundtext_von_fkey FOREIGN KEY ( ortschaftsverbundtext_von ) REFERENCES stage.plzoch1lv95dplzortschaft_ortschaftsverbund DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.plzoch1lv95dplzortschaft_ortschaft ADD CONSTRAINT plzch1lv95dplchft_rtschaft_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.plzoch1lv95dplzortschaft_ortschaft ADD CONSTRAINT plzch1lv95dplchft_rtschaft_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES stage.plzoch1lv95dplzortschaft_osnachfuehrung DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.plzoch1lv95dplzortschaft_ortschaft ADD CONSTRAINT plzch1lv95dplchft_rtschaft_ortschaft_von_fkey FOREIGN KEY ( ortschaft_von ) REFERENCES stage.plzoch1lv95dplzortschaft_ortschaftsverbund DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.plzoch1lv95dplzortschaft_ortschaftsname ADD CONSTRAINT plzch1lv95dpl_rtschftsname_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.plzoch1lv95dplzortschaft_ortschaftsname ADD CONSTRAINT plzch1lv95dpl_rtschftsname_ortschaftsname_von_fkey FOREIGN KEY ( ortschaftsname_von ) REFERENCES stage.plzoch1lv95dplzortschaft_ortschaft DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.plzoch1lv95dplzortschaft_ortschaftsname_pos ADD CONSTRAINT plzch1lv95dpltschftsnm_pos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.plzoch1lv95dplzortschaft_ortschaftsname_pos ADD CONSTRAINT plzch1lv95dptschftsnm_pos_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
-ALTER TABLE stage.plzoch1lv95dplzortschaft_ortschaftsname_pos ADD CONSTRAINT plzch1lv95dpltschftsnm_pos_ortschaftsname_pos_von_fkey FOREIGN KEY ( ortschaftsname_pos_von ) REFERENCES stage.plzoch1lv95dplzortschaft_ortschaftsname DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.plzoch1lv95dplzortschaft_plz6nachfuehrung ADD CONSTRAINT plzch1lv95dplplz6nchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.plzoch1lv95dplzortschaft_plz6 ADD CONSTRAINT plzch1lv95dplzrtschft_plz6_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.plzoch1lv95dplzortschaft_plz6 ADD CONSTRAINT plzch1lv95dpzrtschft_plz6_plz_check CHECK( plz BETWEEN 1000 AND 9999);
-ALTER TABLE stage.plzoch1lv95dplzortschaft_plz6 ADD CONSTRAINT plzch1lv95dpzrtschft_plz6_zusatzziffern_check CHECK( zusatzziffern BETWEEN 0 AND 99);
-ALTER TABLE stage.plzoch1lv95dplzortschaft_plz6 ADD CONSTRAINT plzch1lv95dplzrtschft_plz6_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES stage.plzoch1lv95dplzortschaft_plz6nachfuehrung DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE stage.plzoch1lv95dplzortschaft_plz6 ADD CONSTRAINT plzch1lv95dplzrtschft_plz6_plz6_von_fkey FOREIGN KEY ( plz6_von ) REFERENCES stage.plzoch1lv95dplzortschaft_ortschaft DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie1_lfp1nachfuehrung ADD CONSTRAINT dm01vch24lv95lfp1nchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie1_lfp1 ADD CONSTRAINT dm01vch24lv95nktktgr1_lfp1_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dfixpunktekatgrie1_lfp1 ADD CONSTRAINT dm01vch24lv9nktktgr1_lfp1_hoehegeom_check CHECK( hoehegeom BETWEEN -200.0 AND 5000.0);
@@ -2726,6 +2702,30 @@ ALTER TABLE stage.dm01vch24lv95dplanrahmen_planlayoutsymbol ADD CONSTRAINT dm01v
 ALTER TABLE stage.dm01vch24lv95dplanrahmen_netzkreuz ADD CONSTRAINT dm01vch24lv95rhmn_ntzkreuz_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.dm01vch24lv95dplanrahmen_netzkreuz ADD CONSTRAINT dm01vch24lv9rhmn_ntzkreuz_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
 ALTER TABLE stage.dm01vch24lv95dplanrahmen_netzkreuz ADD CONSTRAINT dm01vch24lv95rhmn_ntzkreuz_netzkreuz_von_fkey FOREIGN KEY ( netzkreuz_von ) REFERENCES stage.dm01vch24lv95dplanrahmen_planlayout DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.plzoch1lv95dnummerierngsbrche_nummerierungsbereich ADD CONSTRAINT plzch1lv95dnmnmmrrngsbrich_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.plzoch1lv95dnummerierngsbrche_nbgeometrie ADD CONSTRAINT plzch1lv95dnmbrch_nbgmtrie_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.plzoch1lv95dnummerierngsbrche_nbgeometrie ADD CONSTRAINT plzch1lv95dnmbrch_nbgmtrie_nbgeometrie_von_fkey FOREIGN KEY ( nbgeometrie_von ) REFERENCES stage.plzoch1lv95dnummerierngsbrche_nummerierungsbereich DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos ADD CONSTRAINT plzch1lv95dnmmrrngsbrchpos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos ADD CONSTRAINT plzch1lv95dnmrrngsbrchpos_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
+ALTER TABLE stage.plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos ADD CONSTRAINT plzch1lv95dnmmrrngsbrchpos_nummerierungsbereichps_von_fkey FOREIGN KEY ( nummerierungsbereichpos_von ) REFERENCES stage.plzoch1lv95dnummerierngsbrche_nummerierungsbereich DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.plzoch1lv95dplzortschaft_osnachfuehrung ADD CONSTRAINT plzch1lv95dplft_snchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.plzoch1lv95dplzortschaft_ortschaftsverbund ADD CONSTRAINT plzch1lv95dpltschftsvrbund_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.plzoch1lv95dplzortschaft_ortschaftsverbundtext ADD CONSTRAINT plzch1lv95dplhftsvrbndtext_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.plzoch1lv95dplzortschaft_ortschaftsverbundtext ADD CONSTRAINT plzch1lv95dplhftsvrbndtext_ortschaftsverbundtext_von_fkey FOREIGN KEY ( ortschaftsverbundtext_von ) REFERENCES stage.plzoch1lv95dplzortschaft_ortschaftsverbund DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.plzoch1lv95dplzortschaft_ortschaft ADD CONSTRAINT plzch1lv95dplchft_rtschaft_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.plzoch1lv95dplzortschaft_ortschaft ADD CONSTRAINT plzch1lv95dplchft_rtschaft_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES stage.plzoch1lv95dplzortschaft_osnachfuehrung DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.plzoch1lv95dplzortschaft_ortschaft ADD CONSTRAINT plzch1lv95dplchft_rtschaft_ortschaft_von_fkey FOREIGN KEY ( ortschaft_von ) REFERENCES stage.plzoch1lv95dplzortschaft_ortschaftsverbund DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.plzoch1lv95dplzortschaft_ortschaftsname ADD CONSTRAINT plzch1lv95dpl_rtschftsname_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.plzoch1lv95dplzortschaft_ortschaftsname ADD CONSTRAINT plzch1lv95dpl_rtschftsname_ortschaftsname_von_fkey FOREIGN KEY ( ortschaftsname_von ) REFERENCES stage.plzoch1lv95dplzortschaft_ortschaft DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.plzoch1lv95dplzortschaft_ortschaftsname_pos ADD CONSTRAINT plzch1lv95dpltschftsnm_pos_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.plzoch1lv95dplzortschaft_ortschaftsname_pos ADD CONSTRAINT plzch1lv95dptschftsnm_pos_ori_check CHECK( ori BETWEEN 0.0 AND 399.9);
+ALTER TABLE stage.plzoch1lv95dplzortschaft_ortschaftsname_pos ADD CONSTRAINT plzch1lv95dpltschftsnm_pos_ortschaftsname_pos_von_fkey FOREIGN KEY ( ortschaftsname_pos_von ) REFERENCES stage.plzoch1lv95dplzortschaft_ortschaftsname DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.plzoch1lv95dplzortschaft_plz6nachfuehrung ADD CONSTRAINT plzch1lv95dplplz6nchfhrung_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.plzoch1lv95dplzortschaft_plz6 ADD CONSTRAINT plzch1lv95dplzrtschft_plz6_T_basket_fkey FOREIGN KEY ( T_basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.plzoch1lv95dplzortschaft_plz6 ADD CONSTRAINT plzch1lv95dpzrtschft_plz6_plz_check CHECK( plz BETWEEN 1000 AND 9999);
+ALTER TABLE stage.plzoch1lv95dplzortschaft_plz6 ADD CONSTRAINT plzch1lv95dpzrtschft_plz6_zusatzziffern_check CHECK( zusatzziffern BETWEEN 0 AND 99);
+ALTER TABLE stage.plzoch1lv95dplzortschaft_plz6 ADD CONSTRAINT plzch1lv95dplzrtschft_plz6_entstehung_fkey FOREIGN KEY ( entstehung ) REFERENCES stage.plzoch1lv95dplzortschaft_plz6nachfuehrung DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE stage.plzoch1lv95dplzortschaft_plz6 ADD CONSTRAINT plzch1lv95dplzrtschft_plz6_plz6_von_fkey FOREIGN KEY ( plz6_von ) REFERENCES stage.plzoch1lv95dplzortschaft_ortschaft DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE stage.T_ILI2DB_BASKET ADD CONSTRAINT T_ILI2DB_BASKET_dataset_fkey FOREIGN KEY ( dataset ) REFERENCES stage.T_ILI2DB_DATASET DEFERRABLE INITIALLY DEFERRED;
 CREATE UNIQUE INDEX T_ILI2DB_DATASET_datasetName_key ON stage.T_ILI2DB_DATASET (datasetName)
 ;
@@ -2733,7 +2733,7 @@ ALTER TABLE stage.T_ILI2DB_IMPORT_BASKET ADD CONSTRAINT T_ILI2DB_IMPORT_BASKET_i
 ALTER TABLE stage.T_ILI2DB_IMPORT_BASKET ADD CONSTRAINT T_ILI2DB_IMPORT_BASKET_basket_fkey FOREIGN KEY ( basket ) REFERENCES stage.T_ILI2DB_BASKET DEFERRABLE INITIALLY DEFERRED;
 CREATE UNIQUE INDEX T_ILI2DB_MODEL_modelName_iliversion_key ON stage.T_ILI2DB_MODEL (modelName,iliversion)
 ;
-CREATE UNIQUE INDEX T_ILI2DB_ATTRNAME_SqlName_ColOwner_key ON stage.T_ILI2DB_ATTRNAME (SqlName,ColOwner)
+CREATE UNIQUE INDEX T_ILI2DB_ATTRNAME_ColOwner_SqlName_key ON stage.T_ILI2DB_ATTRNAME (ColOwner,SqlName)
 ;
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ObjektnameObjektname_von','dm01vch24lv95dbodenbedeckung_objektnameobjektname_von');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.LokalisationsNamePos','dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos');
@@ -2820,9 +2820,9 @@ INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2Symbol','dm01vch24lv95dfixpunktekatgrie2_lfp2symbol');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3PosLFP3Pos_von','dm01vch24lv95dfixpunktekatgrie3_lfp3poslfp3pos_von');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Objektname','dm01vch24lv95deinzelobjekte_objektname');
-INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName_Pos','plzoch1lv95dplzortschaft_ortschaftsname_pos');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.HFP3','dm01vch24lv95dfixpunktekatgrie3_hfp3');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjGrundstueckEntstehung','dm01vch24lv95dliegenschaften_projgrundstueckentstehung');
+INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName_Pos','plzoch1lv95dplzortschaft_ortschaftsname_pos');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeNameGebaeudeName_von','dm01vch24lv95dgebaeudeadressen_gebaeudenamegebaeudename_von');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.Nummerierungsbereich','plzoch1lv95dnummerierngsbrche_nummerierungsbereich');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Kantonsgrenzen.Kantonsgrenzabschnitt','dm01vch24lv95dkantonsgrenzen_kantonsgrenzabschnitt');
@@ -2848,8 +2848,8 @@ INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Nomenklatur.FlurnamePosFlurnamePos_von','dm01vch24lv95dnomenklatur_flurnameposflurnamepos_von');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.HFP1Entstehung','dm01vch24lv95dfixpunktekatgrie1_hfp1entstehung');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.Objektname','dm01vch24lv95dbodenbedeckung_objektname');
-INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftEntstehung','plzoch1lv95dplzortschaft_ortschaftentstehung');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Rohrleitungen.SignalpunktEntstehung','dm01vch24lv95drohrleitungen_signalpunktentstehung');
+INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftEntstehung','plzoch1lv95dplzortschaft_ortschaftentstehung');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Planrahmen.LinienobjektLinienobjekt_von','dm01vch24lv95dplanrahmen_linienobjektlinienobjekt_von');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1Nachfuehrung','dm01vch24lv95dfixpunktekatgrie1_lfp1nachfuehrung');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Liegenschaften.LineAttrib6','dm01vch24lv95dliegenschaften_lineattrib6');
@@ -2889,8 +2889,8 @@ INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.PLZ6Nachfuehrung','dm01vch24lv95dplzortschaft_plz6nachfuehrung');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsVerbund','dm01vch24lv95dplzortschaft_ortschaftsverbund');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.Gemeindegrenze','dm01vch24lv95dgemeindegrenzen_gemeindegrenze');
-INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6Entstehung','plzoch1lv95dplzortschaft_plz6entstehung');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Einzelobjekte.PunktelementPunktelement_von','dm01vch24lv95deinzelobjekte_punktelementpunktelement_von');
+INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6Entstehung','plzoch1lv95dplzortschaft_plz6entstehung');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Objektnummer','dm01vch24lv95deinzelobjekte_objektnummer');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrenzpunktEntstehung','dm01vch24lv95dliegenschaften_grenzpunktentstehung');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Liegenschaften.LiegenschaftLiegenschaft_von','dm01vch24lv95dliegenschaften_liegenschaftliegenschaft_von');
@@ -2900,8 +2900,8 @@ INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.BoFlaeche','dm01vch24lv95dbodenbedeckung_boflaeche');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrenzpunktSymbolGrenzpunktSymbol_von','dm01vch24lv95dliegenschaften_grenzpnktsymblgrnzpnktsymbl_von');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.Strassenstueck','dm01vch24lv95dgebaeudeadressen_strassenstueck');
-INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.NummerierungsbereichPos','plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.HFP3Entstehung','dm01vch24lv95dfixpunktekatgrie3_hfp3entstehung');
+INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.NummerierungsbereichPos','plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Nomenklatur.FlurnamePos','dm01vch24lv95dnomenklatur_flurnamepos');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftEntstehung','dm01vch24lv95dplzortschaft_ortschaftentstehung');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Nomenklatur.Gelaendename','dm01vch24lv95dnomenklatur_gelaendename');
@@ -2937,9 +2937,9 @@ INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.HFP2Pos','dm01vch24lv95dfixpunktekatgrie2_hfp2pos');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OSNachfuehrung','plzoch1lv95dplzortschaft_osnachfuehrung');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.PLZ6PLZ6_von','dm01vch24lv95dplzortschaft_plz6plz6_von');
-INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('PLZOCH1LV95D.PLZOrtschaft.Ortschaft','plzoch1lv95dplzortschaft_ortschaft');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2Nachfuehrung','dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Signalpunkt','dm01vch24lv95drohrleitungen_signalpunkt');
+INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('PLZOCH1LV95D.PLZOrtschaft.Ortschaft','plzoch1lv95dplzortschaft_ortschaft');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.HFP3PosHFP3Pos_von','dm01vch24lv95dfixpunktekatgrie3_hfp3poshfp3pos_von');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjGebaeudenummerPosProjGebaeudenummerPos_von','dm01vch24lv95dbodenbedeckung_projgebadnmmrpsprjgbdnmmrps_von');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Nomenklatur.OrtsnamePos','dm01vch24lv95dnomenklatur_ortsnamepos');
@@ -2976,8 +2976,8 @@ INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Hoehen.GelaendekanteEntstehung','dm01vch24lv95dhoehen_gelaendekanteentstehung');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Einzelobjekte.EinzelpunktEntstehung','dm01vch24lv95deinzelobjekte_einzelpunktentstehung');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsName_Pos','dm01vch24lv95dplzortschaft_ortschaftsname_pos');
-INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6','plzoch1lv95dplzortschaft_plz6');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Nummerierungsbereiche.NummerierungsbereichPos','dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos');
+INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6','plzoch1lv95dplzortschaft_plz6');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Planeinteilungen.PlanPos','dm01vch24lv95dplaneinteilungen_planpos');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanLayoutSymbolPlanLayoutSymbol_von','dm01vch24lv95dplanrahmen_planlayoutsymbolplanlayoutsymbl_von');
 INSERT INTO stage.T_ILI2DB_CLASSNAME (IliName,SqlName) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Flaechenelement','dm01vch24lv95deinzelobjekte_flaechenelement');
@@ -3030,14 +3030,14 @@ INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('D
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Rohrleitungen.RLNachfuehrung.NBIdent','nbident','dm01vch24lv95drohrleitungen_rlnachfuehrung',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanLayout.UebersichtMassstabszahl','uebersichtmassstabszahl','dm01vch24lv95dplanrahmen_planlayout',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1Nachfuehrung.Identifikator','identifikator','dm01vch24lv95dfixpunktekatgrie1_lfp1nachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6.Zusatzziffern','zusatzziffern','plzoch1lv95dplzortschaft_plz6',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.TSEinteilung.ToleranzstufePos.Pos','pos','dm01vch24lv95dtseinteilung_toleranzstufepos',NULL);
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6.Zusatzziffern','zusatzziffern','plzoch1lv95dplzortschaft_plz6',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.HFP2.Nummer','nummer','dm01vch24lv95dfixpunktekatgrie2_hfp2',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.TSEinteilung.ToleranzstufePos.Ori','ori','dm01vch24lv95dtseinteilung_toleranzstufepos',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Rohrleitungen.LeitungsobjektEntstehung.Entstehung','entstehung','dm01vch24lv95drohrleitungen_leitungsobjekt','dm01vch24lv95drohrleitungen_rlnachfuehrung');
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2.HoeheZuv','hoehezuv','dm01vch24lv95dfixpunktekatgrie2_lfp2',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.Nummerierungsbereich.Kt','kt','plzoch1lv95dnummerierngsbrche_nummerierungsbereich',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName.Sprache','sprache','plzoch1lv95dplzortschaft_ortschaftsname',NULL);
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2.HoeheZuv','hoehezuv','dm01vch24lv95dfixpunktekatgrie2_lfp2',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.HFP1Nachfuehrung.Identifikator','identifikator','dm01vch24lv95dfixpunktekatgrie1_hfp1nachfuehrung',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Einzelobjekte.ObjektnummerPos.Groesse','groesse','dm01vch24lv95deinzelobjekte_objektnummerpos',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.LokalisationsName.Sprache','sprache','dm01vch24lv95dgebaeudeadressen_lokalisationsname',NULL);
@@ -3114,9 +3114,9 @@ INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('D
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrenzpunktSymbol.Ori','ori','dm01vch24lv95dliegenschaften_grenzpunktsymbol',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.Gebaeudeeingang.InAenderung','inaenderung','dm01vch24lv95dgebaeudeadressen_gebaeudeeingang',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Nomenklatur.GelaendenamePos.HAli','hali','dm01vch24lv95dnomenklatur_gelaendenamepos',NULL);
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.NBGeometrie.Geometrie','geometrie','plzoch1lv95dnummerierngsbrche_nbgeometrie',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Leitungsobjekt.Betreiber','betreiber','dm01vch24lv95drohrleitungen_leitungsobjekt',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.Hoheitsgrenzpunkt.LageZuv','lagezuv','dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt',NULL);
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.NBGeometrie.Geometrie','geometrie','plzoch1lv95dnummerierngsbrche_nbgeometrie',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.Einzelpunkt.LageZuv','lagezuv','dm01vch24lv95dbodenbedeckung_einzelpunkt',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Nummerierungsbereiche.Nummerierungsbereich.NBNummer','nbnummer','dm01vch24lv95dnummerierngsbrche_nummerierungsbereich',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Einzelobjekte.EONachfuehrung.GueltigerEintrag','gueltigereintrag','dm01vch24lv95deinzelobjekte_eonachfuehrung',NULL);
@@ -3193,14 +3193,14 @@ INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('D
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Liegenschaften.Grenzpunkt.LageZuv','lagezuv','dm01vch24lv95dliegenschaften_grenzpunkt',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3Nachfuehrung.GueltigerEintrag','gueltigereintrag','dm01vch24lv95dfixpunktekatgrie3_lfp3nachfuehrung',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.HFP2Nachfuehrung.Beschreibung','beschreibung','dm01vch24lv95dfixpunktekatgrie2_hfp2nachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.NummerierungsbereichPosNummerierungsbereichPos_von.NummerierungsbereichPos_von','nummerierungsbereichpos_von','plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos','plzoch1lv95dnummerierngsbrche_nummerierungsbereich');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Bezirksgrenzen.Bezirksgrenzabschnitt.Gueltigkeit','gueltigkeit','dm01vch24lv95dbezirksgrenzen_bezirksgrenzabschnitt',NULL);
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.NummerierungsbereichPosNummerierungsbereichPos_von.NummerierungsbereichPos_von','nummerierungsbereichpos_von','plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos','plzoch1lv95dnummerierngsbrche_nummerierungsbereich');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanLayout.Plannullpunkt','plannullpunkt','dm01vch24lv95dplanrahmen_planlayout',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1PosLFP1Pos_von.LFP1Pos_von','lfp1pos_von','dm01vch24lv95dfixpunktekatgrie1_lfp1pos','dm01vch24lv95dfixpunktekatgrie1_lfp1');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjGebaeudenummerPosProjGebaeudenummerPos_von.ProjGebaeudenummerPos_von','projgebaeudenummerpos_von','dm01vch24lv95dbodenbedeckung_projgebaeudenummerpos','dm01vch24lv95dbodenbedeckung_projgebaeudenummer');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.ProjGemeindegrenzeEntstehung.Entstehung','entstehung','dm01vch24lv95dgemeindegrenzen_projgemeindegrenze','dm01vch24lv95dgemeindegrenzen_gemnachfuehrung');
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6Entstehung.Entstehung','entstehung','plzoch1lv95dplzortschaft_plz6','plzoch1lv95dplzortschaft_plz6nachfuehrung');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Planeinteilungen.Plan.Nummer','nummer','dm01vch24lv95dplaneinteilungen_plan',NULL);
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6Entstehung.Entstehung','entstehung','plzoch1lv95dplzortschaft_plz6','plzoch1lv95dplzortschaft_plz6nachfuehrung');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.HFP1.HoeheGeom','hoehegeom','dm01vch24lv95dfixpunktekatgrie1_hfp1',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Rohrleitungen.RLNachfuehrung.Beschreibung','beschreibung','dm01vch24lv95drohrleitungen_rlnachfuehrung',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.HausnummerPos.Groesse','groesse','dm01vch24lv95dgebaeudeadressen_hausnummerpos',NULL);
@@ -3271,9 +3271,9 @@ INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('D
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Nomenklatur.GelaendenamePos.Pos','pos','dm01vch24lv95dnomenklatur_gelaendenamepos',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.HFP1Nachfuehrung.NBIdent','nbident','dm01vch24lv95dfixpunktekatgrie1_hfp1nachfuehrung',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjLiegenschaft.NummerTeilGrundstueck','nummerteilgrundstueck','dm01vch24lv95dliegenschaften_projliegenschaft',NULL);
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName_Pos.Groesse','groesse','plzoch1lv95dplzortschaft_ortschaftsname_pos',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.BoFlaeche.Qualitaet','qualitaet','dm01vch24lv95dbodenbedeckung_boflaeche',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Rutschgebiete.RutschungPos.VAli','vali','dm01vch24lv95drutschgebiete_rutschungpos',NULL);
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName_Pos.Groesse','groesse','plzoch1lv95dplzortschaft_ortschaftsname_pos',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanbeschriftungPosPlanbeschriftungPos_von.PlanbeschriftungPos_von','planbeschriftungpos_von','dm01vch24lv95dplanrahmen_planbeschriftungpos','dm01vch24lv95dplanrahmen_planbeschriftung');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Rohrleitungen.LeitungsobjektPos.Ori','ori','dm01vch24lv95drohrleitungen_leitungsobjektpos',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Nomenklatur.NKNachfuehrung.Beschreibung','beschreibung','dm01vch24lv95dnomenklatur_nknachfuehrung',NULL);
@@ -3333,9 +3333,9 @@ INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('D
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.EinzelpunktPos.Ori','ori','dm01vch24lv95dbodenbedeckung_einzelpunktpos',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Einzelpunkt.Identifikator','identifikator','dm01vch24lv95deinzelobjekte_einzelpunkt',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.PLZ6PLZ6_von.PLZ6_von','plz6_von','dm01vch24lv95dplzortschaft_plz6','dm01vch24lv95dplzortschaft_ortschaft');
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsVerbundText.Sprache','sprache','plzoch1lv95dplzortschaft_ortschaftsverbundtext',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.Einzelpunkt.Identifikator','identifikator','dm01vch24lv95dbodenbedeckung_einzelpunkt',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Nomenklatur.NKNachfuehrung.Identifikator','identifikator','dm01vch24lv95dnomenklatur_nknachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsVerbundText.Sprache','sprache','plzoch1lv95dplzortschaft_ortschaftsverbundtext',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Hoehen.GelaendekanteEntstehung.Entstehung','entstehung','dm01vch24lv95dhoehen_gelaendekante','dm01vch24lv95dhoehen_honachfuehrung');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Planeinteilungen.PlanPos.Groesse','groesse','dm01vch24lv95dplaneinteilungen_planpos',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsName_Pos.Groesse','groesse','dm01vch24lv95dplzortschaft_ortschaftsname_pos',NULL);
@@ -3366,9 +3366,9 @@ INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('D
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.HFP3Pos.VAli','vali','dm01vch24lv95dfixpunktekatgrie3_hfp3pos',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsVerbundText.Text','atext','plzoch1lv95dplzortschaft_ortschaftsverbundtext',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.GEMNachfuehrung.NBIdent','nbident','dm01vch24lv95dgemeindegrenzen_gemnachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName.KurzText','kurztext','plzoch1lv95dplzortschaft_ortschaftsname',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Objektnummer.Nummer','nummer','dm01vch24lv95deinzelobjekte_objektnummer',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.Strassenstueck.IstAchse','istachse','dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL);
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName.KurzText','kurztext','plzoch1lv95dplzortschaft_ortschaftsname',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Nomenklatur.OrtsnamePos.Groesse','groesse','dm01vch24lv95dnomenklatur_ortsnamepos',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.HFP3Nachfuehrung.GueltigerEintrag','gueltigereintrag','dm01vch24lv95dfixpunktekatgrie3_hfp3nachfuehrung',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.LokalisationsNamePosLokalisationsNamePos_von.LokalisationsNamePos_von','lokalisationsnamepos_von','dm01vch24lv95dgebaeudeadressen_lokalisationsnamepos','dm01vch24lv95dgebaeudeadressen_lokalisationsname');
@@ -3378,8 +3378,8 @@ INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('D
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Einzelobjekte.ObjektnummerPos.VAli','vali','dm01vch24lv95deinzelobjekte_objektnummerpos',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Planrahmen.KoordinatenanschriftPos.VAli','vali','dm01vch24lv95dplanrahmen_koordinatenanschriftpos',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.NummerierungsbereichPos.VAli','vali','plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos',NULL);
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.Nummerierungsbereich.NBNummer','nbnummer','plzoch1lv95dnummerierngsbrche_nummerierungsbereich',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.GemeindegrenzeEntstehung.Entstehung','entstehung','dm01vch24lv95dgemeindegrenzen_gemeindegrenze','dm01vch24lv95dgemeindegrenzen_gemnachfuehrung');
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.Nummerierungsbereich.NBNummer','nbnummer','plzoch1lv95dnummerierngsbrche_nummerierungsbereich',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Liegenschaften.LSNachfuehrung.Datum1','datum1','dm01vch24lv95dliegenschaften_lsnachfuehrung',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1.Nummer','nummer','dm01vch24lv95dfixpunktekatgrie1_lfp1',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Planrahmen.LinienobjektLinienobjekt_von.Linienobjekt_von','linienobjekt_von','dm01vch24lv95dplanrahmen_linienobjekt','dm01vch24lv95dplanrahmen_planlayout');
@@ -3389,8 +3389,8 @@ INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('D
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1.HoeheGeom','hoehegeom','dm01vch24lv95dfixpunktekatgrie1_lfp1',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjGrundstueck.GesamteFlaechenmass','gesamteflaechenmass','dm01vch24lv95dliegenschaften_projgrundstueck',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2.HoeheGeom','hoehegeom','dm01vch24lv95dfixpunktekatgrie2_lfp2',NULL);
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6Nachfuehrung.Perimeter','perimeter','plzoch1lv95dplzortschaft_plz6nachfuehrung',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.HFP2Nachfuehrung.Identifikator','identifikator','dm01vch24lv95dfixpunktekatgrie2_hfp2nachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6Nachfuehrung.Perimeter','perimeter','plzoch1lv95dplzortschaft_plz6nachfuehrung',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Einzelpunkt.Geometrie','geometrie','dm01vch24lv95drohrleitungen_einzelpunkt',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.PLZ6Nachfuehrung.Identifikator','identifikator','dm01vch24lv95dplzortschaft_plz6nachfuehrung',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3Nachfuehrung.NBIdent','nbident','dm01vch24lv95dfixpunktekatgrie3_lfp3nachfuehrung',NULL);
@@ -3424,16 +3424,16 @@ INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('D
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Einzelobjekte.EONachfuehrung.Gueltigkeit','gueltigkeit','dm01vch24lv95deinzelobjekte_eonachfuehrung',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Nomenklatur.NKNachfuehrung.Datum1','datum1','dm01vch24lv95dnomenklatur_nknachfuehrung',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Planrahmen.Koordinatenanschrift.Beschriftung','beschriftung','dm01vch24lv95dplanrahmen_koordinatenanschrift',NULL);
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName_PosOrtschaftsName_Pos_von.OrtschaftsName_Pos_von','ortschaftsname_pos_von','plzoch1lv95dplzortschaft_ortschaftsname_pos','plzoch1lv95dplzortschaft_ortschaftsname');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ObjektnamePos.Groesse','groesse','dm01vch24lv95dbodenbedeckung_objektnamepos',NULL);
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName_PosOrtschaftsName_Pos_von.OrtschaftsName_Pos_von','ortschaftsname_pos_von','plzoch1lv95dplzortschaft_ortschaftsname_pos','plzoch1lv95dplzortschaft_ortschaftsname');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.PLZ6Nachfuehrung.GueltigerEintrag','gueltigereintrag','dm01vch24lv95dplzortschaft_plz6nachfuehrung',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjGebaeudenummerPos.HAli','hali','dm01vch24lv95dbodenbedeckung_projgebaeudenummerpos',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Einzelobjekte.ObjektnummerPosObjektnummerPos_von.ObjektnummerPos_von','objektnummerpos_von','dm01vch24lv95deinzelobjekte_objektnummerpos','dm01vch24lv95deinzelobjekte_objektnummer');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeNamePos.VAli','vali','dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Hoehen.HoehenpunktPos.HAli','hali','dm01vch24lv95dhoehen_hoehenpunktpos',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.LokalisationsName.IndexText','indextext','dm01vch24lv95dgebaeudeadressen_lokalisationsname',NULL);
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.NBGeometrieNBGeometrie_von.NBGeometrie_von','nbgeometrie_von','plzoch1lv95dnummerierngsbrche_nbgeometrie','plzoch1lv95dnummerierngsbrche_nummerierungsbereich');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Nomenklatur.FlurnamePos.Ori','ori','dm01vch24lv95dnomenklatur_flurnamepos',NULL);
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.NBGeometrieNBGeometrie_von.NBGeometrie_von','nbgeometrie_von','plzoch1lv95dnummerierngsbrche_nbgeometrie','plzoch1lv95dnummerierngsbrche_nummerierungsbereich');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.Objektname.Name','aname','dm01vch24lv95dbodenbedeckung_objektname',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Nomenklatur.Ortsname.Typ','typ','dm01vch24lv95dnomenklatur_ortsname',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftEntstehung.Entstehung','entstehung','plzoch1lv95dplzortschaft_ortschaft','plzoch1lv95dplzortschaft_osnachfuehrung');
@@ -3477,10 +3477,10 @@ INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('D
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Rohrleitungen.RLNachfuehrung.Gueltigkeit','gueltigkeit','dm01vch24lv95drohrleitungen_rlnachfuehrung',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Einzelobjekte.EinzelobjektEntstehung.Entstehung','entstehung','dm01vch24lv95deinzelobjekte_einzelobjekt','dm01vch24lv95deinzelobjekte_eonachfuehrung');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeBeschreibung.Sprache','sprache','dm01vch24lv95dgebaeudeadressen_gebaeudebeschreibung',NULL);
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6.Flaeche','flaeche','plzoch1lv95dplzortschaft_plz6',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.HFP3.LageZuv','lagezuv','dm01vch24lv95dfixpunktekatgrie3_hfp3',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Flaechenelement.Geometrie','geometrie','dm01vch24lv95deinzelobjekte_flaechenelement',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Einzelobjekte.LinienelementSymbolLinienelementSymbol_von.LinienelementSymbol_von','linienelementsymbol_von','dm01vch24lv95deinzelobjekte_linienelementsymbol','dm01vch24lv95deinzelobjekte_linienelement');
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6.Flaeche','flaeche','plzoch1lv95dplzortschaft_plz6',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2.HoeheGen','hoehegen','dm01vch24lv95dfixpunktekatgrie2_lfp2',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.Strassenstueck.Ordnung','ordnung','dm01vch24lv95dgebaeudeadressen_strassenstueck',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjBoFlaecheEntstehung.Entstehung','entstehung','dm01vch24lv95dbodenbedeckung_projboflaeche','dm01vch24lv95dbodenbedeckung_bbnachfuehrung');
@@ -3494,24 +3494,24 @@ INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('D
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1Entstehung.Entstehung','entstehung','dm01vch24lv95dfixpunktekatgrie1_lfp1','dm01vch24lv95dfixpunktekatgrie1_lfp1nachfuehrung');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Einzelobjekte.EinzelpunktEntstehung.Entstehung','entstehung','dm01vch24lv95deinzelobjekte_einzelpunkt','dm01vch24lv95deinzelobjekte_eonachfuehrung');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Einzelobjekte.LinienelementSymbol.Pos','pos','dm01vch24lv95deinzelobjekte_linienelementsymbol',NULL);
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6Nachfuehrung.Gueltigkeit','gueltigkeit','plzoch1lv95dplzortschaft_plz6nachfuehrung',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2.Punktzeichen','punktzeichen','dm01vch24lv95dfixpunktekatgrie2_lfp2',NULL);
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6Nachfuehrung.Gueltigkeit','gueltigkeit','plzoch1lv95dplzortschaft_plz6nachfuehrung',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Einzelpunkt.ExaktDefiniert','exaktdefiniert','dm01vch24lv95deinzelobjekte_einzelpunkt',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.NummerierungsbereichPos.Pos','pos','plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos',NULL);
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.NummerierungsbereichPos.Ori','ori','plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ObjektnamePos.VAli','vali','dm01vch24lv95dbodenbedeckung_objektnamepos',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjLiegenschaft.Flaechenmass','flaechenmass','dm01vch24lv95dliegenschaften_projliegenschaft',NULL);
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.NummerierungsbereichPos.Ori','ori','plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Flaechenelement.Geometrie','geometrie','dm01vch24lv95drohrleitungen_flaechenelement',NULL);
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OSNachfuehrung.Perimeter','perimeter','plzoch1lv95dplzortschaft_osnachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.Ortschaft.Status','astatus','plzoch1lv95dplzortschaft_ortschaft',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjObjektname.Name','aname','dm01vch24lv95dbodenbedeckung_projobjektname',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.HoheitsgrenzpunktPos.VAli','vali','dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktpos',NULL);
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OSNachfuehrung.Perimeter','perimeter','plzoch1lv95dplzortschaft_osnachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.Ortschaft.Status','astatus','plzoch1lv95dplzortschaft_ortschaft',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Punktelement.Ori','ori','dm01vch24lv95drohrleitungen_punktelement',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftOrtschaft_von.Ortschaft_von','ortschaft_von','plzoch1lv95dplzortschaft_ortschaft','plzoch1lv95dplzortschaft_ortschaftsverbund');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName_Pos.VAli','vali','plzoch1lv95dplzortschaft_ortschaftsname_pos',NULL);
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OSNachfuehrung.GueltigerEintrag','gueltigereintrag','plzoch1lv95dplzortschaft_osnachfuehrung',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2Pos.HAli','hali','dm01vch24lv95dfixpunktekatgrie2_lfp2pos',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.Lokalisation.Nummerierungsprinzip','nummerierungsprinzip','dm01vch24lv95dgebaeudeadressen_lokalisation',NULL);
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OSNachfuehrung.GueltigerEintrag','gueltigereintrag','plzoch1lv95dplzortschaft_osnachfuehrung',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Nomenklatur.OrtsnamePos.VAli','vali','dm01vch24lv95dnomenklatur_ortsnamepos',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Hoehen.Gelaendekante.Art','art','dm01vch24lv95dhoehen_gelaendekante',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.BBNachfuehrung.Gueltigkeit','gueltigkeit','dm01vch24lv95dbodenbedeckung_bbnachfuehrung',NULL);
@@ -3542,8 +3542,8 @@ INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('D
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GEBNachfuehrung.Perimeter','perimeter','dm01vch24lv95dgebaeudeadressen_gebnachfuehrung',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Einzelobjekte.PunktelementPunktelement_von.Punktelement_von','punktelement_von','dm01vch24lv95deinzelobjekte_punktelement','dm01vch24lv95deinzelobjekte_einzelobjekt');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrenzpunktPos.VAli','vali','dm01vch24lv95dliegenschaften_grenzpunktpos',NULL);
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OSNachfuehrung.Identifikator','identifikator','plzoch1lv95dplzortschaft_osnachfuehrung',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.Lokalisation.Art','art','dm01vch24lv95dgebaeudeadressen_lokalisation',NULL);
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OSNachfuehrung.Identifikator','identifikator','plzoch1lv95dplzortschaft_osnachfuehrung',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Liegenschaften.Grenzpunkt.ExaktDefiniert','exaktdefiniert','dm01vch24lv95dliegenschaften_grenzpunkt',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Nummerierungsbereiche.NummerierungsbereichPos.HAli','hali','dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjGebaeudenummerPos.VAli','vali','dm01vch24lv95dbodenbedeckung_projgebaeudenummerpos',NULL);
@@ -3584,8 +3584,8 @@ INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('D
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Nomenklatur.FlurnameEntstehung.Entstehung','entstehung','dm01vch24lv95dnomenklatur_flurname','dm01vch24lv95dnomenklatur_nknachfuehrung');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsName.IndexText','indextext','dm01vch24lv95dplzortschaft_ortschaftsname',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjBergwerk.Geometrie','geometrie','dm01vch24lv95dliegenschaften_projbergwerk',NULL);
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6.Status','astatus','plzoch1lv95dplzortschaft_plz6',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Liegenschaften.SelbstRechtSelbstRecht_von.SelbstRecht_von','selbstrecht_von','dm01vch24lv95dliegenschaften_selbstrecht','dm01vch24lv95dliegenschaften_grundstueck');
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6.Status','astatus','plzoch1lv95dplzortschaft_plz6',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Planrahmen.KoordinatenanschriftKoordinatenanschrift_von.Koordinatenanschrift_von','koordinatenanschrift_von','dm01vch24lv95dplanrahmen_koordinatenanschrift','dm01vch24lv95dplanrahmen_planlayout');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeNameGebaeudeName_von.GebaeudeName_von','gebaeudename_von','dm01vch24lv95dgebaeudeadressen_gebaeudename','dm01vch24lv95dgebaeudeadressen_gebaeudeeingang');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Bezirksgrenzen.Bezirksgrenzabschnitt.Geometrie','geometrie','dm01vch24lv95dbezirksgrenzen_bezirksgrenzabschnitt',NULL);
@@ -3684,8 +3684,8 @@ INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('D
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Rohrleitungen.SignalpunktEntstehung.Entstehung','entstehung','dm01vch24lv95drohrleitungen_signalpunkt','dm01vch24lv95drohrleitungen_rlnachfuehrung');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.GebaeudenummerPos.Pos','pos','dm01vch24lv95dbodenbedeckung_gebaeudenummerpos',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName.IndexText','indextext','plzoch1lv95dplzortschaft_ortschaftsname',NULL);
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsVerbundTextOrtschaftsVerbundText_von.OrtschaftsVerbundText_von','ortschaftsverbundtext_von','plzoch1lv95dplzortschaft_ortschaftsverbundtext','plzoch1lv95dplzortschaft_ortschaftsverbund');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.HausnummerPos.Ori','ori','dm01vch24lv95dgebaeudeadressen_hausnummerpos',NULL);
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsVerbundTextOrtschaftsVerbundText_von.OrtschaftsVerbundText_von','ortschaftsverbundtext_von','plzoch1lv95dplzortschaft_ortschaftsverbundtext','plzoch1lv95dplzortschaft_ortschaftsverbund');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.BBNachfuehrung.Datum1','datum1','dm01vch24lv95dbodenbedeckung_bbnachfuehrung',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjGebaeudenummerPos.Groesse','groesse','dm01vch24lv95dbodenbedeckung_projgebaeudenummerpos',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Liegenschaften.LSNachfuehrung.Beschreibung','beschreibung','dm01vch24lv95dliegenschaften_lsnachfuehrung',NULL);
@@ -3697,8 +3697,8 @@ INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('D
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Hoehen.HoehenpunktEntstehung.Entstehung','entstehung','dm01vch24lv95dhoehen_hoehenpunkt','dm01vch24lv95dhoehen_honachfuehrung');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjGebaeudenummerPos.Pos','pos','dm01vch24lv95dbodenbedeckung_projgebaeudenummerpos',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Signalpunkt.Betreiber','betreiber','dm01vch24lv95drohrleitungen_signalpunkt',NULL);
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName.Text','atext','plzoch1lv95dplzortschaft_ortschaftsname',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjGebaeudenummerPos.Ori','ori','dm01vch24lv95dbodenbedeckung_projgebaeudenummerpos',NULL);
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName.Text','atext','plzoch1lv95dplzortschaft_ortschaftsname',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Planeinteilungen.PlanPos.Ori','ori','dm01vch24lv95dplaneinteilungen_planpos',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.HausnummerPos.VAli','vali','dm01vch24lv95dgebaeudeadressen_hausnummerpos',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Planrahmen.KoordinatenLinieKoordinatenLinie_von.KoordinatenLinie_von','koordinatenlinie_von','dm01vch24lv95dplanrahmen_koordinatenlinie','dm01vch24lv95dplanrahmen_planlayout');
@@ -3712,8 +3712,8 @@ INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('D
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeeingangEntstehung.Entstehung','entstehung','dm01vch24lv95dgebaeudeadressen_gebaeudeeingang','dm01vch24lv95dgebaeudeadressen_gebnachfuehrung');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.Lokalisation.LokalisationNummer','lokalisationnummer','dm01vch24lv95dgebaeudeadressen_lokalisation',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6Nachfuehrung.Identifikator','identifikator','plzoch1lv95dplzortschaft_plz6nachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.Nummerierungsbereich.GueltigerEintrag','gueltigereintrag','plzoch1lv95dnummerierngsbrche_nummerierungsbereich',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3Nachfuehrung.Perimeter','perimeter','dm01vch24lv95dfixpunktekatgrie3_lfp3nachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.Nummerierungsbereich.GueltigerEintrag','gueltigereintrag','plzoch1lv95dnummerierngsbrche_nummerierungsbereich',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OSNachfuehrung.Beschreibung','beschreibung','plzoch1lv95dplzortschaft_osnachfuehrung',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.HoheitsgrenzpunktSymbolHoheitsgrenzpunktSymbol_von.HoheitsgrenzpunktSymbol_von','hoheitsgrenzpunktsymbol_von','dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktsymbol','dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Punktelement.Ori','ori','dm01vch24lv95deinzelobjekte_punktelement',NULL);
@@ -3727,9 +3727,9 @@ INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('D
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Nummerierungsbereiche.NummerierungsbereichPos.Ori','ori','dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Einzelobjekte.FlaechenelementSymbolFlaechenelementSymbol_von.FlaechenelementSymbol_von','flaechenelementsymbol_von','dm01vch24lv95deinzelobjekte_flaechenelementsymbol','dm01vch24lv95deinzelobjekte_flaechenelement');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjSelbstRechtProjSelbstRecht_von.ProjSelbstRecht_von','projselbstrecht_von','dm01vch24lv95dliegenschaften_projselbstrecht','dm01vch24lv95dliegenschaften_projgrundstueck');
-INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsNameOrtschaftsName_von.OrtschaftsName_von','ortschaftsname_von','plzoch1lv95dplzortschaft_ortschaftsname','plzoch1lv95dplzortschaft_ortschaft');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjSelbstRecht.NummerTeilGrundstueck','nummerteilgrundstueck','dm01vch24lv95dliegenschaften_projselbstrecht',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeeingangGebaeudeeingang_von.Gebaeudeeingang_von','gebaeudeeingang_von','dm01vch24lv95dgebaeudeadressen_gebaeudeeingang','dm01vch24lv95dgebaeudeadressen_lokalisation');
+INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsNameOrtschaftsName_von.OrtschaftsName_von','ortschaftsname_von','plzoch1lv95dplzortschaft_ortschaftsname','plzoch1lv95dplzortschaft_ortschaft');
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Hoehen.HONachfuehrung.Datum1','datum1','dm01vch24lv95dhoehen_honachfuehrung',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanLayout.Gemeindename','gemeindename','dm01vch24lv95dplanrahmen_planlayout',NULL);
 INSERT INTO stage.T_ILI2DB_ATTRNAME (IliName,SqlName,ColOwner,Target) VALUES ('DM01AVCH24LV95D.Nummerierungsbereiche.NummerierungsbereichPos.Pos','pos','dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos',NULL);
@@ -3818,9 +3818,9 @@ INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2Symbol','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3PosLFP3Pos_von','ch.ehi.ili2db.inheritance','embedded');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Objektname','ch.ehi.ili2db.inheritance','newClass');
-INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName_Pos','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.HFP3','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjGrundstueckEntstehung','ch.ehi.ili2db.inheritance','embedded');
+INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName_Pos','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeNameGebaeudeName_von','ch.ehi.ili2db.inheritance','embedded');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.Nummerierungsbereich','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Kantonsgrenzen.Kantonsgrenzabschnitt','ch.ehi.ili2db.inheritance','newClass');
@@ -3846,8 +3846,8 @@ INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Nomenklatur.FlurnamePosFlurnamePos_von','ch.ehi.ili2db.inheritance','embedded');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.HFP1Entstehung','ch.ehi.ili2db.inheritance','embedded');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.Objektname','ch.ehi.ili2db.inheritance','newClass');
-INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftEntstehung','ch.ehi.ili2db.inheritance','embedded');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Rohrleitungen.SignalpunktEntstehung','ch.ehi.ili2db.inheritance','embedded');
+INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftEntstehung','ch.ehi.ili2db.inheritance','embedded');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Planrahmen.LinienobjektLinienobjekt_von','ch.ehi.ili2db.inheritance','embedded');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1Nachfuehrung','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Liegenschaften.LineAttrib6','ch.ehi.ili2db.inheritance','newClass');
@@ -3887,8 +3887,8 @@ INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.PLZ6Nachfuehrung','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsVerbund','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.Gemeindegrenze','ch.ehi.ili2db.inheritance','newClass');
-INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6Entstehung','ch.ehi.ili2db.inheritance','embedded');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Einzelobjekte.PunktelementPunktelement_von','ch.ehi.ili2db.inheritance','embedded');
+INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6Entstehung','ch.ehi.ili2db.inheritance','embedded');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Objektnummer','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrenzpunktEntstehung','ch.ehi.ili2db.inheritance','embedded');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Liegenschaften.LiegenschaftLiegenschaft_von','ch.ehi.ili2db.inheritance','embedded');
@@ -3898,8 +3898,8 @@ INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.BoFlaeche','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrenzpunktSymbolGrenzpunktSymbol_von','ch.ehi.ili2db.inheritance','embedded');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.Strassenstueck','ch.ehi.ili2db.inheritance','newClass');
-INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.NummerierungsbereichPos','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.HFP3Entstehung','ch.ehi.ili2db.inheritance','embedded');
+INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.NummerierungsbereichPos','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Nomenklatur.FlurnamePos','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftEntstehung','ch.ehi.ili2db.inheritance','embedded');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Nomenklatur.Gelaendename','ch.ehi.ili2db.inheritance','newClass');
@@ -3935,9 +3935,9 @@ INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.HFP2Pos','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OSNachfuehrung','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.PLZ6PLZ6_von','ch.ehi.ili2db.inheritance','embedded');
-INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('PLZOCH1LV95D.PLZOrtschaft.Ortschaft','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2Nachfuehrung','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Signalpunkt','ch.ehi.ili2db.inheritance','newClass');
+INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('PLZOCH1LV95D.PLZOrtschaft.Ortschaft','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.HFP3PosHFP3Pos_von','ch.ehi.ili2db.inheritance','embedded');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjGebaeudenummerPosProjGebaeudenummerPos_von','ch.ehi.ili2db.inheritance','embedded');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Nomenklatur.OrtsnamePos','ch.ehi.ili2db.inheritance','newClass');
@@ -3974,8 +3974,8 @@ INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Hoehen.GelaendekanteEntstehung','ch.ehi.ili2db.inheritance','embedded');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Einzelobjekte.EinzelpunktEntstehung','ch.ehi.ili2db.inheritance','embedded');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsName_Pos','ch.ehi.ili2db.inheritance','newClass');
-INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Nummerierungsbereiche.NummerierungsbereichPos','ch.ehi.ili2db.inheritance','newClass');
+INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Planeinteilungen.PlanPos','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanLayoutSymbolPlanLayoutSymbol_von','ch.ehi.ili2db.inheritance','embedded');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Flaechenelement','ch.ehi.ili2db.inheritance','newClass');
@@ -4008,273 +4008,273 @@ INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Linienelement','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Einzelobjekte.EinzelpunktPos','ch.ehi.ili2db.inheritance','newClass');
 INSERT INTO stage.T_ILI2DB_TRAFO (iliname,tag,setting) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanbeschriftungPosPlanbeschriftungPos_von','ch.ehi.ili2db.inheritance','embedded');
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.LokalisationsNamePos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsNameOrtschaftsName_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.FlurnamePosFlurnamePos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.PLZ6Nachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rutschgebiete.RutschungPosRutschungPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.NKNachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.GemeindegrenzeGemeindegrenze_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planeinteilungen.PlanPosPlanPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeeingangEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3Symbol',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.EinzelpunktPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Einzelpunkt',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.GEMNachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.SignalpunktPosSignalpunktPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.FlaechenelementSymbol',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanbeschriftungPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjObjektname',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.EinzelpunktPosEinzelpunktPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.HoheitsgrenzpunktSymbol',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftOrtschaft_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.KoordinatenLinie',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.BoFlaecheEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.HFP1',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.GelaendenameEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.ObjektnamePosObjektnamePos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.PLZ6PLZ6_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.HoheitsgrenzpunktPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1Symbol',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrenzpunktEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanLayout',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.HFP3PosHFP3Pos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.KoordinatenLinieKoordinatenLinie_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3Pos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjObjektnamePosProjObjektnamePos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Punktelement',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.LSNachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.NetzkreuzNetzkreuz_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OSNachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.RLNachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrundstueckPosGrundstueckPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrundstueckPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.HFP3Pos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.AussparungEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.EinzelpunktEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.Strassenstueck',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.NBGeometrieNBGeometrie_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.Grundstueck',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.LinienelementSymbolLinienelementSymbol_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.BergwerkBergwerk_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6Nachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OSNachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1SymbolLFP1Symbol_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.BenanntesGebiet',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjGebaeudenummerPosProjGebaeudenummerPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.LeitungsobjektPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.FlaechenelementFlaechenelement_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ObjektnamePosObjektnamePos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeBeschreibung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjBoFlaecheSymbol',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.LinienelementSymbol',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.LokalisationsName',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planeinteilungen.Plan',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.HFP2',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjGebaeudenummer',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjGrundstueckEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GEBNachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftOrtschaft_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.PunktelementPunktelement_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nummerierungsbereiche.NummerierungsbereichPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjBoFlaecheEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.EinzelpunktPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2SymbolLFP2Symbol_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.LinienelementLinienelement_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.Koordinatenanschrift',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrenzpunktSymbolGrenzpunktSymbol_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.FlurnamePos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.Ortsname',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2Symbol',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.SelbstRecht',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.LinienobjektLinienobjekt_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1Nachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjLiegenschaftProjLiegenschaft_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.Netzkreuz',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.EinzelpunktPosEinzelpunktPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanbeschriftungPlanbeschriftung_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.HoehenpunktEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Signalpunkt',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsVerbundText',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeNamePosGebaeudeNamePos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.Nummerierungsbereich',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.Darstellungsflaeche',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjBoFlaeche',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.TSEinteilung.ToleranzstufePosToleranzstufePos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2PosLFP2Pos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.HFP2PosHFP2Pos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.StrassenstueckStrassenstueck_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.Einzelpunkt',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.ObjektnamePos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.LokalisationsNamePosLokalisationsNamePos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.Objektname',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrundstueckEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.HFP1Pos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.HFP2Entstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.EinzelpunktEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.PLZ6Entstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3Nachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nummerierungsbereiche.NBGeometrie',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.LokalisationsNameBenannte',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.LokalisationEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.HoheitsgrenzpunktPosHoheitsgrenzpunktPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.HFP2Pos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanLayoutSymbol',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrenzpunktPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.OrtsnameEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.EinzelpunktEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planeinteilungen.PlanPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.EinzelpunktPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsVerbundTextOrtschaftsVerbundText_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Linienelement',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.PLZ6',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsName',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.OrtsnamePos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.Planbeschriftung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planeinteilungen.PlangeometriePlangeometrie_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Landesgrenzen.Landesgrenzabschnitt',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Flaechenelement',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.ObjektnummerPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjSelbstRechtProjSelbstRecht_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.NummerierungsbereichPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1Pos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.HFP2Nachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1Entstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.HFP1PosHFP1Pos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3SymbolLFP3Symbol_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.Gemeinde',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.Aussparung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Einzelobjekt',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.Bergwerk',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.BenanntesGebietBenanntesGebiet_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2Nachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeBeschreibungGebaeudeBeschreibung_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.NummerierungsbereichPosNummerierungsbereichPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Objektname',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjObjektnameProjObjektname_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.EinzelobjektEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrenzpunktPosGrenzpunktPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.HoheitsgrenzpunktEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.BoFlaecheSymbolBoFlaecheSymbol_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName_PosOrtschaftsName_Pos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6Entstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1PosLFP1Pos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.GebaeudenummerPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanbeschriftungPosPlanbeschriftungPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.FlaechenelementSymbolFlaechenelementSymbol_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nummerierungsbereiche.NBGeometrieNBGeometrie_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsName_Pos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjBergwerk',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6PLZ6_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.DarstellungsflaecheDarstellungsflaeche_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.LiegenschaftLiegenschaft_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Flaechenelement',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.EONachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.Gelaendekante',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeeingangGebaeudeeingang_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rutschgebiete.RutschungPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.OrtsnamePosOrtsnamePos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsVerbund',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.FlurnameEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjGrundstueckPosProjGrundstueckPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.Hoheitsgrenzpunkt',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.KoordinatenanschriftPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftEntstehung',NULL);
 INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bezirksgrenzen.Bezirksgrenzabschnitt',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.HFP3Nachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.HoehenpunktPosHoehenpunktPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.NBGeometrie',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.HFP1Entstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjGrundstueckPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.Gebaeudenummer',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.Gemeindegrenze',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.Lokalisation',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeNamePos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjGrundstueck',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeNameGebaeudeName_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.Grenzpunkt',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsName_PosOrtschaftsName_Pos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.GelaendenamePos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjBergwerkProjBergwerk_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.SignalpunktPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.ProjGemeindegrenzeEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.EinzelpunktPosEinzelpunktPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Punktelement',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.TSEinteilung.ToleranzstufePos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjSelbstRecht',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.LeitungsobjektPosLeitungsobjektPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ObjektnameObjektname_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.Liegenschaft',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.Ortschaft',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ObjektnamePos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.HausnummerPosHausnummerPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.SelbstRechtSelbstRecht_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.GemeindegrenzeEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Objektnummer',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.ProjGemeindegrenzeProjGemeindegrenze_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.ObjektnummerPosObjektnummerPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.ProjGemeindegrenze',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rutschgebiete.Rutschung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3PosLFP3Pos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.HONachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.LinienelementLinienelement_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.HoheitsgrenzpunktSymbolHoheitsgrenzpunktSymbol_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2Entstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.HFP1Nachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Kantonsgrenzen.Kantonsgrenzabschnitt',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjLiegenschaft',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsVerbundText',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.HoehenpunktPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.GebaeudenummerGebaeudenummer_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrenzpunktSymbol',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Leitungsobjekt',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.ObjektnummerObjektnummer_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.FlaechenelementFlaechenelement_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nummerierungsbereiche.NummerierungsbereichPosNummerierungsbereichPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.TSEinteilung.Toleranzstufe',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Linienelement',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2Pos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nummerierungsbereiche.Nummerierungsbereich',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3Entstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.Gebaeudeeingang',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.HFP3Entstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjObjektnamePos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.GelaendenamePosGelaendenamePos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.ObjektnameObjektname_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsVerbundTextOrtschaftsVerbundText_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.HFP3',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjGebaeudenummerProjGebaeudenummer_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.PunktelementPunktelement_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.BoFlaecheSymbol',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.Hoehenpunkt',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.Ortschaft',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.BBNachfuehrung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.KoordinatenanschriftPosKoordinatenanschriftPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planeinteilungen.Plangeometrie',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName_Pos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.GebaeudenummerPosGebaeudenummerPos_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.Linienobjekt',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.SignalpunktEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.KoordinatenanschriftKoordinatenanschrift_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanLayoutSymbolPlanLayoutSymbol_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.GelaendekanteEntstehung',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.BoFlaeche',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjBoFlaecheSymbolProjBoFlaecheSymbol_von',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.Flurname',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeName',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjGebaeudenummerPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsNameOrtschaftsName_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrenzpunktSymbolGrenzpunktSymbol_von',NULL);
 INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.HausnummerPos',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Einzelpunkt',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.EinzelpunktPosEinzelpunktPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.Ortschaft',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1Nachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeBeschreibungGebaeudeBeschreibung_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6PLZ6_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjGebaeudenummerPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.Liegenschaft',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.LiegenschaftLiegenschaft_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeNamePos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.Planbeschriftung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1Pos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nummerierungsbereiche.NummerierungsbereichPosNummerierungsbereichPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.Lokalisation',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.HFP3PosHFP3Pos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrenzpunktSymbol',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.ObjektnummerObjektnummer_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjSelbstRechtProjSelbstRecht_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjObjektnamePos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.GemeindegrenzeGemeindegrenze_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planeinteilungen.PlanPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.ObjektnameObjektname_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.PLZ6Entstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.AussparungEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjGebaeudenummerProjGebaeudenummer_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.Netzkreuz',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.NBGeometrie',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrundstueckPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.HoehenpunktPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.HoheitsgrenzpunktEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrenzpunktEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.Aussparung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjBoFlaeche',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nummerierungsbereiche.Nummerierungsbereich',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.HFP2Nachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.HFP2Pos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.TSEinteilung.ToleranzstufePos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeBeschreibung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.TSEinteilung.Toleranzstufe',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjGrundstueckEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.EinzelpunktPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.DarstellungsflaecheDarstellungsflaeche_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsName_PosOrtschaftsName_Pos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.BoFlaecheSymbol',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1Entstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Flaechenelement',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanLayoutSymbol',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nummerierungsbereiche.NBGeometrie',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.BenanntesGebietBenanntesGebiet_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsVerbund',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.LinienelementLinienelement_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planeinteilungen.PlangeometriePlangeometrie_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.NBGeometrieNBGeometrie_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.SignalpunktEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.GelaendenameEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.PLZ6PLZ6_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.KoordinatenanschriftKoordinatenanschrift_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Objektname',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjGebaeudenummer',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.HoheitsgrenzpunktPosHoheitsgrenzpunktPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrundstueckPosGrundstueckPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.RLNachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.SelbstRecht',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Punktelement',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Punktelement',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6Nachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.ObjektnummerPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsName',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.SignalpunktPosSignalpunktPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planeinteilungen.Plan',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrenzpunktPosGrenzpunktPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.KoordinatenLinie',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.BenanntesGebiet',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjBoFlaecheSymbol',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.HFP1PosHFP1Pos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.LinienelementLinienelement_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.GebaeudenummerGebaeudenummer_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.HFP1',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planeinteilungen.Plangeometrie',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Linienelement',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OSNachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeeingangGebaeudeeingang_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeeingangEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.FlaechenelementSymbolFlaechenelementSymbol_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjGrundstueck',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.LokalisationsName',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.FlurnameEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2Symbol',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.Linienobjekt',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.LeitungsobjektPosLeitungsobjektPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.HausnummerPosHausnummerPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Landesgrenzen.Landesgrenzabschnitt',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.Hoehenpunkt',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.Objektname',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsNameOrtschaftsName_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftOrtschaft_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanbeschriftungPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.BoFlaecheEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Linienelement',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.PLZ6',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2Entstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanLayoutSymbolPlanLayoutSymbol_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.ObjektnamePos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsNameOrtschaftsName_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.NKNachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nummerierungsbereiche.NummerierungsbereichPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.HFP3',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.EinzelpunktPosEinzelpunktPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.LSNachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.BergwerkBergwerk_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.BoFlaecheSymbolBoFlaecheSymbol_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2Pos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.ProjGemeindegrenze',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjGrundstueckPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.EinzelpunktPosEinzelpunktPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.Koordinatenanschrift',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OSNachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.HoheitsgrenzpunktPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2PosLFP2Pos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Flaechenelement',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nummerierungsbereiche.NBGeometrieNBGeometrie_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Einzelpunkt',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3Symbol',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeName',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.HFP3Entstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjObjektname',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.PLZ6Nachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.GelaendekanteEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.Gebaeudenummer',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.EinzelpunktPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.GelaendenamePosGelaendenamePos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.HFP2Entstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.HoheitsgrenzpunktSymbolHoheitsgrenzpunktSymbol_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.Flurname',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName_Pos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.NummerierungsbereichPosNummerierungsbereichPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.HFP1Nachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.LinienelementSymbol',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.BBNachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.GebaeudenummerPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.Gebaeudeeingang',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjBergwerk',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GEBNachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.LokalisationEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjBergwerkProjBergwerk_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeNamePosGebaeudeNamePos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.BoFlaeche',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.NummerierungsbereichPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3Entstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.KoordinatenLinieKoordinatenLinie_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjGebaeudenummerPosProjGebaeudenummerPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsVerbundTextOrtschaftsVerbundText_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsVerbundTextOrtschaftsVerbundText_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1SymbolLFP1Symbol_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.ProjGemeindegrenzeProjGemeindegrenze_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ObjektnamePos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.Grundstueck',NULL);
 INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.Gelaendename',NULL);
-INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.LeitungsobjektEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjLiegenschaftProjLiegenschaft_von',NULL);
 INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsVerbund',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Einzelpunkt',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.Gemeinde',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanLayout',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3SymbolLFP3Symbol_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1Symbol',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrundstueckEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Kantonsgrenzen.Kantonsgrenzabschnitt',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.LokalisationsNamePos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.OrtsnamePosOrtsnamePos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.LinienobjektLinienobjekt_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.Ortsname',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.HoehenpunktEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.LFP1PosLFP1Pos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.GemeindegrenzeEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Einzelobjekt',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.GebaeudenummerPosGebaeudenummerPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.OrtsnamePos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.HFP3Pos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsName_Pos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.PLZ6Entstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.HFP1Pos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.OrtsnameEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.SignalpunktPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjBoFlaecheEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjObjektnamePosProjObjektnamePos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.HFP2',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.Gemeindegrenze',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.GelaendenamePos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Leitungsobjekt',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ObjektnamePosObjektnamePos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftsVerbundText',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.GebaeudeNameGebaeudeName_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.OrtschaftOrtschaft_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ObjektnameObjektname_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.PunktelementPunktelement_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3PosLFP3Pos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.FlaechenelementFlaechenelement_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.FlaechenelementFlaechenelement_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.LokalisationsNameBenannte',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjGrundstueckPosProjGrundstueckPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.KoordinatenanschriftPosKoordinatenanschriftPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.ObjektnamePosObjektnamePos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rutschgebiete.Rutschung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.Bergwerk',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planeinteilungen.PlanPosPlanPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rutschgebiete.RutschungPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.LeitungsobjektEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.GEMNachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.KoordinatenanschriftPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjBoFlaecheSymbolProjBoFlaecheSymbol_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.EinzelpunktEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.FlurnamePos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.EinzelobjektEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjLiegenschaft',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.LokalisationsNamePosLokalisationsNamePos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.Einzelpunkt',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.ProjGemeindegrenzeEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.Objektnummer',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.HFP2PosHFP2Pos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanbeschriftungPosPlanbeschriftungPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.ObjektnummerPosObjektnummerPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.Signalpunkt',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.StrassenstueckStrassenstueck_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.LeitungsobjektPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.Hoheitsgrenzpunkt',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3Nachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.FlaechenelementSymbol',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.SelbstRechtSelbstRecht_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.PlanbeschriftungPlanbeschriftung_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2Nachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName_PosOrtschaftsName_Pos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.EinzelpunktEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Bodenbedeckung.ProjObjektnameProjObjektname_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.TSEinteilung.ToleranzstufePosToleranzstufePos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.PLZOrtschaft.Ortschaft',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.NetzkreuzNetzkreuz_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.LinienelementSymbolLinienelementSymbol_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.Nummerierungsbereiche.Nummerierungsbereich',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie2.LFP2SymbolLFP2Symbol_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsName',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.PunktelementPunktelement_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('PLZOCH1LV95D.PLZOrtschaft.OrtschaftsVerbundText',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.LFP3Pos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.EinzelpunktEntstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rohrleitungen.EinzelpunktPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Rutschgebiete.RutschungPosRutschungPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gebaeudeadressen.Strassenstueck',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.HONachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.ProjSelbstRecht',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.GrenzpunktPos',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Nomenklatur.FlurnamePosFlurnamePos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie1.HFP1Entstehung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.HoehenpunktPosHoehenpunktPos_von',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Gemeindegrenzen.HoheitsgrenzpunktSymbol',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Planrahmen.Darstellungsflaeche',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Einzelobjekte.EONachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Liegenschaften.Grenzpunkt',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.FixpunkteKategorie3.HFP3Nachfuehrung',NULL);
+INSERT INTO stage.T_ILI2DB_INHERITANCE (thisClass,baseClass) VALUES ('DM01AVCH24LV95D.Hoehen.Gelaendekante',NULL);
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_linienobjekt',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_linienobjekt',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_linienobjekt',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
@@ -4345,8 +4345,8 @@ INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktsymbol',NULL,'hoheitsgrenzpunktsymbol_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dliegenschaften_projgrundstueckpos"]');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname_pos',NULL,'ortschaftsname_pos_von','ch.ehi.ili2db.foreignKey','plzoch1lv95dplzortschaft_ortschaftsname');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_gemeindegrenze',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgemeindegrenzen_gemeindegrenze"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname_pos',NULL,'ortschaftsname_pos_von','ch.ehi.ili2db.foreignKey','plzoch1lv95dplzortschaft_ortschaftsname');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3symbol',NULL,'ori','ch.ehi.ili2db.unit','Grads');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_eonachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_eonachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
@@ -4834,8 +4834,8 @@ INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_punktelement',NULL,'ori','ch.ehi.ili2db.unit','Grads');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnamepos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95deinzelobjekte_objektnamepos"]');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunktsymbol',NULL,'grenzpunktsymbol_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dliegenschaften_grenzpunkt');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaft',NULL,'entstehung','ch.ehi.ili2db.foreignKey','plzoch1lv95dplzortschaft_osnachfuehrung');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunkt',NULL,'entstehung','ch.ehi.ili2db.foreignKey','dm01vch24lv95dhoehen_honachfuehrung');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaft',NULL,'entstehung','ch.ehi.ili2db.foreignKey','plzoch1lv95dplzortschaft_osnachfuehrung');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2pos',NULL,'pos','ch.ehi.ili2db.coordDimension','2');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2pos',NULL,'pos','ch.ehi.ili2db.c1Max','2850000.000');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2pos',NULL,'pos','ch.ehi.ili2db.c2Max','1310000.000');
@@ -4890,9 +4890,9 @@ INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaft',NULL,'ortschaft_von','ch.ehi.ili2db.foreignKey','plzoch1lv95dplzortschaft_ortschaftsverbund');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2pos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_osnachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplzortschaft_osnachfuehrung"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaft',NULL,'ortschaft_von','ch.ehi.ili2db.foreignKey','plzoch1lv95dplzortschaft_ortschaftsverbund');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grundstueckpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsname',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dplzortschaft_ortschaftsname"]');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname',NULL,'ortschaftsname_von','ch.ehi.ili2db.foreignKey','plzoch1lv95dplzortschaft_ortschaft');
@@ -4974,8 +4974,8 @@ INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3pos',NULL,'lfp3pos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie3_lfp3');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projobjektnamepos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dbodenbedeckung_projobjektnamepos"]');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_projgemeindegrenze',NULL,'projgemeindegrenze_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dgemeindegrenzen_gemeinde');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsverbund',NULL,'T_Type','ch.ehi.ili2db.types','["plzoch1lv95dplzortschaft_ortschaftsverbund"]');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunktpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95drohrleitungen_einzelpunktpos"]');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsverbund',NULL,'T_Type','ch.ehi.ili2db.types','["plzoch1lv95dplzortschaft_ortschaftsverbund"]');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1pos',NULL,'lfp1pos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dfixpunktekatgrie1_lfp1');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dgebaeudeadressen_gebaeudenamepos"]');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3nachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dfixpunktekatgrie3_hfp3nachfuehrung"]');
@@ -5021,7 +5021,6 @@ INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaeche',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelement',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95deinzelobjekte_flaechenelement"]');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_leitungsobjektpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6nachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["plzoch1lv95dplzortschaft_plz6nachfuehrung"]');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.coordDimension','2');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Max','2850000.000');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Max','1310000.000');
@@ -5029,6 +5028,7 @@ INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c1Min','2480000.000');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6nachfuehrung',NULL,'T_Type','ch.ehi.ili2db.types','["plzoch1lv95dplzortschaft_plz6nachfuehrung"]');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsname',NULL,'geometrie','ch.ehi.ili2db.coordDimension','2');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsname',NULL,'geometrie','ch.ehi.ili2db.c1Max','2850000.000');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsname',NULL,'geometrie','ch.ehi.ili2db.c2Max','1310000.000');
@@ -5098,10 +5098,10 @@ INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.c2Min','1070000.000');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1nachfuehrung',NULL,'perimeter','ch.ehi.ili2db.srid','2056');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunktpos',NULL,'einzelpunktpos_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dbodenbedeckung_einzelpunkt');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nbgeometrie',NULL,'T_Type','ch.ehi.ili2db.types','["plzoch1lv95dnummerierngsbrche_nbgeometrie"]');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projselbstrecht',NULL,'flaechenmass','ch.ehi.ili2db.unit','m2');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6',NULL,'plz6_von','ch.ehi.ili2db.foreignKey','plzoch1lv95dplzortschaft_ortschaft');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nbgeometrie',NULL,'T_Type','ch.ehi.ili2db.types','["plzoch1lv95dnummerierngsbrche_nbgeometrie"]');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunktpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6',NULL,'plz6_von','ch.ehi.ili2db.foreignKey','plzoch1lv95dplzortschaft_ortschaft');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos"]');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelementsymbol',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95deinzelobjekte_flaechenelementsymbol"]');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planbeschriftung',NULL,'planbeschriftung_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dplanrahmen_planlayout');
@@ -5282,8 +5282,8 @@ INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelement',NULL,'geometrie','ch.ehi.ili2db.c2Min','1070000.000');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelement',NULL,'geometrie','ch.ehi.ili2db.srid','2056');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nbgeometrie',NULL,'nbgeometrie_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dnummerierngsbrche_nummerierungsbereich');
-INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname',NULL,'T_Type','ch.ehi.ili2db.types','["plzoch1lv95dplzortschaft_ortschaftsname"]');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_liegenschaft',NULL,'liegenschaft_von','ch.ehi.ili2db.foreignKey','dm01vch24lv95dliegenschaften_grundstueck');
+INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname',NULL,'T_Type','ch.ehi.ili2db.types','["plzoch1lv95dplzortschaft_ortschaftsname"]');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunktpos',NULL,'ori','ch.ehi.ili2db.unit','Grads');
 INSERT INTO stage.T_ILI2DB_COLUMN_PROP (tablename,subtype,columnname,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nummerierungsbereich',NULL,'T_Type','ch.ehi.ili2db.types','["dm01vch24lv95dnummerierngsbrche_nummerierungsbereich"]');
@@ -5449,8 +5449,8 @@ INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunkt','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1pos','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunktsymbol','ch.ehi.ili2db.tableKind','CLASS');
-INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaft','ch.ehi.ili2db.tableKind','CLASS');
+INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunktpos','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueck','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_hausnummerpos','ch.ehi.ili2db.tableKind','CLASS');
@@ -5464,8 +5464,8 @@ INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_selbstrecht','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_linienobjekt','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projgebaeudenummerpos','ch.ehi.ili2db.tableKind','CLASS');
-INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projobjektname','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_bbnachfuehrung','ch.ehi.ili2db.tableKind','CLASS');
+INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projobjektname','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_plan','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projgrundstueckpos','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_osnachfuehrung','ch.ehi.ili2db.tableKind','CLASS');
@@ -5483,8 +5483,8 @@ INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_lfp2','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_einzelpunkt','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dplaneinteilungen_planpos','ch.ehi.ili2db.tableKind','CLASS');
-INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_gelaendenamepos','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisation','ch.ehi.ili2db.tableKind','CLASS');
+INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_gelaendenamepos','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsverbundtext','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_linienelement','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_darstellungsflaeche','ch.ehi.ili2db.tableKind','CLASS');
@@ -5503,28 +5503,28 @@ INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nummerierungsbereich','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudenamepos','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_lokalisationsname','ch.ehi.ili2db.tableKind','CLASS');
+INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dbezirksgrenzen_bezirksgrenzabschnitt','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschungpos','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunktpos','ch.ehi.ili2db.tableKind','CLASS');
-INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dbezirksgrenzen_bezirksgrenzabschnitt','ch.ehi.ili2db.tableKind','CLASS');
-INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunktpos','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_liegenschaft','ch.ehi.ili2db.tableKind','CLASS');
+INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunktpos','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_strassenstueck','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dhoehen_aussparung','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3nachfuehrung','ch.ehi.ili2db.tableKind','CLASS');
-INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_rlnachfuehrung','ch.ehi.ili2db.tableKind','CLASS');
+INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenlinie','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dlandesgrenzen_landesgrenzabschnitt','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelement','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_plz6nachfuehrung','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_ortsname','ch.ehi.ili2db.tableKind','CLASS');
-INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_gebaeudenummerpos','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebaeudeeingang','ch.ehi.ili2db.tableKind','CLASS');
+INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_gebaeudenummerpos','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnamepos','ch.ehi.ili2db.tableKind','CLASS');
-INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planbeschriftung','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_netzkreuz','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelementsymbol','ch.ehi.ili2db.tableKind','CLASS');
+INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planbeschriftung','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1pos','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projliegenschaft','ch.ehi.ili2db.tableKind','CLASS');
@@ -5534,8 +5534,8 @@ INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dhoehen_hoehenpunkt','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projselbstrecht','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nummerierungsbereich','ch.ehi.ili2db.tableKind','CLASS');
-INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschung','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nbgeometrie','ch.ehi.ili2db.tableKind','CLASS');
+INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95drutschgebiete_rutschung','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_einzelpunkt','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_gelaendename','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_flaechenelement','ch.ehi.ili2db.tableKind','CLASS');
@@ -5543,10 +5543,10 @@ INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1nachfuehrung','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_planlayout','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_einzelpunkt','ch.ehi.ili2db.tableKind','CLASS');
-INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektname','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('plzoch1lv95dplzortschaft_plz6nachfuehrung','ch.ehi.ili2db.tableKind','CLASS');
-INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3symbol','ch.ehi.ili2db.tableKind','CLASS');
+INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dnummerierngsbrche_nummerierungsbereichpos','ch.ehi.ili2db.tableKind','CLASS');
+INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektname','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_linienelement','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_objektnummer','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_eonachfuehrung','ch.ehi.ili2db.tableKind','CLASS');
@@ -5557,30 +5557,30 @@ INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('plzoch1lv
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_gebnachfuehrung','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_lfp1symbol','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_objektname','ch.ehi.ili2db.tableKind','CLASS');
+INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3nachfuehrung','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie2_hfp2','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_hoheitsgrenzpunkt','ch.ehi.ili2db.tableKind','CLASS');
-INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3nachfuehrung','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_projbergwerk','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3pos','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dplanrahmen_koordinatenanschriftpos','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('plzoch1lv95dplzortschaft_ortschaftsname_pos','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dtseinteilung_toleranzstufepos','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_lfp3pos','ch.ehi.ili2db.tableKind','CLASS');
-INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_punktelement','ch.ehi.ili2db.tableKind','CLASS');
-INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nbgeometrie','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dhoehen_gelaendekante','ch.ehi.ili2db.tableKind','CLASS');
-INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsname','ch.ehi.ili2db.tableKind','CLASS');
+INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('plzoch1lv95dnummerierngsbrche_nbgeometrie','ch.ehi.ili2db.tableKind','CLASS');
+INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95drohrleitungen_punktelement','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95deinzelobjekte_flaechenelementsymbol','ch.ehi.ili2db.tableKind','CLASS');
+INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaftsname','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dliegenschaften_grenzpunktsymbol','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dgebaeudeadressen_benanntesgebiet','ch.ehi.ili2db.tableKind','CLASS');
-INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaechesymbol','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_flurname','ch.ehi.ili2db.tableKind','CLASS');
+INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_projboflaechesymbol','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_boflaeche','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dgemeindegrenzen_projgemeindegrenze','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie3_hfp3','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dnomenklatur_nknachfuehrung','ch.ehi.ili2db.tableKind','CLASS');
-INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_objektnamepos','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dfixpunktekatgrie1_hfp1nachfuehrung','ch.ehi.ili2db.tableKind','CLASS');
+INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_objektnamepos','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dplzortschaft_ortschaft','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dhoehen_honachfuehrung','ch.ehi.ili2db.tableKind','CLASS');
 INSERT INTO stage.T_ILI2DB_TABLE_PROP (tablename,tag,setting) VALUES ('dm01vch24lv95dbodenbedeckung_gebaeudenummer','ch.ehi.ili2db.tableKind','CLASS');
@@ -7569,7 +7569,7 @@ CODE
   TID = ANY;
 END.
 
-','2020-01-06 12:08:54.438');
+','2020-01-07 08:56:07.577');
 INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('PLZO-CH_LV95_1d_ili1.ili','1.0','PLZOCH1LV95D','
 TRANSFER INTERLIS1;
 
@@ -7792,13 +7792,13 @@ CODE
   TID = ANY;
 END.
 
-','2020-01-06 12:08:54.438');
+','2020-01-07 08:56:07.577');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createMetaInfo','True');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.arrayTrafo','coalesce');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.nameOptimization','disable');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.localisedTrafo','expand');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.numericCheckConstraints','create');
-INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.sender','ili2pg-4.3.2-70c2c19de9928155e48437dedb68f5eef82896a7');
+INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.sender','ili2pg-4.3.1-23b1f79e8ad644414773bb9bd1a97c8c265c5082');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.createForeignKey','yes');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.sqlgen.createGeomIndex','True');
 INSERT INTO stage.T_ILI2DB_SETTINGS (tag,setting) VALUES ('ch.ehi.ili2db.defaultSrsAuthority','EPSG');
