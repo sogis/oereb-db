@@ -36,59 +36,59 @@ declare -a pg_schemas=("stage" "live")
 # if subthema is empty, use "-"
 declare -A pg_tables
 declare -A pg_table
-pg_table[thema]="BelasteteStandorte"; pg_table[subthema]="-"; pg_table[geom]="flaeche"
+pg_table[thema]="BelasteteStandorte"; pg_table[subthema]="-"; pg_table[weiteresthema]="-"; pg_table[geom]="flaeche"
 string=$(declare -p pg_table)
 pg_tables[belastete_standorte_flaeche]=${string}
 
-pg_table[thema]="Grundwasserschutzareale"; pg_table[subthema]="-"; pg_table[geom]="flaeche"
+pg_table[thema]="Grundwasserschutzareale"; pg_table[subthema]="-"; pg_table[weiteresthema]="-"; pg_table[geom]="flaeche"
 string=$(declare -p pg_table)
 pg_tables[grundwasserschutzareale_flaeche]=${string}
 
-pg_table[thema]="Grundwasserschutzzonen"; pg_table[subthema]="-"; pg_table[geom]="flaeche"
+pg_table[thema]="Grundwasserschutzzonen"; pg_table[subthema]="-"; pg_table[weiteresthema]="-"; pg_table[geom]="flaeche"
 string=$(declare -p pg_table)
 pg_tables[grundwasserschutzzonen_flaeche]=${string}
 
-pg_table[thema]="Laermemfindlichkeitsstufen"; pg_table[subthema]="-"; pg_table[geom]="flaeche"
+pg_table[thema]="Laermemfindlichkeitsstufen"; pg_table[subthema]="-"; pg_table[weiteresthema]="-"; pg_table[geom]="flaeche"
 string=$(declare -p pg_table)
 pg_tables[laermempfindlichkeitsstufen_flaeche]=${string}
 
-pg_table[thema]="Nutzungsplanung"; pg_table[subthema]="ch.SO.Baulinien"; pg_table[geom]="linie"
+pg_table[thema]="Nutzungsplanung"; pg_table[subthema]="ch.SO.Baulinien"; pg_table[weiteresthema]="-"; pg_table[geom]="linie"
 string=$(declare -p pg_table)
 pg_tables[nutzungsplanung_baulinien_linie]=${string}
 
-pg_table[thema]="Nutzungsplanung"; pg_table[subthema]="ch.SO.NutzungsplanungGrundnutzung"; pg_table[geom]="flaeche"
+pg_table[thema]="Nutzungsplanung"; pg_table[subthema]="ch.SO.NutzungsplanungGrundnutzung"; pg_table[weiteresthema]="-"; pg_table[geom]="flaeche"
 string=$(declare -p pg_table)
 pg_tables[nutzungsplanung_grundnutzung_flaeche]=${string}
 
-pg_table[thema]="Nutzungsplanung"; pg_table[subthema]="ch.SO.NutzungsplanungSondernutzungsplaene"; pg_table[geom]="flaeche"
+pg_table[thema]="Nutzungsplanung"; pg_table[subthema]="ch.SO.NutzungsplanungSondernutzungsplaene"; pg_table[weiteresthema]="-"; pg_table[geom]="flaeche"
 string=$(declare -p pg_table)
 pg_tables[nutzungsplanung_sondernutzungsplaene_flaeche]=${string}
 
-pg_table[thema]="Nutzungsplanung"; pg_table[subthema]="ch.SO.NutzungsplanungUeberlagernd"; pg_table[geom]="flaeche"
+pg_table[thema]="Nutzungsplanung"; pg_table[subthema]="ch.SO.NutzungsplanungUeberlagernd"; pg_table[weiteresthema]="-"; pg_table[geom]="flaeche"
 string=$(declare -p pg_table)
 pg_tables[nutzungsplanung_ueberlagernd_flaeche]=${string}
 
-pg_table[thema]="Nutzungsplanung"; pg_table[subthema]="ch.SO.NutzungsplanungUeberlagernd"; pg_table[geom]="linie"
+pg_table[thema]="Nutzungsplanung"; pg_table[subthema]="ch.SO.NutzungsplanungUeberlagernd"; pg_table[weiteresthema]="-"; pg_table[geom]="linie"
 string=$(declare -p pg_table)
 pg_tables[nutzungsplanung_ueberlagernd_linie]=${string}
 
-pg_table[thema]="Nutzungsplanung"; pg_table[subthema]="ch.SO.NutzungsplanungUeberlagernd"; pg_table[geom]="punkt"
+pg_table[thema]="Nutzungsplanung"; pg_table[subthema]="ch.SO.NutzungsplanungUeberlagernd"; pg_table[weiteresthema]="-"; pg_table[geom]="punkt"
 string=$(declare -p pg_table)
 pg_tables[nutzungsplanung_ueberlagernd_punkt]=${string}
 
-pg_table[thema]="WeiteresThema"; pg_table[subthema]="ch.SO.Einzelschutz"; pg_table[geom]="flaeche"
+pg_table[thema]="WeiteresThema"; pg_table[subthema]="-"; pg_table[weiteresthema]="ch.SO.Einzelschutz"; pg_table[geom]="flaeche"
 string=$(declare -p pg_table)
 pg_tables[weiteres_thema_einzelschutz_flaeche]=${string}
 
-pg_table[thema]="WeiteresThema"; pg_table[subthema]="ch.SO.Einzelschutz"; pg_table[geom]="punkt"
+pg_table[thema]="WeiteresThema"; pg_table[subthema]="-"; pg_table[weiteresthema]="ch.SO.Einzelschutz"; pg_table[geom]="punkt"
 string=$(declare -p pg_table)
 pg_tables[weiteres_thema_einzelschutz_punkt]=${string}
 
-pg_table[thema]="Waldgrenzen"; pg_table[subthema]="-"; pg_table[geom]="linie"
+pg_table[thema]="Waldgrenzen"; pg_table[subthema]="-"; pg_table[weiteresthema]="-"; pg_table[geom]="linie"
 string=$(declare -p pg_table)
 pg_tables[waldgrenzen_linie]=${string}
 
-pg_table[thema]="Waldabstandslinien"; pg_table[subthema]="-"; pg_table[geom]="linie"
+pg_table[thema]="Waldabstandslinien"; pg_table[subthema]="-"; pg_table[weiteresthema]="-"; pg_table[geom]="linie"
 string=$(declare -p pg_table)
 pg_tables[waldabstandslinien_linie]=${string}
 
@@ -280,6 +280,13 @@ EOF
         sql+=$(cat << EOF
  AND
     eigentumsbeschraenkung.subthema = '${pg_table[subthema]}'
+EOF
+)
+      fi
+      if [ ${pg_table[weiteresthema]} != '-' ]; then
+        sql+=$(cat << EOF
+ AND
+    eigentumsbeschraenkung.weiteresthema = '${pg_table[weiteresthema]}'
 EOF
 )
       fi
