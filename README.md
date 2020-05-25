@@ -113,5 +113,5 @@ psql -h DB_HOST_NAME -d OEREB_DB_NAME -v PG_WRITE_USER=GRETL_USER -v PG_READ_USE
 
 Create the DB schemas and tables, and grant privileges:
 ```
-psql -h DB_HOST_NAME -d EDIT_DB_NAME -v PG_WRITE_USER=GRETL_USER -c "SET ROLE ADMIN_USER" -f sql/transfer_*_gdi.sql
+psql --single-transaction -h DB_HOST_NAME -d EDIT_DB_NAME -v PG_WRITE_USER=GRETL_USER -c "SET ROLE ADMIN_USER" -f sql/transfer_*_gdi.sql
 ```
