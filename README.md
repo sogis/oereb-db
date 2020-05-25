@@ -115,3 +115,8 @@ Create the DB schemas and tables, and grant privileges:
 ```
 psql --single-transaction -h DB_HOST_NAME -d EDIT_DB_NAME -v PG_WRITE_USER=GRETL_USER -c "SET ROLE ADMIN_USER" -f sql/transfer_*_gdi.sql
 ```
+
+Grant some more privileges as needed (example: read permissions on schema xy for user ADDITIONAL_USER):
+```
+psql --single-transaction -h DB_HOST_NAME -d EDIT_DB_NAME -c "SET ROLE ADMIN_USER; GRANT USAGE ON SCHEMA xy_oereb TO ADDITIONAL_USER; GRANT SELECT ON ALL TABLES IN SCHEMA xy_oereb TO ADDITIONAL_USER;"
+```
