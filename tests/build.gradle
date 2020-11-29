@@ -23,14 +23,14 @@ task importTestStage(type: Ili2pgReplace) {
     database = [dbUri, dbUserWrite, dbPwdWrite]
     dbschema = 'stage'
     dataFile = 'ch_252500.itf'
-    dataset = 2525
+    dataset = "2525"
 }
 
 task importTestLive(type: Ili2pgReplace) {
     database = [dbUri, dbUserWrite, dbPwdWrite]
     dbschema = 'live'
     dataFile = 'ch_252500.itf'
-    dataset = 2525
+    dataset = "2525"
 }
 
 task readTest(type: SqlExecutor) {
