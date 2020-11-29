@@ -1,0 +1,25 @@
+name: gretl
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      BUILD_NUMBER: ${{ github.run_number }}
+      DOCKER_ACCOUNT: sogis
+      DOCKER_REPO: oereb-db
+    steps:
+      - uses: actions/checkout@v1
+      - name: Build docker image 
+        run: docker build -t $DOCKER_ACCOUNT/$DOCKER_REPO:latest -t $DOCKER_ACCOUNT/$DOCKER_REPO:$BUILD_NUMBER .
+      - name: Test docker image
+        run: |
+          docker-compose -f docker-compose.test.yml build
+          docker-compose -f docker-compose.test.yml run sut
+      - name: Publish Docker image
+        run: echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin && docker push $DOCKER_ACCOUNT/$DOCKER_REPO
+        if: ${{ github.ref == 'refs/heads/master' }}
+        env:
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
