@@ -1,4 +1,4 @@
-FROM crunchydata/crunchy-postgres-gis:centos7-11.2-2.3.1
+FROM crunchydata/crunchy-postgres-gis:centos7-11.5-2.4.2
 
 LABEL name="sogis/oereb-db"
 LABEL vendor="AGI"
