@@ -15,6 +15,7 @@ services:
   db:
     image: ${IMAGE_NAME:-sogis/oereb-db:latest}
     environment:
+      MODE: postgres
       PG_DATABASE: oereb
       PG_LOCALE: de_CH.UTF-8
       PG_PRIMARY_PORT: 5432

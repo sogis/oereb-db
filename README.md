@@ -34,6 +34,7 @@ Run the command below for running the image. The meaning of the environment vari
 
 ```
 docker run --rm --name oereb-db -p 54321:5432 --hostname primary \
+-e MODE=postgres \
 -e PG_DATABASE=oereb -e PG_LOCALE=de_CH.UTF-8 -e PG_PRIMARY_PORT=5432 -e PG_MODE=primary \
 -e PG_USER=admin -e PG_PASSWORD=admin \
 -e PG_PRIMARY_USER=repl -e PG_PRIMARY_PASSWORD=repl \
