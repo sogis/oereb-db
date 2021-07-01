@@ -1,4 +1,4 @@
-name: gretl
+name: build
 
 on: [push]
 
