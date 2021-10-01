@@ -1,5 +1,9 @@
 FROM sogis/gretl-runtime:latest
 
+USER root
+
+RUN yum install -y nc
+
 WORKDIR /tmp
 
 COPY tests/testscript.sh /tmp/
