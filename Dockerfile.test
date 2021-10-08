@@ -1,8 +1,12 @@
 FROM sogis/gretl-runtime:latest
 
+USER root
+
+RUN yum install -y nc
+
 WORKDIR /tmp
 
-COPY tests/testscript.sh /tmp/
+COPY tests/wait-for /tmp/
 COPY tests/build.gradle /tmp/
 COPY tests/*.sql /tmp/
 COPY tests/*.itf /tmp/
@@ -11,4 +15,4 @@ USER 1001
 
 ENTRYPOINT ["/bin/sh"]
 
-CMD ["-c", "/tmp/testscript.sh"]
+CMD ["-c", "/tmp/wait-for db:5432 -- gretl"]
