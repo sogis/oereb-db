@@ -1,7 +1,5 @@
 FROM sogis/gretl-runtime:latest
 
-USER root
-
 WORKDIR /tmp
 
 COPY tests/wait-for-it.sh /tmp/
