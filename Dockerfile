@@ -1,4 +1,4 @@
-FROM sogis/postgis-buster:latest
+FROM sogis/postgis:14-3.1
 
 LABEL maintainer="Amt fuer Geoinformation Kanton Solothurn"
 
