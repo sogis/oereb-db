@@ -56,15 +56,11 @@ jobs:
         uses: docker/build-push-action@a66e35b9cbcf4ad0ea91ffcaf7bbad63ad9e0229  # v2.7.0 (2021-10-22)
         with:
           platforms: linux/amd64
-          #,linux/arm64
-          #context: github.com/postgis/docker-postgis#master
-          #file: Dockerfile
           context: .
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           load: true
           #pull: true
-          #push: ${{ (github.ref == 'refs/heads/main') && (github.event_name != 'pull_request') && !env.ACT }}
 
       - name: List images
         run: |
@@ -75,8 +71,15 @@ jobs:
           docker-compose -f docker-compose.test.yml build
           docker-compose -f docker-compose.test.yml run sut
 
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9  # v1.10.0 (2021-10-22)
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+        if: ${{ (github.ref == 'refs/heads/main') && (github.event_name != 'pull_request') && !env.ACT }}
+
       # Unschön ist das zweite Builden der Images. Multiarch push manuell ist nicht so prickelnd und
-      # mir ist nicht klar, wie man das Image überhaupt exportieren können (also arm auf amd).
+      # mir ist nicht klar, wie man das Image überhaupt exportieren könnte (also arm auf amd).
       - name: Multi-platform build and push
         uses: docker/build-push-action@a66e35b9cbcf4ad0ea91ffcaf7bbad63ad9e0229  # v2.7.0 (2021-10-22)
         with:
