@@ -50,9 +50,11 @@ jobs:
             org.opencontainers.image.base.name=docker.io/sogis/postgis:${{ env.PG_VERSION }}
           tags: |
             type=raw,value=${{ env.VERSION }},enable=true,priority=200
+            type=raw,value=2.0,enable=true,priority=200
+            type=raw,value=2,enable=true,priority=200
             type=raw,value=latest,enable=true,priority=200
 
-      - name: Multi-platform build 
+      - name: Single-platform build 
         uses: docker/build-push-action@a66e35b9cbcf4ad0ea91ffcaf7bbad63ad9e0229  # v2.7.0 (2021-10-22)
         with:
           platforms: linux/amd64
@@ -60,7 +62,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           load: true
-          #pull: true
+          pull: true
 
       - name: List images
         run: |
@@ -87,6 +89,6 @@ jobs:
           context: .
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          #pull: true
+          pull: true
           push: ${{ (github.ref == 'refs/heads/main') && (github.event_name != 'pull_request') && !env.ACT }}
 
