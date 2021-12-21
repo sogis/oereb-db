@@ -74,3 +74,16 @@ jobs:
         run: |
           docker-compose -f docker-compose.test.yml build
           docker-compose -f docker-compose.test.yml run sut
+
+      # Unschön ist das zweite Builden der Images. Multiarch push manuell ist nicht so prickelnd und
+      # mir ist nicht klar, wie man das Image überhaupt exportieren können (also arm auf amd).
+      - name: Multi-platform build and push
+        uses: docker/build-push-action@a66e35b9cbcf4ad0ea91ffcaf7bbad63ad9e0229  # v2.7.0 (2021-10-22)
+        with:
+          platforms: linux/amd64,linux/arm64
+          context: .
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          #pull: true
+          push: ${{ (github.ref == 'refs/heads/main') && (github.event_name != 'pull_request') && !env.ACT }}
+
