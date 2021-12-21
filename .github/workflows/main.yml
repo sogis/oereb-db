@@ -59,6 +59,7 @@ jobs:
           #,linux/arm64
           #context: github.com/postgis/docker-postgis#master
           #file: Dockerfile
+          context: .
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           load: true
