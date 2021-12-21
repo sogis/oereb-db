@@ -51,3 +51,20 @@ jobs:
           tags: |
             type=raw,value=${{ env.VERSION }},enable=true,priority=200
             type=raw,value=latest,enable=true,priority=200
+
+      - name: Multi-platform build 
+        uses: docker/build-push-action@a66e35b9cbcf4ad0ea91ffcaf7bbad63ad9e0229  # v2.7.0 (2021-10-22)
+        with:
+          platforms: linux/amd64
+          #,linux/arm64
+          #context: github.com/postgis/docker-postgis#master
+          #file: Dockerfile
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          load: true
+          #pull: true
+          #push: ${{ (github.ref == 'refs/heads/main') && (github.event_name != 'pull_request') && !env.ACT }}
+
+      - name: List images
+        run: |
+          docker images
