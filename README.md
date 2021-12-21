@@ -51,6 +51,6 @@ Falls _jbang_ nicht installiert ist:
 curl -Ls https://sh.jbang.dev | bash -s - create_schema_sql.java
 ```
 
-## Build
+## Build 
 
 Die Pipeline erstellt das Image. Das Herstellen der verschiedenen SQL-Dateien (für das Image selber und für die GDI) kann auch lokal gemacht werden (siehe Develop).
