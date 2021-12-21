@@ -13,7 +13,7 @@ Ebenfalls wird das DDL-SQL der OEREB-DB für die spätere Integration auf dem GD
 ## Usage
 
 ```
-docker run --rm --name oerebdb -p 54323:5432 -e POSTGRES_PASSWORD=mysecretpassword -e POSTGRES_DB=oereb sogis/oereb-db:2.0.0
+docker run --rm --name oerebdb -p 54323:5432 -e POSTGRES_PASSWORD=mysecretpassword -e POSTGRES_DB=oereb sogis/oereb-db:2
 ```
 
 ```
@@ -33,11 +33,10 @@ Auf Apple Silicon ist _vschromium_ noch nicht verfügbar. Aus diesem Grund muss 
 export PATH="$PATH:/Users/stefan/apps/vscode/Visual Studio Code.app/Contents/Resources/app/bin"
 ```
 
-Anschliessend erfolgt der Aufruf zum Editieren wie folgt:
+Der der Aufruf zum Editieren ist wie folgt:
 
 ```
 jbang edit --open=code create_schema_sql.java
-
 ```
 
 Code ausführen:

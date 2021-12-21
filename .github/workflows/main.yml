@@ -1,0 +1,31 @@
+name: Docker OEREB-DB CI
+
+on:
+  push:
+  pull_request:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+
+  make-docker-images:
+    name: Build docker image for oereb db
+    runs-on: ubuntu-20.04
+    env:
+      VERSION: 3.16
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+      - name: Create sql
+        run: curl -Ls https://sh.jbang.dev | bash -s - create_schema_sql.java
+      - name: Set up QEMU for amd64 and arm64
+        uses: docker/setup-qemu-action@27d0a4f181a40b142cce983c5393082c365d1480  # v1.2.0 (2021-10-22)
+        with:
+          platforms: linux/amd64,linux/arm64
