@@ -1,0 +1,41 @@
+import ch.so.agi.gretl.tasks.*
+import ch.so.agi.gretl.api.TransferSet
+
+apply plugin: 'ch.so.agi.gretl'
+
+defaultTasks 'systemTest', 'importTest', 'readTest'
+
+
+task systemTest(type: SqlExecutor) {
+    database = [dbUri, dbUserRead, dbPwdRead]
+    sqlFiles = [
+        'systemTest.sql'
+    ]
+}
+
+task importTest(dependsOn: ['importTestStage', 'importTestLive']) {
+    doLast {
+        println "Data import tests finished"
+    }
+}
+
+task importTestStage(type: Ili2pgReplace) {
+    database = [dbUri, dbUserWrite, dbPwdWrite]
+    dbschema = 'stage'
+    dataFile = 'ch_252500.itf'
+    dataset = "2525"
+}
+
+task importTestLive(type: Ili2pgReplace) {
+    database = [dbUri, dbUserWrite, dbPwdWrite]
+    dbschema = 'live'
+    dataFile = 'ch_252500.itf'
+    dataset = "2525"
+}
+
+task readTest(type: SqlExecutor) {
+    database = [dbUri, dbUserRead, dbPwdRead]
+    sqlFiles = [
+        'readTest.sql'
+    ]
+}

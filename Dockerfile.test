@@ -1,0 +1,16 @@
+FROM sogis/gretl-runtime:latest
+
+USER root
+
+WORKDIR /tmp
+
+COPY tests/wait-for-it.sh /tmp/
+COPY tests/build.gradle /tmp/
+COPY tests/*.sql /tmp/
+COPY tests/*.itf /tmp/
+
+USER 1001
+
+ENTRYPOINT ["/bin/sh"]
+
+CMD ["-c", "/tmp/wait-for-it.sh db:5432 -t 60 -- gretl"]

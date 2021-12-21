@@ -1,0 +1,23 @@
+version: '3.3'
+services:
+  sut:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    environment:
+      ORG_GRADLE_PROJECT_dbUri: "jdbc:postgresql://db/oereb"
+      ORG_GRADLE_PROJECT_dbUserWrite: ddluser
+      ORG_GRADLE_PROJECT_dbPwdWrite: ddluser
+      ORG_GRADLE_PROJECT_dbUserRead: dmluser
+      ORG_GRADLE_PROJECT_dbPwdRead: dmluser
+    depends_on:
+      - db
+  db:
+    image: ${CONTAINER_IMAGE:-sogis/oereb-db:latest}
+    environment:
+      POSTGRES_DB: oereb
+      POSTGRES_PASSWORD: mysecretpassword
+      PG_WRITE_PWD: ddluser
+      PG_READ_PWD: dmluser
+    ports:
+      - 54323:5432
