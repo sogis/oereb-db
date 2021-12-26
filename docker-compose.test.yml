@@ -17,6 +17,7 @@ services:
     environment:
       POSTGRES_DB: oereb
       POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_HOST_AUTH_METHOD: md5
       PG_WRITE_PWD: ddluser
       PG_READ_PWD: dmluser
       GRETL_PG_WRITE_PWD: gretl
