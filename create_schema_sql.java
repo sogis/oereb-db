@@ -81,6 +81,8 @@ public class create_schema_sql {
 
         /* Skript für GDI OEREB-DB */
         // TODO
+        /* .....*/
+        
 
         /* Skripts für Transforming-Schemas (Docker und GDI)
         * für die Docker-DB werden sie dem im ersten Schritt erstellten  
@@ -90,7 +92,7 @@ public class create_schema_sql {
         // Keep list in sync with initdb-user.sh!
         List<String> transferSchemas = List.of("awjf_statische_waldgrenzen_oereb");
         String model = "OeREBKRMtrsfr_V2_0";
-        String PG_WRITE_USER = "gretl";
+        String GRETL_PG_WRITE_USER = "gretl";
 
         config = new Config();
         new PgMain().initConfig(config);
