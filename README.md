@@ -13,15 +13,17 @@ Ebenfalls wird das DDL-SQL der OEREB-DB für die spätere Integration auf dem GD
 ## Usage
 
 ```
-docker run --rm --name oerebdb -p 54323:5432 -e POSTGRES_PASSWORD=mysecretpassword -e POSTGRES_DB=oereb sogis/oereb-db:2
+docker run --rm --name oerebdb -p 54323:5432 -e POSTGRES_PASSWORD=mysecretpassword -e POSTGRES_DB=oereb -e POSTGRES_HOST_AUTH_METHOD=md5 -e PG_READ_PWD=dmluser -e PG_WRITE_PWD=ddluser -e GRETL_PG_WRITE_PWD=gretl sogis/oereb-db:2
 ```
 
 ```
 mkdir -m 0777 ~/pgdata-oereb
-docker run --rm --name oerebdb -p 54323:5432 -v ~/pgdata-oereb:/var/lib/postgresql/data:delegated -e POSTGRES_PASSWORD=mysecretpassword -e POSTGRES_DB=oereb -e PG_READ_PWD=dmluser -e PG_WRITE_PWD=ddluser -e GRETL_PG_WRITE_PWD=gretl sogis/oereb-db:2
+docker run --rm --name oerebdb -p 54323:5432 -v ~/pgdata-oereb:/var/lib/postgresql/data:delegated -e POSTGRES_PASSWORD=mysecretpassword -e POSTGRES_DB=oereb -e POSTGRES_HOST_AUTH_METHOD=md5 -e PG_READ_PWD=dmluser -e PG_WRITE_PWD=ddluser -e GRETL_PG_WRITE_PWD=gretl sogis/oereb-db:2
 ```
 
 Es werden die Benutzer `gretl`, `ddluser` und `dmluser` beim erstmaligen Starten des Containers erstellt. Die Passwörter müssen als ENV-Variable angegeben werden. 
+
+**Achtung:** Die Umgebungsvariable `POSTGRES_HOST_AUTH_METHOD` muss mit dem Wert `md5` gesetzt werden damit _ili2pg_ "standalone" funktioniert. Die jdbc-Bibliothek ist zu alt und kann mit der neuen Standard-Auth-Methode nicht umgehen. In _GRETL_ wird eine aktuelle jdbc-Bibliothek verwendet.
 
 ## Develop
 
