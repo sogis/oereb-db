@@ -92,7 +92,8 @@ public class create_schema_sql {
         // Keep list in sync with initdb-user.sh!
         List<String> transferSchemas = List.of("awjf_statische_waldgrenzen_oereb");
         String model = "OeREBKRMtrsfr_V2_0";
-        String PG_WRITE_USER = "gretl";
+        String PG_WRITE_USER = "ddluser";
+        String GRETL_PG_WRITE_USER = "gretl";
 
         config = new Config();
         new PgMain().initConfig(config);
@@ -125,11 +126,11 @@ public class create_schema_sql {
             contentBuilder.append("\n");
             contentBuilder.append("COMMENT ON SCHEMA "+schema+" IS 'Schema für den Datenumbau ins OEREB-Transferschema';");
             contentBuilder.append("\n");
-            contentBuilder.append("GRANT USAGE ON SCHEMA "+schema+" TO "+PG_WRITE_USER+";");
+            contentBuilder.append("GRANT USAGE ON SCHEMA "+schema+" TO "+PG_WRITE_USER+","+GRETL_PG_WRITE_USER+";");
             contentBuilder.append("\n");
-            contentBuilder.append("GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA "+schema+" TO "+PG_WRITE_USER+";");
+            contentBuilder.append("GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA "+schema+" TO "+PG_WRITE_USER+","+GRETL_PG_WRITE_USER+";");
             contentBuilder.append("\n");
-            contentBuilder.append("GRANT USAGE ON ALL SEQUENCES IN SCHEMA "+schema+" TO "+PG_WRITE_USER+";");
+            contentBuilder.append("GRANT USAGE ON ALL SEQUENCES IN SCHEMA "+schema+" TO "+PG_WRITE_USER+","+GRETL_PG_WRITE_USER+";");
 
             fos = new FileOutputStream("setup.sql", true);
             fos.write(new String(Files.readAllBytes(Paths.get(fileName))).getBytes());
@@ -180,13 +181,13 @@ public class create_schema_sql {
 
             contentBuilder = new StringBuilder();
             contentBuilder.append("\n");
-            contentBuilder.append("GRANT USAGE ON SCHEMA "+schema+" TO public, "+PG_WRITE_USER+";");
+            contentBuilder.append("COMMENT ON SCHEMA "+schema+" IS 'Schema für den Datenumbau ins OEREB-Transferschema';");
             contentBuilder.append("\n");
-            contentBuilder.append("GRANT SELECT ON ALL TABLES IN SCHEMA "+schema+" TO public;");
+            contentBuilder.append("GRANT USAGE ON SCHEMA "+schema+" TO "+PG_WRITE_USER+","+GRETL_PG_WRITE_USER+";");
             contentBuilder.append("\n");
-            contentBuilder.append("GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA "+schema+" TO "+PG_WRITE_USER+";");
+            contentBuilder.append("GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA "+schema+" TO "+PG_WRITE_USER+","+GRETL_PG_WRITE_USER+";");
             contentBuilder.append("\n");
-            contentBuilder.append("GRANT USAGE ON ALL SEQUENCES IN SCHEMA "+schema+" TO "+PG_WRITE_USER+";");
+            contentBuilder.append("GRANT USAGE ON ALL SEQUENCES IN SCHEMA "+schema+" TO "+PG_WRITE_USER+","+GRETL_PG_WRITE_USER+";");
 
             fos = new FileOutputStream("setup.sql", true);
             fos.write(new String(Files.readAllBytes(Paths.get(fileName))).getBytes());
