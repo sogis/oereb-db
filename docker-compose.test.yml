@@ -20,6 +20,6 @@ services:
       POSTGRES_HOST_AUTH_METHOD: md5
       PG_WRITE_PWD: ddluser
       PG_READ_PWD: dmluser
-      GRETL_PG_WRITE_PWD: gretl
+      PG_GRETL_PWD: gretl
     ports:
       - 54323:5432
