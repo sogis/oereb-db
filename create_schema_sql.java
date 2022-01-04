@@ -91,7 +91,7 @@ public class create_schema_sql {
 
         // Keep list in sync with initdb-user.sh!
         List<String> transferSchemas = List.of("awjf_statische_waldgrenzen_oereb");
-        String model = "OeREBKRMtrsfr_V2_0";
+        String model = "OeREBKRMtrsfr_V2_0;SO_AGI_OeREB_Legendeneintraege_20211020";
         String PG_WRITE_USER = "ddluser";
         String PG_GRETL_USER = "gretl";
 
