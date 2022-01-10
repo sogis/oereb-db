@@ -13,7 +13,7 @@ services:
     depends_on:
       - db
   db:
-    image: ${IMAGE_NAME:-sogis/oereb-db:latest}
+    image: ${IMAGE_NAME:-sogis/oereb-db:1}
     environment:
       MODE: postgres
       PG_DATABASE: oereb

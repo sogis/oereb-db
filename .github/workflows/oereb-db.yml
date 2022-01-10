@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Build docker image 
-        run: docker build -t $DOCKER_ACCOUNT/$DOCKER_REPO:latest -t $DOCKER_ACCOUNT/$DOCKER_REPO:$BUILD_NUMBER .
+        run: docker build -t $DOCKER_ACCOUNT/$DOCKER_REPO:1 -t $DOCKER_ACCOUNT/$DOCKER_REPO:$BUILD_NUMBER .
       - name: Test docker image
         run: |
           docker-compose -f docker-compose.test.yml build
