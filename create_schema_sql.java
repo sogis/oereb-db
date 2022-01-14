@@ -49,7 +49,6 @@ public class create_schema_sql {
         config.setDefaultSrsCode("2056");
        
         var contentBuilder = new StringBuilder();
-        var gdiContentBuilder = new StringBuilder();
         for (var schema : schemas) {
             contentBuilder.append("/* SCHEMA: " + schema + " */\n");
             for (var model : models.entrySet()) {
@@ -80,9 +79,13 @@ public class create_schema_sql {
         fos.close();
 
         /* Skript für GDI OEREB-DB */
-        // TODO
-        /* .....*/
-        
+        String preScript = "SET ROLE :PG_USER;\nBEGIN;\n";
+        String postScript = "COMMIT;"; // TODO: WMS tables!!
+        var gdiFos = new FileOutputStream("setup_gdi.sql");
+        gdiFos.write(preScript.getBytes());
+        gdiFos.write(contentBuilder.toString().getBytes());
+        gdiFos.write(postScript.getBytes());
+        gdiFos.close();
 
         /* Skripts für Transforming-Schemas (Docker und GDI)
         * für die Docker-DB werden sie dem im ersten Schritt erstellten  
@@ -142,7 +145,6 @@ public class create_schema_sql {
             fos = new FileOutputStream(fileName, true);
             fos.write(contentBuilder.toString().getBytes());
             fos.close();
-
         }
 
         /**

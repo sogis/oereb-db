@@ -6,7 +6,7 @@ Das Dockerimage dient während der Entwicklung verschiedenen Zwecken:
 - OEREB-DB: Das Image enthält die identische Struktur, d.h. `stage`- und `live`-Schema.
 - Edit-DB: Es werden sowohl das originale Edit-Schema eines Themas angelegt, wie auch das Staging-Schema (mit Endung "_oereb"). Das Edit-Schema ist sehr individuell. Aus diesem Grund muss jedes Schema separat im Code behandelt werden.
 
-Ebenfalls wird das DDL-SQL der OEREB-DB für die spätere Integration auf dem GDI-DB-Cluster.
+Ebenfalls wird das DDL-SQL der OEREB-DB für die spätere Integration auf dem GDI-DB-Cluster erstellt (`setup_gdi.sql`). Die Datei wird in der Github Action als Artefakt gespeichert.
 
 `initdb-user.sh` muss mit dem Code synchron gehalten werden, damit die Rechte an den Schemen und Tabellen korrekt gesetzt sind.
 

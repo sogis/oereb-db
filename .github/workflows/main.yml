@@ -31,6 +31,11 @@ jobs:
           curl -Ls https://sh.jbang.dev | bash -s - create_schema_sql.java
           ls -la
 
+      - uses: actions/upload-artifact@v2
+        with:
+          name: setup_gdi.sql
+          path: setup_gdi.sql
+
       - name: Set up QEMU for amd64 and arm64
         uses: docker/setup-qemu-action@27d0a4f181a40b142cce983c5393082c365d1480  # v1.2.0 (2021-10-22)
         with:
