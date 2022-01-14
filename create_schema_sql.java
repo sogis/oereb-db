@@ -157,11 +157,40 @@ public class create_schema_sql {
          * Die SQL-Befehle werden setup.sql hinzugefügt.
          */
 
+         // Konfiguration
+         {
+            model = "OeREBKRMkvs_V2_0";
+            String schema = "agi_oereb_konfiguration";
+            String fileName = "edit_"+schema+".sql";
+
+            config = new Config();
+            new PgMain().initConfig(config);
+            config.setFunction(Config.FC_SCRIPT);
+            Config.setStrokeArcs(config, Config.STROKE_ARCS_ENABLE);
+            config.setCreateFk(Config.CREATE_FK_YES);
+            config.setCreateFkIdx(Config.CREATE_FKIDX_YES);
+            config.setValue(Config.CREATE_GEOM_INDEX, Config.TRUE);
+            config.setTidHandling(Config.TID_HANDLING_PROPERTY);        
+            config.setBasketHandling(Config.BASKET_HANDLING_READWRITE);
+            config.setCreateDatasetCols(Config.CREATE_DATASET_COL);
+            config.setNameOptimization(Config.NAME_OPTIMIZATION_TOPIC);
+            config.setCreateEnumDefs(Config.CREATE_ENUM_DEFS_MULTI);
+            config.setBeautifyEnumDispName(Config.BEAUTIFY_ENUM_DISPNAME_UNDERSCORE);
+            config.setCreateUniqueConstraints(true);
+            config.setCreateNumChecks(true);
+            config.setDefaultSrsCode("2056");
+            config.setDbschema(schema);
+            config.setModels(model);
+            config.setCreateMetaInfo(true);
+            config.setCreatescript(new File(fileName).getAbsolutePath());
+            Ili2db.run(config, null);
+         }   
+
          // Statische Waldgrenzen
          {
             model = "SO_AWJF_Statische_Waldgrenzen_20191119";
             String schema = "awjf_statische_waldgrenze";
-            PG_WRITE_USER = "gretl";
+            //PG_WRITE_USER = "gretl";
             String fileName = "edit_"+schema+".sql";
 
             config = new Config();
