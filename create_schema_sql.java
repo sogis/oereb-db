@@ -184,6 +184,24 @@ public class create_schema_sql {
             config.setCreateMetaInfo(true);
             config.setCreatescript(new File(fileName).getAbsolutePath());
             Ili2db.run(config, null);
+
+            contentBuilder = new StringBuilder();
+            contentBuilder.append("\n");
+            contentBuilder.append("COMMENT ON SCHEMA "+schema+" IS 'Schema für den Datenumbau ins OEREB-Transferschema';");
+            contentBuilder.append("\n");
+            contentBuilder.append("GRANT USAGE ON SCHEMA "+schema+" TO "+PG_WRITE_USER+","+PG_GRETL_USER+";");
+            contentBuilder.append("\n");
+            contentBuilder.append("GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA "+schema+" TO "+PG_WRITE_USER+","+PG_GRETL_USER+";");
+            contentBuilder.append("\n");
+            contentBuilder.append("GRANT USAGE ON ALL SEQUENCES IN SCHEMA "+schema+" TO "+PG_WRITE_USER+","+PG_GRETL_USER+";");
+
+            fos = new FileOutputStream("setup.sql", true);
+            fos.write(new String(Files.readAllBytes(Paths.get(fileName))).getBytes());
+            fos.close();
+
+            fos = new FileOutputStream(fileName, true);
+            fos.write(contentBuilder.toString().getBytes());
+            fos.close();
          }   
 
          // Statische Waldgrenzen
