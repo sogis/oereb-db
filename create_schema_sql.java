@@ -30,7 +30,6 @@ public class create_schema_sql {
         List<String> schemas = List.of("stage", "live");
         SortedMap<String,String> models = new TreeMap<>();
         models.put("ili1", "DM01AVCH24LV95D;PLZOCH1LV95D");
-        //models.put("ili2", "SO_AGI_AV_GB_Administrative_Einteilungen_Publikation_20180822;OeREBKRM_V1_1;OeREBKRMtrsfr_V1_1;OeREBKRMvs_V1_1;OeREB_ExtractAnnex_V1_0");
         models.put("ili2", "OeREBKRM_V2_0;OeREBKRMkvs_V2_0;OeREBKRMtrsfr_V2_0");
 
         var config = new Config();
@@ -50,6 +49,7 @@ public class create_schema_sql {
         config.setDefaultSrsCode("2056");
        
         var contentBuilder = new StringBuilder();
+        var gdiContentBuilder = new StringBuilder();
         for (var schema : schemas) {
             contentBuilder.append("/* SCHEMA: " + schema + " */\n");
             for (var model : models.entrySet()) {
@@ -87,7 +87,10 @@ public class create_schema_sql {
         /* Skripts für Transforming-Schemas (Docker und GDI)
         * für die Docker-DB werden sie dem im ersten Schritt erstellten  
         * setup.sql hinzugefügt. Somit kann das Image auch in der
-        * lokalen Entwicklung als Edit-DB verwendet werden. */
+        * lokalen Entwicklung als Edit-DB verwendet werden. Ohne, dass
+        * man sich ums Erstellen der Schemen kümmern muss (aber immer noch
+        * ums Importieren von (Test-)Daten). 
+        */
 
         // Keep list in sync with initdb-user.sh!
         List<String> transferSchemas = List.of("awjf_statische_waldgrenzen_oereb");
