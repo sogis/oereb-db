@@ -12,6 +12,8 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         stage, 
         live, 
         agi_oereb_konfiguration,
+        afu_gewaesserschutz,
+        afu_grundwasserschutz_oereb,
         awjf_statische_waldgrenze,
         awjf_statische_waldgrenzen_oereb 
     TO gretl;
@@ -20,6 +22,8 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         stage, 
         live, 
         agi_oereb_konfiguration,
+        afu_gewaesserschutz,
+        afu_grundwasserschutz_oereb,
         awjf_statische_waldgrenze,
         awjf_statische_waldgrenzen_oereb 
     TO gretl;
@@ -28,6 +32,8 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         stage, 
         live, 
         agi_oereb_konfiguration,
+        afu_gewaesserschutz,
+        afu_grundwasserschutz_oereb,
         awjf_statische_waldgrenze,
         awjf_statische_waldgrenzen_oereb 
     TO gretl;
@@ -36,6 +42,8 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         stage, 
         live, 
         agi_oereb_konfiguration,
+        afu_gewaesserschutz,
+        afu_grundwasserschutz_oereb,
         awjf_statische_waldgrenze,
         awjf_statische_waldgrenzen_oereb 
     TO gretl;
@@ -45,6 +53,8 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         stage, 
         live,
         agi_oereb_konfiguration,
+        afu_gewaesserschutz,
+        afu_grundwasserschutz_oereb,
         awjf_statische_waldgrenze,
         awjf_statische_waldgrenzen_oereb 
     TO dmluser;
@@ -53,6 +63,8 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         stage, 
         live,
         agi_oereb_konfiguration,
+        afu_gewaesserschutz,
+        afu_grundwasserschutz_oereb,
         awjf_statische_waldgrenze,
         awjf_statische_waldgrenzen_oereb  
     TO dmluser;
