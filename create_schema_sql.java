@@ -96,7 +96,7 @@ public class create_schema_sql {
         */
 
         // Keep list in sync with initdb-user.sh!
-        List<String> transferSchemas = List.of("afu_grundwasserschutz_oereb", "awjf_statische_waldgrenzen_oereb");
+        List<String> transferSchemas = List.of("afu_grundwasserschutz_oereb", "arp_naturreservate_oereb", "awjf_statische_waldgrenzen_oereb");
         String model = "OeREBKRMtrsfr_V2_0;SO_AGI_OeREB_Legendeneintraege_20211020";
         String PG_WRITE_USER = "ddluser";
         String PG_GRETL_USER = "gretl";
@@ -247,8 +247,51 @@ public class create_schema_sql {
             fos.close();
          }
 
+         // Naturreservate (Einzelschutz)
+         {
+            model = "SO_ARP_Naturreservate_20200609";
+            String schema = "arp_naturreservate";
+            //PG_WRITE_USER = "gretl";
+            String fileName = "edit_"+schema+".sql";
 
+            config = new Config();
+            new PgMain().initConfig(config);
+            config.setFunction(Config.FC_SCRIPT);
+            Config.setStrokeArcs(config, Config.STROKE_ARCS_ENABLE);
+            config.setCreateFk(Config.CREATE_FK_YES);
+            config.setCreateFkIdx(Config.CREATE_FKIDX_YES);
+            config.setValue(Config.CREATE_GEOM_INDEX, Config.TRUE);
+            //config.setTidHandling(Config.TID_HANDLING_PROPERTY);        
+            //config.setBasketHandling(Config.BASKET_HANDLING_READWRITE);
+            config.setNameOptimization(Config.NAME_OPTIMIZATION_TOPIC);
+            config.setCreateEnumDefs(Config.CREATE_ENUM_DEFS_MULTI);
+            config.setBeautifyEnumDispName(Config.BEAUTIFY_ENUM_DISPNAME_UNDERSCORE);
+            config.setCreateUniqueConstraints(true);
+            config.setCreateNumChecks(true);
+            config.setDefaultSrsCode("2056");
+            config.setDbschema(schema);
+            config.setModels(model);
+            config.setCreatescript(new File(fileName).getAbsolutePath());
+            Ili2db.run(config, null);
 
+            contentBuilder = new StringBuilder();
+            contentBuilder.append("\n");
+            contentBuilder.append("COMMENT ON SCHEMA "+schema+" IS 'Schema für den Datenumbau ins OEREB-Transferschema';");
+            contentBuilder.append("\n");
+            contentBuilder.append("GRANT USAGE ON SCHEMA "+schema+" TO "+PG_WRITE_USER+","+PG_GRETL_USER+";");
+            contentBuilder.append("\n");
+            contentBuilder.append("GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA "+schema+" TO "+PG_WRITE_USER+","+PG_GRETL_USER+";");
+            contentBuilder.append("\n");
+            contentBuilder.append("GRANT USAGE ON ALL SEQUENCES IN SCHEMA "+schema+" TO "+PG_WRITE_USER+","+PG_GRETL_USER+";");
+
+            fos = new FileOutputStream("setup.sql", true);
+            fos.write(new String(Files.readAllBytes(Paths.get(fileName))).getBytes());
+            fos.close();
+
+            fos = new FileOutputStream(fileName, true);
+            fos.write(contentBuilder.toString().getBytes());
+            fos.close();
+         }
 
 
          // Statische Waldgrenzen
