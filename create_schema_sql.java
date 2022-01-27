@@ -79,7 +79,7 @@ public class create_schema_sql {
         fos.close();
 
         /* Skript für GDI OEREB-DB */
-        String preScript = "SET ROLE :PG_USER;\nBEGIN;\n";
+        String preScript = "BEGIN;\n";
         String postScript = "COMMIT;"; // TODO: WMS tables!!
         var gdiFos = new FileOutputStream("setup_gdi.sql");
         gdiFos.write(preScript.getBytes());
@@ -246,6 +246,8 @@ public class create_schema_sql {
             fos.write(contentBuilder.toString().getBytes());
             fos.close();
          }
+
+
 
 
 
