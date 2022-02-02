@@ -18,6 +18,8 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         arp_naturreservate_oereb,
         afu_geotope,
         afu_geotope_oereb,
+        ada_denkmalschutz,
+        ada_denkmalschutz_oereb,
         awjf_statische_waldgrenze,
         awjf_statische_waldgrenzen_oereb 
     TO gretl;
@@ -32,6 +34,8 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         arp_naturreservate_oereb,
         afu_geotope,
         afu_geotope_oereb,
+        ada_denkmalschutz,
+        ada_denkmalschutz_oereb,
         awjf_statische_waldgrenze,
         awjf_statische_waldgrenzen_oereb 
     TO gretl;
@@ -46,6 +50,8 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         arp_naturreservate_oereb,
         afu_geotope,
         afu_geotope_oereb,
+        ada_denkmalschutz,
+        ada_denkmalschutz_oereb,
         awjf_statische_waldgrenze,
         awjf_statische_waldgrenzen_oereb 
     TO gretl;
@@ -60,6 +66,8 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         arp_naturreservate_oereb,
         afu_geotope,
         afu_geotope_oereb,
+        ada_denkmalschutz,
+        ada_denkmalschutz_oereb,
         awjf_statische_waldgrenze,
         awjf_statische_waldgrenzen_oereb 
     TO gretl;
@@ -75,6 +83,8 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         arp_naturreservate_oereb,
         afu_geotope,
         afu_geotope_oereb,
+        ada_denkmalschutz,
+        ada_denkmalschutz_oereb,
         awjf_statische_waldgrenze,
         awjf_statische_waldgrenzen_oereb 
     TO dmluser;
@@ -89,6 +99,8 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         arp_naturreservate_oereb,
         afu_geotope,
         afu_geotope_oereb,
+        ada_denkmalschutz,
+        ada_denkmalschutz_oereb,
         awjf_statische_waldgrenze,
         awjf_statische_waldgrenzen_oereb  
     TO dmluser;
