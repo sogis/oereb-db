@@ -14,25 +14,25 @@ VERSION "2022-02-22"  =
 
   TOPIC WMS =
 
-    /** Eintrag in der Planlegende
+    /** Abstrakte Basisklasse für die gemeinsamen Attribute von Eigentumsbeschränkungen.
      */
     CLASS WMS_Basis (ABSTRACT) =
-      /** Grafischer Teil des Legendeneintrages für die Darstellung im PNG-Format mit 300dpi oder im SVG-Format
+      /** Aussage der Eigentumsbeschränkung.
        */
-      Symbol : MANDATORY BLACKBOX BINARY;
-      /** Text des aggregierten Legendeneintrages.
+      LegendeText : MANDATORY TEXT;
+      /** Die Dokumente der Eigentumsbeschränkung als JSON-String codiert.
        */
-      LegendeTextAggregiert : TEXT*1000;
-      /** Art der Eigentumsbeschränkung, die durch diesen Legendeneintrag dargestellt wird
+      Dokumente : MANDATORY MTEXT;
+      /** Artcode der Eigentumsbeschränkung
        */
-      ArtCode : MANDATORY TEXT*40;
-      /** Codeliste der Eigentumsbeschränkung, die durch diesen Legendeneintrag dargestellt wird
+      ArtCode : MANDATORY TEXT;
+      /** Artcodeliste der Eigentumsbeschränkung
        */
-      ArtCodeliste : INTERLIS.URI;
-      /** Zu welchem ÖREB-Thema der Legendeneintrag gehört
+      ArtCodeliste : MANDATORY TEXT;
+      /** Thema der Eigentumsbeschränkung
        */
-      Thema : TEXT*1000;
-      /** Zu welchem ÖREB-Subthema der Legendeneintrag gehört
+      Thema : MANDATORY TEXT*1000;
+      /** Subthema der Eigentumsbeschränkung
        */
       SubThema : TEXT*1000;
     END WMS_Basis;
