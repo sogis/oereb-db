@@ -17,10 +17,10 @@ VERSION "2022-02-22"  =
     /** Abstrakte Basisklasse für die gemeinsamen Attribute von Eigentumsbeschränkungen.
      */
     CLASS WMS_Basis (ABSTRACT) =
-      /** Aussage der Eigentumsbeschränkung.
+      /** Aussage der Eigentumsbeschränkung
        */
       LegendeText : MANDATORY TEXT;
-      /** Die Dokumente der Eigentumsbeschränkung als JSON-String codiert.
+      /** Die Dokumente der Eigentumsbeschränkung als JSON-String codiert
        */
       Dokumente : MANDATORY MTEXT;
       /** Artcode der Eigentumsbeschränkung
@@ -31,14 +31,41 @@ VERSION "2022-02-22"  =
       ArtCodeliste : MANDATORY TEXT;
       /** Thema der Eigentumsbeschränkung
        */
-      Thema : MANDATORY TEXT*1000;
+      Thema : MANDATORY TEXT;
       /** Subthema der Eigentumsbeschränkung
        */
-      SubThema : TEXT*1000;
+      SubThema : TEXT;
+      /** Status, ob diese Eigentumsbeschränkung in Kraft ist
+       */
+      Rechtsstatus : MANDATORY TEXT;
+      /** Zuständige Stelle für die Geobasisdaten (Originaldaten)
+       */
+      ZustaendigeStelle : MANDATORY TEXT;
+      /** Verweis auf die Website des Amtes
+       */
+      AmtImWeb : MANDATORY TEXT;
+      /** Datum, ab dem diese Eigentumsbeschränkung in Auszügen erscheint
+       */
+      publiziertAb : MANDATORY INTERLIS.XMLDate;
+      /** Datum, an dem diese Eigentumsbeschränkung letztmalig in Auszügen erscheint
+       */
+      publiziertBis : INTERLIS.XMLDate;
     END WMS_Basis;
 
-    CLASS WMS_Flaeche (ABSTRACT) =
+    /** Erweiterte Klasse mit Flächenattribut
+     */
+    CLASS WMS_Flaeche (ABSTRACT)
+    EXTENDS WMS_Basis =
+      /** Fläche der Eigentumsbeschränkung
+       */
+      Geometrie : MANDATORY GeometryCHLV95_V1.SurfaceWithOverlaps2mm;
     END WMS_Flaeche;
+
+    /** Belastete Standorte
+     */
+    CLASS Belastete_Standorte
+    EXTENDS WMS_Flaeche =
+    END Belastete_Standorte;
 
   END WMS;
 
