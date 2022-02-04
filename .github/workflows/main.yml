@@ -73,6 +73,10 @@ jobs:
         run: |
           docker images
 
+      - name: docker run
+        run: docker run --rm --name oerebdb -p 54323:5432 -e POSTGRES_PASSWORD=mysecretpassword -e POSTGRES_DB=oereb -e POSTGRES_HOST_AUTH_METHOD=md5 -e PG_READ_PWD=dmluser -e PG_WRITE_PWD=ddluser -e GRETL_PG_WRITE_PWD=gretl sogis/oereb-db:latest
+
+
       - name: Test docker image
         run: |
           docker-compose -f docker-compose.test.yml build
