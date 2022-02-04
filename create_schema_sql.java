@@ -88,7 +88,12 @@ public class create_schema_sql {
                 .replaceAll("CREATE TABLE (.*T_ILI2DB)", "CREATE TABLE IF NOT EXISTS $1")
                 .replaceAll("(CREATE.*INDEX) (T_ILI2DB)", "$1 IF NOT EXISTS $2")
                 .replaceAll("(ALTER TABLE .*T_ILI2DB.* ADD CONSTRAINT .* FOREIGN KEY)", "-- $1")
-                .replaceAll("(INSERT INTO .*T_ILI2DB_SETTINGS)", "-- $1");
+                .replaceAll("(INSERT INTO .*T_ILI2DB_SETTINGS)", "-- $1")
+                ;
+                replacedContent = replacedContent.replace(";\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CoordSys-20151124.ili'", " ON CONFLICT DO NOTHING;\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CoordSys-20151124.ili'");
+                replacedContent = replacedContent.replace(";\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part1_GEOMETRY_V1.ili'", " ON CONFLICT DO NOTHING;\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part1_GEOMETRY_V1.ili'");
+                replacedContent = replacedContent.replace(";\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('SO_AGI_OeREB_WMS_20220222.ili'", " ON CONFLICT DO NOTHING;\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('SO_AGI_OeREB_WMS_20220222.ili'");
+            
             contentBuilder.append(replacedContent);
         }
 
