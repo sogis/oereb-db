@@ -35,7 +35,7 @@ public class create_schema_sql {
         var config = new Config();
         new PgMain().initConfig(config);
         config.setFunction(Config.FC_SCRIPT);
-        //settings.setModeldir("https://geo.so.ch/models;http://models.geo.admin.ch");
+        config.setModeldir("https://geo.so.ch/models;http://models.geo.admin.ch");
         Config.setStrokeArcs(config, Config.STROKE_ARCS_ENABLE);
         config.setCreateFk(Config.CREATE_FK_YES);
         config.setCreateFkIdx(Config.CREATE_FKIDX_YES);
@@ -72,8 +72,26 @@ public class create_schema_sql {
                     contentBuilder.append(content);
                 }
             }
+
+            // WMS-Tabellen ohne t_type, t_basket etc.
+            String fileName = schema+"_wms.sql";
+            config.setModels("SO_AGI_OeREB_WMS_20220222");
+            config.setTidHandling(null);        
+            config.setBasketHandling(null);
+            config.setCreateTypeDiscriminator(null);
+            config.setCreatescript(new File(fileName).getAbsolutePath());
+            Ili2db.run(config, null);    
+
+            var content = new String(Files.readAllBytes(Paths.get(fileName)));
+            String replacedContent = content
+                .replaceAll("CREATE SEQUENCE", "-- CREATE SEQUENCE")
+                .replaceAll("CREATE TABLE (.*T_ILI2DB)", "CREATE TABLE IF NOT EXISTS $1")
+                .replaceAll("(CREATE.*INDEX) (T_ILI2DB)", "$1 IF NOT EXISTS $2")
+                .replaceAll("(ALTER TABLE .*T_ILI2DB.* ADD CONSTRAINT .* FOREIGN KEY)", "-- $1")
+                .replaceAll("(INSERT INTO .*T_ILI2DB_SETTINGS)", "-- $1");
+            contentBuilder.append(replacedContent);
         }
-        
+
         var fos = new FileOutputStream("setup.sql");
         fos.write(contentBuilder.toString().getBytes());
         fos.close();
