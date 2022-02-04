@@ -77,7 +77,7 @@ public class create_schema_sql {
             // WMS-Tabellen ohne t_type, t_basket etc.
             String fileName = schema+"_wms.sql";
             config.setModels("SO_AGI_OeREB_WMS_20220222");
-            config.setTidHandling(null);        
+            config.setTidHandling(Config.TID_HANDLING_PROPERTY);        
             config.setBasketHandling(null);
             config.setCreateTypeDiscriminator(null);
             config.setCreatescript(new File(fileName).getAbsolutePath());
