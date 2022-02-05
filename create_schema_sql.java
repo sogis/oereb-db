@@ -469,6 +469,8 @@ public class create_schema_sql {
             config.setCreateFk(Config.CREATE_FK_YES);
             config.setCreateFkIdx(Config.CREATE_FKIDX_YES);
             config.setValue(Config.CREATE_GEOM_INDEX, Config.TRUE);
+            config.setBasketHandling(Config.BASKET_HANDLING_READWRITE);
+            config.setCreateDatasetCols(Config.CREATE_DATASET_COL);
             config.setNameOptimization(Config.NAME_OPTIMIZATION_TOPIC);
             config.setCreateEnumDefs(Config.CREATE_ENUM_DEFS_MULTI);
             config.setBeautifyEnumDispName(Config.BEAUTIFY_ENUM_DISPNAME_UNDERSCORE);
