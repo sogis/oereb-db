@@ -39,7 +39,6 @@ public class create_schema_sql {
         Config.setStrokeArcs(config, Config.STROKE_ARCS_ENABLE);
         config.setCreateFk(Config.CREATE_FK_YES);
         config.setCreateFkIdx(Config.CREATE_FKIDX_YES);
-        config.setCreateTypeDiscriminator(Config.CREATE_TYPE_DISCRIMINATOR_ALWAYS);
         config.setCreateImportTabs(true);
         config.setCreateMetaInfo(true);
         config.setNameOptimization(Config.NAME_OPTIMIZATION_DISABLE);
@@ -50,7 +49,8 @@ public class create_schema_sql {
             config.setValue(Config.CREATE_GEOM_INDEX, Config.TRUE);
             config.setTidHandling(Config.TID_HANDLING_PROPERTY);        
             config.setBasketHandling(Config.BASKET_HANDLING_READWRITE);
-    
+            config.setCreateTypeDiscriminator(Config.CREATE_TYPE_DISCRIMINATOR_ALWAYS);
+
             contentBuilder.append("/* SCHEMA: " + schema + " */\n");
             for (var model : models.entrySet()) {
                 String fileName = schema+"_"+model.getKey()+".sql";
