@@ -474,7 +474,7 @@ public class create_schema_sql {
             config.setNameOptimization(Config.NAME_OPTIMIZATION_TOPIC);
             config.setCreateEnumDefs(Config.CREATE_ENUM_DEFS_MULTI);
             config.setBeautifyEnumDispName(Config.BEAUTIFY_ENUM_DISPNAME_UNDERSCORE);
-            config.setCreateUniqueConstraints(true);
+            config.setCreateUniqueConstraints(false);
             config.setCreateNumChecks(true);
             config.setDefaultSrsCode("2056");
             config.setDbschema(schema);
