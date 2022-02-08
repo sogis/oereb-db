@@ -22,7 +22,10 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         ada_denkmalschutz_oereb,
         awjf_statische_waldgrenze,
         awjf_statische_waldgrenzen_oereb,
-        agi_dm01avso24
+        agi_dm01avso24,
+        arp_nutzungsplanung,
+        arp_nutzungsplanung_kanton,
+        arp_nutzungsplanung_oereb
     TO gretl;
 
     GRANT SELECT ON ALL TABLES IN SCHEMA 
@@ -39,7 +42,10 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         ada_denkmalschutz_oereb,
         awjf_statische_waldgrenze,
         awjf_statische_waldgrenzen_oereb,
-        agi_dm01avso24
+        agi_dm01avso24,
+        arp_nutzungsplanung,
+        arp_nutzungsplanung_kanton,
+        arp_nutzungsplanung_oereb
     TO gretl;
 
     GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA 
@@ -56,7 +62,10 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         ada_denkmalschutz_oereb,
         awjf_statische_waldgrenze,
         awjf_statische_waldgrenzen_oereb,
-        agi_dm01avso24
+        agi_dm01avso24,
+        arp_nutzungsplanung,
+        arp_nutzungsplanung_kanton,
+        arp_nutzungsplanung_oereb
     TO gretl;
 
     GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA 
@@ -73,7 +82,10 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         ada_denkmalschutz_oereb,
         awjf_statische_waldgrenze,
         awjf_statische_waldgrenzen_oereb,
-        agi_dm01avso24
+        agi_dm01avso24,
+        arp_nutzungsplanung,
+        arp_nutzungsplanung_kanton,
+        arp_nutzungsplanung_oereb
     TO gretl;
 
     CREATE USER dmluser LOGIN ENCRYPTED PASSWORD :'PG_READ_PWD'; 
@@ -91,7 +103,10 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         ada_denkmalschutz_oereb,
         awjf_statische_waldgrenze,
         awjf_statische_waldgrenzen_oereb,
-        agi_dm01avso24
+        agi_dm01avso24,
+        arp_nutzungsplanung,
+        arp_nutzungsplanung_kanton,
+        arp_nutzungsplanung_oereb
     TO dmluser;
 
     GRANT SELECT ON ALL TABLES IN SCHEMA 
@@ -108,6 +123,9 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         ada_denkmalschutz_oereb,
         awjf_statische_waldgrenze,
         awjf_statische_waldgrenzen_oereb,
-        agi_dm01avso24
+        agi_dm01avso24,
+        arp_nutzungsplanung,
+        arp_nutzungsplanung_kanton,
+        arp_nutzungsplanung_oereb
     TO dmluser;
 EOSQL

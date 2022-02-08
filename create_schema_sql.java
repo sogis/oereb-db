@@ -91,16 +91,14 @@ public class create_schema_sql {
                 .replaceAll("(ALTER TABLE .*T_ILI2DB.* ADD CONSTRAINT .* FOREIGN KEY)", "-- $1")
                 .replaceAll("(INSERT INTO .*T_ILI2DB_SETTINGS)", "-- $1")
                 ;
-                // Das ist nicht gut. Die Reihenfolge wie die INSERT-Befehle im SQL-File stehen ist lokal unterschiedlich zu GH Action.
-                // Nun wird auch ein ON CONFLICT bei einem nicht T_ILI2DB_MODEL-Insert-Befehl eingefügt. Das funktioniert nur solange es
-                // ebenfalls ein INSERT-Befehl ist.
-                replacedContent = replacedContent.replace(";\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('Units-20120220.ili'", " ON CONFLICT DO NOTHING;\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('Units-20120220.ili'");
-                replacedContent = replacedContent.replace(";\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CoordSys-20151124.ili'", " ON CONFLICT DO NOTHING;\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CoordSys-20151124.ili'");
-                replacedContent = replacedContent.replace(";\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part1_GEOMETRY_V1.ili'", " ON CONFLICT DO NOTHING;\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part1_GEOMETRY_V1.ili'");
-                replacedContent = replacedContent.replace(";\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('SO_AGI_OeREB_WMS_20220222.ili'", " ON CONFLICT DO NOTHING;\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('SO_AGI_OeREB_WMS_20220222.ili'");
-                replacedContent = replacedContent.replace(";\n-- INSERT INTO "+schema+".T_ILI2DB_SETTINGS (tag,setting)", " ON CONFLICT DO NOTHING;\n-- INSERT INTO "+schema+".T_ILI2DB_SETTINGS (tag,setting)");
-            
-
+            // Das ist nicht gut. Die Reihenfolge wie die INSERT-Befehle im SQL-File stehen ist lokal unterschiedlich zu GH Action.
+            // Nun wird auch ein ON CONFLICT bei einem nicht T_ILI2DB_MODEL-Insert-Befehl eingefügt. Das funktioniert nur solange es
+            // ebenfalls ein INSERT-Befehl ist.
+            replacedContent = replacedContent.replace(";\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('Units-20120220.ili'", " ON CONFLICT DO NOTHING;\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('Units-20120220.ili'");
+            replacedContent = replacedContent.replace(";\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CoordSys-20151124.ili'", " ON CONFLICT DO NOTHING;\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CoordSys-20151124.ili'");
+            replacedContent = replacedContent.replace(";\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part1_GEOMETRY_V1.ili'", " ON CONFLICT DO NOTHING;\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part1_GEOMETRY_V1.ili'");
+            replacedContent = replacedContent.replace(";\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('SO_AGI_OeREB_WMS_20220222.ili'", " ON CONFLICT DO NOTHING;\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('SO_AGI_OeREB_WMS_20220222.ili'");
+            replacedContent = replacedContent.replace(";\n-- INSERT INTO "+schema+".T_ILI2DB_SETTINGS (tag,setting)", " ON CONFLICT DO NOTHING;\n-- INSERT INTO "+schema+".T_ILI2DB_SETTINGS (tag,setting)");
 
             contentBuilder.append(replacedContent);
         }
@@ -127,7 +125,7 @@ public class create_schema_sql {
         */
 
         // Keep list in sync with initdb-user.sh!
-        List<String> transferSchemas = List.of("afu_grundwasserschutz_oereb", "arp_naturreservate_oereb", "afu_geotope_oereb", "ada_denkmalschutz_oereb", "awjf_statische_waldgrenzen_oereb");
+        List<String> transferSchemas = List.of("afu_grundwasserschutz_oereb", "arp_naturreservate_oereb", "afu_geotope_oereb", "ada_denkmalschutz_oereb", "awjf_statische_waldgrenzen_oereb", "arp_nutzungsplanung_oereb");
         String model = "OeREBKRMtrsfr_V2_0;SO_AGI_OeREB_Legendeneintraege_20211020";
         String PG_WRITE_USER = "ddluser";
         String PG_GRETL_USER = "gretl";
@@ -476,6 +474,96 @@ public class create_schema_sql {
             config.setBeautifyEnumDispName(Config.BEAUTIFY_ENUM_DISPNAME_UNDERSCORE);
             config.setCreateUniqueConstraints(false);
             config.setCreateNumChecks(true);
+            config.setDefaultSrsCode("2056");
+            config.setDbschema(schema);
+            config.setModels(model);
+            config.setCreatescript(new File(fileName).getAbsolutePath());
+            Ili2db.run(config, null);
+
+            contentBuilder = new StringBuilder();
+            contentBuilder.append("\n");
+            contentBuilder.append("COMMENT ON SCHEMA "+schema+" IS 'Schema für den Datenumbau ins OEREB-Transferschema';");
+            contentBuilder.append("\n");
+            contentBuilder.append("GRANT USAGE ON SCHEMA "+schema+" TO "+PG_WRITE_USER+","+PG_GRETL_USER+";");
+            contentBuilder.append("\n");
+            contentBuilder.append("GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA "+schema+" TO "+PG_WRITE_USER+","+PG_GRETL_USER+";");
+            contentBuilder.append("\n");
+            contentBuilder.append("GRANT USAGE ON ALL SEQUENCES IN SCHEMA "+schema+" TO "+PG_WRITE_USER+","+PG_GRETL_USER+";");
+
+            fos = new FileOutputStream("setup.sql", true);
+            fos.write(new String(Files.readAllBytes(Paths.get(fileName))).getBytes());
+            fos.close();
+
+            fos = new FileOutputStream(fileName, true);
+            fos.write(contentBuilder.toString().getBytes());
+            fos.close();
+         }
+
+         // Nutzungsplanung (Kanton)
+         {
+            model = "SO_ARP_Nutzungsplanung_Nachfuehrung_20201005";
+            String schema = "arp_nutzungsplanung_kanton";
+            String fileName = "edit_"+schema+".sql";
+
+            config = new Config();
+            new PgMain().initConfig(config);
+            config.setFunction(Config.FC_SCRIPT);
+            Config.setStrokeArcs(config, Config.STROKE_ARCS_ENABLE);
+            config.setCreateFk(Config.CREATE_FK_YES);
+            config.setCreateFkIdx(Config.CREATE_FKIDX_YES);
+            config.setValue(Config.CREATE_GEOM_INDEX, Config.TRUE);
+            config.setNameOptimization(Config.NAME_OPTIMIZATION_TOPIC);
+            config.setCreateEnumDefs(Config.CREATE_ENUM_DEFS_MULTI);
+            config.setBeautifyEnumDispName(Config.BEAUTIFY_ENUM_DISPNAME_UNDERSCORE);
+            config.setCreateUniqueConstraints(true);
+            config.setCreateNumChecks(true);
+            config.setMinIdSeqValue(1000000000000L);
+            config.setDefaultSrsCode("2056");
+            config.setDbschema(schema);
+            config.setModels(model);
+            config.setCreatescript(new File(fileName).getAbsolutePath());
+            Ili2db.run(config, null);
+
+            contentBuilder = new StringBuilder();
+            contentBuilder.append("\n");
+            contentBuilder.append("COMMENT ON SCHEMA "+schema+" IS 'Schema für den Datenumbau ins OEREB-Transferschema';");
+            contentBuilder.append("\n");
+            contentBuilder.append("GRANT USAGE ON SCHEMA "+schema+" TO "+PG_WRITE_USER+","+PG_GRETL_USER+";");
+            contentBuilder.append("\n");
+            contentBuilder.append("GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA "+schema+" TO "+PG_WRITE_USER+","+PG_GRETL_USER+";");
+            contentBuilder.append("\n");
+            contentBuilder.append("GRANT USAGE ON ALL SEQUENCES IN SCHEMA "+schema+" TO "+PG_WRITE_USER+","+PG_GRETL_USER+";");
+
+            fos = new FileOutputStream("setup.sql", true);
+            fos.write(new String(Files.readAllBytes(Paths.get(fileName))).getBytes());
+            fos.close();
+
+            fos = new FileOutputStream(fileName, true);
+            fos.write(contentBuilder.toString().getBytes());
+            fos.close();
+         }
+
+         // Nutzungsplanung (Gemeinde)
+         {
+            model = "SO_ARP_Nutzungsplanung_Nachfuehrung_20201005";
+            String schema = "arp_nutzungsplanung";
+            String fileName = "edit_"+schema+".sql";
+
+            config = new Config();
+            new PgMain().initConfig(config);
+            config.setFunction(Config.FC_SCRIPT);
+            Config.setStrokeArcs(config, Config.STROKE_ARCS_ENABLE);
+            config.setCreateFk(Config.CREATE_FK_YES);
+            config.setCreateFkIdx(Config.CREATE_FKIDX_YES);
+            config.setValue(Config.CREATE_GEOM_INDEX, Config.TRUE);
+            config.setBasketHandling(Config.BASKET_HANDLING_READWRITE);
+            config.setCreateDatasetCols(Config.CREATE_DATASET_COL);
+            config.setNameOptimization(Config.NAME_OPTIMIZATION_TOPIC);
+            config.setCreateEnumDefs(Config.CREATE_ENUM_DEFS_MULTI);
+            config.setBeautifyEnumDispName(Config.BEAUTIFY_ENUM_DISPNAME_UNDERSCORE);
+            config.setCreateUniqueConstraints(true);
+            config.setCreateNumChecks(true);
+            config.setMinIdSeqValue(1000000000000L);
             config.setDefaultSrsCode("2056");
             config.setDbschema(schema);
             config.setModels(model);
