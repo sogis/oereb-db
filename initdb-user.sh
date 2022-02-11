@@ -26,7 +26,8 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         arp_nutzungsplanung,
         arp_nutzungsplanung_kanton,
         arp_nutzungsplanung_oereb,
-        arp_planungszonen_oereb
+        arp_planungszonen_oereb,
+        afu_gewaesserraum_oereb
     TO gretl;
 
     GRANT SELECT ON ALL TABLES IN SCHEMA 
@@ -47,7 +48,8 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         arp_nutzungsplanung,
         arp_nutzungsplanung_kanton,
         arp_nutzungsplanung_oereb,
-        arp_planungszonen_oereb
+        arp_planungszonen_oereb,
+        afu_gewaesserraum_oereb
     TO gretl;
 
     GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA 
@@ -68,7 +70,8 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         arp_nutzungsplanung,
         arp_nutzungsplanung_kanton,
         arp_nutzungsplanung_oereb,
-        arp_planungszonen_oereb
+        arp_planungszonen_oereb,
+        afu_gewaesserraum_oereb
     TO gretl;
 
     GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA 
@@ -89,7 +92,8 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         arp_nutzungsplanung,
         arp_nutzungsplanung_kanton,
         arp_nutzungsplanung_oereb,
-        arp_planungszonen_oereb
+        arp_planungszonen_oereb,
+        afu_gewaesserraum_oereb
     TO gretl;
 
     CREATE USER dmluser LOGIN ENCRYPTED PASSWORD :'PG_READ_PWD'; 
@@ -111,7 +115,8 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         arp_nutzungsplanung,
         arp_nutzungsplanung_kanton,
         arp_nutzungsplanung_oereb,
-        arp_planungszonen_oereb
+        arp_planungszonen_oereb,
+        afu_gewaesserraum_oereb
     TO dmluser;
 
     GRANT SELECT ON ALL TABLES IN SCHEMA 
@@ -132,6 +137,7 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         arp_nutzungsplanung,
         arp_nutzungsplanung_kanton,
         arp_nutzungsplanung_oereb,
-        arp_planungszonen_oereb
+        arp_planungszonen_oereb,
+        afu_gewaesserraum_oereb
     TO dmluser;
 EOSQL
