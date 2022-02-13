@@ -31,7 +31,7 @@ Es werden die Benutzer `gretl`, `ddluser` und `dmluser` beim erstmaligen Starten
 jbang edit create_schema_sql.java
 ```
 
-Auf Apple Silicon ist _vschromium_ noch nicht verfügbar. Aus diesem Grund muss als Editor _VS Code_ verwendet werden. Damit der Aufruf via Console funktioniert, muss in `.zshrc` der PATH angepasst werden:
+Auf Apple Silicon ist _vscodium_ noch nicht verfügbar. Aus diesem Grund muss als Editor _VS Code_ verwendet werden. Damit der Aufruf via Console funktioniert, muss in `.zshrc` der PATH angepasst werden:
 
 ```
 export PATH="$PATH:/Users/stefan/apps/vscode/Visual Studio Code.app/Contents/Resources/app/bin"
