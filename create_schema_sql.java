@@ -1,12 +1,16 @@
 ///usr/bin/env jbang "$0" "$@" ; exit $?
 //REPOS mavenCentral,ehi=http://jars.interlis.ch/
-//DEPS ch.interlis:ili2pg:4.3.1 org.postgresql:postgresql:42.1.4.jre6
+//DEPS ch.interlis:ili2pg:4.3.1 org.postgresql:postgresql:42.1.4.jre6 ch.ehi:ehisqlgen:1.13.8
 
 import static java.lang.System.*;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PushbackReader;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -91,28 +95,64 @@ public class create_schema_sql {
                 .replaceAll("(ALTER TABLE .*T_ILI2DB.* ADD CONSTRAINT .* FOREIGN KEY)", "-- $1")
                 .replaceAll("(INSERT INTO .*T_ILI2DB_SETTINGS)", "-- $1")
                 ;
-            // Das ist nicht gut. Die Reihenfolge wie die INSERT-Befehle im SQL-File stehen ist lokal unterschiedlich zu GH Action.
-            // Nun wird auch ein ON CONFLICT bei einem nicht T_ILI2DB_MODEL-Insert-Befehl eingefügt. Das funktioniert nur solange es
-            // ebenfalls ein INSERT-Befehl ist.
-            replacedContent = replacedContent.replace(";\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('Units-20120220.ili'", " ON CONFLICT DO NOTHING;\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('Units-20120220.ili'");
-            replacedContent = replacedContent.replace(";\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CoordSys-20151124.ili'", " ON CONFLICT DO NOTHING;\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CoordSys-20151124.ili'");
-            replacedContent = replacedContent.replace(";\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part1_GEOMETRY_V1.ili'", " ON CONFLICT DO NOTHING;\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part1_GEOMETRY_V1.ili'");
-            replacedContent = replacedContent.replace(";\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('SO_AGI_OeREB_WMS_20220222.ili'", " ON CONFLICT DO NOTHING;\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('SO_AGI_OeREB_WMS_20220222.ili'");
-            replacedContent = replacedContent.replace(";\n-- INSERT INTO "+schema+".T_ILI2DB_SETTINGS (tag,setting)", " ON CONFLICT DO NOTHING;\n-- INSERT INTO "+schema+".T_ILI2DB_SETTINGS (tag,setting)");
+            // // Das ist nicht gut. Die Reihenfolge wie die INSERT-Befehle im SQL-File stehen ist lokal unterschiedlich zu GH Action.
+            // // Nun wird auch ein ON CONFLICT bei einem nicht T_ILI2DB_MODEL-Insert-Befehl eingefügt. Das funktioniert nur solange es
+            // // ebenfalls ein INSERT-Befehl ist.
+            // replacedContent = replacedContent.replace(";\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('Units-20120220.ili'", " ON CONFLICT DO NOTHING;\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('Units-20120220.ili'");
+            // replacedContent = replacedContent.replace(";\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CoordSys-20151124.ili'", " ON CONFLICT DO NOTHING;\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CoordSys-20151124.ili'");
+            // replacedContent = replacedContent.replace(";\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part1_GEOMETRY_V1.ili'", " ON CONFLICT DO NOTHING;\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part1_GEOMETRY_V1.ili'");
+            // replacedContent = replacedContent.replace(";\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('SO_AGI_OeREB_WMS_20220222.ili'", " ON CONFLICT DO NOTHING;\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('SO_AGI_OeREB_WMS_20220222.ili'");
+            // replacedContent = replacedContent.replace(";\n-- INSERT INTO "+schema+".T_ILI2DB_SETTINGS (tag,setting)", " ON CONFLICT DO NOTHING;\n-- INSERT INTO "+schema+".T_ILI2DB_SETTINGS (tag,setting)");
 
             contentBuilder.append(replacedContent);
         }
 
+        var tmpFos = new FileOutputStream("setup_tmp.sql");
+        tmpFos.write(contentBuilder.toString().getBytes());
+        tmpFos.close();
+
+        // Weil die WMS-Tabellen in einem anderen "ili2db-Scope" erzeugt werden, führt das
+        // zu INSERT-Befehlen, welche einen Unique-Constraint verletzen.
+        // Diese Befehle müssen identifiziert werden und mit einem 'ON CONFLICT' ergänzt werden.
+        var fixedContentBuilder = new StringBuilder();
+
+        FileInputStream sqlFileInputStream = new FileInputStream("setup_tmp.sql");
+        InputStreamReader sqlFileReader = new InputStreamReader(sqlFileInputStream, StandardCharsets.UTF_8);
+
+        var reader = new PushbackReader(sqlFileReader);
+
+        var statement = ch.ehi.sqlgen.SqlReader.readSqlStmt(reader, null);
+        if (statement == null) {
+            reader.close();
+        }
+        while (statement != null) {
+            if (statement.contains("INSERT INTO live.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES") || 
+                statement.contains("INSERT INTO stage.T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES")) {
+                statement += " ON CONFLICT DO NOTHING;\n";
+            } else  {
+                statement += ";\n";
+            }
+            fixedContentBuilder.append(statement);
+
+            statement = ch.ehi.sqlgen.SqlReader.readSqlStmt(reader, null);
+
+            if (statement == null) {
+                reader.close();
+                break;
+            } 
+        }
+
         var fos = new FileOutputStream("setup.sql");
-        fos.write(contentBuilder.toString().getBytes());
+        fos.write(fixedContentBuilder.toString().getBytes());
         fos.close();
 
         /* Skript für GDI OEREB-DB */
         String preScript = "BEGIN;\n";
-        String postScript = "COMMIT;"; // TODO: WMS tables!!
+        String postScript = "COMMIT;"; 
+
         var gdiFos = new FileOutputStream("setup_gdi.sql");
         gdiFos.write(preScript.getBytes());
-        gdiFos.write(contentBuilder.toString().getBytes());
+        gdiFos.write(fixedContentBuilder.toString().getBytes());
         gdiFos.write(postScript.getBytes());
         gdiFos.close();
 
@@ -127,8 +167,6 @@ public class create_schema_sql {
         // Keep list in sync with initdb-user.sh!
         List<String> transferSchemas = List.of("afu_grundwasserschutz_oereb", "arp_naturreservate_oereb", "afu_geotope_oereb", "ada_denkmalschutz_oereb", "awjf_statische_waldgrenzen_oereb", "arp_nutzungsplanung_oereb", "arp_planungszonen_oereb", "afu_gewaesserraum_oereb");
         String model = "OeREBKRMtrsfr_V2_0;SO_AGI_OeREB_Legendeneintraege_20211020";
-        String PG_WRITE_USER = "ddluser";
-        String PG_GRETL_USER = "gretl";
 
         config = new Config();
         new PgMain().initConfig(config);
@@ -151,7 +189,7 @@ public class create_schema_sql {
         config.setMinIdSeqValue(1000000000000L);
 
         for (String schema : transferSchemas) {
-            String fileName = "transfer_"+schema+".sql";
+            String fileName = "transfer_"+schema+"_gdi.sql";
             config.setDbschema(schema);
             config.setModels(model);
             config.setCreatescript(new File(fileName).getAbsolutePath());
@@ -161,11 +199,11 @@ public class create_schema_sql {
             contentBuilder.append("\n");
             contentBuilder.append("COMMENT ON SCHEMA "+schema+" IS 'Schema für den Datenumbau ins OEREB-Transferschema';");
             contentBuilder.append("\n");
-            contentBuilder.append("GRANT USAGE ON SCHEMA "+schema+" TO "+PG_WRITE_USER+","+PG_GRETL_USER+";");
+            contentBuilder.append("GRANT USAGE ON SCHEMA "+schema+" TO :PG_WRITE_USER;");
             contentBuilder.append("\n");
-            contentBuilder.append("GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA "+schema+" TO "+PG_WRITE_USER+","+PG_GRETL_USER+";");
+            contentBuilder.append("GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA "+schema+" TO :PG_WRITE_USER;");
             contentBuilder.append("\n");
-            contentBuilder.append("GRANT USAGE ON ALL SEQUENCES IN SCHEMA "+schema+" TO "+PG_WRITE_USER+","+PG_GRETL_USER+";");
+            contentBuilder.append("GRANT USAGE ON ALL SEQUENCES IN SCHEMA "+schema+" TO :PG_WRITE_USER;");
 
             fos = new FileOutputStream("setup.sql", true);
             fos.write(new String(Files.readAllBytes(Paths.get(fileName))).getBytes());
@@ -185,6 +223,9 @@ public class create_schema_sql {
          * 
          * Die SQL-Befehle werden setup.sql hinzugefügt.
          */
+
+        String PG_WRITE_USER = "ddluser";
+        String PG_GRETL_USER = "gretl";
 
          // Konfiguration
          {
