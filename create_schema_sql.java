@@ -90,14 +90,6 @@ public class create_schema_sql {
                 .replaceAll("(ALTER TABLE .*T_ILI2DB.* ADD CONSTRAINT .* FOREIGN KEY)", "-- $1")
                 .replaceAll("(INSERT INTO .*T_ILI2DB_SETTINGS)", "-- $1")
                 ;
-            // // Das ist nicht gut. Die Reihenfolge wie die INSERT-Befehle im SQL-File stehen ist lokal unterschiedlich zu GH Action.
-            // // Nun wird auch ein ON CONFLICT bei einem nicht T_ILI2DB_MODEL-Insert-Befehl eingefügt. Das funktioniert nur solange es
-            // // ebenfalls ein INSERT-Befehl ist.
-            // replacedContent = replacedContent.replace(";\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('Units-20120220.ili'", " ON CONFLICT DO NOTHING;\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('Units-20120220.ili'");
-            // replacedContent = replacedContent.replace(";\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CoordSys-20151124.ili'", " ON CONFLICT DO NOTHING;\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CoordSys-20151124.ili'");
-            // replacedContent = replacedContent.replace(";\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part1_GEOMETRY_V1.ili'", " ON CONFLICT DO NOTHING;\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('CHBase_Part1_GEOMETRY_V1.ili'");
-            // replacedContent = replacedContent.replace(";\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('SO_AGI_OeREB_WMS_20220222.ili'", " ON CONFLICT DO NOTHING;\nINSERT INTO "+schema+".T_ILI2DB_MODEL (filename,iliversion,modelName,content,importDate) VALUES ('SO_AGI_OeREB_WMS_20220222.ili'");
-            // replacedContent = replacedContent.replace(";\n-- INSERT INTO "+schema+".T_ILI2DB_SETTINGS (tag,setting)", " ON CONFLICT DO NOTHING;\n-- INSERT INTO "+schema+".T_ILI2DB_SETTINGS (tag,setting)");
 
             contentBuilder.append(replacedContent);
         }
