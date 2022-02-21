@@ -41,6 +41,11 @@ jobs:
           name: setup.sql
           path: setup.sql
 
+      - uses: actions/upload-artifact@v2
+        with:
+          name: transfer.sql
+          path: transfer_*.sql
+
       - name: Set up QEMU for amd64 and arm64
         uses: docker/setup-qemu-action@27d0a4f181a40b142cce983c5393082c365d1480  # v1.2.0 (2021-10-22)
         with:
