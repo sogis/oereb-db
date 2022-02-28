@@ -13,21 +13,21 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         live, 
         agi_oereb_konfiguration,
         afu_gewaesserschutz,
-        afu_grundwasserschutz_oereb,
+        afu_grundwasserschutz_oerebv2,
         arp_naturreservate,
-        arp_naturreservate_oereb,
+        arp_naturreservate_oerebv2,
         afu_geotope,
-        afu_geotope_oereb,
+        afu_geotope_oerebv2,
         ada_denkmalschutz,
-        ada_denkmalschutz_oereb,
+        ada_denkmalschutz_oerebv2,
         awjf_statische_waldgrenze,
-        awjf_statische_waldgrenzen_oereb,
+        awjf_statische_waldgrenzen_oerebv2,
         agi_dm01avso24,
         arp_nutzungsplanung,
         arp_nutzungsplanung_kanton,
-        arp_nutzungsplanung_oereb,
-        arp_planungszonen_oereb,
-        afu_gewaesserraum_oereb
+        arp_nutzungsplanung_oerebv2,
+        arp_planungszonen_oerebv2,
+        afu_gewaesserraum_oerebv2
     TO gretl;
 
     GRANT SELECT ON ALL TABLES IN SCHEMA 
@@ -35,21 +35,21 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         live, 
         agi_oereb_konfiguration,
         afu_gewaesserschutz,
-        afu_grundwasserschutz_oereb,
+        afu_grundwasserschutz_oerebv2,
         arp_naturreservate,
-        arp_naturreservate_oereb,
+        arp_naturreservate_oerebv2,
         afu_geotope,
-        afu_geotope_oereb,
+        afu_geotope_oerebv2,
         ada_denkmalschutz,
-        ada_denkmalschutz_oereb,
+        ada_denkmalschutz_oerebv2,
         awjf_statische_waldgrenze,
-        awjf_statische_waldgrenzen_oereb,
+        awjf_statische_waldgrenzen_oerebv2,
         agi_dm01avso24,
         arp_nutzungsplanung,
         arp_nutzungsplanung_kanton,
-        arp_nutzungsplanung_oereb,
-        arp_planungszonen_oereb,
-        afu_gewaesserraum_oereb
+        arp_nutzungsplanung_oerebv2,
+        arp_planungszonen_oerebv2,
+        afu_gewaesserraum_oerebv2
     TO gretl;
 
     GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA 
@@ -57,21 +57,21 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         live, 
         agi_oereb_konfiguration,
         afu_gewaesserschutz,
-        afu_grundwasserschutz_oereb,
+        afu_grundwasserschutz_oerebv2,
         arp_naturreservate,
-        arp_naturreservate_oereb,
+        arp_naturreservate_oerebv2,
         afu_geotope,
-        afu_geotope_oereb,
+        afu_geotope_oerebv2,
         ada_denkmalschutz,
-        ada_denkmalschutz_oereb,
+        ada_denkmalschutz_oerebv2,
         awjf_statische_waldgrenze,
-        awjf_statische_waldgrenzen_oereb,
+        awjf_statische_waldgrenzen_oerebv2,
         agi_dm01avso24,
         arp_nutzungsplanung,
         arp_nutzungsplanung_kanton,
-        arp_nutzungsplanung_oereb,
-        arp_planungszonen_oereb,
-        afu_gewaesserraum_oereb
+        arp_nutzungsplanung_oerebv2,
+        arp_planungszonen_oerebv2,
+        afu_gewaesserraum_oerebv2
     TO gretl;
 
     GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA 
@@ -79,21 +79,21 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         live, 
         agi_oereb_konfiguration,
         afu_gewaesserschutz,
-        afu_grundwasserschutz_oereb,
+        afu_grundwasserschutz_oerebv2,
         arp_naturreservate,
-        arp_naturreservate_oereb,
+        arp_naturreservate_oerebv2,
         afu_geotope,
-        afu_geotope_oereb,
+        afu_geotope_oerebv2,
         ada_denkmalschutz,
-        ada_denkmalschutz_oereb,
+        ada_denkmalschutz_oerebv2,
         awjf_statische_waldgrenze,
-        awjf_statische_waldgrenzen_oereb,
+        awjf_statische_waldgrenzen_oerebv2,
         agi_dm01avso24,
         arp_nutzungsplanung,
         arp_nutzungsplanung_kanton,
-        arp_nutzungsplanung_oereb,
-        arp_planungszonen_oereb,
-        afu_gewaesserraum_oereb
+        arp_nutzungsplanung_oerebv2,
+        arp_planungszonen_oerebv2,
+        afu_gewaesserraum_oerebv2
     TO gretl;
 
     CREATE USER dmluser LOGIN ENCRYPTED PASSWORD :'PG_READ_PWD'; 
@@ -102,21 +102,21 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         live,
         agi_oereb_konfiguration,
         afu_gewaesserschutz,
-        afu_grundwasserschutz_oereb,
+        afu_grundwasserschutz_oerebv2,
         arp_naturreservate,
-        arp_naturreservate_oereb,
+        arp_naturreservate_oerebv2,
         afu_geotope,
-        afu_geotope_oereb,
+        afu_geotope_oerebv2,
         ada_denkmalschutz,
-        ada_denkmalschutz_oereb,
+        ada_denkmalschutz_oerebv2,
         awjf_statische_waldgrenze,
-        awjf_statische_waldgrenzen_oereb,
+        awjf_statische_waldgrenzen_oerebv2,
         agi_dm01avso24,
         arp_nutzungsplanung,
         arp_nutzungsplanung_kanton,
-        arp_nutzungsplanung_oereb,
-        arp_planungszonen_oereb,
-        afu_gewaesserraum_oereb
+        arp_nutzungsplanung_oerebv2,
+        arp_planungszonen_oerebv2,
+        afu_gewaesserraum_oerebv2
     TO dmluser;
 
     GRANT SELECT ON ALL TABLES IN SCHEMA 
@@ -124,20 +124,20 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         live,
         agi_oereb_konfiguration,
         afu_gewaesserschutz,
-        afu_grundwasserschutz_oereb,
+        afu_grundwasserschutz_oerebv2,
         arp_naturreservate,
-        arp_naturreservate_oereb,
+        arp_naturreservate_oerebv2,
         afu_geotope,
-        afu_geotope_oereb,
+        afu_geotope_oerebv2,
         ada_denkmalschutz,
-        ada_denkmalschutz_oereb,
+        ada_denkmalschutz_oerebv2,
         awjf_statische_waldgrenze,
-        awjf_statische_waldgrenzen_oereb,
+        awjf_statische_waldgrenzen_oerebv2,
         agi_dm01avso24,
         arp_nutzungsplanung,
         arp_nutzungsplanung_kanton,
-        arp_nutzungsplanung_oereb,
-        arp_planungszonen_oereb,
-        afu_gewaesserraum_oereb
+        arp_nutzungsplanung_oerebv2,
+        arp_planungszonen_oerebv2,
+        afu_gewaesserraum_oerebv2
     TO dmluser;
 EOSQL

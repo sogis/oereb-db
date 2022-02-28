@@ -152,7 +152,7 @@ public class create_schema_sql {
         */
 
         // Keep list in sync with initdb-user.sh!
-        List<String> transferSchemas = List.of("afu_grundwasserschutz_oereb", "arp_naturreservate_oereb", "afu_geotope_oereb", "ada_denkmalschutz_oereb", "awjf_statische_waldgrenzen_oereb", "arp_nutzungsplanung_oereb", "arp_planungszonen_oereb", "afu_gewaesserraum_oereb");
+        List<String> transferSchemas = List.of("afu_grundwasserschutz_oerebv2", "arp_naturreservate_oerebv2", "afu_geotope_oerebv2", "ada_denkmalschutz_oerebv2", "awjf_statische_waldgrenzen_oerebv2", "arp_nutzungsplanung_oerebv2", "arp_planungszonen_oerebv2", "afu_gewaesserraum_oerebv2");
         String model = "OeREBKRMtrsfr_V2_0;SO_AGI_OeREB_Legendeneintraege_20211020";
 
         config = new Config();
