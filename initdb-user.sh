@@ -24,8 +24,9 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         awjf_statische_waldgrenzen_oerebv2,
         agi_dm01avso24,
         arp_nutzungsplanung,
-        arp_nutzungsplanung_kanton,
         arp_nutzungsplanung_oerebv2,
+        arp_nutzungsplanung_kanton,
+        arp_nutzungsplanung_kanton_oerebv2,
         arp_planungszonen_oerebv2,
         afu_gewaesserraum_oerebv2
     TO gretl;
@@ -46,8 +47,9 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         awjf_statische_waldgrenzen_oerebv2,
         agi_dm01avso24,
         arp_nutzungsplanung,
-        arp_nutzungsplanung_kanton,
         arp_nutzungsplanung_oerebv2,
+        arp_nutzungsplanung_kanton,
+        arp_nutzungsplanung_kanton_oerebv2,
         arp_planungszonen_oerebv2,
         afu_gewaesserraum_oerebv2
     TO gretl;
@@ -68,8 +70,9 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         awjf_statische_waldgrenzen_oerebv2,
         agi_dm01avso24,
         arp_nutzungsplanung,
-        arp_nutzungsplanung_kanton,
         arp_nutzungsplanung_oerebv2,
+        arp_nutzungsplanung_kanton,
+        arp_nutzungsplanung_kanton_oerebv2,
         arp_planungszonen_oerebv2,
         afu_gewaesserraum_oerebv2
     TO gretl;
@@ -90,8 +93,9 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         awjf_statische_waldgrenzen_oerebv2,
         agi_dm01avso24,
         arp_nutzungsplanung,
-        arp_nutzungsplanung_kanton,
         arp_nutzungsplanung_oerebv2,
+        arp_nutzungsplanung_kanton,
+        arp_nutzungsplanung_kanton_oerebv2,
         arp_planungszonen_oerebv2,
         afu_gewaesserraum_oerebv2
     TO gretl;
@@ -113,8 +117,9 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         awjf_statische_waldgrenzen_oerebv2,
         agi_dm01avso24,
         arp_nutzungsplanung,
-        arp_nutzungsplanung_kanton,
         arp_nutzungsplanung_oerebv2,
+        arp_nutzungsplanung_kanton,
+        arp_nutzungsplanung_kanton_oerebv2,
         arp_planungszonen_oerebv2,
         afu_gewaesserraum_oerebv2
     TO dmluser;
@@ -135,8 +140,9 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         awjf_statische_waldgrenzen_oerebv2,
         agi_dm01avso24,
         arp_nutzungsplanung,
-        arp_nutzungsplanung_kanton,
         arp_nutzungsplanung_oerebv2,
+        arp_nutzungsplanung_kanton,
+        arp_nutzungsplanung_kanton_oerebv2,
         arp_planungszonen_oerebv2,
         afu_gewaesserraum_oerebv2
     TO dmluser;
