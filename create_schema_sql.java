@@ -173,7 +173,7 @@ public class create_schema_sql {
         config.setCreateImportTabs(true);
         config.setCreateMetaInfo(true);
         config.setDefaultSrsCode("2056");
-        config.setMinIdSeqValue(1000000000000L);
+        config.setMinIdSeqValue(2000000000000L);
 
         for (String schema : transferSchemas) {
             String fileName = "transfer_"+schema+"_gdi.sql";
