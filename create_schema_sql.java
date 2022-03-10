@@ -42,11 +42,11 @@ public class create_schema_sql {
         config.setCreateMetaInfo(true);
         config.setNameOptimization(Config.NAME_OPTIMIZATION_DISABLE);
         config.setDefaultSrsCode("2056");
-       
+
         var contentBuilder = new StringBuilder();
         for (var schema : schemas) {
             config.setValue(Config.CREATE_GEOM_INDEX, Config.TRUE);
-            config.setTidHandling(Config.TID_HANDLING_PROPERTY);        
+            config.setTidHandling(Config.TID_HANDLING_PROPERTY);
             config.setBasketHandling(Config.BASKET_HANDLING_READWRITE);
             config.setCreateTypeDiscriminator(Config.CREATE_TYPE_DISCRIMINATOR_ALWAYS);
 
@@ -58,7 +58,7 @@ public class create_schema_sql {
                 config.setModels(model.getValue());
                 config.setCreatescript(new File(fileName).getAbsolutePath());
                 Ili2db.run(config, null);
-                
+
                 var content = new String(Files.readAllBytes(Paths.get(fileName)));
                 if (model.getKey().equalsIgnoreCase("ili2")) {
                     String replacedContent = content
@@ -76,11 +76,11 @@ public class create_schema_sql {
             // WMS-Tabellen ohne t_type, t_basket etc.
             String fileName = schema+"_wms.sql";
             config.setModels("SO_AGI_OeREB_WMS_20220222");
-            config.setTidHandling(Config.TID_HANDLING_PROPERTY);        
+            config.setTidHandling(Config.TID_HANDLING_PROPERTY);
             config.setBasketHandling(null);
             config.setCreateTypeDiscriminator(null);
             config.setCreatescript(new File(fileName).getAbsolutePath());
-            Ili2db.run(config, null);    
+            Ili2db.run(config, null);
 
             var content = new String(Files.readAllBytes(Paths.get(fileName)));
             String replacedContent = content
@@ -126,7 +126,7 @@ public class create_schema_sql {
             if (statement == null) {
                 reader.close();
                 break;
-            } 
+            }
         }
 
         var fos = new FileOutputStream("setup.sql");
@@ -135,7 +135,7 @@ public class create_schema_sql {
 
         /* Skript für GDI OEREB-DB */
         String preScript = "BEGIN;\n";
-        String postScript = "COMMIT;"; 
+        String postScript = "COMMIT;";
 
         var gdiFos = new FileOutputStream("setup_gdi.sql");
         gdiFos.write(preScript.getBytes());
@@ -144,7 +144,7 @@ public class create_schema_sql {
         gdiFos.close();
 
         /* Skripts für Transforming-Schemas (Docker und GDI)
-        * für die Docker-DB werden sie dem im ersten Schritt erstellten  
+        * für die Docker-DB werden sie dem im ersten Schritt erstellten
         * setup.sql hinzugefügt. Somit kann das Image auch in der
         * lokalen Entwicklung als Edit-DB verwendet werden. Ohne, dass
         * man sich ums Erstellen der Schemen kümmern muss (aber immer noch
@@ -162,7 +162,7 @@ public class create_schema_sql {
         config.setCreateFk(Config.CREATE_FK_YES);
         config.setCreateFkIdx(Config.CREATE_FKIDX_YES);
         config.setValue(Config.CREATE_GEOM_INDEX, Config.TRUE);
-        config.setTidHandling(Config.TID_HANDLING_PROPERTY);        
+        config.setTidHandling(Config.TID_HANDLING_PROPERTY);
         config.setBasketHandling(Config.BASKET_HANDLING_READWRITE);
         config.setNameOptimization(Config.NAME_OPTIMIZATION_TOPIC);
         config.setCreateEnumDefs(Config.CREATE_ENUM_DEFS_MULTI);
@@ -181,7 +181,7 @@ public class create_schema_sql {
             config.setModels(model);
             config.setCreatescript(new File(fileName).getAbsolutePath());
             Ili2db.run(config, null);
-        
+
             contentBuilder = new StringBuilder();
             contentBuilder.append("\n");
             contentBuilder.append("COMMENT ON SCHEMA "+schema+" IS 'Schema für den Datenumbau ins OEREB-Transferschema';");
@@ -227,7 +227,7 @@ public class create_schema_sql {
             config.setCreateFk(Config.CREATE_FK_YES);
             config.setCreateFkIdx(Config.CREATE_FKIDX_YES);
             config.setValue(Config.CREATE_GEOM_INDEX, Config.TRUE);
-            config.setTidHandling(Config.TID_HANDLING_PROPERTY);        
+            config.setTidHandling(Config.TID_HANDLING_PROPERTY);
             config.setBasketHandling(Config.BASKET_HANDLING_READWRITE);
             config.setCreateDatasetCols(Config.CREATE_DATASET_COL);
             config.setNameOptimization(Config.NAME_OPTIMIZATION_TOPIC);
@@ -259,7 +259,7 @@ public class create_schema_sql {
             fos = new FileOutputStream(fileName, true);
             fos.write(contentBuilder.toString().getBytes());
             fos.close();
-         }   
+         }
 
          // Planerischer Gewässerschutz
          {
@@ -318,7 +318,7 @@ public class create_schema_sql {
             config.setCreateFk(Config.CREATE_FK_YES);
             config.setCreateFkIdx(Config.CREATE_FKIDX_YES);
             config.setValue(Config.CREATE_GEOM_INDEX, Config.TRUE);
-            //config.setTidHandling(Config.TID_HANDLING_PROPERTY);        
+            //config.setTidHandling(Config.TID_HANDLING_PROPERTY);
             //config.setBasketHandling(Config.BASKET_HANDLING_READWRITE);
             config.setNameOptimization(Config.NAME_OPTIMIZATION_TOPIC);
             config.setCreateEnumDefs(Config.CREATE_ENUM_DEFS_MULTI);
@@ -450,7 +450,7 @@ public class create_schema_sql {
             config.setCreateFk(Config.CREATE_FK_YES);
             config.setCreateFkIdx(Config.CREATE_FKIDX_YES);
             config.setValue(Config.CREATE_GEOM_INDEX, Config.TRUE);
-            //config.setTidHandling(Config.TID_HANDLING_PROPERTY);        
+            //config.setTidHandling(Config.TID_HANDLING_PROPERTY);
             //config.setBasketHandling(Config.BASKET_HANDLING_READWRITE);
             config.setNameOptimization(Config.NAME_OPTIMIZATION_TOPIC);
             config.setCreateEnumDefs(Config.CREATE_ENUM_DEFS_MULTI);
