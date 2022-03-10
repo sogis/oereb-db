@@ -186,11 +186,11 @@ public class create_schema_sql {
             contentBuilder.append("\n");
             contentBuilder.append("COMMENT ON SCHEMA "+schema+" IS 'Schema für den Datenumbau ins OEREB-Transferschema';");
             contentBuilder.append("\n");
-            contentBuilder.append("GRANT USAGE ON SCHEMA "+schema+" TO :PG_WRITE_USER;");
+            contentBuilder.append("GRANT USAGE ON SCHEMA "+schema+" TO ${writeUser};");
             contentBuilder.append("\n");
-            contentBuilder.append("GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA "+schema+" TO :PG_WRITE_USER;");
+            contentBuilder.append("GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA "+schema+" TO ${writeUser};");
             contentBuilder.append("\n");
-            contentBuilder.append("GRANT USAGE ON ALL SEQUENCES IN SCHEMA "+schema+" TO :PG_WRITE_USER;");
+            contentBuilder.append("GRANT USAGE ON ALL SEQUENCES IN SCHEMA "+schema+" TO ${writeUser};");
 
             fos = new FileOutputStream("setup.sql", true);
             fos.write(new String(Files.readAllBytes(Paths.get(fileName))).getBytes());
