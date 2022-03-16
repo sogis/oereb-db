@@ -202,6 +202,52 @@ public class create_schema_sql {
         }
 
         /**
+         * SQL-Skript für GDI-Edit-DB des Konfigurationsschemas. 
+         */
+         {
+            model = "OeREBKRMkvs_V2_0";
+            String schema = "agi_konfiguration_oerebv2";
+            String fileName = "edit_"+schema+"_gdi.sql";
+
+            config = new Config();
+            new PgMain().initConfig(config);
+            config.setFunction(Config.FC_SCRIPT);
+            Config.setStrokeArcs(config, Config.STROKE_ARCS_ENABLE);
+            config.setCreateFk(Config.CREATE_FK_YES);
+            config.setCreateFkIdx(Config.CREATE_FKIDX_YES);
+            config.setValue(Config.CREATE_GEOM_INDEX, Config.TRUE);
+            config.setTidHandling(Config.TID_HANDLING_PROPERTY);
+            config.setBasketHandling(Config.BASKET_HANDLING_READWRITE);
+            config.setCreateDatasetCols(Config.CREATE_DATASET_COL);
+            config.setNameOptimization(Config.NAME_OPTIMIZATION_TOPIC);
+            config.setCreateEnumDefs(Config.CREATE_ENUM_DEFS_MULTI);
+            config.setBeautifyEnumDispName(Config.BEAUTIFY_ENUM_DISPNAME_UNDERSCORE);
+            config.setCreateUniqueConstraints(true);
+            config.setCreateNumChecks(true);
+            config.setDefaultSrsCode("2056");
+            config.setDbschema(schema);
+            config.setModels(model);
+            config.setCreateMetaInfo(true);
+            config.setCreatescript(new File(fileName).getAbsolutePath());
+            Ili2db.run(config, null);
+
+            contentBuilder = new StringBuilder();
+            contentBuilder.append("\n");
+            contentBuilder.append("COMMENT ON SCHEMA "+schema+" IS 'Schema für ÖREB-Konfiguration-Datasets';");
+            contentBuilder.append("\n");
+            contentBuilder.append("GRANT USAGE ON SCHEMA "+schema+" TO ${writeUser};");
+            contentBuilder.append("\n");
+            contentBuilder.append("GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA "+schema+" TO ${writeUser};");
+            contentBuilder.append("\n");
+            contentBuilder.append("GRANT USAGE ON ALL SEQUENCES IN SCHEMA "+schema+" TO ${writeUser};");
+
+            fos = new FileOutputStream(fileName, true);
+            fos.write(contentBuilder.toString().getBytes());
+            fos.close();
+         }
+
+
+        /**
          * Schemen der Datenthemen für Edit-DB. Damit muss man bei der Erstellung seiner
          * dev-Umgebung nicht noch das jeweilige Schema erstellen und das Image kann 
          * einfacher und schnelle als Edit-DB (in einer fremden Umgebung) verwendet werden.
@@ -217,7 +263,7 @@ public class create_schema_sql {
          // Konfiguration
          {
             model = "OeREBKRMkvs_V2_0";
-            String schema = "agi_oereb_konfiguration";
+            String schema = "agi_konfiguration_oerebv2";
             String fileName = "edit_"+schema+".sql";
 
             config = new Config();
@@ -244,7 +290,7 @@ public class create_schema_sql {
 
             contentBuilder = new StringBuilder();
             contentBuilder.append("\n");
-            contentBuilder.append("COMMENT ON SCHEMA "+schema+" IS 'Schema für den Datenumbau ins OEREB-Transferschema';");
+            contentBuilder.append("COMMENT ON SCHEMA "+schema+" IS 'Schema für ÖREB-Konfiguration-Datasets';");
             contentBuilder.append("\n");
             contentBuilder.append("GRANT USAGE ON SCHEMA "+schema+" TO "+PG_WRITE_USER+","+PG_GRETL_USER+";");
             contentBuilder.append("\n");

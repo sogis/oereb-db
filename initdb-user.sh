@@ -11,7 +11,7 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
     GRANT ALL ON SCHEMA 
         stage, 
         live, 
-        agi_oereb_konfiguration,
+        agi_konfiguration_oerebv2,
         afu_gewaesserschutz,
         afu_grundwasserschutz_oerebv2,
         arp_naturreservate,
@@ -34,7 +34,7 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
     GRANT SELECT ON ALL TABLES IN SCHEMA 
         stage, 
         live, 
-        agi_oereb_konfiguration,
+        agi_konfiguration_oerebv2,
         afu_gewaesserschutz,
         afu_grundwasserschutz_oerebv2,
         arp_naturreservate,
@@ -57,7 +57,7 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
     GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA 
         stage, 
         live, 
-        agi_oereb_konfiguration,
+        agi_konfiguration_oerebv2,
         afu_gewaesserschutz,
         afu_grundwasserschutz_oerebv2,
         arp_naturreservate,
@@ -80,7 +80,7 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
     GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA 
         stage, 
         live, 
-        agi_oereb_konfiguration,
+        agi_konfiguration_oerebv2,
         afu_gewaesserschutz,
         afu_grundwasserschutz_oerebv2,
         arp_naturreservate,
@@ -104,7 +104,7 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
     GRANT USAGE ON SCHEMA 
         stage, 
         live,
-        agi_oereb_konfiguration,
+        agi_konfiguration_oerebv2,
         afu_gewaesserschutz,
         afu_grundwasserschutz_oerebv2,
         arp_naturreservate,
@@ -127,7 +127,7 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
     GRANT SELECT ON ALL TABLES IN SCHEMA 
         stage, 
         live,
-        agi_oereb_konfiguration,
+        agi_konfiguration_oerebv2,
         afu_gewaesserschutz,
         afu_grundwasserschutz_oerebv2,
         arp_naturreservate,
