@@ -576,7 +576,7 @@ public class create_schema_sql {
          // Nutzungsplanung (Kanton)
          {
             model = "SO_ARP_Nutzungsplanung_Nachfuehrung_20201005";
-            String schema = "arp_nutzungsplanung_kanton";
+            String schema = "arp_nutzungsplanung_kanton_v1";
             String fileName = "edit_"+schema+".sql";
 
             config = new Config();
@@ -620,7 +620,7 @@ public class create_schema_sql {
          // Nutzungsplanung (Gemeinde)
          {
             model = "SO_ARP_Nutzungsplanung_Nachfuehrung_20201005";
-            String schema = "arp_nutzungsplanung";
+            String schema = "arp_nutzungsplanung_v1";
             String fileName = "edit_"+schema+".sql";
 
             config = new Config();
