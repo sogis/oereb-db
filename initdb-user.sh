@@ -28,6 +28,8 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         arp_nutzungsplanung_kanton_v1,
         arp_nutzungsplanung_kanton_oerebv2,
         arp_planungszonen_oerebv2,
+        arp_waldreservate_v1,
+        arp_waldreservate_oerebv2,
         afu_gewaesserraum_oerebv2
     TO gretl;
 
@@ -51,6 +53,8 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         arp_nutzungsplanung_kanton_v1,
         arp_nutzungsplanung_kanton_oerebv2,
         arp_planungszonen_oerebv2,
+        arp_waldreservate_v1,
+        arp_waldreservate_oerebv2,
         afu_gewaesserraum_oerebv2
     TO gretl;
 
@@ -74,6 +78,8 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         arp_nutzungsplanung_kanton_v1,
         arp_nutzungsplanung_kanton_oerebv2,
         arp_planungszonen_oerebv2,
+        arp_waldreservate_v1,
+        arp_waldreservate_oerebv2,
         afu_gewaesserraum_oerebv2
     TO gretl;
 
@@ -97,6 +103,8 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         arp_nutzungsplanung_kanton_v1,
         arp_nutzungsplanung_kanton_oerebv2,
         arp_planungszonen_oerebv2,
+        arp_waldreservate_v1,
+        arp_waldreservate_oerebv2,
         afu_gewaesserraum_oerebv2
     TO gretl;
 
@@ -121,6 +129,8 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         arp_nutzungsplanung_kanton_v1,
         arp_nutzungsplanung_kanton_oerebv2,
         arp_planungszonen_oerebv2,
+        arp_waldreservate_v1,
+        arp_waldreservate_oerebv2,
         afu_gewaesserraum_oerebv2
     TO dmluser;
 
@@ -144,6 +154,8 @@ psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=P
         arp_nutzungsplanung_kanton_v1,
         arp_nutzungsplanung_kanton_oerebv2,
         arp_planungszonen_oerebv2,
+        arp_waldreservate_v1,
+        arp_waldreservate_oerebv2,
         afu_gewaesserraum_oerebv2
     TO dmluser;
 EOSQL
