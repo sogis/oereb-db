@@ -62,3 +62,4 @@ Die Pipeline erstellt das Image. Das Herstellen der verschiedenen SQL-Dateien (f
 
 
 
+
