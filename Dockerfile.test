@@ -1,4 +1,4 @@
-FROM sogis/gretl-runtime:latest
+FROM sogis/gretl:latest
 
 USER root
 
