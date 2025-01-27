@@ -1,6 +1,6 @@
 ///usr/bin/env jbang "$0" "$@" ; exit $?
 //REPOS mavenCentral,ehi=http://jars.interlis.ch/
-//DEPS ch.interlis:ili2pg:4.3.1 org.postgresql:postgresql:42.1.4.jre6 
+//DEPS ch.interlis:ili2pg:4.9.1 org.postgresql:postgresql:42.1.4.jre6 
 
 import java.io.File;
 import java.io.FileInputStream;

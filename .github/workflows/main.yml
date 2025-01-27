@@ -52,7 +52,7 @@ jobs:
           name: setup.sql
           path: setup.sql
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4 
         with:
           name: transfer.sql
           path: transfer_*.sql
