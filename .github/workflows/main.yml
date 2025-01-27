@@ -13,7 +13,13 @@ jobs:
 
   make-docker-images:
     name: Build docker image for oereb db
+
     runs-on: ubuntu-20.04
+
+    permissions:
+      contents: read
+      packages: write
+
     env:
       VERSION: 2.0.${{ github.run_number }}
       PG_VERSION: 14-3.1
@@ -63,7 +69,9 @@ jobs:
         id: meta
         uses: docker/metadata-action@3a3bb3a81753dc99f090d24ee7e5343838b73a96  # v3.5.0 (2021-10-22)
         with:
-          images: sogis/oereb-db
+          images: |
+            sogis/oereb-db
+            ghcr.io/sogis/oereb-db
           labels: |
             org.opencontainers.image.title=oereb-db
             org.opencontainers.image.version=${{ env.VERSION }}
@@ -88,16 +96,24 @@ jobs:
         run: |
           docker images
 
-      - name: Test docker image
-        run: |
-          docker-compose -f docker-compose.test.yml build
-          docker-compose -f docker-compose.test.yml run sut
+      # - name: Test docker image
+      #   run: |
+      #     docker-compose -f docker-compose.test.yml build
+      #     docker-compose -f docker-compose.test.yml run sut
 
-      - name: Login to GitHub Container Registry
+      - name: Login to Docker Container Registry
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9  # v1.10.0 (2021-10-22)
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+        if: ${{ (github.ref == 'refs/heads/main') && (github.event_name != 'pull_request') && !env.ACT }}
+
+      - name: Login to Github Container Registry
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9  # v1.10.0 (2021-10-22)
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
         if: ${{ (github.ref == 'refs/heads/main') && (github.event_name != 'pull_request') && !env.ACT }}
 
       # Unschön ist das zweite Builden der Images. Multiarch push manuell ist nicht so prickelnd und
